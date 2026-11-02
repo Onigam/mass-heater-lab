@@ -431,6 +431,7 @@ describe('the visitor texts', () => {
     expect(count(/false colour/i)).toBe(1); // the room's overview, where the thermal view is first met
     expect(count(/against the air beside it/)).toBe(1); // the sign of a pressure: the manifold's sheet; the panel says it beside its own figure
     expect(count(/“At full fire”: the model at 9 h/)).toBe(1); // what « à plein feu » means: the notice on reading the figures
+    expect(count(/An asterisk after an envelope/)).toBe(1); // what the mark of `envelopeMark` means: the same notice
     // a warning is said once, where the gesture is risky
     expect(count(/silica dust that can be breathed/)).toBe(1);
     expect(count(/health classification/)).toBe(1);

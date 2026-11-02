@@ -36,7 +36,9 @@ const THERMAL_PARTS = new Set([
 
 export const lab: LabDefinition<MassHeaterSim> = {
   id: 'mass-heater-lab',
-  brand: { title: strL('labTitle'), tagline: strL('tagline'), icon: './favicon.svg' },
+  brand: { title: strL('labTitle'), tagline: strL('tagline') },
+  // a part's envelope is the size of our generic drawing, not a size from a source: the notice on reading the figures says what the mark means
+  envelopeMark: '*',
   sim,
   defaultScene: 'homestead',
   // proposed by the research (docs/research.md §0.2), the owner's answer to its question 7 pending
