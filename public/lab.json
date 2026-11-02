@@ -1,10 +1,16 @@
 {
   "id": "mass-heater-lab",
-  "title": { "fr": "Mass Heater Lab", "en": "Mass Heater Lab" },
-  "tagline": { "fr": "Un lab à remplacer", "en": "A lab to replace" },
-  "tags": [],
-  "difficulty": 1,
-  "minutes": 10,
+  "title": {
+    "fr": "Labo du poêle de masse",
+    "en": "Mass Heater Lab"
+  },
+  "tagline": {
+    "fr": "Un poêle de masse à tube en J : un feu couché, un bidon qui chauffe tout de suite, une banquette de terre qui rend ensuite. Deux feux par jour, oui, mais pour quelle maison ?",
+    "en": "A J-tube mass heater: a fire lying down, a drum that heats at once, an earthen bench that gives back afterwards. Two fires a day, yes, but for which house?"
+  },
+  "tags": ["heat", "wood", "fire", "storage"],
+  "difficulty": 2,
+  "minutes": 30,
   "status": "building",
   "energyProfile": null
 }
