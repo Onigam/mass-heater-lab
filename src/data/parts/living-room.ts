@@ -15,8 +15,8 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
       'Heat at once: a steel drum that radiates, nearly {drumBurst} kW in great bursts (model result). Too hot for the hand.',
     ),
     description: lf(
-      'Un bidon du commerce renversé sur la cheminée interne : voilà ce qui donne son allure à cette machine. Les gaz montent au centre, se heurtent à son couvercle et redescendent le long de sa paroi, à laquelle ils cèdent leur chaleur ; mince et sombre, elle la rayonne aussitôt dans la pièce. Sur une journée, les gaz lui laissent {shareDrum} % du bois, et il rend environ {kwhDrum} kWh à la pièce, **deux fois ce que rend le banc** (résultat du modèle). Aucune source ne donne ce partage. Son couvercle monte à {lidPeak} °C à {feedRate} kg/h (hypothèse pour le débit), puis retombe près de la température de la pièce entre les feux (résultat du modèle). Le bidon n’est pas ce qui fait tirer la machine : avec la cheminée interne, il ne pèse qu’environ {netPa} Pa sur {draft} Pa (résultat du modèle). Touché à ces températures, il brûle : un poêle de cette forme ne s’installe pas sans y penser, avec des enfants ou des bêtes.',
-      'A stock drum upended over the riser: that is what gives this machine its look. The gases climb the centre, strike its lid and come down along its wall, giving up their heat; thin and dark, the wall radiates it straight into the room. Over a day the gases leave it {shareDrum}% of the wood, and it gives about {kwhDrum} kWh to the room, **twice what the bench gives** (model result). No source gives this split. Its lid reaches {lidPeak} °C at {feedRate} kg/h (an assumption for the rate), then falls back near room temperature between fires (model result). The drum is not what makes the machine draw: with the riser it weighs only about {netPa} Pa in {draft} Pa (model result). Touched at these temperatures it burns: a heater of this shape is not fitted without thought for children or animals.',
+      'Un bidon du commerce renversé sur la cheminée interne : voilà ce qui donne son allure à cette machine. Les gaz montent au centre, se heurtent à son couvercle et redescendent le long de sa paroi, à laquelle ils cèdent leur chaleur ; mince et sombre, elle la rayonne aussitôt dans la pièce. Sur une journée, les gaz lui laissent {shareDrum} % du bois, et il rend environ {kwhDrum} kWh à la pièce, **deux fois ce que rend le banc** (résultat du modèle). Aucune source ne donne ce partage. Son couvercle monte à {lidPeak} °C à {feedRate} kg/h (hypothèse pour le débit), puis retombe près de la température de la pièce entre les feux (résultat du modèle). Le bidon n’est pas ce qui fait tirer la machine : avec la cheminée interne, il ne pèse à plein feu qu’environ {netPa} Pa sur {draftAt9} Pa (résultat du modèle). Touché à ces températures, il brûle : un poêle de cette forme ne s’installe pas sans y penser, avec des enfants ou des bêtes.',
+      'A stock drum upended over the riser: that is what gives this machine its look. The gases climb the centre, strike its lid and come down along its wall, giving up their heat; thin and dark, the wall radiates it straight into the room. Over a day the gases leave it {shareDrum}% of the wood, and it gives about {kwhDrum} kWh to the room, **twice what the bench gives** (model result). No source gives this split. Its lid reaches {lidPeak} °C at {feedRate} kg/h (an assumption for the rate), then falls back near room temperature between fires (model result). The drum is not what makes the machine draw: with the riser it weighs only about {netPa} Pa in {draftAt9} Pa at full fire (model result). Touched at these temperatures it burns: a heater of this shape is not fitted without thought for children or animals.',
     ),
     material: l(
       'Acier mince, peint, sans marque ; un bidon récupéré est un danger à part (voir le guide)',
@@ -120,8 +120,8 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'Allumez la vue thermique, faites glisser l’heure sur 24 h : la couleur part du conduit et monte vers l’assise, après l’arrêt du feu.',
-      'Switch on the thermal view and drag the hour over 24 h: the colour leaves the duct and climbs to the seat, after the fire stops.',
+      'Allumez la vue thermique et la **Coupe**, faites glisser l’heure sur 24 h : dans la coupe, la couleur part du conduit et monte vers l’assise, après l’arrêt du feu.',
+      'Switch on the thermal view and **Section**, and drag the hour over 24 h: in the section the colour leaves the duct and climbs to the seat, after the fire stops.',
     ),
     design: lf(
       'Pourquoi une à deux heures et pas plus ? Parce que les gaz continuent de refroidir le côté du conduit après le feu, et qu’un feu de {sessionHours} h (hypothèse) n’est pas une impulsion. La terre rend donc aussi une partie de sa chaleur vers le conduit (résultat du modèle). Une terre plus conductrice, à 1,06 W/m·K, donne une assise à {kHighSeat} °C ; à 0,3 W/m·K, à {kLowSeat} °C.',
@@ -171,8 +171,8 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'Isolez le dossier puis la banquette : on voit qu’il repose dessus, et qu’il ne touche pas le conduit.',
-      'Isolate the backrest, then the bench: you can see it rests on top, and does not touch the duct.',
+      'En **Transparence**, le dossier reste plein et la banquette s’efface : il repose dessus, et le conduit passe dessous sans le toucher.',
+      'In **X-ray** the backrest stays solid and the bench fades: it rests on top, and the duct runs below without touching it.',
     ),
     design: l(
       'Rien ne serait gagné à y faire passer le conduit : celui-ci va chercher les parties que le corps touche. Le dossier est de la surface et du confort, ce qui n’est pas rien pour une machine dont on vit à côté.',
@@ -189,8 +189,8 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
       'Where the gases, at the foot of the drum, turn to enter the duct, around {afterDrum} °C at full fire (model result).',
     ),
     description: lf(
-      'Le collecteur fait partie des six organes qu’une vidéo de constructeurs énumère pour cette machine : l’entrée du bois, le tunnel, la cheminée interne, le collecteur, la masse et la sortie verticale. C’est, dans notre reconstitution, une boîte d’acier derrière le bidon, reliée à la chambre sous la chute ; d’autres machines la maçonnent. Les gaz qui sortent de la paroi du bidon y arrivent autour de {afterDrum} °C (résultat du modèle), en tournent d’un quart de tour et trouvent l’entrée du conduit. Le changement de direction ralentit le flux : c’est donc là que la cendre volante se dépose, et c’est aussi là qu’une pression négative d’une quinzaine de pascals se fait sentir à plein feu, ce qu’une trappe mal jointée sentirait aussi. Le modèle lui donne une perte de charge tirée d’une table usuelle (une estimation), sans aucune mesure pour la vérifier.',
-      'The manifold is one of the six organs a builders’ video lists for this machine: the wood feed, the tunnel, the riser, the manifold, the mass and the vertical exit. In our reconstruction it is a steel box behind the drum, joined to the chamber under the fall; other machines build it in masonry. The gases coming off the drum’s wall arrive around {afterDrum} °C (model result), turn a quarter and find the entry of the duct. The change of direction slows the flow: so this is where fly ash settles, and also where a suction of some fifteen pascals is felt at full fire, as a poorly sealed door would feel it too. The model gives it a pressure loss from a usual table (an estimate), with no measurement to check it.',
+      'Le collecteur fait partie des six organes qu’une vidéo de constructeurs énumère pour cette machine : l’entrée du bois, le tunnel, la cheminée interne, le collecteur, la masse et la sortie verticale. C’est, dans notre reconstitution, une boîte d’acier derrière le bidon, reliée à la chambre sous la chute ; d’autres machines la maçonnent. Les gaz qui sortent de la paroi du bidon y arrivent autour de {afterDrum} °C (résultat du modèle), en tournent d’un quart de tour et trouvent l’entrée du conduit. Le changement de direction ralentit le flux : c’est donc là que la cendre volante se dépose. À plein feu, la pression y passe de −{manifoldPa} à −{manifoldOutPa} Pa (résultat du modèle). **Toute pression de ces fiches se lit contre l’air d’à côté : négative, une fuite laisse entrer de l’air ; positive, elle laisse sortir des gaz.** Le modèle lui donne une perte de charge tirée d’une table usuelle (une estimation), sans aucune mesure pour la vérifier.',
+      'The manifold is one of the six organs a builders’ video lists for this machine: the wood feed, the tunnel, the riser, the manifold, the mass and the vertical exit. In our reconstruction it is a steel box behind the drum, joined to the chamber under the fall; other machines build it in masonry. The gases coming off the drum’s wall arrive around {afterDrum} °C (model result), turn a quarter and find the entry of the duct. The change of direction slows the flow: so this is where fly ash settles. At full fire the pressure there goes from −{manifoldPa} to −{manifoldOutPa} Pa (model result). **Every pressure on these sheets is read against the air beside it: negative, a leak lets air in; positive, it lets gas out.** The model gives it a pressure loss from a usual table (an estimate), with no measurement to check it.',
     ),
     material: l(
       'Boîte d’acier noyée dans la terre (notre reconstitution)',
@@ -251,7 +251,7 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
       sp(
         'Pression à plein feu',
         'Pressure at full fire',
-        tf('model', 'négative, vers {lidPa} Pa sous le couvercle', 'negative, about {lidPa} Pa under the lid'),
+        tf('model', 'environ −{manifoldPa} Pa', 'about −{manifoldPa} Pa'),
       ),
       sp('Ouverture', 'Opening', l('à froid, feu éteint et braises mortes', 'cold, fire out and embers dead')),
       sp('Joint', 'Seal', l('joint de porte de poêle', 'stove-door gasket')),
@@ -287,8 +287,8 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
     category: 'mechanical',
     name: l('Le conduit vertical', 'The chimney'),
     short: lf(
-      'Le vrai moteur de la machine, quand il est chaud : {chimneyPa} Pa à lui seul, sur les {draft} Pa disponibles (résultat du modèle).',
-      'The machine’s real engine, when warm: {chimneyPa} Pa of its own, in the {draft} Pa on hand (model result).',
+      'Le vrai moteur de la machine, quand il est chaud : {chimneyPa} Pa à lui seul à plein feu, quand cheminée interne et bidon n’en donnent que {netPa} (résultat du modèle).',
+      'The machine’s real engine, when warm: {chimneyPa} Pa of its own at full fire, where the riser and the drum give only {netPa} (model result).',
     ),
     description: lf(
       'On crédite volontiers la cheminée interne du tirage : il n’en est rien. À plein feu, elle monte de {riserPa} Pa, la chute dans le bidon en reprend {fallPa}, soit {netPa} Pa à eux deux, et **le conduit vertical donne {chimneyPa} Pa** (résultat du modèle). Un concepteur le dit nettement, et le calcul à la main le retrouve. Il doit donc rester chaud : isolé, sur toute sa longueur, jusqu’à {chimneyTop} m environ (hauteur estimée). Un conduit froid, c’est l’inverse : à −5 °C dehors, il ne pèse plus que −{coldFluePa} Pa dans le modèle, car au-dessus du toit l’air est aussi froid que lui ; la somme à la main, qui suppose de l’air de pièce tout du long, donnait −5,5 Pa (dérivé). Trop de hauteur coûte aussi : à {chimneyHigh} m, {chimney8Eta} % de rendement (résultat du modèle), car elle tire de l’air qui ne sert à rien. Un constructeur de 15 ans a fini par préférer une vraie cheminée à une sortie horizontale qui ne marchait que dans de bonnes conditions.',
@@ -307,7 +307,11 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
       sp(
         'Le tirage total',
         'The total draught',
-        tf('model', '{draft} Pa, 85 % perdus à l’entrée', '{draft} Pa, 85% lost at the entry'),
+        tf(
+          'model',
+          '{draft} Pa en moyenne d’un feu, {draftAt9} Pa à 9 h, {feedPaShare} % perdus à l’entrée',
+          '{draft} Pa as the mean of a fire, {draftAt9} Pa at 9 h, {feedPaShare}% lost at the entry',
+        ),
       ),
     ],
     maintenance: maint(
@@ -393,8 +397,8 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
       'The place a house catches fire: the flue crosses wood and insulation, at the distance set by the flue’s maker.',
     ),
     description: lf(
-      'Les fumées qui passent ici sont tièdes en temps normal : {exhaust} °C dans le modèle à plein feu (résultat du modèle). Le risque n’est pas ce régime-là, mais le feu de conduit, ou une machine menée trop fort, et un charpentier a rarement prévu cela. Les règles françaises des conduits de fumée, résumées par un fabricant, imposent une distance de sécurité et des pièces de traversée propres à chaque conduit. Ce labo ne donne aucune distance : elle se lit sur l’étiquette du conduit et dans sa notice, et elle n’est pas à réduire. On ne voit plus cette pièce une fois le plafond fermé ; c’est pour cela qu’une trappe de visite vaut la peine, avec un coup d’œil après la première saison et chaque fois qu’un feu de conduit est suspecté.',
-      'The gases passing here are lukewarm in normal running: {exhaust} °C in the model at full fire (model result). The risk is not that regime but a flue fire, or a machine driven too hard, and a carpenter has rarely allowed for that. The French rules for flues, summarised by a maker, ask for a safety distance and crossing pieces specific to each flue. This lab gives no distance: it is read on the flue’s label and in its notice, and it is not for reducing. This part cannot be seen once the ceiling is closed; hence the worth of an inspection hatch, with a look after the first season and each time a flue fire is suspected.',
+      'Les fumées passent ici vers {ceilingT} °C à plein feu (résultat du modèle). Le plus grand risque n’est pas ce régime-là, mais le feu de conduit, ou une machine menée trop fort, et un charpentier a rarement prévu cela. Les règles françaises des conduits de fumée, résumées par un fabricant, imposent une distance de sécurité et des pièces de traversée propres à chaque conduit. Ce labo ne donne aucune distance : elle se lit sur l’étiquette du conduit et dans sa notice, et elle n’est pas à réduire. On ne voit plus cette pièce une fois le plafond fermé ; c’est pour cela qu’une trappe de visite vaut la peine, avec un coup d’œil après la première saison et chaque fois qu’un feu de conduit est suspecté.',
+      'The gas passes here at about {ceilingT} °C at full fire (model result). The greater risk is not that regime but a flue fire, or a machine driven too hard, and a carpenter has rarely allowed for that. The French rules for flues, summarised by a maker, ask for a safety distance and crossing pieces specific to each flue. This lab gives no distance: it is read on the flue’s label and in its notice, and it is not for reducing. This part cannot be seen once the ceiling is closed; hence the worth of an inspection hatch, with a look after the first season and each time a flue fire is suspected.',
     ),
     material: l(
       'Pièce de traversée du fabricant, plaque, isolant incombustible',
@@ -405,7 +409,7 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
       sp(
         'Fumées à cet endroit',
         'Gas at this point',
-        tf('model', 'environ {exhaust} °C à plein feu', 'about {exhaust} °C at full fire'),
+        tf('model', 'environ {ceilingT} °C à plein feu', 'about {ceilingT} °C at full fire'),
       ),
       sp('Vérification', 'Inspection', l('une trappe, puis chaque saison', 'a hatch, then each season')),
     ],
@@ -496,8 +500,8 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
       'A sheet and a gap of air: the sheet stops the radiation, the air carries off what it receives. It is not thickness that protects.',
     ),
     description: lf(
-      'Le bidon voit le mur d’à côté, et il le chauffe par rayonnement, sans se soucier de l’air qui est entre eux. Une tôle posée entre les deux reçoit ce rayonnement, et, si de l’air circule derrière, ne le transmet presque pas. Ce même projet de texte pour une ville américaine parle de 36 pouces entre le bidon et un mur combustible (environ {clearanceDrumCm} cm, dérivé), et de 18 pouces (environ {clearanceShieldCm} cm, dérivé) avec un écran et 1 pouce d’air (environ {shieldGapMm} mm, dérivé). **Ce sont les mots d’un brouillon d’un autre pays, et ni une règle ni une valeur sûre** : ils montrent seulement un ordre de grandeur, et aucune recette pour rapprocher un mur. Sa règle à lui viendra du pays, de l’assureur et d’un professionnel.',
-      'The drum sees the wall beside it and heats it by radiation, regardless of the air between them. A sheet set between the two receives that radiation and, with air moving behind it, passes on very little. The same draft text for one American city speaks of 36 inches between the drum and a combustible wall (about {clearanceDrumCm} cm, derived), and of 18 inches (about {clearanceShieldCm} cm, derived) with a shield and 1 inch of air (about {shieldGapMm} mm, derived). **Those are the words of an unfinished text from another country, neither a rule nor a safe value**: they only show an order of magnitude, and no recipe for bringing a wall closer. Its true rule will come from the country, the insurer and a professional.',
+      'Le bidon voit le mur d’à côté, et il le chauffe par rayonnement, sans se soucier de l’air qui est entre eux. Une tôle posée entre les deux reçoit ce rayonnement, et, si de l’air circule derrière, en transmet bien moins. Ce même projet de texte pour une ville américaine parle de 36 pouces entre le bidon et un mur combustible (environ {clearanceDrumCm} cm, dérivé), et de 18 pouces (environ {clearanceShieldCm} cm, dérivé) avec un écran et 1 pouce d’air (environ {shieldGapMm} mm, dérivé). **Ce sont les mots d’un brouillon d’un autre pays, et ni une règle ni une valeur sûre** : ils montrent seulement un ordre de grandeur, et aucune recette pour rapprocher un mur. Sa règle à lui viendra du pays, de l’assureur et d’un professionnel.',
+      'The drum sees the wall beside it and heats it by radiation, regardless of the air between them. A sheet set between the two receives that radiation and, with air moving behind it, passes on far less. The same draft text for one American city speaks of 36 inches between the drum and a combustible wall (about {clearanceDrumCm} cm, derived), and of 18 inches (about {clearanceShieldCm} cm, derived) with a shield and 1 inch of air (about {shieldGapMm} mm, derived). **Those are the words of an unfinished text from another country, neither a rule nor a safe value**: they only show an order of magnitude, and no recipe for bringing a wall closer. Its true rule will come from the country, the insurer and a professional.',
     ),
     material: l('Tôle d’acier, sur entretoises incombustibles', 'Steel sheet, on non-combustible spacers'),
     specs: [
@@ -526,12 +530,12 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'Passez la vue thermique et regardez le mur derrière l’écran quand le bidon est au plus chaud.',
-      'Use the thermal view and look at the wall behind the shield when the drum is at its hottest.',
+      'En vue thermique, l’écran prend une teinte entre le bidon et le mur : c’est une image, car le modèle n’a ni écran ni lame d’air. Il ne dit rien de ce que reçoit un vrai mur.',
+      'In the thermal view the shield takes a tone between the drum and the wall: a picture, as the model has neither shield nor air gap. It says nothing of what a real wall receives.',
     ),
     design: l(
-      'Rayonnement et conduction sont deux problèmes. Une épaisse plaque de brique collée à un mur finit chaude, et le transmet ; une tôle mince avec de l’air derrière, non. C’est contre-intuitif, et ça ne se bricole pas.',
-      'Radiation and conduction are two problems. A thick slab of brick stuck to a wall ends up hot and passes it on; a thin sheet with air behind it does not. It runs against intuition, and it is not for improvising.',
+      'Rayonnement et conduction sont deux problèmes. Une épaisse plaque de brique collée à un mur finit chaude, et le transmet ; une tôle mince avec de l’air derrière en transmet bien moins. C’est contre-intuitif, et ça ne se bricole pas.',
+      'Radiation and conduction are two problems. A thick slab of brick stuck to a wall ends up hot and passes it on; a thin sheet with air behind it passes on far less. It runs against intuition, and it is not for improvising.',
     ),
   },
   {
@@ -595,8 +599,8 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
       'Run “A damper shut on embers”, then “The kitchen fan”, and compare: WHO’s values go before the alarm does, sometimes without it.',
     ),
     design: lf(
-      'Le modèle le dit en chiffres, et il ne dit que cela. Fermé dix minutes après l’arrêt du bois, un clapet fait passer la valeur d’une heure de l’OMS en {damperWhoMin} minutes, et le détecteur de la norme sonne {damperAlarmMin} minutes au plus tard (résultat du modèle). Une hotte peut le laisser muet : {fanCoPeak} ppm au plus haut, et pas d’alarme. Ces chiffres sont une moyenne de toute la maison, dans une bande de un à neuf à la source : aucun modèle ne peut dire qu’une installation est sûre.',
-      'The model says it in numbers, and it says only that. Shut ten minutes after the wood stops, a damper takes WHO’s one-hour value past in {damperWhoMin} minutes, and the standard’s alarm sounds {damperAlarmMin} minutes later at the latest (model result). A fan can leave it silent: {fanCoPeak} ppm at the highest, and no alarm. These figures are a whole-house mean, from a source in a band of one to nine: no model can say an installation is safe.',
+      'Le modèle le dit en chiffres, et il ne dit que cela. Fermé dix minutes après l’arrêt du bois, un clapet fait passer la valeur d’une heure de l’OMS en {damperWhoMin} minutes, et le détecteur de la norme sonne à {damperAlarmMin} minutes au plus tard (résultat du modèle). Une hotte peut le laisser muet : {fanCoPeak} ppm au plus haut, et pas d’alarme. Ces chiffres sont une moyenne de toute la maison, dans une bande de un à neuf à la source : aucun modèle ne peut dire qu’une installation est sûre.',
+      'The model says it in numbers, and it says only that. Shut ten minutes after the wood stops, a damper takes WHO’s one-hour value past in {damperWhoMin} minutes, and the standard’s alarm sounds by {damperAlarmMin} minutes at the latest (model result). A fan can leave it silent: {fanCoPeak} ppm at the highest, and no alarm. These figures are a whole-house mean, from a source in a band of one to nine: no model can say an installation is safe.',
     ),
   },
   {
@@ -688,9 +692,9 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
         care: 'Dust it. Never close it, and do not bring an appliance that sucks into the same house without thinking about it.',
       },
     ),
-    tip: l(
-      'Dans la Simulation, « Dépression d’une hotte ou d’une VMC » fait la démonstration. Essayez-la à plusieurs moments de la journée : le plein feu tient, la fin de feu non.',
-      'In the Simulation, “Depression from a fan” shows it. Try it at several times of day: full burn holds, the end of a fire does not.',
+    tip: lf(
+      'Dans la Simulation, « Dépression d’une hotte ou d’une VMC » fait la démonstration. Montée peu à peu, elle laisse le courant tenir à 9 h, en plein feu, jusqu’à {fanPa} Pa (hypothèse), et le retourne vers 6 Pa à 12 h, le feu fini. Mis d’un coup, {fanPa} Pa le retournent même en plein feu : le modèle garde son sens tant qu’il le peut (résultat du modèle).',
+      'In the Simulation, “Depression from a fan” shows it. Raised little by little, it lets the flow hold at 9 h, at full fire, up to {fanPa} Pa (assumption), and turns it round near 6 Pa at 12 h, the fire over. Set all at once, {fanPa} Pa turn it even at full fire: the model keeps its direction as long as it can (model result).',
     ),
     design: l(
       'Une maison étanche est le prérequis d’un poêle de masse et le terrain de ses retours de fumée : les deux viennent ensemble. Un poêle qui respire dans une maison qui ne respire plus est un sujet à traiter ensemble.',
@@ -724,14 +728,14 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
     maintenance: maint(
       {
         failure:
-          'Un panier posé près du bidon par commodité : du bois sec à côté d’une paroi à {lidPeak} °C (résultat du modèle) n’a pas sa place. Des insectes qui viennent avec lui.',
+          'Un panier posé près du bidon par commodité : du bois sec à côté d’une paroi à {sidePeak} °C (résultat du modèle) n’a pas sa place. Des insectes qui viennent avec lui.',
         check:
           'Sa place par rapport au tube et au bidon, et l’humidité de ce qu’il contient, au début de chaque rangée de la pile.',
         care: 'Remplir à la mesure de la journée, pas plus. Un bois stocké en pièce chaude finit de sécher, mais il n’y a aucune raison d’y faire un stock.',
       },
       {
         failure:
-          'A basket set by the drum for convenience: dry wood has no place beside a wall at {lidPeak} °C (model result). Insects that come in with it.',
+          'A basket set by the drum for convenience: dry wood has no place beside a wall at {sidePeak} °C (model result). Insects that come in with it.',
         check:
           'Where it stands against the feed and the drum, and the moisture of what it holds, at the start of each row of the pile.',
         care: 'Fill it for the day, no more. Wood kept in a warm room finishes drying, but that is no reason to stock it there.',
@@ -782,8 +786,8 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'Faites glisser l’heure et lisez le couvercle : à quelle heure l’eau pourrait-elle bouillir, et à quelle heure non ?',
-      'Drag the hour and read the lid: when could the water boil, and when not?',
+      'Faites glisser l’heure et lisez « Bidon » : c’est son couvercle. À quelle heure l’eau pourrait-elle bouillir, et à quelle heure non ?',
+      'Drag the hour and read “Drum”: that is its lid. When could the water boil, and when not?',
     ),
     design: l(
       'Une machine dont on se sert à autre chose s’entretient mieux, et sa présence s’accepte mieux. Rien ici n’est calculé : la bouilloire est là pour l’habitude.',
@@ -800,12 +804,12 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
       'The house’s only instrument: too hot, the wood heats the sky; too cold, the draught fades. {exhaust} °C in the model.',
     ),
     description: lf(
-      'Un simple cadran sur le conduit dit ce qui part. Le modèle lit {exhaust} °C à plein feu, {shortExhaust} °C sur un banc de 4,5 m, {longExhaust} °C sur 18 m (résultat du modèle) ; les constructeurs rapportent de 32 à plus de 232 °C. Un concepteur vise 80 à 100 °C en sortie pour que ça tire : un repère, pas une loi. **C’est aussi de ces chiffres qu’on tire les rendements qui courent.** Un analyseur de fumées ne voit que la sortie : **{etaFlue} % par un calcul de fumées**, sur la même journée où la maison garde **{eta} %** (résultat du modèle, plage plausible de {etaLow} à {etaHigh} %). Nous n’avons trouvé aucun essai indépendant d’un tube en J en terre : les chiffres publiés au-dessus de 80 % sont tous des calculs de fumées. L’ouverture du tube, cachée à {feedCover} % (estimation), décide de l’essentiel, et aucune source ne la donne.',
-      'A plain dial on the flue says what is leaving. The model reads {exhaust} °C at full fire, {shortExhaust} °C on a 4.5 m bench, {longExhaust} °C on 18 m (model result); builders report 32 to over 232 °C. One designer aims for 80 to 100 °C at the exit for a good draw: a mark, not a law. **The efficiencies going round also come from these figures.** A flue-gas analyser sees only the exit: **{etaFlue}% by a flue calculation**, on the same day the house keeps **{eta}%** (model result, plausible range {etaLow} to {etaHigh}%). We found no independent test of a cob J-tube: the published figures above 80 % are all flue calculations. The feed’s opening, hidden at {feedCover}% (estimate), decides most of it, and no source gives it.',
+      'Un simple cadran sur le conduit dit ce qui part. À la sortie, le modèle lit {exhaust} °C en moyenne d’un feu, {shortExhaust} °C sur un banc de 4,5 m, {longExhaust} °C sur 18 m (résultat du modèle) ; les constructeurs rapportent de 32 à plus de 232 °C. Un concepteur vise 80 à 100 °C en sortie pour que ça tire : un repère, pas une loi. **C’est aussi de ces chiffres qu’on tire les rendements qui courent.** Un analyseur de fumées ne voit que la sortie : **{etaFlue} % par un calcul de fumées**, sur la même journée où la maison garde **{eta} %** (résultat du modèle, plage plausible de {etaLow} à {etaHigh} %). Nous n’avons trouvé aucun essai indépendant d’un tube en J en terre : les chiffres publiés au-dessus de 80 % sont tous des calculs de fumées. L’ouverture du tube, cachée à {feedCover} % (estimation), décide de l’essentiel, et aucune source ne la donne.',
+      'A plain dial on the flue says what is leaving. At the exit the model reads a mean of {exhaust} °C over a fire, {shortExhaust} °C on a 4.5 m bench, {longExhaust} °C on 18 m (model result); builders report 32 to over 232 °C. One designer aims for 80 to 100 °C at the exit for a good draw: a mark, not a law. **The efficiencies going round also come from these figures.** A flue-gas analyser sees only the exit: **{etaFlue}% by a flue calculation**, on the same day the house keeps **{eta}%** (model result, plausible range {etaLow} to {etaHigh}%). We found no independent test of a cob J-tube: the published figures above 80 % are all flue calculations. The feed’s opening, hidden at {feedCover}% (estimate), decides most of it, and no source gives it.',
     ),
     material: l('Cadran à bilame, sur le conduit dans la pièce', 'A bimetal dial, on the flue in the room'),
     specs: [
-      sp('Sortie à plein feu', 'Exhaust at full fire', tf('model', '{exhaust} °C')),
+      sp('Sortie, moyenne d’un feu', 'Exhaust, mean of a fire', tf('model', '{exhaust} °C')),
       sp(
         'Rendu à la maison',
         'Delivered to the house',
@@ -882,8 +886,8 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'Regardez le coussin en vue thermique : la couleur s’arrête au tissu et reprend autour.',
-      'Look at the cushion in the thermal view: the colour stops at the fabric and picks up around it.',
+      'Regardez le coussin en vue thermique : il prend la couleur de l’assise, car le modèle n’a pas de coussin. Ce qu’il retient n’est pas calculé ici.',
+      'Look at the cushion in the thermal view: it takes the seat’s colour, as the model has no cushion. What it holds back is not calculated here.',
     ),
     design: l(
       'On tient à montrer une pièce habitée parce que c’est la vraie condition de cette machine : les gens dorment à côté d’elle. C’est de là que vient chaque règle de ce labo.',

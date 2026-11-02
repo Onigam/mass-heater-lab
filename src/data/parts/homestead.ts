@@ -76,13 +76,13 @@ export const HOMESTEAD_PARTS: PartInfo[] = [
     scene: 'homestead',
     category: 'mechanical',
     name: l('Chapeau de cheminée', 'Chimney cap'),
-    short: lf(
-      'Il protège le conduit de la pluie. Ce qui en sort dit comment brûle le feu : presque rien quand tout va bien (résultat du modèle).',
-      'It keeps rain out of the flue. What leaves it says how the fire burns: next to nothing when all is well (model result).',
+    short: l(
+      'Il protège le conduit de la pluie. Ce qui en sort distingue la vapeur de la fumée, mais un chapeau clair ne dit rien du monoxyde : l’œil ne le juge pas.',
+      'It keeps rain out of the flue. What leaves it tells steam from smoke, but a clear cap says nothing of carbon monoxide: the eye cannot judge it.',
     ),
     description: lf(
-      'C’est le bout du chemin des gaz, à environ {chimneyTop} m au-dessus du plancher (estimation), au-dessus du faîtage. Les constructeurs annoncent une sortie de 32 °C sur les longs systèmes, plus de 232 °C sur une masse trop petite ; le modèle trouve {exhaust} °C à plein feu (résultat du modèle) sur son conduit de 9 m. Toutes ces lectures peuvent être vraies : la longueur, la masse et le moment du feu décident. Le chapeau coûte un peu de tirage et empêche l’eau et les oiseaux d’entrer. La fumée visible est une information : blanche et courte par grand froid, c’est souvent de la vapeur ; grise et qui s’attarde, c’est du combustible qui part. Dans la 3D, le panache suit le modèle : il ne paraît que lorsque celui-ci le dit.',
-      'This is the end of the gases’ path, about {chimneyTop} m above the floor (estimate), above the ridge. Builders report an exhaust of 32 °C on long systems and over 232 °C on too small a mass; the model finds {exhaust} °C at full fire (model result) on its 9 m duct. All these readings can be true: length, mass and the moment in the fire decide. The cap costs a little draught and keeps water and birds out. Visible smoke is information: white and short in hard frost, it is often steam; grey and lingering, it is fuel leaving. In the 3D the plume follows the model: it only shows when the model says so.',
+      'C’est le bout du chemin des gaz, à environ {chimneyTop} m au-dessus du plancher (estimation), au-dessus du faîtage. Les constructeurs annoncent une sortie de 32 °C sur les longs systèmes, plus de 232 °C sur une masse trop petite ; le modèle trouve {exhaust} °C en moyenne d’un feu, {exhaustAt9} °C à 9 h (résultat du modèle), sur son conduit de 9 m. Toutes ces lectures peuvent être vraies : la longueur, la masse et le moment du feu décident. Le chapeau coûte un peu de tirage et empêche l’eau et les oiseaux d’entrer. La fumée visible renseigne : blanche et courte par grand froid, c’est souvent de la vapeur ; grise et qui s’attarde, c’est du combustible qui part. L’inverse ne vaut pas : un constructeur qui analysait ses gaz n’a rien vu à l’œil quand sa combustion se dégradait. Dans la 3D, la vapeur suit le point de rosée du modèle, et la fumée sa carte du monoxyde : une image de cette carte, pas une mesure.',
+      'This is the end of the gases’ path, about {chimneyTop} m above the floor (estimate), above the ridge. Builders report an exhaust of 32 °C on long systems and over 232 °C on too small a mass; the model finds {exhaust} °C as the mean of a fire, {exhaustAt9} °C at 9 h (model result), on its 9 m duct. All these readings can be true: length, mass and the moment in the fire decide. The cap costs a little draught and keeps water and birds out. Visible smoke is information: white and short in hard frost, it is often steam; grey and lingering, it is fuel leaving. The reverse does not hold: a builder analysing his gas saw nothing by eye as his burn got worse. In the 3D the steam follows the model’s dew point and the smoke its carbon monoxide map: a picture of that map, not a measurement.',
     ),
     material: l(
       'Inox, sur un conduit à double paroi (dessin générique)',
@@ -90,7 +90,8 @@ export const HOMESTEAD_PARTS: PartInfo[] = [
     ),
     specs: [
       sp('Sommet', 'Top', tf('estimate', 'environ {chimneyTop} m du plancher', 'about {chimneyTop} m above the floor')),
-      sp('Sortie, à plein feu', 'Exhaust at full fire', tf('model', '{exhaust} °C')),
+      sp('Sortie, moyenne d’un feu', 'Exhaust, mean of a fire', tf('model', '{exhaust} °C')),
+      sp('Sortie, à 9 h', 'Exhaust, at 9 h', tf('model', '{exhaustAt9} °C')),
       sp('Lectures de constructeurs', 'Builders’ readings', l('de 32 à plus de 232 °C', '32 to over 232 °C')),
       sp(
         'Ce qui sort',
@@ -115,8 +116,8 @@ export const HOMESTEAD_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'Passez en vue **Flux** et regardez la fumée au chapeau pendant qu’un feu prend, puis à plein régime : la différence est celle du foyer froid.',
-      'Switch on **Flows** and watch the cap while a fire catches, then at full burn: the difference is that of a cold core.',
+      'Dans la Simulation, faites glisser l’heure à travers un feu et regardez le chapeau : surtout de la vapeur pendant le feu, de la fumée quand le bois s’arrête. **Flux** montre le chemin des gaz, pas ce panache.',
+      'In the Simulation, drag the hour through a fire and watch the cap: mostly steam during the fire, smoke once the wood stops. **Flows** shows the gases’ path, not this plume.',
     ),
     design: l(
       'Aucune sortie « presque à température ambiante » ne se paie gratis : plus les fumées sortent froides, moins la cheminée tire et plus l’eau se condense. Une bonne machine laisse juste assez de chaleur au conduit pour tirer.',
@@ -176,12 +177,12 @@ export const HOMESTEAD_PARTS: PartInfo[] = [
     category: 'mechanical',
     name: l('Prise d’air extérieure', 'Outside air inlet'),
     short: lf(
-      'Le feu respire environ {airM3h} m³/h à plein régime (résultat du modèle) : cet air doit bien venir de quelque part.',
-      'At full burn the fire breathes about {airM3h} m³/h (model result): that air has to come from somewhere.',
+      'Pendant un feu, il respire environ {airM3h} m³/h en moyenne (résultat du modèle) : cet air doit bien venir de quelque part.',
+      'During a fire it breathes a mean of about {airM3h} m³/h (model result): that air has to come from somewhere.',
     ),
     description: lf(
-      'Une maison étanche a un problème que n’avait pas une maison pleine de courants d’air : la machine y consomme autant d’air que toute la ventilation de base. À plein feu, le modèle fait passer {flowGs} g/s, soit environ {airM3h} m³/h (résultat du modèle), contre environ {baseM3h} m³/h de renouvellement de base à {achBase} volume par heure (estimation). Une prise d’air dans la pièce évite que le feu tire sur le reste de la maison ou se batte avec une hotte. Un manuel français détaille l’enchaînement dans une maison mise en dépression après le feu, et un maçon américain le signale aussi. La prise ne remplace rien d’autre : elle ne dit rien du monoxyde, et elle ne fait pas d’un conduit froid un conduit qui tire.',
-      'A tight house has a problem a draughty one never had: the machine takes as much air as all the base ventilation. At full fire the model moves {flowGs} g/s, about {airM3h} m³/h (model result), against about {baseM3h} m³/h of base renewal at {achBase} volume an hour (estimate). An inlet in the room keeps the fire from pulling on the rest of the house or fighting a kitchen fan. A French manual sets out the chain of events in a house depressurised after the fire, and an American mason mentions it too. The inlet replaces nothing else: it says nothing about carbon monoxide, and it does not make a cold flue draw.',
+      'Une maison étanche a un problème que n’avait pas une maison pleine de courants d’air : la machine y consomme presque autant d’air que toute la ventilation de base. En moyenne d’un feu, le modèle fait passer {flowGs} g/s, soit environ {airM3h} m³/h (résultat du modèle), contre environ {baseM3h} m³/h de renouvellement de base à {achBase} volume par heure (estimation). Une prise d’air dans la pièce vise à ce que le feu ne tire pas sur le reste de la maison et ne se batte pas avec une hotte : le modèle n’en a pas, et il ne dit pas ce qu’elle y change. Un manuel français détaille l’enchaînement dans une maison mise en dépression après le feu, et un maçon américain le signale aussi. La prise ne remplace rien d’autre : elle ne dit rien du monoxyde, et elle ne fait pas d’un conduit froid un conduit qui tire.',
+      'A tight house has a problem a draughty one never had: the machine takes nearly as much air as all the base ventilation. As the mean of a fire the model moves {flowGs} g/s, about {airM3h} m³/h (model result), against about {baseM3h} m³/h of base renewal at {achBase} volume an hour (estimate). An inlet in the room is meant to keep the fire from pulling on the rest of the house or fighting a kitchen fan: the model has none, and does not say what it changes. A French manual sets out the chain of events in a house depressurised after the fire, and an American mason mentions it too. The inlet replaces nothing else: it says nothing about carbon monoxide, and it does not make a cold flue draw.',
     ),
     material: l(
       'Gaine traversant le mur, grille anti-insectes (dessin générique)',
@@ -189,8 +190,8 @@ export const HOMESTEAD_PARTS: PartInfo[] = [
     ),
     specs: [
       sp(
-        'Air à plein feu',
-        'Air at full fire',
+        'Air, moyenne d’un feu',
+        'Air, mean of a fire',
         tf('model', '{flowGs} g/s, environ {airM3h} m³/h', '{flowGs} g/s, about {airM3h} m³/h'),
       ),
       sp(
@@ -222,12 +223,12 @@ export const HOMESTEAD_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'Le scénario de la hotte de cuisine montre le chemin que prend l’air quand on oublie cette pièce.',
-      'The kitchen-fan scenario shows the way air takes when this part is forgotten.',
+      'Le scénario de la hotte de cuisine montre le chemin que prend l’air quand la maison est en dépression. Il ne montre pas ce qu’une prise d’air éviterait.',
+      'The kitchen-fan scenario shows the way air takes when the house is under depression. It does not show what an air inlet would spare.',
     ),
     design: l(
-      'Le modèle ajoute au renouvellement d’air ce que tire la cheminée. Cet air froid se paie : charger ce coût à la machine fait baisser le rendement de deux points. Le modèle n’a pas de prise séparée au plus près du foyer.',
-      'The model adds to the base air change what the chimney draws. That cold air is paid for: charging the cost to the machine lowers the efficiency by two points. The model has no separate inlet close to the core.',
+      'Le modèle ajoute au renouvellement d’air ce que tire la cheminée. Cet air froid se paie : charger ce coût à la machine fait baisser le rendement de deux points.',
+      'The model adds to the base air change what the chimney draws. That cold air is paid for: charging the cost to the machine lowers the efficiency by two points.',
     ),
   },
   {
@@ -334,12 +335,12 @@ export const HOMESTEAD_PARTS: PartInfo[] = [
     category: 'electrical',
     name: l('Humidimètre', 'Moisture meter'),
     short: l(
-      'Deux pointes et un chiffre : sous 20 %, sur une face fendue. Le premier geste de sécurité de la journée.',
-      'Two pins and a figure: under 20 %, on a split face. The first safety gesture of the day.',
+      'Deux pointes et un chiffre : sous 20 %, sur une face fendue. Le premier geste de la journée.',
+      'Two pins and a figure: under 20 %, on a split face. The first gesture of the day.',
     ),
     description: lf(
-      'Un manuel français demande du bois sous 20 %, et la norme européenne des poêles de masse le veut entre 12 et 20 %. La raison se lit dans la machine : à 30 % d’humidité, le même poids de bois laisse la chambre à {wetChamber} °C au lieu de {chamber} °C, la pièce à {wetRoom} °C en moyenne, et le monoxyde environ trois fois plus haut (résultat du modèle, et pour le monoxyde une indication). Un constructeur qui mesure sur sa propre machine dit la même chose du chêne humide : moins propre, sans que l’œil y voie rien. Cet appareil à quelques euros est donc l’instrument le plus rentable de la maison, à condition de le planter au bon endroit : le dehors d’une bûche sèche bien avant son cœur.',
-      'A French manual asks for wood under 20 %, and the European standard for masonry stoves wants it between 12 and 20 %. The reason can be read in the machine: at 30 % moisture, the same weight of wood leaves the chamber at {wetChamber} °C instead of {chamber} °C, the room at a mean of {wetRoom} °C, and carbon monoxide about three times higher (model result, and for the monoxide an indication). A builder measuring his own machine says the same of damp oak: dirtier, with nothing the eye can see. This cheap device is therefore the best-paying instrument in the house, provided it goes in the right place: the outside of a log dries well before its heart.',
+      'Un manuel français demande du bois sous 20 %, et la norme européenne des poêles de masse le veut entre 12 et 20 %. La raison se lit dans la machine : à 30 % d’humidité, le même poids de bois laisse la chambre à {wetChamber} °C au lieu de {chamber} °C, la pièce à {wetRoom} °C en moyenne, et le monoxyde plus de trois fois plus haut (résultat du modèle, et pour le monoxyde une indication). Un constructeur qui mesure sur sa propre machine dit la même chose du chêne humide : moins propre, sans que l’œil y voie rien. Cet appareil à quelques euros (estimation, aucune source lue) compte donc plus que son prix, à condition de le planter au bon endroit : le dehors d’une bûche sèche bien avant son cœur.',
+      'A French manual asks for wood under 20 %, and the European standard for masonry stoves wants it between 12 and 20 %. The reason can be read in the machine: at 30 % moisture, the same weight of wood leaves the chamber at {wetChamber} °C instead of {chamber} °C, the room at a mean of {wetRoom} °C, and carbon monoxide over three times higher (model result, and for the monoxide an indication). A builder measuring his own machine says the same of damp oak: dirtier, with nothing the eye can see. This device of a few euros (estimate, no source read) therefore counts for more than its price, provided it goes in the right place: the outside of a log dries well before its heart.',
     ),
     material: l('Petit boîtier à piles, deux pointes', 'A small battery unit, two pins'),
     specs: [
@@ -365,8 +366,8 @@ export const HOMESTEAD_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'Faites monter « Humidité du bois » dans la Simulation : la chaleur baisse, le CO monte, et rien à l’écran ne fume plus qu’avant.',
-      'Raise “Moisture of the wood” in the Simulation: the heat falls, the CO rises, and nothing on screen smokes any more than before.',
+      'Faites monter « Humidité du bois » dans la Simulation : la chaleur baisse et le CO monte. Au chapeau, le panache suit cette carte ; sur une vraie machine, l’œil n’en voit pas autant.',
+      'Raise “Moisture of the wood” in the Simulation: the heat falls and the CO rises. At the cap the plume follows that map; on a real machine, the eye sees no such thing.',
     ),
     design: l(
       'Ce sont les habitants qui tiennent ce réglage, à chaque brassée : c’est le seul paramètre de combustion dont ils décident complètement. La machine la mieux construite ne rattrape pas du bois vert.',
@@ -440,14 +441,14 @@ export const HOMESTEAD_PARTS: PartInfo[] = [
     maintenance: maint(
       {
         failure:
-          'De la cendre vidée « froide » qui ne l’était pas : c’est ainsi que partent bien des feux de garage. Ou un seau de plastique qui fond, et un couvercle perdu.',
+          'De la cendre vidée « froide » qui ne l’était pas : c’est ainsi qu’un seau peut mettre le feu à un garage. Ou un seau de plastique qui fond, et un couvercle perdu.',
         check:
           'Le couvercle, et le fond du seau pour la rouille. Une cendre retirée reste suspecte plusieurs jours : personne ne donne de durée sûre, et nous n’en donnons pas.',
         care: 'Vider dans un endroit minéral ou au compost une fois bien éteinte. Noter le poids : il mesure aussi bien la journée que le tas de bois.',
       },
       {
         failure:
-          'Ash emptied “cold” that was not: many a garage fire starts that way. Or a plastic bucket that melts, and a lost lid.',
+          'Ash emptied “cold” that was not: that is how a bucket can set a garage alight. Or a plastic bucket that melts, and a lost lid.',
         check:
           'The lid, and the bottom of the bucket for rust. Ash taken out stays suspect for days: nobody gives a safe time, and neither do we.',
         care: 'Empty onto mineral ground, or into the compost once truly out. Note the weight: it measures the day as well as the pile does.',
@@ -550,20 +551,20 @@ export const HOMESTEAD_PARTS: PartInfo[] = [
         failure:
           'Chez le voisin comme ici : un conduit qui s’encrasse vite, parce qu’un feu au ralenti dépose ce qu’un feu vif aurait brûlé. C’est de là que partent les feux de cheminée.',
         check:
-          'La couleur de ce qui sort du chapeau, et sa durée : le test d’un voisin de bonne foi, et celui d’un inspecteur dans les communes qui réglementent.',
+          'La couleur de ce qui sort du chapeau, et sa durée : un repère de voisin de bonne foi, qui dit quelque chose de la fumée, et rien du monoxyde.',
         care: 'Du bois sec et un feu mené vif, quel que soit le poêle. Certaines vallées ont interdit les foyers ouverts : les règles locales sont dans le panneau Sources.',
       },
       {
         failure:
           'At the neighbour’s as here: a flue that fouls quickly, because a slow fire lays down what a lively one would have burnt. That is where chimney fires begin.',
         check:
-          'The colour of what leaves the cap, and for how long: the test of a neighbour in good faith, and of an inspector where communes regulate it.',
+          'The colour of what leaves the cap, and for how long: a good-faith neighbour’s mark, which tells something of the smoke and nothing of carbon monoxide.',
         care: 'Dry wood and a lively fire, whatever the stove. Some valleys have banned open fires: the local rules are in the Sources panel.',
       },
     ),
     tip: l(
-      'Comparez ce chapeau au nôtre en vue **Flux**, à plein feu : même bois, autre feu. Puis lancez le scénario du bois humide.',
-      'Compare this cap with ours under **Flows**, at full burn: the same wood, another fire. Then run the wet-wood scenario.',
+      'Comparez ce chapeau au nôtre à plein feu : même bois, autre feu. La fumée du voisin est un décor, pas un calcul. Puis lancez le scénario du bois humide.',
+      'Compare this cap with ours at full burn: the same wood, another fire. The neighbour’s smoke is scenery, not a calculation. Then run the wet-wood scenario.',
     ),
     design: lf(
       'Il est là pour la comparaison : pour que {oldFor90} % (résultat du modèle) soit un vrai poêle, pas une abstraction. Si votre ancien poêle ressemblait à celui-ci, vous pouvez réellement gagner gros en changeant la façon de brûler, avec ou sans cette machine.',

@@ -71,12 +71,12 @@ export const BENCH_SECTION_PARTS: PartInfo[] = [
       'Where the gases near their dew point: not here at {exhaust} °C, but on an 18 m duct, at {longExhaust} °C (model result).',
     ),
     description: lf(
-      'Les six derniers mètres du conduit, sous environ {coverColdCm} cm de terre (un projet de texte, dérivé) : les gaz y arrivent assez froids pour en donner moins. À la fin du banc, à plein feu, ils en sortent à {exhaust} °C (résultat du modèle). Le point de rosée dépend de l’excès d’air : environ 44 °C à deux fois l’air, 37 °C à trois fois, à 15 % d’humidité (dérivé) ; à notre {lambda} fois l’air, environ {dewDefault} °C (résultat du modèle). La condensation n’a donc pas lieu ici. Sur 18 m, c’est autre chose : la sortie tombe à {longExhaust} °C, sous ce point pendant environ {longHours} h par jour, avec à peu près {longWater} kg d’eau, et le tirage s’effondre à {longDraft} Pa ; le rendement monte à {longEta} % (résultat du modèle). Une sortie « près de la température ambiante » se paie donc de cette eau-là. Un manuel français met d’ailleurs en garde contre ce risque dans un conduit de plus de 6 m sur son poêle.',
-      'The last six metres of the duct, under about {coverColdCm} cm of earth (a draft text, derived): the gases arrive cool enough to give less. At the end of the bench, at full fire, they leave at {exhaust} °C (model result). The dew point depends on the excess air: about 44 °C at twice the air, 37 °C at three times, at 15 % moisture (derived); at our {lambda} times the air, about {dewDefault} °C (model result). So condensation does not happen here. On 18 m it is another story: the exit falls to {longExhaust} °C, below that point for about {longHours} h a day, with some {longWater} kg of water, and the draught collapses to {longDraft} Pa; the efficiency rises to {longEta}% (model result). A “near room temperature” exhaust is paid for in that water. A French manual indeed warns of this risk in a duct over 6 m on its own stove.',
+      'Les six derniers mètres du conduit, sous environ {coverColdCm} cm de terre (un projet de texte, dérivé) : les gaz y arrivent assez froids pour en donner moins. À la fin du banc, à plein feu, ils en sortent vers {ductOutT} °C, et {exhaustAt9} °C au chapeau ; sur tout un feu, la sortie fait {exhaust} °C en moyenne (résultat du modèle). Le point de rosée dépend de l’excès d’air : environ 44 °C à deux fois l’air, 37 °C à trois fois, à 15 % d’humidité (dérivé) ; à notre {lambda} fois l’air, environ {dewDefault} °C (résultat du modèle). La condensation n’a donc pas lieu ici. Sur 18 m, c’est autre chose : moins d’air, un point de rosée vers {longDew} °C, et la sortie tombe à {longExhaust} °C, sous ce point pendant environ {longHours} h par jour, avec à peu près {longWater} kg d’eau ; le tirage tombe à {longDraft} Pa, et le rendement monte à {longEta} % (résultat du modèle). Une sortie « près de la température ambiante » se paie donc de cette eau-là. Un manuel français met d’ailleurs en garde contre ce risque dans un conduit de plus de 6 m sur son poêle.',
+      'The last six metres of the duct, under about {coverColdCm} cm of earth (a draft text, derived): the gases arrive cool enough to give less. At the end of the bench, at full fire, they leave at about {ductOutT} °C, and {exhaustAt9} °C at the cap; over a whole fire the exit averages {exhaust} °C (model result). The dew point depends on the excess air: about 44 °C at twice the air, 37 °C at three times, at 15 % moisture (derived); at our {lambda} times the air, about {dewDefault} °C (model result). So condensation does not happen here. On 18 m it is another story: less air, a dew point near {longDew} °C, and the exit falls to {longExhaust} °C, below that point for about {longHours} h a day, with some {longWater} kg of water; the draught falls to {longDraft} Pa, and the efficiency rises to {longEta}% (model result). A “near room temperature” exhaust is paid for in that water. A French manual indeed warns of this risk in a duct over 6 m on its own stove.',
     ),
     material: l('Conduit d’acier spiralé, Ø 200 mm', 'Spiral steel duct, Ø 200 mm'),
     specs: [
-      sp('Sortie, à plein feu', 'Exit, at full fire', tf('model', '{exhaust} °C')),
+      sp('Sortie, moyenne d’un feu', 'Exit, mean of a fire', tf('model', '{exhaust} °C')),
       sp('Point de rosée, ici', 'Dew point, here', tf('model', 'environ {dewDefault} °C', 'about {dewDefault} °C')),
       sp(
         'Terre autour, un projet de texte',
@@ -153,8 +153,8 @@ export const BENCH_SECTION_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'Passez en **Coupe** et regardez où tombe la trappe du banc par rapport à ce coude.',
-      'Use **Section** and see where the bench’s door falls against this bend.',
+      'Regardez l’angle ouvert, derrière les deux tranches : la trappe du banc y tombe juste avant ce coude.',
+      'Look at the open corner, behind the two slices: the bench’s door falls just before this bend.',
     ),
     design: l(
       'Dessiner le banc en ligne droite serait plus simple pour les gaz, mais une pièce a des murs. Comme souvent ici, la forme vient de la maison, et pas de la thermique.',
@@ -171,8 +171,8 @@ export const BENCH_SECTION_PARTS: PartInfo[] = [
       'Tight, because this is where carbon monoxide would leave. That has to be made sure before covering it, since it will never be seen again.',
     ),
     description: lf(
-      'Dans notre dessin, un raccord tous les un à deux mètres sur un conduit de 9 m, sous la terre. À plein feu, la pression y est négative, autour de −{ductPa} Pa (résultat du modèle) : une fuite aspire de l’air, qui vole du tirage et ne nuit à personne. Tout change quand le courant s’inverse, ou que le conduit est fermé : la même fuite laisse alors entrer des gaz dans la terre, et de là dans la pièce par une fissure. Le modèle n’a pas cette fuite : il en compte une seule, au joint du couvercle du bidon, et personne n’a publié de mesure de monoxyde dans une pièce à partir d’une fuite réelle. Notre reconstitution montre un conduit d’acier nu, emboîté et serré, et les matériaux d’étanchéité sont l’affaire d’un maçon de poêles et de leurs fiches.',
-      'In our drawing, a joint every one or two metres along a 9 m duct, under the earth. At full fire the pressure there is negative, around −{ductPa} Pa (model result): a leak draws air in, stealing draught and hurting nobody. All changes when the flow reverses or the flue is shut: the same leak then lets gas into the earth, and from there into the room through a crack. The model does not have this leak: it counts just one, at the seal of the drum’s lid, and nobody has published a measurement of carbon monoxide in a room from a real leak. Our reconstruction shows a plain steel duct, fitted together and tightened, and the sealing materials are the business of a stove mason and their data sheets.',
+      'Dans notre dessin, un raccord tous les un à deux mètres sur un conduit de 9 m, sous la terre. À plein feu, la pression y est négative, autour de −{ductPa} Pa (résultat du modèle) : une fuite aspire de l’air, qui vole du tirage, sans rien laisser sortir tant que le courant tient. Tout change quand le courant s’inverse, ou que le conduit est fermé : la même fuite laisse alors entrer des gaz dans la terre, et de là dans la pièce par une fissure. Le modèle n’a pas cette fuite : il en compte une seule, au joint du couvercle du bidon, et personne n’a publié de mesure de monoxyde dans une pièce à partir d’une fuite réelle. Notre reconstitution montre un conduit d’acier nu, emboîté et serré, et les matériaux d’étanchéité sont l’affaire d’un maçon de poêles et de leurs fiches.',
+      'In our drawing, a joint every one or two metres along a 9 m duct, under the earth. At full fire the pressure there is negative, around −{ductPa} Pa (model result): a leak draws air in, stealing draught, and lets nothing out as long as the flow holds. All changes when the flow reverses or the flue is shut: the same leak then lets gas into the earth, and from there into the room through a crack. The model does not have this leak: it counts just one, at the seal of the drum’s lid, and nobody has published a measurement of carbon monoxide in a room from a real leak. Our reconstruction shows a plain steel duct, fitted together and tightened, and the sealing materials are the business of a stove mason and their data sheets.',
     ),
     material: l('Emboîtement d’acier, joint selon le fabricant', 'Steel fitted joint, a seal to the maker’s data'),
     specs: [
@@ -197,8 +197,8 @@ export const BENCH_SECTION_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'Isolez un raccord et regardez la terre autour : voilà ce qui ne se voit plus jamais.',
-      'Isolate a joint and look at the earth around it: that is what is never seen again.',
+      'Isolez un raccord : c’est ainsi qu’on le voit le jour du chantier. Une fois la terre refermée, plus personne ne le verra.',
+      'Isolate a joint: that is how it looks on the day of the build. Once the earth closes over it, nobody will see it again.',
     ),
     design: l(
       'Un conduit noyé n’est pas un conduit de poêle ordinaire, qu’on regarde et qu’on change. Le prix de cette belle banquette se paie ici, et ce n’est pas un petit prix : c’est pourquoi une assurance et un professionnel ont leur mot à dire.',
@@ -210,13 +210,13 @@ export const BENCH_SECTION_PARTS: PartInfo[] = [
     scene: 'bench-section',
     category: 'structure',
     name: l('La terre qui garde', 'The cob casing'),
-    short: l(
-      '0,6 W/m·K : lente exprès. Épaisse au début du banc, plus mince ensuite, elle fait passer la chaleur en une à deux heures après la flamme.',
-      '0.6 W/m·K: slow on purpose. Thick at the start of the bench, thinner afterwards, it brings the heat through one to two hours after the flame.',
+    short: lf(
+      '0,6 W/m·K : lente exprès, épaisse au début du banc, plus mince ensuite. L’assise culmine {lagStopCold} à {lagStop} h après l’arrêt du bois (résultat du modèle).',
+      '0.6 W/m·K: slow on purpose, thick at the start of the bench, thinner after. The seat peaks {lagStopCold} to {lagStop} h after the wood stops (model result).',
     ),
     description: lf(
-      'La terre mesurée à l’état normalement humide a une conductivité d’environ 0,6 W/m·K et une capacité de 891 J/kg·K (à 3 % d’humidité) ; les études vont de 0,12 à 1,06 W/m·K, et leur revue parle d’absence de consensus. La masse volumique de notre banc, avec environ {stoneShare} % de pierres, est de {cobRho} kg/m³ (estimation, plage {cobRhoLow} à {cobRhoHigh}). Un projet de texte met environ {coverHotCm} cm de terre autour du début du conduit, et {coverColdCm} cm ensuite (dérivé). Cette lenteur est toute l’affaire : à {seatHigh} °C, l’assise culmine **une à deux heures après la flamme**, {lagStop} h au bout épais, {lagStopCold} h au bout mince (résultat du modèle). Le modèle compare les deux épaisseurs de ce texte, et il ne dit rien d’une bonne épaisseur. Et elle ne tient pas la maison à elle seule. Et au-dessus du conduit, la terre monte à {earthDuct} °C sans qu’on le sente.',
-      'Cob measured in its normally damp state has a conductivity of about 0.6 W/m·K and a heat capacity of 891 J/kg·K (at 3 % moisture); studies run from 0.12 to 1.06 W/m·K, and their review speaks of no consensus. Our bench’s density, with about {stoneShare}% stones, is {cobRho} kg/m³ (estimate, range {cobRhoLow} to {cobRhoHigh}). A draft text puts about {coverHotCm} cm of earth round the start of the duct and {coverColdCm} cm afterwards (derived). This slowness is the whole point: at {seatHigh} °C the seat peaks **one to two hours after the flame**, {lagStop} h at the thick end, {lagStopCold} h at the thin end (model result). The model compares that text’s two thicknesses, and says nothing of a right one. And the earth does not hold the house alone. And above the duct the earth climbs to {earthDuct} °C unfelt.',
+      'La terre mesurée à l’état normalement humide a une conductivité d’environ 0,6 W/m·K et une capacité de 891 J/kg·K (à 3 % d’humidité) ; les études vont de 0,12 à 1,06 W/m·K, et leur revue parle d’absence de consensus. La masse volumique de notre banc, avec environ {stoneShare} % de pierres, est de {cobRho} kg/m³ (estimation, plage {cobRhoLow} à {cobRhoHigh}). Un projet de texte met environ {coverHotCm} cm de terre autour du début du conduit, et {coverColdCm} cm ensuite (dérivé). Cette lenteur est toute l’affaire : l’assise culmine **une à deux heures après la flamme**, {lagStop} h au bout épais, à {seatHigh} °C, {lagStopCold} h au bout mince, à {seatColdHigh} °C (résultat du modèle). Ce n’est pas un temps de traversée : ces heures comptent depuis la fin d’un feu de {sessionHours} h (hypothèse), et la chaleur traverse déjà la terre pendant ce feu, soit {lagBegin} h depuis l’allumage au bout épais. Le modèle compare les deux épaisseurs de ce texte, et il ne dit rien d’une bonne épaisseur. Et elle ne tient pas la maison à elle seule. Et au-dessus du conduit, la terre monte à {earthDuct} °C sans qu’on le sente.',
+      'Cob measured in its normally damp state has a conductivity of about 0.6 W/m·K and a heat capacity of 891 J/kg·K (at 3 % moisture); studies run from 0.12 to 1.06 W/m·K, and their review speaks of no consensus. Our bench’s density, with about {stoneShare}% stones, is {cobRho} kg/m³ (estimate, range {cobRhoLow} to {cobRhoHigh}). A draft text puts about {coverHotCm} cm of earth round the start of the duct and {coverColdCm} cm afterwards (derived). This slowness is the whole point: the seat peaks **one to two hours after the flame**, {lagStop} h at the thick end, at {seatHigh} °C, {lagStopCold} h at the thin end, at {seatColdHigh} °C (model result). That is no crossing time: those hours run from the end of a fire of {sessionHours} h (assumption), and the heat is already crossing the earth during that fire, {lagBegin} h from lighting at the thick end. The model compares that text’s two thicknesses, and says nothing of a right one. And the earth does not hold the house alone. And above the duct the earth climbs to {earthDuct} °C unfelt.',
     ),
     material: l(
       'Terre argileuse et pierres, sans fibre ; aucun mélange donné',
@@ -235,8 +235,8 @@ export const BENCH_SECTION_PARTS: PartInfo[] = [
       ),
       sp('Masse volumique', 'Density', tf('estimate', '{cobRho} kg/m³')),
       sp(
-        'Pic de l’assise après le feu',
-        'Seat’s peak after the fire',
+        'Pic de l’assise après l’arrêt du bois',
+        'Seat’s peak after the wood stops',
         tf('model', '{lagStopCold} à {lagStop} h', '{lagStopCold} to {lagStop} h'),
       ),
       sp(
@@ -312,8 +312,8 @@ export const BENCH_SECTION_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'En **Coupe**, regardez comment les pierres dessinées laissent de la place à la terre autour du conduit.',
-      'In **Section**, see how the stones drawn leave room for the earth around the duct.',
+      'Sur les faces coupées, regardez comment les pierres dessinées laissent de la place à la terre autour du conduit.',
+      'On the cut faces, see how the stones drawn leave room for the earth around the duct.',
     ),
     design: l(
       'Il y a là une vraie question ouverte : une pierre rapproche la chaleur de l’assise, et le pic arriverait plus tôt avec plus de pierres. Nous n’avons trouvé aucune mesure de cela sur un banc, et le modèle ne peut que déplacer la conductivité moyenne.',
@@ -423,8 +423,8 @@ export const BENCH_SECTION_PARTS: PartInfo[] = [
       'The sweep’s way into the duct: a round door at the bench’s edge, closed and tight, that everyone has to be able to find.',
     ),
     description: lf(
-      'Un manuel français prévoit des trappes de nettoyage à l’endroit où les cendres s’accumulent : nous en dessinons une, ronde, sur le devant du banc, un peu avant l’angle. Pendant un feu, la pression y est négative, autour de −{ductPa} Pa à plein feu (résultat du modèle), et l’air y entre si le couvercle est mal fermé : cela fait perdre du tirage et un peu de chaleur, et rien de plus. Fermée, elle ne compte que pour une petite pièce d’acier dans une grande masse, que la chaleur fait travailler. Son emplacement décide : à côté d’elle, on doit pouvoir passer une brosse le long de tout un tronçon, et une brosse ne prend pas un virage serré. C’est là que le ramoneur juge si la machine lui a été montrée avant d’être construite.',
-      'A French manual provides cleaning doors where ash gathers: we draw one, round, on the front of the bench, a little before the corner. During a fire the pressure there is negative, around −{ductPa} Pa at full fire (model result), and air comes in if the cover is poorly closed: it costs draught and a little heat, nothing more. Closed, it counts only as a small piece of steel in a large mass, worked by the heat. Its position decides: beside it, a brush must pass along a whole stretch, and a brush does not take a tight turn. That is where the sweep can tell if the machine was shown to him before it was built.',
+      'Un manuel français prévoit des trappes de nettoyage à l’endroit où les cendres s’accumulent : nous en dessinons une, ronde, sur le devant du banc, un peu avant l’angle. Pendant un feu, la pression y est négative, autour de −{ductPa} Pa à plein feu (résultat du modèle), et l’air y entre si le couvercle est mal fermé : cela fait perdre du tirage et un peu de chaleur, tant que le courant ne se retourne pas. Fermée, elle ne compte que pour une petite pièce d’acier dans une grande masse, que la chaleur fait travailler. Son emplacement décide : à côté d’elle, on doit pouvoir passer une brosse le long de tout un tronçon, et une brosse ne prend pas un virage serré. C’est là que le ramoneur juge si la machine lui a été montrée avant d’être construite.',
+      'A French manual provides cleaning doors where ash gathers: we draw one, round, on the front of the bench, a little before the corner. During a fire the pressure there is negative, around −{ductPa} Pa at full fire (model result), and air comes in if the cover is poorly closed: it costs draught and a little heat, as long as the flow does not turn round. Closed, it counts only as a small piece of steel in a large mass, worked by the heat. Its position decides: beside it, a brush must pass along a whole stretch, and a brush does not take a tight turn. That is where the sweep can tell if the machine was shown to him before it was built.',
     ),
     material: l('Porte ronde d’acier, joint de porte de poêle', 'A round steel door, a stove-door gasket'),
     specs: [
@@ -452,8 +452,8 @@ export const BENCH_SECTION_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'Isolez la trappe : sur l’éclaté, elle s’écarte du banc, et l’on voit dans quoi elle s’ouvre.',
-      'Isolate the door: in the exploded view it moves off the bench and you see what it opens into.',
+      'Sur l’éclaté, la trappe s’écarte du banc avec sa branche : on voit ce qui la relie au conduit.',
+      'In the exploded view the door moves off the bench with its branch: you see what joins it to the duct.',
     ),
     design: l(
       'Une petite porte coûte moins cher qu’une banquette à refaire. Combien en mettre est un compromis entre les fuites possibles et les accès possibles, et notre dessin en montre une.',
@@ -496,14 +496,14 @@ export const BENCH_SECTION_PARTS: PartInfo[] = [
         failure:
           'Un té qui garde de l’eau, qui rouille par le bas, et une trappe de pied mal fermée qui lui vole son tirage. C’est le point bas du chemin, et il reçoit ce qui tombe.',
         check:
-          'La purge et la trappe, à chaque ramonage. Un retour de fumée à froid n’est pas une panne en soi : plusieurs constructeurs le rapportent, et ce sont surtout ses suites qui comptent.',
+          'La purge et la trappe, à chaque ramonage. Un retour de fumée à froid n’a rien de rare, plusieurs constructeurs le rapportent, et rien d’anodin : cette fumée et son monoxyde entrent dans la pièce.',
         care: 'Le nettoyer avec le conduit. Après une longue absence en plein hiver, la machine repart autrement, et le détecteur reste en marche.',
       },
       {
         failure:
           'A tee that holds water, rusting from the bottom, and a foot door badly closed that steals its draught. This is the low point of the path, and it gets what falls.',
         check:
-          'The drain and the door, at each sweep. A cold smoke-back is no failure in itself: several builders report it, and it is mostly its sequel that counts.',
+          'The drain and the door, at each sweep. A cold smoke-back is nothing rare, several builders report it, and nothing to shrug at: that smoke and its carbon monoxide enter the room.',
         care: 'Clean it with the flue. After a long absence in deep winter, the machine starts differently, and the alarm stays on.',
       },
     ),
@@ -526,8 +526,8 @@ export const BENCH_SECTION_PARTS: PartInfo[] = [
       'At the low point, when the duct is long: {longWater} kg of water a day on 18 m (model result), none on our 9 m, and a small acid question.',
     ),
     description: lf(
-      'Un manuel français met en garde contre la condensation dans un conduit de plus de 6 m sur son poêle, et il y prévoit une évacuation. Sur notre machine de 9 m, à {lambda} fois l’air, le point de rosée est bas, environ {dewDefault} °C, et les fumées ne l’atteignent pas : **rien ne condense dans le modèle** (résultat du modèle). Sur 18 m, la sortie tombe à {longExhaust} °C, soit {longHours} heures par jour sous ce point et environ {longWater} kg d’eau. La vraie machine a aussi ses moments plus froids, comme un feu qui démarre ou une fin de feu, que le modèle ne compte qu’en partie. L’eau d’un conduit est acide et sale : elle a besoin d’aller quelque part, et elle ne doit pas s’accumuler au pied. Notre purge est dessinée au té, là où elle tomberait.',
-      'A French manual warns of condensation in a duct over 6 m on its own stove, and provides a drain there. On our 9 m machine, at {lambda} times the air, the dew point is low, about {dewDefault} °C, and the gas does not reach it: **nothing condenses in the model** (model result). On 18 m the exit falls to {longExhaust} °C, {longHours} hours a day under that point and about {longWater} kg of water. The real machine also has colder moments, such as a fire starting or ending, which the model counts only in part. Water from a flue is acid and dirty: it has to go somewhere, and it must not gather at the foot. Our drain is drawn at the tee, where it would fall.',
+      'Un manuel français met en garde contre la condensation dans un conduit de plus de 6 m sur son poêle, et il y prévoit une évacuation. Sur notre machine de 9 m, à {lambda} fois l’air, le point de rosée est bas, environ {dewDefault} °C, et les fumées ne l’atteignent pas : **rien ne condense dans le modèle** (résultat du modèle). Sur 18 m, avec moins d’air, ce point remonte vers {longDew} °C et la sortie tombe à {longExhaust} °C : {longHours} heures par jour en dessous, et environ {longWater} kg d’eau. La vraie machine a aussi ses moments plus froids, comme un feu qui démarre ou une fin de feu, que le modèle ne compte qu’en partie. L’eau d’un conduit est acide et sale : elle a besoin d’aller quelque part, et elle ne doit pas s’accumuler au pied. Notre purge est dessinée au té, là où elle tomberait.',
+      'A French manual warns of condensation in a duct over 6 m on its own stove, and provides a drain there. On our 9 m machine, at {lambda} times the air, the dew point is low, about {dewDefault} °C, and the gas does not reach it: **nothing condenses in the model** (model result). On 18 m, with less air, that point climbs to near {longDew} °C and the exit falls to {longExhaust} °C: {longHours} hours a day under it, and about {longWater} kg of water. The real machine also has colder moments, such as a fire starting or ending, which the model counts only in part. Water from a flue is acid and dirty: it has to go somewhere, and it must not gather at the foot. Our drain is drawn at the tee, where it would fall.',
     ),
     material: l('Petit tube et bac, résistant aux condensats', 'A small pipe and tray, resistant to condensate'),
     specs: [
@@ -560,8 +560,8 @@ export const BENCH_SECTION_PARTS: PartInfo[] = [
       'The “A bench too long” scenario shows the water condensed: what would have to be drained, or better, not made.',
     ),
     design: l(
-      'Si l’on n’a jamais besoin de sa purge, c’est bon signe : une bonne machine n’a pas de quoi la remplir. Sa présence dans la 3D rappelle que l’objectif n’est pas de sortir le plus froid possible.',
-      'If you never need your drain, it is a good sign: a good machine has nothing to fill it. Its presence in the 3D is a reminder that the aim is not to leave as cold as possible.',
+      'Une purge qui reste sèche dit seulement que ce conduit condense peu : elle ne dit rien d’autre de la machine. Sa présence dans la 3D rappelle que l’objectif n’est pas de sortir le plus froid possible.',
+      'A drain that stays dry says only that this duct condenses little: it says nothing else of the machine. Its presence in the 3D is a reminder that the aim is not to leave as cold as possible.',
     ),
   },
   {
@@ -574,8 +574,8 @@ export const BENCH_SECTION_PARTS: PartInfo[] = [
       'What a builder logging his bench does, and what this subject lacks most: figures. In our section it is also our eye.',
     ),
     description: lf(
-      'Sur un banc de béton d’une dizaine de mètres, à conduit de 8 pouces, un constructeur a placé 15 capteurs, avant d’avoir fini la masse, et sans jamais publier d’hiver complet. Aucune source ne donne une journée complète relevée dans une maison habitée : c’est un des manques de ce sujet. Notre sonde dessinée montre où une telle lecture se ferait, et le chiffre qu’elle affiche vient du modèle : la terre au-dessus du conduit à {earthDuct} °C au plus chaud, l’assise à {seatHigh} °C (résultat du modèle). Pour en faire une vraie mesure, il faudrait aussi noter l’emplacement exact, le capteur et le bois de la journée : le seul relevé de banc que nous ayons trouvé ne dit ni où ni avec quoi. Voilà un conseil que ce labo peut donner sans risque : mesurez, écrivez, publiez.',
-      'On a concrete bench of about ten metres with an 8-inch duct, one builder placed 15 sensors, before finishing the mass, and never published a whole winter. No source gives a full day logged in a lived-in house: one of the gaps in this subject. Our drawn probe shows where such a reading would be made, and its figure comes from the model: the earth above the duct at {earthDuct} °C at its hottest, the seat at {seatHigh} °C (model result). To make it a real measurement one would also have to note the exact place, the sensor and the day’s wood: the only bench reading we found says neither where nor with what. Here is advice this lab can give without risk: measure, write down, publish.',
+      'Sur un banc de béton d’une dizaine de mètres, à conduit de 8 pouces, un constructeur a placé 15 capteurs, avant d’avoir fini la masse, et sans jamais publier d’hiver complet. Aucune source ne donne une journée complète relevée dans une maison habitée : c’est un des manques de ce sujet. Notre sonde dessinée montre où une telle lecture se ferait, et son aiguille, sans chiffre sur le cadran, suit la terre du modèle : au-dessus du conduit, {earthDuct} °C au plus chaud, et l’assise à {seatHigh} °C (résultat du modèle). Pour en faire une vraie mesure, il faudrait aussi noter l’emplacement exact, le capteur et le bois de la journée : le seul relevé de banc que nous ayons trouvé ne dit ni où ni avec quoi. Un seul conseil : mesurez, écrivez, publiez.',
+      'On a concrete bench of about ten metres with an 8-inch duct, one builder placed 15 sensors, before finishing the mass, and never published a whole winter. No source gives a full day logged in a lived-in house: one of the gaps in this subject. Our drawn probe shows where such a reading would be made, and its needle, with no figure on the dial, follows the model’s earth: above the duct, {earthDuct} °C at its hottest, and the seat at {seatHigh} °C (model result). To make it a real measurement one would also have to note the exact place, the sensor and the day’s wood: the only bench reading we found says neither where nor with what. One piece of advice: measure, write down, publish.',
     ),
     material: l(
       'Thermocouples ou sondes en gaine (dessin générique)',

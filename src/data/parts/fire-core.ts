@@ -180,8 +180,8 @@ export const FIRE_CORE_PARTS: PartInfo[] = [
       'The flame lies down and runs sideways: a fire in a hurry, at {chamber} °C at the end of the tunnel (model result).',
     ),
     description: lf(
-      'C’est l’image qui rend cette machine célèbre, et une vraie image : le tirage couche la flamme et l’aspire à l’horizontale, sur environ {flameLen} m dans le modèle (résultat du modèle). Le tunnel est bas, en brique dense, et il a à peu près la section du tube. La chaleur doit y rester : une constructrice annonce une combustion propre de 540 à 815 °C dans la chambre. Le modèle lit une moyenne de gaz bien mélangé au pied de la cheminée interne : **{chamber} °C à {feedRate} kg/h (hypothèse), sous cette plage**, {chamberRocket} °C à 3,4 kg/h, {chamberFast} °C à 5 kg/h (résultat du modèle). Un thermocouple dans une flamme lirait plus. Le même calcul à la main donne environ {flameTwoAir} °C de flamme à deux fois l’air (résultat du modèle). Un projet de texte pour une ville américaine veut un tunnel d’au plus la moitié de la cheminée interne : ce sont ses mots. Sa longueur ne vous est pas donnée ici.',
-      'This is the picture that made the machine famous, and a true one: the draught lays the flame down and sucks it sideways, over about {flameLen} m in the model (model result). The tunnel is low, in dense brick, with about the feed’s section. The heat has to stay inside: one builder reports a clean burn of 540 to 815 °C in the chamber. The model reads a mean of well-mixed gas at the riser’s foot: **{chamber} °C at {feedRate} kg/h (assumption), below that range**, {chamberRocket} °C at 3.4 kg/h, {chamberFast} °C at 5 kg/h (model result). A thermocouple in a flame would read higher. The same sum by hand gives about {flameTwoAir} °C of flame at twice the air (model result). A draft text for one American city wants a tunnel at most half the riser: its words. Its length is not given to you here.',
+      'C’est l’image qui rend cette machine célèbre, et une vraie image : le tirage couche la flamme et l’aspire à l’horizontale, sur environ {flameLen} m dans le modèle (résultat du modèle). Le tunnel est bas, en brique dense, et il a à peu près la section du tube. La chaleur doit y rester : une constructrice annonce une combustion propre de 540 à 815 °C dans la chambre. Le modèle lit un gaz bien mélangé au pied de la cheminée interne : **{chamber} °C à {feedRate} kg/h (hypothèse), sous cette plage**, en moyenne d’un feu à plein régime ({chamberAt9} °C à 9 h), {chamberRocket} °C à 3,4 kg/h, {chamberFast} °C à 5 kg/h (résultat du modèle). Un thermocouple dans une flamme lirait plus. Le même calcul à la main donne environ {flameTwoAir} °C de flamme à deux fois l’air (résultat du modèle). Un projet de texte pour une ville américaine veut un tunnel d’au plus la moitié de la cheminée interne : ce sont ses mots. Sa longueur ne vous est pas donnée ici.',
+      'This is the picture that made the machine famous, and a true one: the draught lays the flame down and sucks it sideways, over about {flameLen} m in the model (model result). The tunnel is low, in dense brick, with about the feed’s section. The heat has to stay inside: one builder reports a clean burn of 540 to 815 °C in the chamber. The model reads well-mixed gas at the riser’s foot: **{chamber} °C at {feedRate} kg/h (assumption), below that range**, as the mean of a fire at full rate ({chamberAt9} °C at 9 h), {chamberRocket} °C at 3.4 kg/h, {chamberFast} °C at 5 kg/h (model result). A thermocouple in a flame would read higher. The same sum by hand gives about {flameTwoAir} °C of flame at twice the air (model result). A draft text for one American city wants a tunnel at most half the riser: its words. Its length is not given to you here.',
     ),
     material: l('Brique réfractaire dense, argile cuite', 'Dense firebrick, fired clay'),
     specs: [
@@ -208,8 +208,8 @@ export const FIRE_CORE_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'Mettez le **ralenti** et la **Coupe** : la flamme va de droite à gauche, et la fumée finit de brûler plus loin, dans la cheminée interne.',
-      'Use **Slow-mo** and **Section**: the flame runs across, and the smoke finishes burning further on, in the riser.',
+      'Mettez le **Ralenti** : vue de face, la flamme file de gauche à droite, du tube vers la cheminée interne, et la fumée finit de brûler plus loin, dans celle-ci.',
+      'Use **Slow-mo**: seen from the front, the flame runs from left to right, from the feed towards the riser, and the smoke finishes burning further on, inside it.',
     ),
     design: lf(
       'Un feu qui file à l’horizontale n’est pas ce qu’on attend d’un poêle, et cela tient à une seule chose : la cheminée tire {chimneyPa} Pa (résultat du modèle) à l’autre bout d’un long chemin. Le tunnel n’a rien d’une tuyère : c’est un simple passage chaud, où l’air et le gaz se mélangent.',
@@ -226,8 +226,8 @@ export const FIRE_CORE_PARTS: PartInfo[] = [
       'So little ash, about {ashDayG} g a day (derived). But under it, embers still making carbon monoxide after the flame.',
     ),
     description: lf(
-      'Trois lectures s’accordent sur l’ordre de grandeur des cendres, environ 0,7 à 1 % du bois. Sur notre journée, cela fait environ {ashDayG} g (dérivé) : une couche qui prend des semaines à gêner. Un excès rétrécit le passage de l’air à l’entrée du tunnel, avec un feu qui tire moins bien, et se balaye à froid. Le plus important est ce qui y reste après la flamme : le modèle compte {charShare} % de l’énergie du bois sous forme de charbon, qui brûle en une quarantaine de minutes ({charMin} min, estimation). **Ce moment sans flamme est le pire pour le monoxyde** : la bande du modèle y atteint {coEnd} ppm dans les fumées, contre {coLean} ppm à plein feu (résultat du modèle, une indication, et non une mesure). Tant que le conduit reste chaud et ouvert, ce gaz s’en va par la cheminée.',
-      'Three readings agree on the order of magnitude of ash, some 0.7 to 1 % of the wood. Over our day that is about {ashDayG} g (derived): a layer that takes weeks to get in the way. Too much narrows the way of the air at the tunnel’s entry, with a fire that draws worse, and it is swept out cold. What matters most is what stays after the flame: the model counts {charShare}% of the wood’s energy as char, burning in about forty minutes ({charMin} min, estimate). **This flameless moment is the worst for carbon monoxide**: the model’s band reaches {coEnd} ppm in the gas there, against {coLean} ppm at full fire (model result, an indication and not a measurement). As long as the flue stays warm and open, that gas leaves by the chimney.',
+      'Trois lectures s’accordent sur l’ordre de grandeur des cendres, environ 0,7 à 1 % du bois. Sur notre journée, cela fait environ {ashDayG} g (dérivé) : une couche lente à gêner, et aucune source ne chiffre ce temps. Un excès rétrécit le passage de l’air à l’entrée du tunnel, avec un feu qui tire moins bien, et se balaye à froid. Le plus important est ce qui y reste après la flamme : le modèle compte {charShare} % de l’énergie du bois sous forme de charbon, qui brûle en une quarantaine de minutes ({charMin} min, estimation). **Ce moment sans flamme est le pire pour le monoxyde** : la bande du modèle y atteint {coEnd} ppm dans les fumées, contre {coLean} ppm à plein feu (résultat du modèle, une indication, et non une mesure). Dans le modèle, tant que le conduit reste chaud et ouvert, ce gaz s’en va par la cheminée ; une vraie machine a aussi ses fissures et ses joints.',
+      'Three readings agree on the order of magnitude of ash, some 0.7 to 1 % of the wood. Over our day that is about {ashDayG} g (derived): a layer slow to get in the way, and no source puts a figure on how slow. Too much narrows the way of the air at the tunnel’s entry, with a fire that draws worse, and it is swept out cold. What matters most is what stays after the flame: the model counts {charShare}% of the wood’s energy as char, burning in about forty minutes ({charMin} min, estimate). **This flameless moment is the worst for carbon monoxide**: the model’s band reaches {coEnd} ppm in the gas there, against {coLean} ppm at full fire (model result, an indication and not a measurement). In the model, as long as the flue stays warm and open, that gas leaves by the chimney; a real machine also has its cracks and joints.',
     ),
     material: l('Cendres de bois, charbon de bois', 'Wood ash, charcoal'),
     specs: [
@@ -274,12 +274,12 @@ export const FIRE_CORE_PARTS: PartInfo[] = [
     category: 'structure',
     name: l('La cheminée interne', 'The heat riser'),
     short: l(
-      'L’endroit le plus chaud de la maison, où la fumée finit de brûler. C’est son isolant qui fait ce feu propre, bien plus que son tirage.',
-      'The hottest place in the house, where the smoke finishes burning. Its insulation is what makes this fire clean, far more than its draught.',
+      'L’endroit le plus chaud de la maison, où la fumée finit de brûler si elle a chaleur, air et temps. Son isolant garde cette chaleur, et compte bien plus que son tirage.',
+      'The hottest place in the house, where the smoke finishes burning given heat, air and time. Its insulation holds that heat, and counts far more than its draught.',
     ),
     description: lf(
-      'Au bout du tunnel, les gaz montent dans un tube isolé jusque sous le couvercle du bidon. Un livre de référence, lu seulement dans un résumé, donne 0,84 m d’exemple dans une plage de 0,64 à 1,27 m, soit 33 pouces pour l’exemple. C’est ici que la fumée finit de brûler, à condition d’être chaude, d’avoir de l’air et du temps : c’est ce qui fait de cette machine autre chose qu’un poêle au ralenti. Un concepteur a mesuré jusqu’à 1 200 °C dans une cheminée de ce genre, sur son foyer fermé. Le modèle lit {riserTop} °C en haut à {feedRate} kg/h (hypothèse pour le débit, résultat du modèle). **Elle ne fait pas tirer la machine** : {riserPa} Pa à plein feu, que la chute dans le bidon reprend presque en entier, soit {netPa} Pa net (résultat du modèle). Un manuel français réconcilie les deux récits : elle compte surtout quand le poêle est froid.',
-      'At the end of the tunnel the gases climb an insulated tube up to just under the drum’s lid. A reference book, read only in a digest, gives an example of 0.84 m within a range of 0.64 to 1.27 m, or 33 inches for the example. Here the smoke finishes burning, provided it is hot, with air and time: that is what makes this machine something other than a slow stove. One designer has measured up to 1,200 °C in a riser of this kind, on his closed box. The model reads {riserTop} °C at the top at {feedRate} kg/h (an assumption for the rate, model result). **It does not make the machine draw**: {riserPa} Pa at full fire, which the fall in the drum takes nearly all back, for {netPa} Pa net (model result). A French manual reconciles the two accounts: it matters mostly when the heater is cold.',
+      'Au bout du tunnel, les gaz montent dans un tube isolé jusque sous le couvercle du bidon. Un livre de référence, lu seulement dans un résumé, donne 0,84 m d’exemple dans une plage de 0,64 à 1,27 m, soit 33 pouces pour l’exemple. C’est ici que la fumée finit de brûler, à condition d’être chaude, d’avoir de l’air et du temps : c’est ce qui fait de cette machine autre chose qu’un poêle au ralenti. Cela ne veut pas dire que ce feu soit propre : sur un jour, la carte de monoxyde du modèle donne {coPerMj} mg/MJ, six fois les 240 mg/MJ mesurés au laboratoire sur un poêle de masse (résultat du modèle, une indication). Un concepteur a mesuré jusqu’à 1 200 °C dans une cheminée de ce genre, sur son foyer fermé. Le modèle lit {riserTop} °C en haut à {feedRate} kg/h (hypothèse pour le débit, résultat du modèle). **Elle ne fait pas tirer la machine** : {riserPa} Pa à plein feu, que la chute dans le bidon reprend presque en entier, soit {netPa} Pa net (résultat du modèle). Un manuel français réconcilie les deux récits : elle compte surtout quand le poêle est froid.',
+      'At the end of the tunnel the gases climb an insulated tube up to just under the drum’s lid. A reference book, read only in a digest, gives an example of 0.84 m within a range of 0.64 to 1.27 m, or 33 inches for the example. Here the smoke finishes burning, provided it is hot, with air and time: that is what makes this machine something other than a slow stove. Yet none of this means the fire burns clean: over a day the model’s carbon monoxide map gives {coPerMj} mg/MJ, six times the 240 mg/MJ measured in a laboratory on a masonry heater (model result, an indication). One designer has measured up to 1,200 °C in a riser of this kind, on his closed box. The model reads {riserTop} °C at the top at {feedRate} kg/h (an assumption for the rate, model result). **It does not make the machine draw**: {riserPa} Pa at full fire, which the fall in the drum takes nearly all back, for {netPa} Pa net (model result). A French manual reconciles the two accounts: it matters mostly when the heater is cold.',
     ),
     material: l(
       'Tube intérieur isolé, Ø 200 mm, sans acier au contact des flammes',
@@ -299,14 +299,14 @@ export const FIRE_CORE_PARTS: PartInfo[] = [
     maintenance: maint(
       {
         failure:
-          'Un intérieur qui s’effrite ou se fissure, et l’isolant qui se tasse à l’usage. La machine perd alors ce qui la rendait propre, sans que rien se voie depuis la pièce. Un concepteur note que l’acier se corrode vite au-delà de 760 °C : ni tube ni tôle ne doivent la voir.',
+          'Un intérieur qui s’effrite ou se fissure, et l’isolant qui se tasse à l’usage. La chambre et la cheminée interne refroidissent alors, sans que rien se voie depuis la pièce, et la fumée finit moins bien de brûler. Un concepteur note que l’acier se corrode vite au-delà de 760 °C : ni tube ni tôle ne doivent la voir.',
         check:
           'Un soulèvement du bidon, rarement : une machine l’a montré à la caméra après trois hivers de cendres. Une chambre qui reste plus froide qu’avant à bois égal en dit autant.',
         care: 'Une fois ouverte, regarder tout ; refaire ce qui s’effrite. Ce n’est pas une pièce d’usure programmée : aucune source ne donne de durée de vie.',
       },
       {
         failure:
-          'An inside that crumbles or cracks, and insulation slumping with use. The machine then loses what made it clean, with nothing to see from the room. One designer notes steel corrodes fast above 760 °C: neither tube nor sheet should meet that.',
+          'An inside that crumbles or cracks, and insulation slumping with use. The chamber and riser then run cooler, with nothing to see from the room, and the smoke burns out less well. One designer notes steel corrodes fast above 760 °C: neither tube nor sheet should meet that.',
         check:
           'A lift of the drum, rarely: one machine showed it to the camera after three winters of ash. A chamber colder than before on the same wood says as much.',
         care: 'Once open, look at everything; redo what crumbles. This is no part with a scheduled life: no source gives a service life.',
@@ -327,8 +327,8 @@ export const FIRE_CORE_PARTS: PartInfo[] = [
     category: 'structure',
     name: l('L’isolant de la cheminée', 'Riser insulation'),
     short: l(
-      'Il garde la cheminée interne brûlante, et c’est ce qui rend le feu propre. Trois matières possibles, dont les fiches des fabricants donnent les chiffres.',
-      'It keeps the riser scorching, which is what makes the fire clean. Three possible materials, with figures from the makers’ sheets.',
+      'Il garde la cheminée interne brûlante, pour que la fumée y finisse de brûler. Trois matières possibles, dont les fiches des fabricants donnent les chiffres.',
+      'It keeps the riser scorching, so that the smoke can finish burning there. Three possible materials, with figures from the makers’ sheets.',
     ),
     description: lf(
       'Trois matières pour un même travail. La brique réfractaire isolante d’un fabricant : 480 kg/m³, jusqu’à 1 260 °C, 0,14, 0,16 et 0,17 W/m·K à 400, 600 et 800 °C. Sa couverture de fibre à faible biopersistance : 128 kg/m³, jusqu’à 1 200 °C, 0,08, 0,12 et 0,18 W/m·K. La perlite : environ 0,078 W/m·K à 200 °C et 0,092 à 300 °C, une courbe calculée, sans valeur connue à 600 °C. Le modèle les essaie toutes les trois : **à un point de rendement l’une de l’autre** (résultat du modèle). Sa chemise à environ {sleevePeak} °C au plus chaud (résultat du modèle) montre l’essentiel : le bon choix se fait sur la tenue, le poids, la santé à la pose, plus que sur la conductivité. L’épaisseur n’est pas donnée ici, et pour cause : c’est une part du dimensionnement d’un foyer.',
@@ -401,8 +401,8 @@ export const FIRE_CORE_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'Isolez la chemise en mode **Coupe** : on voit bien qu’elle ne voit pas la flamme.',
-      'Isolate the sleeve in **Section** mode: you can see it never meets the flame.',
+      'Le foyer est toujours en coupe : partez de la flamme, traversez le tube et l’isolant, et voici la chemise. Elle ne voit jamais la flamme.',
+      'The core is always in section: start from the flame, cross the tube and the insulation, and there is the sleeve. It never meets the flame.',
     ),
     design: l(
       'Un bon principe de foyer tient en peu de mots : ce qui voit la flamme ne rouille pas, et ce qui rouille ne voit pas la flamme. Une pièce mince, facile à remplacer, a sa place du bon côté de cette règle.',
@@ -465,8 +465,8 @@ export const FIRE_CORE_PARTS: PartInfo[] = [
       'Earth holds the core and seals it: a crack here is a leak, and the gas is on the other side.',
     ),
     description: lf(
-      'Le foyer est encoffré dans de la terre, environ {casingKg} kg dans notre estimation, avec la brique. Elle ne sert pas d’abord à stocker : elle maintient la brique et ferme le chemin des gaz. Le modèle l’amène à {casingPeak} °C au plus chaud (résultat du modèle) : elle ne rencontre donc pas ici la chaleur du foyer. La terre sèche et se rétracte, et le foyer se dilate à chaque feu : une fissure est le résultat normal d’un chantier normal, et l’on s’y attend, plutôt que de s’en étonner. Dans un chantier sérieux, on l’essaie à découvert avant de refermer quoi que ce soit, pour voir où la fumée passe. **Le modèle n’a ni fissure ni séchage** : la fuite d’une enveloppe de terre, personne n’en a publié la mesure.',
-      'The core is boxed in earth, about {casingKg} kg by our estimate, with the brick. Its first job is not storing: it holds the brick and closes the gases’ path. The model brings it to {casingPeak} °C at the hottest (model result): so it does not meet the heat of the core here. Earth dries and shrinks, and the core expands at each fire: a crack is the normal outcome of a normal build, and it is expected, not a surprise. On a serious build it is tried uncovered before anything closes it, to see where smoke gets by. **The model has neither crack nor drying**: nobody has published a measurement of the leak of an earthen casing.',
+      'Le foyer est encoffré dans de la terre, environ {casingKg} kg dans notre estimation, autour de {brickKg} kg de brique. Elle ne sert pas d’abord à stocker : elle maintient la brique et ferme le chemin des gaz. Le modèle l’amène à {casingPeak} °C au plus chaud, en moyenne de toute sa masse (résultat du modèle) : la terre au contact de la brique monte sans doute plus, et il ne la voit pas. La terre sèche et se rétracte, et le foyer se dilate à chaque feu : une fissure est le résultat normal d’un chantier normal, et l’on s’y attend, plutôt que de s’en étonner. Dans un chantier sérieux, on l’essaie à découvert avant de refermer quoi que ce soit, pour voir où la fumée passe. **Le modèle n’a ni fissure ni séchage** : la fuite d’une enveloppe de terre, personne n’en a publié la mesure.',
+      'The core is boxed in earth, about {casingKg} kg by our estimate, around {brickKg} kg of brick. Its first job is not storing: it holds the brick and closes the gases’ path. The model brings it to {casingPeak} °C at the hottest, as a mean of its whole mass (model result): the earth against the brick no doubt climbs higher, and it cannot see that. Earth dries and shrinks, and the core expands at each fire: a crack is the normal outcome of a normal build, and it is expected, not a surprise. On a serious build it is tried uncovered before anything closes it, to see where smoke gets by. **The model has neither crack nor drying**: nobody has published a measurement of the leak of an earthen casing.',
     ),
     material: l('Terre argileuse, sans mélange indiqué ici', 'Clay earth, with no mix given here'),
     specs: [
@@ -491,8 +491,8 @@ export const FIRE_CORE_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'Dans la 3D, passez la **Coupe** puis l’**éclaté** : la terre est le seul élément qui touche à la fois le foyer et l’air de la pièce.',
-      'In the 3D, use **Section**, then **Explode**: the earth is the one element touching both the core and the room’s air.',
+      'Le foyer est toujours en coupe. Passez l’**Éclaté** : la terre s’écarte, et l’on voit qu’elle touche à la fois le foyer et l’air de la pièce.',
+      'The core is always in section. Use **Explode**: the earth moves off, and you see it touches both the core and the room’s air.',
     ),
     design: l(
       'Voilà le point délicat de la terre : elle est bon marché et belle, et son étanchéité n’a pas de certificat. La question à poser à un professionnel commence ici, et une brique ou un conduit certifié n’en sont pas exempts.',
@@ -580,8 +580,8 @@ export const FIRE_CORE_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'En **Coupe** et avec **Flux**, suivez un gaz du haut au bas de l’anneau : c’est la chute la plus lente de la machine.',
-      'With **Section** and **Flows**, follow a gas from top to bottom of the annulus: the slowest fall in the machine.',
+      'Le foyer est déjà en coupe. Mettez le **Ralenti** et suivez un gaz du haut au bas de l’anneau, la chute la plus lente de la machine ; **Flux** y ajoute la pression à chaque étape.',
+      'The core is already in section. Use **Slow-mo** and follow a gas from top to bottom of the annulus, the slowest fall in the machine; **Flows** adds the pressure at each stage.',
     ),
     design: lf(
       'Plus on laisse de chaleur ici, moins le banc en reçoit, et le partage dépend de l’air qui entre : la part du bidon va de {drumRangeLow} à {drumRangeHigh} % selon les réglages (résultat du modèle). Le bidon n’est donc pas un bonus : sa part se prend sur tout le reste.',
@@ -594,8 +594,8 @@ export const FIRE_CORE_PARTS: PartInfo[] = [
     category: 'mechanical',
     name: l('Le joint du couvercle', 'The lid seal'),
     short: lf(
-      'Un joint de porte de poêle, ou la cendre elle-même sur une autre vraie machine. Sous lui, −{lidPa} Pa à plein feu (résultat du modèle) : assez, mais pas toujours.',
-      'A stove-door gasket, or ash itself on another real machine. Under it, −{lidPa} Pa at full fire (model result): enough, but not always.',
+      'Un joint de porte de poêle, ou la cendre sur une autre machine. Sous lui, −{lidPa} Pa à plein feu, mais une pression positive sur un conduit froid (résultat du modèle).',
+      'A stove-door gasket, or ash on another machine. Under it, −{lidPa} Pa at full fire, but a positive pressure on a cold flue (model result).',
     ),
     description: lf(
       'Le couvercle d’un bidon s’enlève. C’est ce qui le rend entretenable, et ce qui crée un joint à la hauteur de la tête. Une machine filmée à son treizième hiver s’en remet à la cendre : elle fume un peu après remontage, jusqu’à ce que la cendre tombe sur la bride et colmate la fuite ; d’autres constructeurs posent un joint de porte en fibre de verre. Le modèle lit −{lidPa} Pa à plein feu sous ce couvercle, et −{lidPaLow} Pa seulement sur une cheminée de {chimneyLow} m (résultat du modèle) : voilà pourquoi une cheminée basse menace. Le modèle compte {leakCm2} cm² de défaut à ce joint (estimation). Le calcul donne l’échelle, avec une pièce de 200 m³ à 0,5 volume par heure, tout étant supposé : 1 % du flux à 3 000 ppm fait {leak1} ppm, 5 % {leak5} ppm, 10 % {leak10} ppm (dérivé).',
@@ -629,12 +629,12 @@ export const FIRE_CORE_PARTS: PartInfo[] = [
       },
     ),
     tip: l(
-      'Dans la Simulation, lisez la « Pression sous le couvercle du bidon » en passant de plein feu à fin de feu. Un chiffre positif voudrait dire qu’une fuite laisse sortir des fumées.',
-      'In the Simulation, read “Pressure under the drum’s lid” as you go from full fire to the end of a fire. A positive figure would mean a leak lets gas out.',
+      'Dans la Simulation, lisez la « Pression sous le couvercle du bidon » en passant de plein feu à fin de feu, puis lancez « Le feu refuse ».',
+      'In the Simulation, read “Pressure under the drum’s lid” as you go from full fire to the end of a fire, then run “The fire refuses”.',
     ),
     design: l(
-      'Un joint ne tient pas un grand effort, et ce n’est pas son rôle : ce qui le protège, c’est la pression négative que tire la cheminée. La vraie sûreté n’est pas dans la tresse mais dans le fait que le chemin reste ouvert et tire.',
-      'A seal cannot hold a great force, and that is not its job: what protects it is the suction the chimney draws. True safety is not in the braid but in the path staying open and pulling.',
+      'Un joint ne tient pas un grand effort, et ce n’est pas son rôle : ce qui le protège, c’est la pression négative que tire la cheminée. Cela tient à une condition, que le chemin reste ouvert et qu’il tire : si le courant se retourne, cette protection disparaît.',
+      'A seal cannot hold a great force, and that is not its job: what protects it is the suction the chimney draws. That holds on one condition, the path staying open and pulling: when the flow turns round, the protection is gone.',
     ),
     video: ['04:44'],
   },

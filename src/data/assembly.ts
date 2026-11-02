@@ -97,8 +97,8 @@ export const ASSEMBLY: GuideStep[] = [
     title: l('L’isolant et sa chemise', 'The insulation and its sleeve'),
     text: step(
       'practice',
-      'L’**isolant** garde le feu chaud, et la **chemise d’acier** le tient, du côté froid, loin de la flamme. C’est le choix qui rend ce feu propre, et le modèle le trouve peu sensible à la matière : à un point près. On contrôle : un isolant bien tassé, qui ne descendra pas à l’usage, et une chemise d’aplomb, centrée pour laisser le même passage tout autour.',
-      'The **insulation** keeps the fire hot, and the **steel sleeve** holds it, on the cold side, away from the flame. This choice makes the fire clean, and the model finds it hardly sensitive to the material: within a point. To check: insulation well packed, that will not drop with use, and a plumb sleeve, centred to leave the same way all round.',
+      'L’**isolant** garde le feu chaud, et la **chemise d’acier** le tient, du côté froid, loin de la flamme. La fumée a besoin de cette chaleur pour finir de brûler, et le modèle trouve le résultat peu sensible à la matière : à un point près. On contrôle : un isolant bien tassé, qui ne descendra pas à l’usage, et une chemise d’aplomb, centrée pour laisser le même passage tout autour.',
+      'The **insulation** keeps the fire hot, and the **steel sleeve** holds it, on the cold side, away from the flame. The smoke needs that heat to finish burning, and the model finds the result hardly sensitive to the material: within a point. To check: insulation well packed, that will not drop with use, and a plumb sleeve, centred to leave the same way all round.',
       ['pour les matières, d’après les fiches des fabricants', 'for the materials, from makers’ data sheets'],
     ),
     parts: ['riser-insulation', 'riser-sleeve'],
@@ -163,7 +163,7 @@ export const ASSEMBLY: GuideStep[] = [
     text: step(
       'practice',
       'Le **début du conduit** part du collecteur avec ses **coudes** et ses **raccords**. C’est là que le plus de chaleur sort, donc ce qui est le plus sollicité. On contrôle : chaque raccord, un à un, tant qu’il se voit, puis en le testant à la fumée : une photo de chaque, et une liste. Sous la terre, cette chance n’existe plus.',
-      'The **hot run** leaves the manifold with its **bends** and **joints**. Here most of the heat comes off, so here is what works hardest. To check: every joint, one by one, while it can be seen, then by testing with smoke: a photograph of each, and a list. Under the earth, this chance is gone.',
+      'The **hot run** leaves the manifold with its **bends** and **joints**. Here more heat comes off than anywhere else along the duct, so here is what works hardest. To check: every joint, one by one, while it can be seen, then by testing with smoke: a photograph of each, and a list. Under the earth, this chance is gone.',
     ),
     parts: ['duct-hot-run', 'duct-bend', 'duct-joint'],
     tools: [l('Maçon de poêles', 'Stove mason'), l('Fumigène de contrôle', 'Test smoke')],

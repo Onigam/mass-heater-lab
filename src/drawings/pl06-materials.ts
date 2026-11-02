@@ -34,7 +34,7 @@ function draw(d: Drawing): void {
         '480 kg/m³ ; 1 260 °C au plus ; 0,14, 0,16 et 0,17 W/m·K à 400, 600 et 800 °C',
         '480 kg/m³; 1,260 °C at most; 0.14, 0.16 and 0.17 W/m·K at 400, 600 and 800 °C',
       ),
-      l('Le feu propre tient à un haut de cheminée brûlant', 'A clean fire rests on a scorching riser top'),
+      l('Elle garde brûlant le haut de la cheminée interne', 'It keeps the riser’s top scorching'),
       l('la fiche d’un fabricant', 'a maker’s data sheet'),
     ],
     [

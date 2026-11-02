@@ -203,6 +203,8 @@ describe('the render', () => {
     for (const s of SHEETS) {
       expect(flat(s.id, 'en'), s.id).not.toMatch(/\bis safe\b(?! value)|\bsafe to\b|\bcompliant\b|\brecommended\b/i);
       expect(flat(s.id, 'en'), s.id).not.toMatch(/\b4 to 8 h/);
+      expect(flat(s.id, 'en'), s.id).not.toMatch(/clean fire|fire clean/i);
+      expect(flat(s.id, 'fr'), s.id).not.toMatch(/le feu propre|ce feu propre/i);
       expect(flat(s.id, 'en'), s.id).not.toMatch(/\bK\d{1,2}\b|\bS\d{1,2}\b/);
     }
     expect(flat('core-section', 'en')).toMatch(/THE PROPORTIONS: A SOURCE’S WORDS, NOT A RULE/);

@@ -13,7 +13,7 @@ Six lessons, two questions each, every one opening on a scenario of the simulati
 
 ## What the lessons say about the model
 
-« Never 4 to 8 h »: the hand sum of the research is not retrieved, and the lessons say one to two hours after the flame, with why. The damper is numbers only: 38 and 52 minutes, 123 ppm at 65 minutes, 43 ppm shut 40 minutes later. A cold flue's −1.1 Pa stands beside the hand sum's −5.5 Pa, and the reason. Where the model does not retrieve a source (the seat against a builder's 32 to 38 °C, the small gap against a published model), the lesson says so. The law is left to the Sources panel; lesson 6 only says who to ask.
+« Never 4 to 8 h »: the hand sum of the research is not retrieved, and the lessons say one to two hours after the flame, with why. The damper is numbers only: 38 and 52 minutes, 123 ppm at 65 minutes, 43 ppm shut 40 minutes later. A cold flue's −1.1 Pa stands beside the hand sum's −5.5 Pa, and the reason. Where the model does not retrieve a source (the seat against a builder's 32 to 38 °C, the small gap against a published model), the lesson says so. The law is left to the Sources panel; lesson 6 only says who to ask. Wet wood gives over three times the CO of the default (850 against 230 ppm, since the frames were corrected, `docs/physics.md` §1.7), and the plume at the cap does follow it: what the eye cannot judge is said of a real machine, not of the screen.
 
 ## Tests
 

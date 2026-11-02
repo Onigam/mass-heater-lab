@@ -9,10 +9,11 @@ import { MassHeaterSim } from '../sim/engine';
 import { benchMass, COB, MACHINE as SIM_MACHINE } from '../sim/machine';
 import { presetParams, scenarioSetup } from '../sim/presets';
 import { claimCheck, settledDay, woodForRoom } from '../sim/runs';
+import { WORLD } from '../three';
 import { MACHINE } from '../three/dims';
 import { aboutPanel } from './about';
 import { ASSEMBLY } from './assembly';
-import { DERIVED, ESTIMATE, FIG, MODEL } from './figures';
+import { ASSUMED, DERIVED, ESTIMATE, FIG, MODEL } from './figures';
 import { partIds, PART_CATEGORIES, WORLDS, type WorldId } from './ids';
 import { INSTALL } from './install';
 import { LESSONS } from './lessons';
@@ -428,6 +429,8 @@ describe('the visitor texts', () => {
     expect(count(/not a plan to follow|not a procedure/)).toBe(2); // the first step of each guide
     expect(count(/this lab explains, it gives no plan/i)).toBe(1); // the first overview
     expect(count(/false colour/i)).toBe(1); // the room's overview, where the thermal view is first met
+    expect(count(/against the air beside it/)).toBe(1); // the sign of a pressure: the manifold's sheet; the panel says it beside its own figure
+    expect(count(/“At full fire”: the model at 9 h/)).toBe(1); // what « à plein feu » means: the notice on reading the figures
     // a warning is said once, where the gesture is risky
     expect(count(/silica dust that can be breathed/)).toBe(1);
     expect(count(/health classification/)).toBe(1);
@@ -460,6 +463,83 @@ describe('the visitor texts', () => {
       for (const n of numbersOf(v.en.replace(/\bA3\b|\b3D\b|\bJ-tube\b/g, ''), 'en').map(Number))
         if (!known.has(Math.abs(n))) stray.push(`${label}: ${n}`);
     expect(stray.join('\n')).toBe('');
+  });
+});
+
+describe('what a text claims', () => {
+  it('promises nothing: no word that says a gesture or a part is safe', () => {
+    for (const [label, v] of ALL_TEXTS) {
+      expect(v.fr, label).not.toMatch(
+        /sans risque|sans danger|sûreté|nuit à personne|en toute sécurité|geste de sécurité|et rien de plus/i,
+      );
+      expect(v.en, label).not.toMatch(
+        /without risk|without danger|true safety|hurting nobody|safety gesture|, nothing more\./i,
+      );
+    }
+  });
+
+  it('never calls this fire clean: the model gives 1,470 mg/MJ, and a chamber under the range a builder calls clean', () => {
+    for (const [label, v] of ALL_TEXTS) {
+      expect(v.fr, label).not.toMatch(/(rend|fait|rendait) (le |ce )?feu propre|le feu propre|la rendait propre/i);
+      expect(v.en, label).not.toMatch(/makes? (the |this )?fire clean|what made it clean|clean fire/i);
+    }
+    expect(en('heat-riser')).toMatch(/1,470 mg\/MJ, six times the 240 mg\/MJ/);
+    expect(fr('heat-riser')).toMatch(/1 470 mg\/MJ, six fois les 240 mg\/MJ/);
+  });
+
+  it('a clear cap says nothing of carbon monoxide: the cap’s sheet agrees with the feed’s', () => {
+    expect(part('chimney-cap').short.fr).toMatch(/un chapeau clair ne dit rien du monoxyde/);
+    expect(part('chimney-cap').short.en).toMatch(/a clear cap says nothing of carbon monoxide/);
+    expect(fr('feed-tube')).toMatch(/L’œil ne juge jamais le monoxyde/);
+    for (const id of ['chimney-cap', 'moisture-meter'])
+      expect(en(id), id).not.toMatch(/next to nothing when all is well/);
+  });
+
+  it('a pressure has one sign: the minus sign is printed, the manifold’s and the duct’s are not the draught’s', () => {
+    expect(en('manifold')).toMatch(/from −13\.5 to −13\.9 Pa/);
+    expect(fr('manifold')).toMatch(/de −13,5 à −13,9 Pa/);
+    expect(fr('manifold')).not.toMatch(/quinzaine de pascals/);
+    expect(en('manifold-cleanout')).toMatch(/about −13\.5 Pa/);
+  });
+
+  it('the peak is not a crossing time', () => {
+    expect(part('cob-casing').short.en).not.toMatch(/brings the heat through/);
+    expect(part('cob-casing').short.en).toMatch(/1\.2 to 1\.7 h after the wood stops/);
+    expect(en('cob-casing')).toMatch(/That is no crossing time/);
+    expect(fr('cob-casing')).toMatch(/Ce n’est pas un temps de traversée/);
+  });
+
+  it('a tip names no tool its world does not have', () => {
+    for (const p of PARTS) {
+      const world = WORLD[p.scene as WorldId];
+      const tip = p.tip!;
+      if (world.cutaway === false) {
+        expect(tip.fr, p.id).not.toMatch(/\bCoupe\b/);
+        expect(tip.en, p.id).not.toMatch(/\bSection\b/);
+      }
+      if ('slowMo' in world && world.slowMo === false) {
+        expect(tip.fr, p.id).not.toMatch(/ralenti\*\*/i);
+        expect(tip.en, p.id).not.toMatch(/Slow-mo/);
+      }
+      // the thermal view lives in the room and the bench (docs/3d.md)
+      if (p.scene === 'homestead' || p.scene === 'fire-core') {
+        expect(tip.fr, p.id).not.toMatch(/vue thermique/i);
+        expect(tip.en, p.id).not.toMatch(/thermal view/i);
+      }
+    }
+  });
+
+  it('a tip does not ask for what the tool takes away: an isolated part stands alone', () => {
+    for (const p of PARTS) {
+      expect(p.tip!.en, p.id).not.toMatch(/Isolate[^.:]*(, then|and look at the earth|what it opens into)/);
+      expect(p.tip!.fr, p.id).not.toMatch(/Isolez[^.:]*( puis | et regardez la terre)/);
+    }
+  });
+
+  it('the flame runs as the 3D draws it: from the feed, at −x, towards the riser, at x = 0', () => {
+    expect(MACHINE.tunnelLength).toBeGreaterThan(0);
+    expect(part('burn-tunnel').tip!.fr).toMatch(/de gauche à droite, du tube vers la cheminée interne/);
+    expect(part('burn-tunnel').tip!.en).toMatch(/from left to right, from the feed towards the riser/);
   });
 });
 
@@ -597,6 +677,14 @@ describe('the figures of the texts, against the simulation', () => {
     wetSim.set({ hour: 9 });
     near(wetSim.state.flueCo, MODEL.coWet, 40, 'CO on wet wood');
     near(-st.pathP[8]!, MODEL.ductPa, 1, 'duct pressure');
+    // the state at 09:00, where the texts say « à plein feu », and the mean of a fire, where they say « en moyenne d’un feu »: two figures, each said as what it is
+    near(st.chamberT, MODEL.chamberAt9, 2, 'chamber at 09:00');
+    near(st.exhaustT, MODEL.exhaustAt9, 1, 'exit at 09:00');
+    near(st.draft, MODEL.draftAt9, 0.1, 'whole draught at 09:00');
+    near(-st.pathP[6]!, MODEL.manifoldPa, 0.1, 'the drum’s foot, where the gases enter the manifold');
+    near(-st.pathP[7]!, MODEL.manifoldOutPa, 0.1, 'the duct’s mouth, where they leave it');
+    near(st.pathT[8]!, MODEL.ductOutT, 1, 'gas at the end of the bench');
+    near(st.pathT[10]!, MODEL.ceilingT, 1, 'gas at the ceiling');
     const hot = new MassHeaterSim();
     let liner = 0;
     let sleeve = 0;
@@ -707,6 +795,14 @@ describe('the figures of the texts, against the simulation', () => {
     cold.applyScenario('cold-start');
     near(-cold.state.gasFlow * 1000, MODEL.coldFlow, 0.1, 'cold air falling');
     near(cold.state.draft, -MODEL.coldFluePa, 0.1, 'cold flue');
+    expect(cold.state.lidPressure, 'a cold flue: a positive pressure under the lid').toBeGreaterThan(0);
+    const longSim = new MassHeaterSim();
+    longSim.applyScenario('long-bench');
+    longSim.set({ hour: 9 });
+    near(longSim.state.dewPointT, MODEL.longDew, 0.5, 'dew point on 18 m');
+    expect(MODEL.longDew).toBeGreaterThan(MODEL.longExhaust);
+    expect(MODEL.coWet / MODEL.coLean, 'wet wood: over three times the CO').toBeGreaterThan(3);
+    expect(base.summary.condensate, 'nothing condenses on 9 m').toBe(0);
   });
 
   it('the fan and the damper: numbers only, a whole-house mean', () => {
@@ -758,6 +854,39 @@ describe('the figures of the texts, against the simulation', () => {
     }
     near(peak, MODEL.damperLatePeak, 2, 'late damper');
     expect(late.state.coAlarm).toBe(0);
+  });
+
+  it('the plume at the cap: steam during the fire, smoke once the wood stops, and more smoke on wet wood', () => {
+    const sim = new MassHeaterSim();
+    sim.set({ hour: 9 });
+    expect(sim.state.smokeAtCap).toBe(0);
+    expect(sim.state.steamAtCap).toBeGreaterThan(0.5);
+    sim.set({ hour: 10 });
+    expect(sim.state.smokeAtCap).toBeGreaterThan(0.3);
+    const wet = new MassHeaterSim();
+    wet.applyScenario('wet-wood');
+    wet.set({ hour: 9 });
+    expect(wet.state.smokeAtCap).toBeGreaterThan(0.1);
+  });
+
+  it('a fan keeps the flow on its branch: raised slowly it holds at full fire to 10 Pa, and turns the flow near 6 Pa after the fire; set at once, 10 Pa turn it even at full fire', () => {
+    const raised = (hour: number, fanPa: number) => {
+      const sim = new MassHeaterSim();
+      sim.set({ hour, timeScale: 1 });
+      for (let p = 0; p <= fanPa; p += 0.5) {
+        sim.set({ fanPa: p });
+        for (let i = 0; i < 15; i++) sim.step(1 / 15);
+      }
+      return sim.state.gasFlow;
+    };
+    expect(raised(9, ASSUMED.fanPa)).toBeGreaterThan(0);
+    expect(raised(12, 5)).toBeGreaterThan(0);
+    expect(raised(12, 6)).toBeLessThan(0);
+    const atOnce = new MassHeaterSim();
+    atOnce.set({ hour: 9, timeScale: 1 });
+    atOnce.set({ fanPa: ASSUMED.fanPa });
+    for (let i = 0; i < 300; i++) atOnce.step(1 / 15);
+    expect(atOnce.state.gasFlow).toBeLessThan(0);
   });
 
   it('the figures with no run of their own are in the tables of docs/physics.md', () => {

@@ -77,10 +77,14 @@ export const MODEL = {
   chamber: 467, // °C, a mixed mean at the riser's foot
   chamberRocket: 564, // °C at 3.4 kg/h
   chamberFast: 704, // °C at 5 kg/h
+  chamberAt9: 485, // °C, the state at 09:00; `chamber` is the mean of a fire at full rate
   lambda: 5.0,
   flowGs: 15, // g/s of air and gas
   airM3h: 46, // m³/h, the same at 1.2 kg/m³
-  exhaust: 80, // °C
+  exhaust: 80, // °C at the cap, the mean of a fire at full rate
+  exhaustAt9: 90, // °C at the cap, at 09:00
+  ductOutT: 114, // °C, the gas at the end of the bench, at 09:00
+  ceilingT: 103, // °C, the gas at the ceiling, at 09:00
   riserTop: 459, // °C, at 09:00
   afterDrum: 249, // °C, at 09:00
   lidPeak: 180, // °C
@@ -94,7 +98,8 @@ export const MODEL = {
   ductPa: 14, // Pa under the room's air, along the duct at full fire, printed with its minus sign
   dewDefault: 29, // °C
   // the draught
-  draft: 15, // Pa
+  draft: 15, // Pa, the mean of a fire at full rate
+  draftAt9: 16.4, // Pa, the whole draught at 09:00
   riserPa: 6.0, // at 09:00, as the three after it
   fallPa: 4.7, // printed with its minus sign
   netPa: 1.3,
@@ -102,6 +107,8 @@ export const MODEL = {
   coldFluePa: 1.1, // printed with its minus sign
   feedPaShare: 85, // % of the draught spent across the feed
   lidPa: 8.9, // printed with its minus sign, at full burn
+  manifoldPa: 13.5, // Pa at the drum's foot, where the gases enter the manifold, at 09:00, printed with its minus sign
+  manifoldOutPa: 13.9, // Pa at the duct's mouth, where they leave it, at 09:00, printed with its minus sign
   lidPaLow: 0.7, // the same on a chimney of 2.7 m
   // the sensitivity table, §6
   coverLowLambda: 7.6,
@@ -167,6 +174,7 @@ export const MODEL = {
   longEta: 89,
   longWater: 0.4, // kg a day
   longHours: 3, // h a day under the dew point
+  longDew: 35, // °C, the dew point on 18 m, at 09:00: less air, so higher than the default's
   lowDraft: 7.3,
   lowLambda: 3.5,
   lowEta: 87,
@@ -347,6 +355,9 @@ const DIGITS: Record<string, number> = {
   coldFluePa: 1,
   lidPa: 1,
   lidPaLow: 1,
+  draftAt9: 1,
+  manifoldPa: 1,
+  manifoldOutPa: 1,
   coverLowLambda: 1,
   coverHighLambda: 1,
   uninsulatedRoom: 1,

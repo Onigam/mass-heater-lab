@@ -93,7 +93,7 @@ function draw(d: Drawing): void {
           'The model’s column is read at 09:00, the cold flue apart. Over a whole fire at full rate, the mean draught is ',
         ),
         fig('draft', 'M', ' Pa'),
-        l(' : le chiffre que donnent les textes du labo.', ': the figure the lab’s texts give.'),
+        l(' : le chiffre « en moyenne d’un feu » des textes du labo.', ': the “mean of a fire” of the lab’s texts.'),
       ),
     },
     {
