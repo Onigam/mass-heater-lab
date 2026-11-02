@@ -50,8 +50,6 @@ const FLOW_TAU = 2;
 /** One sample every five simulated minutes, three days of them. */
 const SCOPE_EVERY = 300;
 const SCOPE_LENGTH = 864;
-/** The clock rule of what turns on screen. */
-const VISUAL_TURNS = 0.5;
 
 /** ESTIMATE, limits of the alarms: a drum's paint, a comfortable seat, a room. Above the alarm of a chamber, CLEAN_T's report. */
 export const LIMITS = { drumPaint: 300, seat: 45, roomCold: 14, chamberCold: 350, lambdaLow: 1.4 } as const;
@@ -85,7 +83,6 @@ function newState(): HeaterState {
     steamAtCap: 0,
     smokeInRoom: 0,
     flameClock: 0,
-    angle: 0,
     airFlow: 0,
     gasFlow: 0,
     riserSpeed: 0,
@@ -423,8 +420,6 @@ export class MassHeaterSim implements LabSim {
     this.shownFlow += (plant.m - this.shownFlow) * (1 - Math.exp(-(dt + clockDt) / FLOW_TAU));
     const s = this.state;
     s.flameClock += dt * p.slowMo;
-    const turn = 2 * Math.PI * VISUAL_TURNS * Math.min(1, Math.abs(this.shownFlow) / 0.02) * dt * p.slowMo;
-    s.angle = (s.angle + turn) % (2 * Math.PI);
     if (n > 0) {
       this.sinceRefresh = 0;
       this.refresh();
@@ -658,6 +653,3 @@ export class MassHeaterSim implements LabSim {
     return this.plant.benchMassNow();
   }
 }
-
-/** The template's placeholder scene (src/three/device.ts) until the 3D role replaces it: it only reads a turning angle. */
-export type DemoState = { readonly angle: number };

@@ -169,8 +169,6 @@ export interface HeaterState {
   smokeInRoom: number;
   /** Visual clocks, scaled by the slow motion, running even when the slow clock stops. */
   flameClock: number;
-  /** What the template's placeholder scene turns, until the 3D role replaces it. */
-  angle: number;
 
   // ---- the gases
   /** Air flow, kg/s, signed; speed in the riser and in the duct, m/s. */

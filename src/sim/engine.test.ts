@@ -213,6 +213,42 @@ describe('the fire', () => {
   });
 });
 
+describe('a frame of the settled day brought back', () => {
+  it('reads the same fire as its day: the slider, the charts and the mean of a burn tell one story', () => {
+    const day = settledDay(presetParams('j-tube'));
+    const sim = new MassHeaterSim();
+    for (const h of [7.5, 8.5, 9, 9.5, 19, 20]) {
+      sim.set({ hour: h });
+      const f = Math.round(h * 4);
+      expect(Math.abs(sim.state.chamberT - day.series.chamber[f]!), `chamber at ${h}`).toBeLessThan(2);
+      expect(Math.abs(sim.state.firePower - day.series.fire[f]!) / day.series.fire[f]!, `fire at ${h}`).toBeLessThan(
+        0.01,
+      );
+      expect(Math.abs(sim.state.exhaustT - day.series.exhaust[f]!), `exhaust at ${h}`).toBeLessThan(2);
+    }
+    // at 09:00, near the end of a fire still warming its core: above the mean of the whole fire at full rate
+    sim.set({ hour: 9 });
+    expect(sim.state.chamberT).toBeGreaterThan(day.summary.meanChamber);
+    expect(sim.state.chamberT).toBeLessThan(day.summary.peakChamber);
+  });
+  it('holds its reading when the clock runs on: no drop to a colder chamber, no jump either', () => {
+    const sim = new MassHeaterSim();
+    sim.set({ hour: 8.5, timeScale: 60 });
+    const at = sim.state.chamberT;
+    for (let i = 0; i < 40; i++) {
+      sim.step(0.25);
+      expect(Math.abs(sim.state.chamberT - at), `after ${i + 1} steps`).toBeLessThan(25);
+    }
+  });
+  it('after the feed stops, the frames read the pools as they were: embers are not fed', () => {
+    const sim = new MassHeaterSim();
+    sim.set({ hour: 10 });
+    const day = settledDay(presetParams('j-tube'));
+    expect(sim.state.firePower).toBeLessThanOrEqual(day.series.fire[40]!);
+    expect(sim.state.phase).toBe('embers');
+  });
+});
+
 describe('the gas path', () => {
   it('runs forward in a burn, hottest near the fire, coolest at the cap', () => {
     const sim = new MassHeaterSim();
@@ -339,13 +375,6 @@ describe('what the 3D reads', () => {
   it('the thermal view’s ramp spans what a bench does, fixed', () => {
     expect(THERMAL_RAMP[0]![0]).toBe(15);
     expect(THERMAL_RAMP[THERMAL_RAMP.length - 1]![0]).toBe(65);
-  });
-  it('the template’s scene still turns while it stands in', () => {
-    const sim = new MassHeaterSim();
-    sim.set({ hour: 8.5 });
-    const a = sim.state.angle;
-    run(sim, 0.5);
-    expect(sim.state.angle).not.toBe(a);
   });
 });
 

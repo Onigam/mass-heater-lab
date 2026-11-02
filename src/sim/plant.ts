@@ -292,6 +292,9 @@ export class Plant {
   // ---- the fire
   eVol = 0;
   eChar = 0;
+  /** What the last step's feed put in each pool, J. */
+  private fedVol = 0;
+  private fedChar = 0;
   ignition = 0;
   private lastSession = -1;
   private manualLeft = 0;
@@ -754,8 +757,10 @@ export class Plant {
     }
     this.feedRate = rate;
     const Hu = heatingValue(p.moisture);
-    this.eVol += rate * Hu * (1 - MODEL.charShare) * dt;
-    this.eChar += rate * Hu * MODEL.charShare * dt;
+    this.fedVol = rate * Hu * (1 - MODEL.charShare) * dt;
+    this.fedChar = rate * Hu * MODEL.charShare * dt;
+    this.eVol += this.fedVol;
+    this.eChar += this.fedChar;
     this.counters.wood += rate * Hu * dt;
     const volOn = this.eVol > MODEL.poolOut;
     const charOn = this.eChar > MODEL.poolOut;
@@ -1655,8 +1660,9 @@ export class Plant {
     const x = [
       this.time,
       this.m,
-      this.eVol,
-      this.eChar,
+      // the pools as the last step's fire read them, its feed in: a step's feed goes in before it burns, so that the bare pools of a frame read a fire short of one step's wood (15 % at 2.5 kg/h)
+      this.eVol + this.fedVol,
+      this.eChar + this.fedChar,
       this.ignition,
       this.lastSession,
       this.batchClock,
