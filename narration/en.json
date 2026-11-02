@@ -1,0 +1,442 @@
+{
+  "lang": "en",
+  "voiceLabel": {
+    "fr": "Voix de synthèse",
+    "en": "Synthetic voice"
+  },
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.8,
+    "style": 0.35,
+    "speed": 0.95
+  },
+  "segments": [
+    {
+      "id": "intro",
+      "scope": "intro",
+      "title": "About the lab",
+      "scene": "homestead",
+      "text": "[[home]] Picture a night in January. Outside it is snowing, and the fire has been out for hours. The room has cooled… and yet you lay your hand on a bench of earth, and it is still warm. [[frame:house-shell]] How can an evening’s fire last like that? Let’s follow one small breath of cold air. [[scene:fire-core]] It slips into an open tube, where the wood stands upright. [[frame:burn-tunnel]] Pulled sideways, it rushes into the fire, and the flame lies down with it. [[frame:heat-riser]] Burning hot now, it climbs an insulated chimney, where the smoke finishes burning. [[frame:downdraft-annulus]] Then it falls back down the side of a steel drum, and leaves it a good share of its heat. [[scene:living-room]] That drum warms the room straight away. [[frame:cob-bench]] But our breath of air is not done: now it crawls under the bench. [[scene:bench-section]] [[cutaway:on]] Nine metres of duct, nearly three tonnes of earth. It cools there, and its heat climbs towards the seat, slowly, even once the flame is dead. [[cutaway:off]] [[scene:homestead]] And off it goes through the roof, with just enough left to make the chimney draw. [[frame:chimney-cap]] That is the whole story: a breath of air, a fire lying down, a drum, a bench… and a hand on warm earth. [[home]] Which leaves the real question: two fires a day, for which house? Because a fire, here, is a tended session of two to four hours, feeding the tube. Not an armful and away! A few landmarks: four views, the house, the room, the core and the bench. Click on anything: its sheet opens, and you can hear its story. [[mode:assembly]] One guide tells how a mason raises it, [[mode:install]] another what must be true before the first fire. [[mode:sim]] The simulation runs the day, plays twelve scenarios, and its Thermal view colours the heat. [[mode:lessons]] Six lessons, with quizzes, explain the physics. [[mode:plans]] Ten sheets gather the drawings. [[mode:explore]] One last thing: this lab is an educational reconstruction, of a generic machine. It explains, and it gives no plan to build from. [[scene:homestead]] Unless a source is quoted, the figures come from our simulation: calculations, not measurements. The Sources panel says who said what. How much of the wood’s heat stays in the house? It finds about seventy-eight per cent, and we found no independent test of such a machine. One warning, just one: fire and carbon monoxide can kill; before any project, an alarm, your insurer, and the law. And no model, ours included, can say a real installation is safe. [[select:none]] Now, make yourself at home: the bench is still warm!"
+    },
+    {
+      "id": "scene-homestead",
+      "scope": "scene:homestead",
+      "title": "Two fires a day: for which house?",
+      "scene": "homestead",
+      "text": "[[home]] A little house at the edge of the forest, under the snow. [[frame:house-shell]] Inside, a J-tube mass heater, often called a rocket. Same name, another machine: the little rocket cook stove belongs outdoors, and a mass heater has a chimney. [[frame:chimney-cap]] There it is, right at the top, above the ridge. [[frame:woodshed,cordwood-stack]] Beside it, the woodshed and a whole season of wood. [[frame:smoky-neighbour]] Further off, the neighbour and that grey column. [[home]] You read it everywhere: eighty to ninety per cent less wood. That does not balance from the stove alone: insulation does most of it! Here, about twelve and a half kilos a day hold twenty degrees. If the house lost nearly three times as much, it would take thirty-six. The hero of this story does not smoke: it is the walls."
+    },
+    {
+      "id": "scene-living-room",
+      "scope": "scene:living-room",
+      "title": "The drum at once, the bench later",
+      "scene": "living-room",
+      "text": "[[home]] Let’s go in: here is the room where people live. [[frame:steel-drum]] The drum, first, radiating as soon as the fire catches. [[frame:cob-bench,bench-backrest]] The bench runs along two walls, with its backrest. [[frame:chimney-flue]] The chimney rises towards the roof, [[frame:co-alarm,smoke-alarm]] and the two alarms watch over everyone. [[frame:inner-stone-wall]] The stone wall, for its part, keeps its share. [[home]] [[cutaway:on]] Let’s say it plainly. The drum gives about twice the bench’s heat, in great bursts. The bench gives a little, day and night: three to five hundred watts. It does not carry the house alone: it smooths. [[cutaway:off]] So the room runs from seventeen to twenty-four degrees. To see this heat in colour, the Thermal view button is in the Simulation, under the hour slider."
+    },
+    {
+      "id": "scene-fire-core",
+      "scope": "scene:fire-core",
+      "title": "Where it burns, and which way it goes",
+      "scene": "fire-core",
+      "text": "[[home]] Still in section, and this time right up close to the fire. [[frame:feed-tube]] The wood stands upright in the tube, [[frame:burn-tunnel]] and the flame lies down in the tunnel. [[frame:heat-riser]] The smoke finishes burning in the heat riser. [[frame:top-gap]] Under the lid, the gases turn right round, [[frame:downdraft-annulus]] then they fall back along the drum. [[home]] [[flows:on]] But what makes all this draw? Everyone blames the riser. Wrong! With the fall down the drum, it weighs in at just over one pascal. The chimney, nearly fifteen. [[flows:off]] Let it go cold, and the flow runs backwards: the fire does not turn it alone. The scenario The fire refuses shows you."
+    },
+    {
+      "id": "scene-bench-section",
+      "scope": "scene:bench-section",
+      "title": "Where the heat goes",
+      "scene": "bench-section",
+      "text": "[[home]] A slice of bench, greatly magnified. [[frame:duct-hot-run,duct-cold-run]] The start of the duct and its end, side by side. [[frame:cob-casing,stone-filler]] All around, the earth and its stones, [[frame:earthen-plaster]] then the plaster, the skin you touch. [[frame:chimney-tee]] Further on, the tee, where the path climbs. [[frame:pebble-section]] And the pebble bench, the other school. [[home]] [[cutaway:on]] These tints are false colour: at sixty degrees, earth does not glow. An hour passes here every second, and the day breathes before your eyes. Heat leaves the duct, where the earth climbs to sixty-four degrees. It rises, slowly, and carries on once the flame is dead. The seat is warmest one to two hours after the flame, at thirty-two degrees. [[cutaway:off]] Then it gives all that back, gently, the whole night through: this is the wonder of the lab."
+    },
+    {
+      "id": "part-house-shell",
+      "scope": "part:house-shell",
+      "title": "The insulated house",
+      "scene": "homestead",
+      "text": "The real wood-saver is not a stove: it is these walls. We take them to lose a hundred and six watts per degree of difference with the outside. Same machine, same wood, at three hundred watts: the room stays between six and fourteen degrees. And every kilowatt saved here lasts as long as the house, without a single log."
+    },
+    {
+      "id": "part-chimney-cap",
+      "scope": "part:chimney-cap",
+      "title": "Chimney cap",
+      "scene": "homestead",
+      "text": "[[flows:on]] The end of the journey. Our breath of air leaves here at about eighty degrees at full fire. Smoke that is white and short, in a hard frost, is often steam. Grey and lingering, it is fuel going to waste. [[flows:off]] The cap keeps out rain and birds, with no mechanism at all."
+    },
+    {
+      "id": "part-sweep-access",
+      "scope": "part:sweep-access",
+      "title": "Sweep’s access",
+      "scene": "homestead",
+      "text": "A duct under a bench needs thinking through for the sweep. Rules vary by country, and a common one asks for two sweeps a year. And nothing proves these machines escape flue fires. Many sweeps have never seen one: find yours before you picture the bench."
+    },
+    {
+      "id": "part-outside-air-inlet",
+      "scope": "part:outside-air-inlet",
+      "title": "Outside air inlet",
+      "scene": "homestead",
+      "text": "[[flows:on]] The fire breathes! About forty-six cubic metres of air an hour at full fire: that air has to come from somewhere. [[flows:off]] Without this inlet, the fire pulls on the rest of the house. Its most common failure: someone who felt a draught, and closed it."
+    },
+    {
+      "id": "part-woodshed",
+      "scope": "part:woodshed",
+      "title": "Woodshed",
+      "scene": "homestead",
+      "text": "A roof for the rain, open sides for the wind, and a year or more. Water in the wood is paid for in heat: at thirty per cent moisture, a kilo gives a fifth less than at fifteen. And this year’s wood is stacked beside last year’s, never in front of it."
+    },
+    {
+      "id": "part-cordwood-stack",
+      "scope": "part:cordwood-stack",
+      "title": "Split-wood stack",
+      "scene": "homestead",
+      "text": "A whole season, to scale: nearly two tonnes of wood, beside the basket of a single day. It goes down as the fires go by. This is the most honest argument in the lab: it rests on no announced efficiency. What has been burnt can be weighed!"
+    },
+    {
+      "id": "part-moisture-meter",
+      "scope": "part:moisture-meter",
+      "title": "Moisture meter",
+      "scene": "homestead",
+      "text": "Two pins, a figure, next to no cost: the first gesture of the day. At thirty per cent moisture, the same wood costs the room three degrees, and the monoxide more than triples. The eye sees nothing of it. The pins go in a freshly split face: the outside of a log dries well before its heart."
+    },
+    {
+      "id": "part-kindling-block",
+      "scope": "part:kindling-block",
+      "title": "Kindling block",
+      "scene": "homestead",
+      "text": "An ordinary log will not fit in here: it wants under eight centimetres across, says a French manual. So there has to be a hatchet, a block at the right height, and a habit. Nobody puts a figure on that work. And the day’s wood is split before dark, not by lamplight."
+    },
+    {
+      "id": "part-ash-bucket",
+      "scope": "part:ash-bucket",
+      "title": "Ash bucket",
+      "scene": "homestead",
+      "text": "A metal bucket, a lid, and it waits outside. One builder weighed it: twenty-six kilos of wood, two hundred grams of ash. So little! But ash covers embers that stay hot for a long time, and many a garage fire starts that way. Nobody can say when it is truly out, and neither can we."
+    },
+    {
+      "id": "part-coppice-lot",
+      "scope": "part:coppice-lot",
+      "title": "Coppice",
+      "scene": "homestead",
+      "text": "How much forest for a house? No source gives this coppice’s yield: no hectares here. Against an old stove delivering thirty-five per cent, this machine saves fifty-five per cent of the wood. Against a good stove at seventy-two, only seven. Insulate as well a house that lost three times as much: eighty-five."
+    },
+    {
+      "id": "part-smoky-neighbour",
+      "scope": "part:smoky-neighbour",
+      "title": "Neighbour’s chimney",
+      "scene": "homestead",
+      "text": "The neighbour’s wood is no worse: it is the stove, on a slow burn, keeping its heat by cutting the air. A masonry heater made to smoulder, in a laboratory: three and a half times the monoxide. To cut your wood by ten, this is the stove you would have to replace. Let’s not judge: it is set to last the night."
+    },
+    {
+      "id": "part-steel-drum",
+      "scope": "part:steel-drum",
+      "title": "The two-hundred-litre drum",
+      "scene": "living-room",
+      "text": "[[xray:on]] A stock drum, upside down over the fire. Our breath of air falls into it, and gives up its heat to a wall barely more than a millimetre thick. [[xray:off]] It keeps almost nothing: what it receives, it gives back, and a cold room warms at once. About twenty-two kilowatt-hours a day. Its lid climbs to a hundred and eighty degrees, and touched, it burns. A recovered drum, with its residues and paint, is a hazard all by itself."
+    },
+    {
+      "id": "part-cob-bench",
+      "scope": "part:cob-bench",
+      "title": "The cob bench",
+      "scene": "living-room",
+      "text": "Nearly three tonnes of earth and stone, around nine metres of duct. [[cutaway:on]] Heat crosses it slowly, and the seat runs from twenty-five to thirty-two degrees. [[cutaway:off]] Seven hours after the evening fire it is still at nearly twenty-eight, when the room has fallen to eighteen and a half. A blanket on the bench, a book, and January can wait outside! On this sheet, the Thermal view button shows you the heat arriving."
+    },
+    {
+      "id": "part-bench-backrest",
+      "scope": "part:bench-backrest",
+      "title": "The backrest",
+      "scene": "living-room",
+      "text": "A warm back: that is its whole job. The backrest has no duct in it, and warms by what it touches. That is comfort, and comfort is no small thing, on a machine you live beside. Behind it, the bench loses nearly a kilowatt-hour a day through the wall."
+    },
+    {
+      "id": "part-manifold",
+      "scope": "part:manifold",
+      "title": "The manifold",
+      "scene": "living-room",
+      "text": "[[flows:on]] At the foot of the drum, our breath of air makes a quarter turn, at about two hundred and fifty degrees at full fire. The turn slows it, and fly ash falls there. A plain bend would clog, and be hard to clean. [[flows:off]] This box gets vacuumed cold, at every sweep."
+    },
+    {
+      "id": "part-manifold-cleanout",
+      "scope": "part:manifold-cleanout",
+      "title": "Manifold cleanout",
+      "scene": "living-room",
+      "text": "A round, gas-tight door to take out the fly ash, and only when cold. At full fire, a leak here steals draught. But if the flow turns back, the same leak lets gas out into the room. Its silliest failure: a door not properly closed. Hence its place, in plain view."
+    },
+    {
+      "id": "part-chimney-flue",
+      "scope": "part:chimney-flue",
+      "title": "The chimney",
+      "scene": "living-room",
+      "text": "The real engine of the machine, as long as it stays warm: hence its insulation. Is taller better? At eight metres it pulls useless air, and the efficiency falls to seventy per cent. Lower, at two metres seventy, it climbs to eighty-seven… but the margin melts away. A fine efficiency can hide a more fragile heater."
+    },
+    {
+      "id": "part-chimney-cleanout",
+      "scope": "part:chimney-cleanout",
+      "title": "Chimney-foot cleanout",
+      "scene": "living-room",
+      "text": "Under the tee, a small closed cap. Everything that falls stops here: soot, ash, condensate. Opened at full fire, it would give the room’s air a short cut, and the draught would collapse. Sticky black deposit tells of a flue running too cold."
+    },
+    {
+      "id": "part-ceiling-crossing",
+      "scope": "part:ceiling-crossing",
+      "title": "Ceiling crossing",
+      "scene": "living-room",
+      "text": "The place where a house catches fire. The risk is not the everyday flue gas: it is a chimney fire. The safety distance is in the flue’s own instructions, and it is not to be reduced. Once the ceiling is closed, a small inspection hatch is well worth having."
+    },
+    {
+      "id": "part-hearth-slab",
+      "scope": "part:hearth-slab",
+      "title": "The slab",
+      "scene": "living-room",
+      "text": "[[explode:0.5]] Let’s lift everything: all that rises rests on this one part. [[explode:0]] This heater is no object set down, it is masonry, nearly three and a half tonnes. Under the bench, about six hundred and fifty kilos per square metre: three times what a light floor is designed for!"
+    },
+    {
+      "id": "part-heat-shield",
+      "scope": "part:heat-shield",
+      "title": "Heat shield",
+      "scene": "living-room",
+      "text": "A plain steel sheet, and behind it, air. The drum heats the wall beside it by radiation: the sheet takes it, and the passing air carries the rest away. A thick slab of brick stuck to the wall ends up hot, and passes it on. And a handsome sheet fixed straight to the wall hardly protects at all."
+    },
+    {
+      "id": "part-co-alarm",
+      "scope": "part:co-alarm",
+      "title": "CO alarm",
+      "scene": "living-room",
+      "text": "A gas you cannot see, cannot smell, in a house where people sleep: that is why this little box is here. It comes from a fire short of air, and above all from the embers, after the flame. This alarm is essential, and it is not enough! According to the manuals, it can stay silent for two hours at thirty parts per million. Health guidelines already refuse that level. If it sounds: get out, open up, call for help. And never silence it to finish the evening."
+    },
+    {
+      "id": "part-smoke-alarm",
+      "scope": "part:smoke-alarm",
+      "title": "Smoke alarm",
+      "scene": "living-room",
+      "text": "Another danger, another job. This one spots the particles of a starting fire, and says nothing of carbon monoxide, which has no smoke. Many countries require one in every home. If it sounds at the season’s first fire, as the drum’s paint burns off, open the windows, and keep the battery in."
+    },
+    {
+      "id": "part-ventilation-grille",
+      "scope": "part:ventilation-grille",
+      "title": "Ventilation grille",
+      "scene": "living-room",
+      "text": "It lets the cold in, so you are tempted to block it. Don’t! After the fire the draught falls, and the embers carry on. A kitchen fan depressurises the house, and the air looks for a way in: the flue. In our scenario the monoxide climbs to sixty-three parts per million, and the alarm may stay silent."
+    },
+    {
+      "id": "part-wood-basket",
+      "scope": "part:wood-basket",
+      "title": "The day’s basket",
+      "scene": "living-room",
+      "text": "One winter’s day: about twelve and a half kilos of split wood, fifty-two kilowatt-hours. We count two sessions of two and a half hours, morning and evening. It is not much, and it holds for this house. At minus ten degrees, it would take nearly twenty-four kilos."
+    },
+    {
+      "id": "part-kettle",
+      "scope": "part:kettle",
+      "title": "The kettle",
+      "scene": "living-room",
+      "text": "The drum’s lid doubles as a hotplate. Enough to boil water, but only during the fires: on waking, no tea! A warm habit, which teaches the hand that this spot burns. A pot holder on a hook, and nothing flammable on top."
+    },
+    {
+      "id": "part-flue-thermometer",
+      "scope": "part:flue-thermometer",
+      "title": "Flue thermometer",
+      "scene": "living-room",
+      "text": "The one instrument in the house. Too hot, and the wood heats the sky; too cold, and the draught weakens. A flue calculation would say eighty-two per cent here, four points more than the house keeps. It sees neither the outdoor flue, nor the wall, nor the ground. Every published figure above eighty per cent is such a calculation."
+    },
+    {
+      "id": "part-bench-cushion",
+      "scope": "part:bench-cushion",
+      "title": "Cushion",
+      "scene": "living-room",
+      "text": "At thirty-two degrees a cushion has nothing to fear… and nor has your back. But it keeps for itself what the bench would give the room. And a blanket forgotten all winter hides a crack: it comes off now and then. Near the drum, no foam, ever."
+    },
+    {
+      "id": "part-inner-stone-wall",
+      "scope": "part:inner-stone-wall",
+      "title": "The stone wall",
+      "scene": "living-room",
+      "text": "Not everything happens in the bench. Nearly seven tonnes of stone, more than the bench itself, and nobody paid for them for this heater. Over a day this wall moves barely more than a degree, while the air around it changes by nearly seven. A sheet of insulation over it, and it stops playing."
+    },
+    {
+      "id": "part-feed-tube",
+      "scope": "part:feed-tube",
+      "title": "The feed tube",
+      "scene": "fire-core",
+      "text": "The oddity of this machine: an open tube, which does not smoke as long as the draught holds. [[flows:on]] Our breath of air comes in here, with the wood upright, only its foot burning. No door: a rhythm. [[flows:off]] This opening decides the efficiency, and no source gives a figure for it. Wide open, our calculation falls to fifty-two per cent; nine tenths hidden, it climbs to eighty-eight. If the draught fails, it sends smoke and flame back at whoever feeds it: you never take your eyes off it."
+    },
+    {
+      "id": "part-feed-lid",
+      "scope": "part:feed-lid",
+      "title": "The feed lid",
+      "scene": "fire-core",
+      "text": "Not a door: a lid laid on between two fires, so the house does not empty through the flue. And a damper in the flue? There is none here, and here is why. Shut over embers, it sends their monoxide back into the house. Shut ten minutes after the last wood, our scenario passes the one-hour health guideline in thirty-eight minutes. It would win a few points of efficiency: a bad evening costs far more! This lid follows the same rule: never over embers."
+    },
+    {
+      "id": "part-fuel-sticks",
+      "scope": "part:fuel-sticks",
+      "title": "The sticks",
+      "scene": "fire-core",
+      "text": "[[explode:0.5]] The sticks stand upright, only their feet burn, and they slide down by themselves as they go. [[explode:0]] So the waiting wood stays cold, a step from the chamber: that is the whole principle. Natural wood and nothing else: not painted, not treated, no cardboard."
+    },
+    {
+      "id": "part-burn-tunnel",
+      "scope": "part:burn-tunnel",
+      "title": "The burn tunnel",
+      "scene": "fire-core",
+      "text": "[[flows:on]] The image that made this machine famous: the flame lies down, and races sideways. A fire in a hurry, drawn by a chimney at the far end of the path. [[flows:off]] One builder announces a clean burn from five hundred and forty degrees. Our calculation reads a mean of four hundred and sixty-seven, below that range. A thermocouple in the flame would read more."
+    },
+    {
+      "id": "part-ash-bed",
+      "scope": "part:ash-bed",
+      "title": "The ash bed",
+      "scene": "fire-core",
+      "text": "About a hundred grams of ash a day. Beneath it, embers: here comes the most deceptive moment. No more flame, it all looks over… and the monoxide in the flue gas is at its highest: about nine times full fire, as an order of magnitude. As long as the flue stays warm and open, it leaves by the chimney."
+    },
+    {
+      "id": "part-heat-riser",
+      "scope": "part:heat-riser",
+      "title": "The heat riser",
+      "scene": "fire-core",
+      "text": "[[xray:on]] The hottest place in the house! Our breath of air climbs it, and the smoke finishes burning here, on three conditions: heat, air and time. That is what sets this machine apart from a stove on a slow burn. [[xray:off]] Taller or shorter, our calculation mostly moves the heat around: more drum, less bench."
+    },
+    {
+      "id": "part-riser-insulation",
+      "scope": "part:riser-insulation",
+      "title": "Riser insulation",
+      "scene": "fire-core",
+      "text": "Three materials for one job: keeping the fire hot. An insulating brick, a fibre blanket, perlite. Our model tries all three: within a point of efficiency of each other. So the choice comes down to how it holds up, its weight, and health during the build."
+    },
+    {
+      "id": "part-riser-sleeve",
+      "scope": "part:riser-sleeve",
+      "title": "The steel sleeve",
+      "scene": "fire-core",
+      "text": "A plain rolled sheet, holding the insulation. One designer notes that steel corrodes fast above seven hundred and sixty degrees. So it stays on the cold side, at about two hundred. What sees the flame does not rust, and what rusts does not see the flame."
+    },
+    {
+      "id": "part-firebrick-base",
+      "scope": "part:firebrick-base",
+      "title": "The firebrick base",
+      "scene": "fire-core",
+      "text": "[[explode:0.5]] Fireclay, where the fire sits: the least exotic part of the machine. [[explode:0]] About a hundred and fifty kilos of dense brick, to keep the flame hot. A stove mason knows it well. And a cracked core is not filled with shop mastic: it gets rebuilt."
+    },
+    {
+      "id": "part-core-casing",
+      "scope": "part:core-casing",
+      "title": "The earthen casing",
+      "scene": "fire-core",
+      "text": "Earth holds the core, and closes the path of the gases. It dries, the core expands at every fire: a crack is the normal result of a normal build. But here, a crack is a leak, and our model has none. Beautiful, cheap, and with no airtightness certificate: that is the delicate point of earth."
+    },
+    {
+      "id": "part-top-gap",
+      "scope": "part:top-gap",
+      "title": "The gap under the lid",
+      "scene": "fire-core",
+      "text": "[[flows:on]] Our breath of air turns round here. The one peer-reviewed paper says too small a gap threatens everything. Our model, at a centimetre and a half, sees almost nothing change. Who is right? We cannot settle it without reading it in full. [[flows:off]] And that allows nobody to reduce anything."
+    },
+    {
+      "id": "part-downdraft-annulus",
+      "scope": "part:downdraft-annulus",
+      "title": "The fall inside the drum",
+      "scene": "fire-core",
+      "text": "[[flows:on]] The slowest fall in the machine. Our breath of air enters at about four hundred and sixty degrees, and leaves the bottom at about two hundred and fifty. [[flows:off]] It leaves here thirty-eight per cent of what the wood gives. So the drum is no bonus: its share comes out of everything else."
+    },
+    {
+      "id": "part-drum-seal",
+      "scope": "part:drum-seal",
+      "title": "The lid seal",
+      "scene": "fire-core",
+      "text": "A drum’s lid comes off: there is a joint at head height. One machine filmed in its thirteenth winter relies on ash, and smokes a little after refitting. What protects it most is the draught: nearly nine pascals at full fire. A refitted drum restarts with the alarm on, and never at night."
+    },
+    {
+      "id": "part-drum-plinth",
+      "scope": "part:drum-plinth",
+      "title": "The drum’s foot",
+      "scene": "fire-core",
+      "text": "[[explode:0.6]] Where steel meets earth. Let’s part them: the drum leaves alone, and this foot stays below. [[explode:0]] Steel expands at every fire against what hardly moves, and the joint works. There is no perfect answer, only upkeep: going back to it, with fresh earth."
+    },
+    {
+      "id": "part-duct-hot-run",
+      "scope": "part:duct-hot-run",
+      "title": "The hot run",
+      "scene": "bench-section",
+      "text": "[[cutaway:on]] Our breath of air arrives still hot. These first three metres take forty-two per cent of what the whole duct gives up. [[cutaway:off]] And that exchange, nobody has measured. Double it or halve it: the efficiency runs from sixty-nine to eighty-five per cent."
+    },
+    {
+      "id": "part-duct-cold-run",
+      "scope": "part:duct-cold-run",
+      "title": "The cold run",
+      "scene": "bench-section",
+      "text": "The last six metres: our breath of air arrives tired, and it leaves at eighty degrees. Why not take it all? Over eighteen metres it would leave at thirty-four degrees, but the draught would fall by half. Enough duct for the heat, not so much as to smother the draught: that is the whole question of the bench."
+    },
+    {
+      "id": "part-duct-bend",
+      "scope": "part:duct-bend",
+      "title": "The bend",
+      "scene": "bench-section",
+      "text": "[[flows:on]] A straight bench would suit the gases, but a room has walls. Three bends in our drawing, and they cost little draught. Their real price is ash: on the outside of the turn the flow slows, and it settles. [[flows:off]] That is where a brush jams, and a joint works."
+    },
+    {
+      "id": "part-duct-joint",
+      "scope": "part:duct-joint",
+      "title": "The duct joint",
+      "scene": "bench-section",
+      "text": "[[isolate:on]] Look closely at this joint: once covered, nobody ever sees it again. At full fire, a leak draws air in. But if the flow turns back, it lets gas into the earth, then into the room. [[isolate:off]] All its upkeep happens on the day it can still be seen: show it, test it, photograph it."
+    },
+    {
+      "id": "part-cob-casing",
+      "scope": "part:cob-casing",
+      "title": "The cob casing",
+      "scene": "bench-section",
+      "text": "[[cutaway:on]] Slow, on purpose! Zero point six watts per metre per degree, and that slowness is the whole thing. Studies differ by a factor of nearly nine, with no consensus. [[cutaway:off]] The simple sum promised a much later peak. But a fire of two and a half hours is no single pulse, and the gases go on cooling the duct’s side."
+    },
+    {
+      "id": "part-stone-filler",
+      "scope": "part:stone-filler",
+      "title": "The stones",
+      "scene": "bench-section",
+      "text": "Some builders say their bench holds far more stone than earth, and an earth with no fibre. Fibre insulates: it has no business in a heat store. Our model, for its part, counts about one fifth stones. More stones, an earlier peak? We found no measurement."
+    },
+    {
+      "id": "part-earthen-plaster",
+      "scope": "part:earthen-plaster",
+      "title": "The earthen plaster",
+      "scene": "bench-section",
+      "text": "The bench’s skin. About sixty per cent of its heat leaves as radiation, to the body and the walls, without going through the air. It is also a cheap sensor: what changes, shows. A pencil stroke at each end of a crack, a date, and there is the instrument."
+    },
+    {
+      "id": "part-floor-barrier",
+      "scope": "part:floor-barrier",
+      "title": "The floor layer",
+      "scene": "bench-section",
+      "text": "[[explode:0.5]] Count the layers under the seat: the weight of three tonnes passes through them all. [[explode:0]] A French manual warns that foam under a stove can melt, or smoulder. So a slab is also a screen. And what lies beneath is often found only by demolition."
+    },
+    {
+      "id": "part-bench-cleanout",
+      "scope": "part:bench-cleanout",
+      "title": "The bench cleanout",
+      "scene": "bench-section",
+      "text": "A small round door: the sweep’s way into the duct. Its place decides, since a brush does not take a tight bend. Each door is a possible leak, but cheaper than rebuilding a bench. And a hatch you have to look for is a hatch nobody opens."
+    },
+    {
+      "id": "part-chimney-tee",
+      "scope": "part:chimney-tee",
+      "title": "The chimney tee",
+      "scene": "bench-section",
+      "text": "[[flows:on]] Here the path turns upwards. But when everything is cold? At minus five degrees, after days with no fire, the flow stays backwards, even with a fire lit. Our model does not see it turn by itself! [[flows:off]] A little heat at this foot, builders say, and it tips over. About three minutes here: the least sure figure in this lab."
+    },
+    {
+      "id": "part-condensate-drain",
+      "scope": "part:condensate-drain",
+      "title": "The drain",
+      "scene": "bench-section",
+      "text": "A small drain at the low point, for acid water. Over our nine metres nothing condenses; over eighteen, about four hundred grams of water a day. Yet a real machine has its cold moments. And a drain that runs all winter tells of a machine colder than anyone thinks."
+    },
+    {
+      "id": "part-temperature-lance",
+      "scope": "part:temperature-lance",
+      "title": "The probe",
+      "scene": "bench-section",
+      "text": "What this subject lacks most: figures. One builder slid fifteen sensors into a concrete bench, without publishing a full winter. No source gives a whole day logged in a lived-in house. Our probe, for its part, follows the model. So, one piece of advice: measure, write it down, publish!"
+    },
+    {
+      "id": "part-pebble-section",
+      "scope": "part:pebble-section",
+      "title": "The pebble bench",
+      "scene": "bench-section",
+      "text": "The other school. Of the twelve builds in one video, six are in earth, and six in pebbles. No source puts a figure on any of it: our seat at thirty-six degrees is our estimate talking. Its advantage needs no figure: you can open it up and see the duct again, without breaking any earth."
+    }
+  ]
+}

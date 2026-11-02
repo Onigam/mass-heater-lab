@@ -1,0 +1,442 @@
+{
+  "lang": "fr",
+  "voiceLabel": {
+    "fr": "Voix de synthèse",
+    "en": "Synthetic voice"
+  },
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.8,
+    "style": 0.35,
+    "speed": 0.95
+  },
+  "segments": [
+    {
+      "id": "intro",
+      "scope": "intro",
+      "title": "Présentation du labo",
+      "scene": "homestead",
+      "text": "[[home]] Imaginez une nuit de janvier. Dehors, il neige, et le feu est éteint depuis des heures. La pièce a fraîchi… et pourtant, vous posez la main sur un banc de terre, et il est encore tiède. [[frame:house-shell]] Comment un feu du soir peut-il durer ainsi ? Suivons un petit souffle d’air froid. [[scene:fire-core]] Il entre par un tube ouvert, où le bois se tient debout. [[frame:burn-tunnel]] Aspiré de côté, il se jette dans le feu, et la flamme se couche avec lui. [[frame:heat-riser]] Le voici brûlant : il monte dans une cheminée isolée, où la fumée finit de brûler. [[frame:downdraft-annulus]] Puis il retombe le long d’un bidon d’acier, et lui laisse une bonne part de sa chaleur. [[scene:living-room]] Ce bidon chauffe la pièce tout de suite. [[frame:cob-bench]] Mais notre souffle n’a pas fini : il rampe maintenant sous la banquette. [[scene:bench-section]] [[cutaway:on]] Neuf mètres de conduit, près de trois tonnes de terre. Il s’y refroidit, et sa chaleur monte vers l’assise, lentement, même quand la flamme est morte. [[cutaway:off]] [[scene:homestead]] Et le voilà qui s’en va par le toit, avec juste de quoi faire tirer la cheminée. [[frame:chimney-cap]] Voilà toute l’histoire : un souffle, un feu couché, un bidon, un banc… et une main sur la terre tiède. [[home]] Reste la vraie question : deux feux par jour, pour quelle maison ? Car un feu, ici, c’est une séance menée de deux à quatre heures, à nourrir le tube. Pas une brassée et un départ ! Quelques repères : quatre vues, la maison, la pièce, le foyer et le banc. Cliquez sur un objet : sa fiche s’ouvre, et vous pouvez écouter son histoire. [[mode:assembly]] Un guide raconte comment un maçon l’élève, [[mode:install]] un autre ce qui doit être vrai avant le premier feu. [[mode:sim]] La simulation fait défiler la journée, lance douze scénarios, et sa Vue thermique colore la chaleur. [[mode:lessons]] Six leçons, avec des quiz, expliquent la physique. [[mode:plans]] Dix planches réunissent les dessins. [[mode:explore]] Une dernière chose : ce laboratoire est une reconstitution pédagogique, d’une machine générique. Il explique, et il ne donne aucun plan pour construire. [[scene:homestead]] Sauf quand une source est citée, les chiffres viennent de notre simulation : des calculs, pas des mesures. Le panneau Sources dit qui a dit quoi. Quelle part de la chaleur du bois reste dans la maison ? Elle trouve environ soixante-dix-huit pour cent, et nous n’avons trouvé aucun essai indépendant d’une telle machine. Une seule mise en garde : feu et monoxyde de carbone peuvent tuer ; avant tout projet, un détecteur, votre assureur, et la loi. Et aucun modèle, pas même le nôtre, ne peut dire qu’une vraie installation est sûre. [[select:none]] Allez, installez-vous : la banquette est encore tiède !"
+    },
+    {
+      "id": "scene-homestead",
+      "scope": "scene:homestead",
+      "title": "Deux feux par jour : pour quelle maison ?",
+      "scene": "homestead",
+      "text": "[[home]] Une petite maison au bord de la forêt, sous la neige. [[frame:house-shell]] Dedans, un poêle de masse à tube en J, qu’on appelle souvent rocket. Même nom, autre machine : le petit réchaud rocket se garde dehors, et un poêle de masse a une cheminée. [[frame:chimney-cap]] La voici, tout en haut, au-dessus du faîtage. [[frame:woodshed,cordwood-stack]] À côté, le bûcher et toute une saison de bois. [[frame:smoky-neighbour]] Plus loin, le voisin et sa colonne grise. [[home]] On lit partout : quatre-vingts à quatre-vingt-dix pour cent de bois en moins. Cela ne boucle pas avec le poêle seul : l’isolation fait l’essentiel ! Ici, environ douze kilos et demi par jour tiennent vingt degrés. Si la maison perdait près de trois fois plus, il en faudrait trente-six. Le héros de cette histoire ne fume pas : ce sont ses murs."
+    },
+    {
+      "id": "scene-living-room",
+      "scope": "scene:living-room",
+      "title": "Le bidon tout de suite, la banquette ensuite",
+      "scene": "living-room",
+      "text": "[[home]] Entrons : voici la pièce où l’on vit. [[frame:steel-drum]] Le bidon, d’abord, qui rayonne dès que le feu prend. [[frame:cob-bench,bench-backrest]] La banquette longe deux murs, avec son dossier. [[frame:chimney-flue]] Le conduit vertical file vers le toit, [[frame:co-alarm,smoke-alarm]] et les deux détecteurs veillent sur tout le monde. [[frame:inner-stone-wall]] Le mur de pierre, lui, garde sa part. [[home]] [[cutaway:on]] Disons-le simplement. Le bidon donne à peu près deux fois plus de chaleur que la banquette, par grands coups. La banquette donne un peu, jour et nuit : trois à cinq cents watts. Elle ne porte pas la maison à elle seule : elle lisse. [[cutaway:off]] Ainsi, la pièce va de dix-sept à vingt-quatre degrés. Pour voir cette chaleur en couleurs, le bouton Vue thermique est dans la Simulation, sous le curseur de l’heure."
+    },
+    {
+      "id": "scene-fire-core",
+      "scope": "scene:fire-core",
+      "title": "Où ça brûle, et dans quel sens ça va",
+      "scene": "fire-core",
+      "text": "[[home]] Toujours en coupe, et cette fois tout près du feu. [[frame:feed-tube]] Le bois se tient debout dans le tube, [[frame:burn-tunnel]] et la flamme se couche dans le tunnel. [[frame:heat-riser]] La fumée finit de brûler dans la cheminée interne. [[frame:top-gap]] Sous le couvercle, les gaz font demi-tour, [[frame:downdraft-annulus]] puis ils retombent le long du bidon. [[home]] [[flows:on]] Mais qui fait tirer tout cela ? On accuse la cheminée interne. Erreur ! Avec la chute dans le bidon, elle ne pèse qu’un peu plus d’un pascal. Le conduit vertical, lui, près de quinze. [[flows:off]] Qu’il soit froid, et le courant va à l’envers : le feu ne le retourne pas seul. Le scénario Le feu refuse vous le montre."
+    },
+    {
+      "id": "scene-bench-section",
+      "scope": "scene:bench-section",
+      "title": "Où va la chaleur",
+      "scene": "bench-section",
+      "text": "[[home]] Une tranche de banquette, très grossie. [[frame:duct-hot-run,duct-cold-run]] Le début du conduit et sa fin, côte à côte. [[frame:cob-casing,stone-filler]] Tout autour, la terre et ses pierres, [[frame:earthen-plaster]] puis l’enduit, la peau qu’on touche. [[frame:chimney-tee]] Plus loin, le té, où le chemin monte. [[frame:pebble-section]] Et le banc de galets, l’autre école. [[home]] [[cutaway:on]] Ces teintes, c’est une fausse couleur : à soixante degrés, la terre ne rougit pas. Une heure passe ici à chaque seconde, et la journée respire sous vos yeux. La chaleur part du conduit, où la terre monte à soixante-quatre degrés. Elle grimpe, lentement, et continue quand la flamme est morte. L’assise est au plus chaud une à deux heures après la flamme, à trente-deux degrés. [[cutaway:off]] Puis elle rend tout cela, doucement, toute la nuit : voilà la merveille de ce labo."
+    },
+    {
+      "id": "part-house-shell",
+      "scope": "part:house-shell",
+      "title": "La maison isolée",
+      "scene": "homestead",
+      "text": "Le vrai économiseur de bois n’est pas un poêle : ce sont ces murs. Nous les supposons à cent six watts perdus par degré d’écart avec le dehors. Même machine, même bois, à trois cents watts : la pièce reste entre six et quatorze degrés. Et chaque kilowatt gagné ici dure autant que la maison, sans une seule bûche."
+    },
+    {
+      "id": "part-chimney-cap",
+      "scope": "part:chimney-cap",
+      "title": "Chapeau de cheminée",
+      "scene": "homestead",
+      "text": "[[flows:on]] Le bout du voyage. Notre souffle sort ici à environ quatre-vingts degrés à plein feu. Une fumée blanche et courte, par grand froid, c’est souvent de la vapeur. Grise, et qui s’attarde, c’est du combustible qui s’en va. [[flows:off]] Le chapeau garde dehors la pluie et les oiseaux, sans aucun mécanisme."
+    },
+    {
+      "id": "part-sweep-access",
+      "scope": "part:sweep-access",
+      "title": "Accès du ramoneur",
+      "scene": "homestead",
+      "text": "Un conduit sous une banquette, il faut y penser pour le ramoneur. En France, la règle la plus citée demande deux ramonages par an. Et rien ne prouve que ces machines échappent au feu de conduit. Beaucoup de ramoneurs n’en ont jamais vu une : cherchez le vôtre avant d’imaginer la banquette."
+    },
+    {
+      "id": "part-outside-air-inlet",
+      "scope": "part:outside-air-inlet",
+      "title": "Prise d’air extérieure",
+      "scene": "homestead",
+      "text": "[[flows:on]] Le feu respire ! Environ quarante-six mètres cubes d’air par heure à plein feu : cet air doit bien venir de quelque part. [[flows:off]] Sans cette prise, le feu tire sur le reste de la maison. Sa panne la plus courante : quelqu’un qui sentait un courant d’air, et qui l’a fermée."
+    },
+    {
+      "id": "part-woodshed",
+      "scope": "part:woodshed",
+      "title": "Bûcher",
+      "scene": "homestead",
+      "text": "Un toit pour la pluie, des côtés ouverts pour le vent, et un an ou plus. L’eau du bois se paie en chaleur : à trente pour cent d’humidité, un kilo rend un cinquième de moins qu’à quinze. Et le bois de cette année se range à côté de celui de l’an dernier, jamais devant."
+    },
+    {
+      "id": "part-cordwood-stack",
+      "scope": "part:cordwood-stack",
+      "title": "Pile de bois fendu",
+      "scene": "homestead",
+      "text": "Toute une saison, à l’échelle : près de deux tonnes de bois, à côté du panier d’une seule journée. Elle baisse à mesure que les feux passent. C’est l’argument le plus honnête de ce labo : elle ne dépend d’aucun rendement annoncé. Ce qu’on a brûlé, ça se pèse !"
+    },
+    {
+      "id": "part-moisture-meter",
+      "scope": "part:moisture-meter",
+      "title": "Humidimètre",
+      "scene": "homestead",
+      "text": "Deux pointes, un chiffre, quelques euros : le premier geste de la journée. À trente pour cent d’humidité, le même bois coûte trois degrés à la pièce, et le monoxyde fait plus que tripler. L’œil n’y voit rien. On le plante sur une face fraîchement fendue : le dehors sèche bien avant le cœur."
+    },
+    {
+      "id": "part-kindling-block",
+      "scope": "part:kindling-block",
+      "title": "Billot à petit bois",
+      "scene": "homestead",
+      "text": "Une bûche ordinaire n’entre pas ici : il lui faut moins de huit centimètres de côté, dit un manuel français. Il faut donc une hachette, un billot à bonne hauteur, et une habitude. Personne ne chiffre ce temps de travail. Et le bois du jour se fend avant la nuit, pas à la lampe."
+    },
+    {
+      "id": "part-ash-bucket",
+      "scope": "part:ash-bucket",
+      "title": "Seau à cendres",
+      "scene": "homestead",
+      "text": "Un seau de métal, un couvercle, et il attend dehors. Une constructrice a pesé : vingt-six kilos de bois, deux cents grammes de cendre. Si peu ! Mais la cendre couvre des braises qui restent chaudes longtemps, et bien des feux de garage partent ainsi. Personne ne sait dire quand elle est vraiment éteinte, et nous non plus."
+    },
+    {
+      "id": "part-coppice-lot",
+      "scope": "part:coppice-lot",
+      "title": "Taillis",
+      "scene": "homestead",
+      "text": "Combien de forêt pour une maison ? Aucune source ne donne le rendement de ce taillis : pas d’hectares ici. Face à un vieux poêle qui rend trente-cinq pour cent, cette machine économise cinquante-cinq pour cent du bois. Face à un bon poêle à soixante-douze, sept seulement. Isolez en plus une maison qui perdait trois fois plus : quatre-vingt-cinq."
+    },
+    {
+      "id": "part-smoky-neighbour",
+      "scope": "part:smoky-neighbour",
+      "title": "Cheminée du voisin",
+      "scene": "homestead",
+      "text": "Le voisin n’a pas de mauvais bois : il a un poêle au ralenti, qui garde sa chaleur en coupant l’air. Un poêle de masse qu’on fait couver, en laboratoire : trois fois et demie plus de monoxyde. Pour diviser son bois par dix, c’est ce poêle-là qu’il faudrait remplacer. Ne le jugeons pas : il est réglé pour durer toute la nuit."
+    },
+    {
+      "id": "part-steel-drum",
+      "scope": "part:steel-drum",
+      "title": "Le bidon de deux cents litres",
+      "scene": "living-room",
+      "text": "[[xray:on]] Un bidon du commerce, renversé sur le feu. Notre souffle y descend, et cède sa chaleur à une paroi d’à peine plus d’un millimètre. [[xray:off]] Elle ne garde presque rien : ce qu’elle reçoit, elle le rend, et une pièce froide se réchauffe à l’instant. Environ vingt-deux kilowattheures par jour. Son couvercle monte à cent quatre-vingts degrés, et touché, il brûle. Un bidon récupéré, avec ses restes et sa peinture, est un danger à lui seul."
+    },
+    {
+      "id": "part-cob-bench",
+      "scope": "part:cob-bench",
+      "title": "La banquette",
+      "scene": "living-room",
+      "text": "Près de trois tonnes de terre et de pierres, autour de neuf mètres de conduit. [[cutaway:on]] La chaleur la traverse lentement, et l’assise va de vingt-cinq à trente-deux degrés. [[cutaway:off]] Sept heures après le feu du soir, elle est encore à près de vingt-huit, quand la pièce est tombée à dix-huit et demi. Une couverture sur le banc, un livre, et janvier peut bien attendre dehors ! Sur cette fiche, le bouton Vue thermique vous montre la chaleur arriver."
+    },
+    {
+      "id": "part-bench-backrest",
+      "scope": "part:bench-backrest",
+      "title": "Le dossier",
+      "scene": "living-room",
+      "text": "Un dos chaud : voilà tout son métier. Le dossier n’a pas de conduit, et il chauffe par ce qu’il touche. C’est du confort, et ce n’est pas rien, pour une machine dont on vit à côté. Derrière lui, le banc perd près d’un kilowattheure par jour à travers le mur."
+    },
+    {
+      "id": "part-manifold",
+      "scope": "part:manifold",
+      "title": "Le collecteur",
+      "scene": "living-room",
+      "text": "[[flows:on]] Au pied du bidon, notre souffle tourne d’un quart de tour, à environ deux cent cinquante degrés à plein feu. Le virage le ralentit, et la cendre volante tombe là. Un simple coude se boucherait, et se nettoierait mal. [[flows:off]] Cette boîte, on l’aspire à froid, à chaque ramonage."
+    },
+    {
+      "id": "part-manifold-cleanout",
+      "scope": "part:manifold-cleanout",
+      "title": "Trappe du collecteur",
+      "scene": "living-room",
+      "text": "Une porte ronde et étanche, pour retirer la cendre volante, et seulement à froid. À plein feu, une fuite ici vole du tirage. Mais si le courant se retourne, la même fuite laisse sortir des gaz dans la pièce. Sa panne la plus bête : une porte mal refermée. D’où sa place, bien en vue."
+    },
+    {
+      "id": "part-chimney-flue",
+      "scope": "part:chimney-flue",
+      "title": "Le conduit vertical",
+      "scene": "living-room",
+      "text": "Le vrai moteur de la machine, tant qu’il reste chaud : d’où son isolant. Plus haut, est-ce mieux ? À huit mètres, il tire de l’air inutile, et le rendement tombe à soixante-dix pour cent. Plus bas, à deux mètres soixante-dix, il monte à quatre-vingt-sept… mais la marge fond. Une belle efficacité peut cacher un poêle plus fragile."
+    },
+    {
+      "id": "part-chimney-cleanout",
+      "scope": "part:chimney-cleanout",
+      "title": "Trappe de pied",
+      "scene": "living-room",
+      "text": "Sous le té, un petit capuchon fermé. Tout ce qui tombe s’arrête ici : suie, cendre, condensats. Ouvert en plein feu, il offrirait un raccourci à l’air de la pièce, et le tirage s’effondrerait. Un dépôt noir et collant dit un conduit trop froid."
+    },
+    {
+      "id": "part-ceiling-crossing",
+      "scope": "part:ceiling-crossing",
+      "title": "Traversée de plafond",
+      "scene": "living-room",
+      "text": "L’endroit où une maison prend feu. Le risque, ce ne sont pas les fumées de tous les jours : c’est le feu de conduit. La distance de sécurité se lit sur la notice du conduit, et elle ne se réduit pas. Une fois le plafond fermé, une petite trappe de visite vaut la peine."
+    },
+    {
+      "id": "part-hearth-slab",
+      "scope": "part:hearth-slab",
+      "title": "La dalle",
+      "scene": "living-room",
+      "text": "[[explode:0.5]] Écartons tout : ce qui se soulève repose sur cette seule pièce. [[explode:0]] Ce poêle n’est pas un objet posé, c’est une maçonnerie, près de trois tonnes et demie. Sous le banc, environ six cent cinquante kilos par mètre carré : trois fois ce qu’on compte pour un plancher léger !"
+    },
+    {
+      "id": "part-heat-shield",
+      "scope": "part:heat-shield",
+      "title": "Écran thermique",
+      "scene": "living-room",
+      "text": "Une simple tôle, et derrière elle, de l’air. Le bidon chauffe le mur d’à côté par rayonnement : la tôle le reçoit, et l’air qui passe emporte le reste. Une épaisse plaque de brique collée au mur finit chaude, et transmet. Et une belle tôle fixée à même le mur ne protège presque plus."
+    },
+    {
+      "id": "part-co-alarm",
+      "scope": "part:co-alarm",
+      "title": "Détecteur de monoxyde",
+      "scene": "living-room",
+      "text": "Un gaz qu’on ne voit pas, qu’on ne sent pas, dans une maison où l’on dort : voilà pourquoi cette petite boîte est là. Il naît d’un feu qui manque d’air, et surtout des braises, après la flamme. Ce détecteur est indispensable, et il ne suffit pas ! Selon les manuels, il peut se taire deux heures à trente parties par million. Les repères sanitaires refusent déjà ce niveau. S’il sonne : on sort, on aère, on appelle les secours. Et on ne le fait jamais taire pour finir la soirée."
+    },
+    {
+      "id": "part-smoke-alarm",
+      "scope": "part:smoke-alarm",
+      "title": "Détecteur de fumée",
+      "scene": "living-room",
+      "text": "Un autre danger, un autre travail. Celui-ci repère les particules d’un début d’incendie, et il ne dit rien du monoxyde, qui ne fume pas. En France, il est obligatoire dans les logements. S’il sonne au premier feu de la saison, quand la peinture du bidon brûle, on aère, et on garde la pile."
+    },
+    {
+      "id": "part-ventilation-grille",
+      "scope": "part:ventilation-grille",
+      "title": "Grille d’aération",
+      "scene": "living-room",
+      "text": "Elle laisse passer le froid, alors on a envie de la boucher. Surtout pas ! Après le feu, le tirage retombe, et les braises continuent. Une hotte met la maison en dépression, et l’air cherche un chemin : le conduit. Dans notre scénario, le monoxyde monte à soixante-trois parties par million, et le détecteur peut rester muet."
+    },
+    {
+      "id": "part-wood-basket",
+      "scope": "part:wood-basket",
+      "title": "Le panier du jour",
+      "scene": "living-room",
+      "text": "Une journée d’hiver : environ douze kilos et demi de bois fendu, cinquante-deux kilowattheures. Nous comptons deux séances de deux heures et demie, le matin et le soir. C’est peu, et cela vaut pour cette maison-là. Par moins dix degrés, il en faudrait près de vingt-quatre kilos."
+    },
+    {
+      "id": "part-kettle",
+      "scope": "part:kettle",
+      "title": "La bouilloire",
+      "scene": "living-room",
+      "text": "Le couvercle du bidon sert aussi de plaque. Assez pour faire bouillir de l’eau, mais seulement pendant les feux : au réveil, pas de thé ! Une habitude chaleureuse, qui apprend à la main que cet endroit brûle. Une manique sur un crochet, et rien d’inflammable sur le dessus."
+    },
+    {
+      "id": "part-flue-thermometer",
+      "scope": "part:flue-thermometer",
+      "title": "Thermomètre de fumée",
+      "scene": "living-room",
+      "text": "Le seul instrument de la maison. Trop chaud, le bois chauffe le ciel ; trop froid, le tirage faiblit. Un calcul de fumées dirait ici quatre-vingt-deux pour cent, quatre points de plus que la maison n’en garde. Il ne voit ni le conduit dehors, ni le mur, ni le sol. Tous les chiffres publiés au-dessus de quatre-vingts pour cent sont de tels calculs."
+    },
+    {
+      "id": "part-bench-cushion",
+      "scope": "part:bench-cushion",
+      "title": "Coussin",
+      "scene": "living-room",
+      "text": "À trente-deux degrés, un coussin n’a rien à craindre… et votre dos non plus. Mais il garde pour lui ce que le banc rendrait à la pièce. Et une couverture oubliée tout l’hiver cache une fissure : on la retire de temps en temps. Près du bidon, jamais de mousse."
+    },
+    {
+      "id": "part-inner-stone-wall",
+      "scope": "part:inner-stone-wall",
+      "title": "Le mur de refend",
+      "scene": "living-room",
+      "text": "Tout ne se joue pas dans le banc. Près de sept tonnes de pierre, plus que le banc lui-même, et personne ne les a payées pour ce poêle. Sur une journée, ce mur bouge à peine plus d’un degré, quand l’air autour en change de près de sept. Une plaque isolante dessus, et il ne joue plus."
+    },
+    {
+      "id": "part-feed-tube",
+      "scope": "part:feed-tube",
+      "title": "Le tube d’alimentation",
+      "scene": "fire-core",
+      "text": "La curiosité de cette machine : un tube ouvert, qui ne fume pas tant que le tirage tient. [[flows:on]] Notre souffle entre ici, avec le bois debout, dont seul le pied brûle. Pas de porte : un rythme. [[flows:off]] Ce passage décide du rendement, et aucune source ne le chiffre. Grand ouvert, notre calcul tombe à cinquante-deux pour cent ; caché aux neuf dixièmes, il monte à quatre-vingt-huit. Si le tirage manque, il renvoie fumée et flammes vers qui le nourrit : on ne le quitte pas des yeux."
+    },
+    {
+      "id": "part-feed-lid",
+      "scope": "part:feed-lid",
+      "title": "Le couvercle",
+      "scene": "fire-core",
+      "text": "Pas une porte : un couvercle posé entre deux feux, pour que la maison ne se vide pas par le conduit. Et un clapet dans le conduit ? Il n’y en a aucun ici, et voici pourquoi. Fermé sur des braises, il renvoie leur monoxyde dans la maison. Fermé dix minutes après le dernier bois, notre scénario passe le repère sanitaire d’une heure en trente-huit minutes. Il gagnerait quelques points de rendement : un mauvais soir se paie autrement ! Ce couvercle suit la même règle : jamais sur des braises."
+    },
+    {
+      "id": "part-fuel-sticks",
+      "scope": "part:fuel-sticks",
+      "title": "Les bûchettes",
+      "scene": "fire-core",
+      "text": "[[explode:0.5]] Les bûchettes tiennent debout, seul leur pied brûle, et elles glissent d’elles-mêmes à mesure. [[explode:0]] Le bois en attente reste donc froid, à deux pas de la chambre : tout le principe est là. Du bois naturel, et rien d’autre : ni peint, ni traité, ni carton."
+    },
+    {
+      "id": "part-burn-tunnel",
+      "scope": "part:burn-tunnel",
+      "title": "Le tunnel de feu",
+      "scene": "fire-core",
+      "text": "[[flows:on]] L’image qui a rendu cette machine célèbre : la flamme se couche, et file à l’horizontale. Un feu pressé, tiré par une cheminée à l’autre bout du chemin. [[flows:off]] Une constructrice annonce une combustion propre à partir de cinq cent quarante degrés. Notre calcul lit une moyenne de quatre cent soixante-sept, sous cette plage. Un thermocouple dans la flamme lirait plus."
+    },
+    {
+      "id": "part-ash-bed",
+      "scope": "part:ash-bed",
+      "title": "Le lit de cendres",
+      "scene": "fire-core",
+      "text": "Environ cent grammes de cendre par jour. Dessous, des braises : voici le moment le plus trompeur. Plus de flamme, tout a l’air fini… et le monoxyde des fumées est au plus haut : environ neuf fois plus qu’à plein feu, en ordre de grandeur. Tant que le conduit reste chaud et ouvert, il s’en va par la cheminée."
+    },
+    {
+      "id": "part-heat-riser",
+      "scope": "part:heat-riser",
+      "title": "La cheminée interne",
+      "scene": "fire-core",
+      "text": "[[xray:on]] L’endroit le plus chaud de la maison ! Notre souffle y monte, et la fumée y finit de brûler, à trois conditions : de la chaleur, de l’air, du temps. C’est ce qui sépare cette machine d’un poêle au ralenti. [[xray:off]] Plus haute ou plus basse, notre calcul déplace surtout la chaleur : plus de bidon, moins de banc."
+    },
+    {
+      "id": "part-riser-insulation",
+      "scope": "part:riser-insulation",
+      "title": "L’isolant de la cheminée",
+      "scene": "fire-core",
+      "text": "Trois matières pour un seul travail : garder le feu chaud. Une brique isolante, une couverture de fibre, de la perlite. Notre modèle les essaie toutes les trois : à un point de rendement l’une de l’autre. Le choix se fait donc sur la tenue, le poids, et la santé à la pose."
+    },
+    {
+      "id": "part-riser-sleeve",
+      "scope": "part:riser-sleeve",
+      "title": "La chemise d’acier",
+      "scene": "fire-core",
+      "text": "Une simple tôle roulée, qui tient l’isolant. Un concepteur note que l’acier se corrode vite au-delà de sept cent soixante degrés. Elle reste donc du côté froid, vers deux cents. Ce qui voit la flamme ne rouille pas, et ce qui rouille ne voit pas la flamme."
+    },
+    {
+      "id": "part-firebrick-base",
+      "scope": "part:firebrick-base",
+      "title": "Le socle en briques",
+      "scene": "fire-core",
+      "text": "[[explode:0.5]] L’argile réfractaire, là où se tient le feu : la partie la moins exotique de la machine. [[explode:0]] Environ cent cinquante kilos de brique dense, pour garder la flamme chaude. Un maçon de poêles la connaît bien. Et un foyer fissuré ne se rebouche pas au mastic : il se reprend."
+    },
+    {
+      "id": "part-core-casing",
+      "scope": "part:core-casing",
+      "title": "L’enveloppe de terre",
+      "scene": "fire-core",
+      "text": "La terre tient le foyer, et ferme le chemin des gaz. Elle sèche, le foyer se dilate à chaque feu : une fissure est le résultat normal d’un chantier normal. Mais ici, une fissure est une fuite, et notre modèle n’en a aucune. Belle, bon marché, et sans certificat d’étanchéité : voilà le point délicat de la terre."
+    },
+    {
+      "id": "part-top-gap",
+      "scope": "part:top-gap",
+      "title": "L’espace sous le couvercle",
+      "scene": "fire-core",
+      "text": "[[flows:on]] Notre souffle fait ici demi-tour. Le seul article revu par des pairs dit qu’un jeu trop faible menace tout. Notre modèle, à un centimètre et demi, ne voit presque rien changer. Qui a raison ? Nous ne pouvons pas trancher sans le lire en entier. [[flows:off]] Et cela n’autorise personne à réduire quoi que ce soit."
+    },
+    {
+      "id": "part-downdraft-annulus",
+      "scope": "part:downdraft-annulus",
+      "title": "La chute dans le bidon",
+      "scene": "fire-core",
+      "text": "[[flows:on]] La chute la plus lente de la machine. Notre souffle arrive en haut vers quatre cent soixante degrés, et sort en bas vers deux cent cinquante. [[flows:off]] Il laisse ici trente-huit pour cent de ce que donne le bois. Le bidon n’est donc pas un bonus : sa part se prend sur le reste."
+    },
+    {
+      "id": "part-drum-seal",
+      "scope": "part:drum-seal",
+      "title": "Le joint du couvercle",
+      "scene": "fire-core",
+      "text": "Le couvercle d’un bidon s’enlève : voilà un joint à hauteur de tête. Une machine filmée à son treizième hiver s’en remet à la cendre, et elle fume un peu après remontage. Ce qui le protège surtout, c’est le tirage : près de neuf pascals à plein feu. Un bidon remonté repart avec le détecteur en marche, et jamais la nuit."
+    },
+    {
+      "id": "part-drum-plinth",
+      "scope": "part:drum-plinth",
+      "title": "Le pied du bidon",
+      "scene": "fire-core",
+      "text": "[[explode:0.6]] Là où l’acier rencontre la terre. Écartons : le bidon s’en va seul, et ce pied reste en bas. [[explode:0]] L’acier se dilate à chaque feu contre ce qui bouge peu, et le joint travaille. Il n’a pas de solution parfaite, mais une d’entretien : y revenir, à la terre fraîche."
+    },
+    {
+      "id": "part-duct-hot-run",
+      "scope": "part:duct-hot-run",
+      "title": "Le début du conduit",
+      "scene": "bench-section",
+      "text": "[[cutaway:on]] Notre souffle arrive encore chaud. Ces trois premiers mètres prennent quarante-deux pour cent de ce que cède tout le conduit. [[cutaway:off]] Et cet échange, personne ne l’a mesuré. Doublez-le ou divisez-le par deux : le rendement va de soixante-neuf à quatre-vingt-cinq pour cent."
+    },
+    {
+      "id": "part-duct-cold-run",
+      "scope": "part:duct-cold-run",
+      "title": "La fin du conduit",
+      "scene": "bench-section",
+      "text": "Les six derniers mètres : notre souffle arrive fatigué, et il sort à quatre-vingts degrés. Pourquoi ne pas tout lui prendre ? Sur dix-huit mètres, il sortirait à trente-quatre degrés, mais le tirage tomberait de moitié. Assez de conduit pour la chaleur, pas assez pour étouffer le tirage : toute la question du banc est là."
+    },
+    {
+      "id": "part-duct-bend",
+      "scope": "part:duct-bend",
+      "title": "Le coude",
+      "scene": "bench-section",
+      "text": "[[flows:on]] Un banc en ligne droite plairait aux gaz, mais une pièce a des murs. Trois coudes dans notre dessin, et ils coûtent peu de tirage. Leur vrai prix, c’est la cendre : à l’extérieur du virage, le flux ralentit, et elle se pose. [[flows:off]] C’est là qu’une brosse se bloque, et qu’un joint travaille."
+    },
+    {
+      "id": "part-duct-joint",
+      "scope": "part:duct-joint",
+      "title": "Le raccord",
+      "scene": "bench-section",
+      "text": "[[isolate:on]] Regardez bien ce raccord : une fois recouvert, on ne le reverra jamais. À plein feu, une fuite aspire de l’air. Mais que le courant s’inverse, et elle laisse entrer les gaz dans la terre, puis dans la pièce. [[isolate:off]] Tout son entretien a lieu le jour où on le voit encore : le montrer, le tester, le photographier."
+    },
+    {
+      "id": "part-cob-casing",
+      "scope": "part:cob-casing",
+      "title": "La terre qui garde",
+      "scene": "bench-section",
+      "text": "[[cutaway:on]] Lente, exprès ! Zéro virgule six watt par mètre et par degré, et cette lenteur est toute l’affaire. Les études vont du simple à presque neuf fois plus, sans consensus. [[cutaway:off]] Le calcul simple annonçait un pic bien plus tardif. Mais un feu de deux heures et demie n’est pas un coup de chaleur, et les gaz refroidissent encore le côté du conduit."
+    },
+    {
+      "id": "part-stone-filler",
+      "scope": "part:stone-filler",
+      "title": "Les pierres",
+      "scene": "bench-section",
+      "text": "Des constructeurs disent que leur banc contient bien plus de pierre que de terre, et une terre sans fibre. La fibre isole : elle n’a rien à faire dans une réserve de chaleur. Notre modèle, lui, compte environ un cinquième de pierres. Plus de pierres, un pic plus tôt ? Nous n’avons trouvé aucune mesure."
+    },
+    {
+      "id": "part-earthen-plaster",
+      "scope": "part:earthen-plaster",
+      "title": "L’enduit de terre",
+      "scene": "bench-section",
+      "text": "La peau de la banquette. Environ soixante pour cent de sa chaleur part en rayonnement, vers le corps et vers les murs, sans passer par l’air. C’est aussi un capteur à bas prix : ce qui change se voit. Un trait de crayon à chaque bout d’une fissure, une date, et voilà l’instrument."
+    },
+    {
+      "id": "part-floor-barrier",
+      "scope": "part:floor-barrier",
+      "title": "La couche sur la dalle",
+      "scene": "bench-section",
+      "text": "[[explode:0.5]] Comptez les couches sous l’assise : le poids des trois tonnes passe à travers toutes. [[explode:0]] Un manuel français prévient qu’une mousse sous un poêle peut fondre, ou couver. Une dalle est donc aussi un écran. Et ce qu’il y a dessous, on ne le découvre souvent qu’en démolissant."
+    },
+    {
+      "id": "part-bench-cleanout",
+      "scope": "part:bench-cleanout",
+      "title": "Trappe du banc",
+      "scene": "bench-section",
+      "text": "Une petite porte ronde : le chemin du ramoneur dans le conduit. Son emplacement décide, car une brosse ne prend pas un virage serré. Chaque porte est une fuite possible, mais moins chère qu’une banquette à refaire. Et une trappe qu’il faut chercher est une trappe qu’on n’ouvre pas."
+    },
+    {
+      "id": "part-chimney-tee",
+      "scope": "part:chimney-tee",
+      "title": "Le té de pied",
+      "scene": "bench-section",
+      "text": "[[flows:on]] Ici, le chemin tourne vers le haut. Mais quand tout est froid ? Par moins cinq degrés, après des jours sans feu, le courant reste à l’envers, même feu allumé. Notre modèle ne le voit pas se retourner seul ! [[flows:off]] Un peu de chaleur à ce pied, racontent les constructeurs, et il bascule. Environ trois minutes chez nous : le chiffre le moins sûr de ce labo."
+    },
+    {
+      "id": "part-condensate-drain",
+      "scope": "part:condensate-drain",
+      "title": "La purge",
+      "scene": "bench-section",
+      "text": "Une petite purge au point bas, pour une eau acide. Sur nos neuf mètres, rien ne condense ; sur dix-huit, environ quatre cents grammes d’eau par jour. Une vraie machine a pourtant ses moments froids. Et une purge qui coule tout l’hiver dit une machine plus froide qu’on ne le croit."
+    },
+    {
+      "id": "part-temperature-lance",
+      "scope": "part:temperature-lance",
+      "title": "La sonde",
+      "scene": "bench-section",
+      "text": "Ce qui manque le plus à ce sujet : des chiffres. Un constructeur a glissé quinze capteurs dans un banc de béton, sans publier d’hiver complet. Aucune source ne donne une journée entière relevée dans une maison habitée. Notre sonde, elle, suit le modèle. Alors, un conseil : mesurez, écrivez, publiez !"
+    },
+    {
+      "id": "part-pebble-section",
+      "scope": "part:pebble-section",
+      "title": "Le banc de galets",
+      "scene": "bench-section",
+      "text": "L’autre école. Sur les douze réalisations d’une vidéo, six sont en terre, et six en galets. Aucune source n’en chiffre rien : notre assise à trente-six degrés, c’est notre estimation qui parle. Son avantage se comprend sans chiffre : on peut le rouvrir et revoir le conduit, sans casser de terre."
+    }
+  ]
+}
