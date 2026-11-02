@@ -20,7 +20,7 @@ The ceiling is 30,000 per language; the brief asked for about 20,000 to 22,000 (
 
 ## Register
 
-Pelton Lab's tone (`lab-kit/docs/narration-style.md`). The thread is **one breath of cold air**, « un souffle d’air froid »: it enters at the feed, is pulled sideways into the fire, climbs, falls down the drum, crawls under the bench, and leaves with just enough to make the chimney draw. It is in the intro and in nine parts. It does not leave « almost cool » as the research imagined: the model has it at about 80 °C at full fire. Warmth is the feeling: the hand on the bench in January (intro), the blanket and the book (`cob-bench`), the blanket that hides a crack (`bench-cushion`), the wood split before dark (`kindling-block`). The intro closes on « installez-vous : la banquette est encore tiède », not on « à vous de jouer », which sounded wrong just after a warning.
+Pelton Lab's tone (`lab-kit/docs/narration-style.md`). The thread is **one breath of cold air**, « un souffle d’air froid »: it enters at the feed, is pulled sideways into the fire, climbs, falls down the drum, crawls under the bench, and leaves with just enough to make the chimney draw. It is in the intro and in nine parts. It does not leave « almost cool » as the research imagined: the model has it at about 90 °C at full fire, 80 °C as the mean of a fire. Warmth is the feeling: the hand on the bench in January (intro), the blanket and the book (`cob-bench`), the blanket that hides a crack (`bench-cushion`), the wood split before dark (`kindling-block`). The intro closes on « installez-vous : la banquette est encore tiède », not on « à vous de jouer », which sounded wrong just after a warning.
 
 ## The truths, each said once (`src/narration.test.ts` counts them)
 
@@ -55,14 +55,13 @@ Pelton Lab's tone (`lab-kit/docs/narration-style.md`). The thread is **one breat
 
 ## What the sheets say and the voice does not
 
-- **« Feu propre »** (`heat-riser` short, `riser-insulation` short: « ce qui rend le feu propre »). `docs/physics.md` §1.4 gives 1,470 mg/MJ over a day, six times the only measured masonry heater, and its chamber at 467 °C is under the 540 to 815 °C a builder calls clean. The voice says the smoke finishes burning here « on three conditions », and « combustion propre » only as that builder's words.
+The corrections of 2/11/2026 brought the sheets into line with what this section used to list as their faults: a fire called clean, words that promise, a clear cap read as a good fire, a pressure with no sign, a peak read as a crossing time, tips naming a tool their world does not have. `src/data/data.test.ts` now holds them, so the list below is only what differs by choice.
+
+- **« Combustion propre »** is a builder's word for a range, on the sheets and in the voice (`burn-tunnel`). `docs/physics.md` §1.4 gives 1,470 mg/MJ over a day, six times the only measured masonry heater, and its chamber at 467 °C is under the 540 to 815 °C that builder calls clean. The voice says the smoke finishes burning here « on three conditions » (`heat-riser`).
 - **« L’OMS »** (`co-alarm`, `feed-lid`, `ventilation-grille`): an institution. Said « les repères sanitaires ».
-- **`cob-casing` short: « elle fait passer la chaleur en une à deux heures après la flamme »**, which reads as a crossing time. The peak is 1.2 to 1.7 h after the wood stops and 4.3 h after the fire began. The voice says only when the seat is warmest.
-- **« un conseil que ce labo peut donner sans risque » (`temperature-lance`), « La vraie sûreté n’est pas dans la tresse » (`drum-seal`)**: words that promise. Left out, and a test refuses « sans risque ».
-- **`chimney-cap` short: « ce qui en sort dit comment brûle le feu ; presque rien quand tout va bien »**, against `feed-tube` (« l’œil ne juge jamais le monoxyde ») and the tip of `moisture-meter`. The voice says what white and grey smoke are, not that a clear cap means a good fire.
-- **« Le premier geste de sécurité »** (`moisture-meter`): said « le premier geste de la journée ».
-- **`manifold`: « une quinzaine de pascals »**, and `manifold-cleanout`'s spec « vers 8,9 Pa sous le couvercle ». At 09:00 the model reads −13.5 Pa at the drum's foot, −13.9 Pa at the duct's mouth, −8.9 Pa under the lid. No figure is spoken on these two parts.
-- **Tips of `fire-core` that name a tool it does not have**: `burn-tunnel`, `riser-sleeve`, `core-casing`, `downdraft-annulus` say « Coupe », and that world is always cut, with no tool (`WORLD['fire-core'].cutaway` false). **`burn-tunnel`'s tip says the flame goes « de droite à gauche »**, `docs/3d.md` says it reads from left to right. The voice says « à l’horizontale ».
+- **`cob-casing`**: the sheet gives the seat's peak, 1.2 to 1.7 h after the wood stops and 4.3 h after the fire began, and says it is no crossing time. The voice says only that the simple sum announced a much later peak, and why.
+- **`manifold`, `manifold-cleanout`**: the sheets print −13.5 and −13.9 Pa at 09:00, with their sign, and `drum-seal` −8.9 Pa under the lid. No figure of pressure is spoken on the first two.
+- **`burn-tunnel`**: the tip says the flame runs from left to right, as the 3D draws it. The voice says « à l’horizontale », which holds from any side.
 - Read only in summary, said anyway, as the sheets do, and the lead may want them re-read: the two sweeps a year (`sweep-access`), the smoke alarm's obligation (`smoke-alarm`).
 - Formulas, W/m²·K, kN/m², ppm by value on `drum-seal`, the clearances in inches: they stay on the sheets. The clearances were never to be spoken (research §7.4).
 
