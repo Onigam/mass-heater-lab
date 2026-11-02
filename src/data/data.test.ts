@@ -502,6 +502,18 @@ describe('what a text claims', () => {
     expect(en('manifold-cleanout')).toMatch(/about −13\.5 Pa/);
   });
 
+  it('a short that prints the exit says it is a mean of a fire, not the state at full fire', () => {
+    for (const id of ['flue-thermometer', 'duct-cold-run']) {
+      expect(part(id).short.fr, id).toMatch(/\d+ °C (en sortie )?en moyenne d’un feu/);
+      expect(part(id).short.en, id).toMatch(/\d+ °C (at the exit )?as the mean of a fire/);
+    }
+  });
+
+  it('the ash bucket tells no fire that no source tells', () => {
+    expect(part('ash-bucket').maintenance!.fr).not.toMatch(/mettre le feu/);
+    expect(part('ash-bucket').maintenance!.en).not.toMatch(/alight/);
+  });
+
   it('the peak is not a crossing time', () => {
     expect(part('cob-casing').short.en).not.toMatch(/brings the heat through/);
     expect(part('cob-casing').short.en).toMatch(/1\.2 to 1\.7 h after the wood stops/);

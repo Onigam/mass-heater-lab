@@ -67,8 +67,8 @@ export const BENCH_SECTION_PARTS: PartInfo[] = [
     category: 'mechanical',
     name: l('La fin du conduit', 'The cold run'),
     short: lf(
-      'Là où les gaz approchent de leur point de rosée : pas ici à {exhaust} °C, mais sur un conduit de 18 m, à {longExhaust} °C (résultat du modèle).',
-      'Where the gases near their dew point: not here at {exhaust} °C, but on an 18 m duct, at {longExhaust} °C (model result).',
+      'Là où les gaz approchent de leur point de rosée : pas ici, avec {exhaust} °C en sortie en moyenne d’un feu, mais sur un conduit de 18 m, avec {longExhaust} °C (résultat du modèle).',
+      'Where the gases near their dew point: not here, with {exhaust} °C at the exit as the mean of a fire, but on an 18 m duct, with {longExhaust} °C (model result).',
     ),
     description: lf(
       'Les six derniers mètres du conduit, sous environ {coverColdCm} cm de terre (un projet de texte, dérivé) : les gaz y arrivent assez froids pour en donner moins. À la fin du banc, à plein feu, ils en sortent vers {ductOutT} °C, et {exhaustAt9} °C au chapeau ; sur tout un feu, la sortie fait {exhaust} °C en moyenne (résultat du modèle). Le point de rosée dépend de l’excès d’air : environ 44 °C à deux fois l’air, 37 °C à trois fois, à 15 % d’humidité (dérivé) ; à notre {lambda} fois l’air, environ {dewDefault} °C (résultat du modèle). La condensation n’a donc pas lieu ici. Sur 18 m, c’est autre chose : moins d’air, un point de rosée vers {longDew} °C, et la sortie tombe à {longExhaust} °C, sous ce point pendant environ {longHours} h par jour, avec à peu près {longWater} kg d’eau ; le tirage tombe à {longDraft} Pa, et le rendement monte à {longEta} % (résultat du modèle). Une sortie « près de la température ambiante » se paie donc de cette eau-là. Un manuel français met d’ailleurs en garde contre ce risque dans un conduit de plus de 6 m sur son poêle.',

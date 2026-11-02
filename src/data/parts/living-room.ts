@@ -800,8 +800,8 @@ export const LIVING_ROOM_PARTS: PartInfo[] = [
     category: 'mechanical',
     name: l('Thermomètre de fumée', 'Flue thermometer'),
     short: lf(
-      'Le seul instrument de la maison : trop chaud, le bois chauffe le ciel ; trop froid, le tirage faiblit. {exhaust} °C dans le modèle.',
-      'The house’s only instrument: too hot, the wood heats the sky; too cold, the draught fades. {exhaust} °C in the model.',
+      'Le seul instrument de la maison : trop chaud, le bois chauffe le ciel ; trop froid, le tirage faiblit. Dans le modèle, {exhaust} °C en moyenne d’un feu.',
+      'The house’s only instrument: too hot, the wood heats the sky; too cold, the draught fades. In the model, {exhaust} °C as the mean of a fire.',
     ),
     description: lf(
       'Un simple cadran sur le conduit dit ce qui part. À la sortie, le modèle lit {exhaust} °C en moyenne d’un feu, {shortExhaust} °C sur un banc de 4,5 m, {longExhaust} °C sur 18 m (résultat du modèle) ; les constructeurs rapportent de 32 à plus de 232 °C. Un concepteur vise 80 à 100 °C en sortie pour que ça tire : un repère, pas une loi. **C’est aussi de ces chiffres qu’on tire les rendements qui courent.** Un analyseur de fumées ne voit que la sortie : **{etaFlue} % par un calcul de fumées**, sur la même journée où la maison garde **{eta} %** (résultat du modèle, plage plausible de {etaLow} à {etaHigh} %). Nous n’avons trouvé aucun essai indépendant d’un tube en J en terre : les chiffres publiés au-dessus de 80 % sont tous des calculs de fumées. L’ouverture du tube, cachée à {feedCover} % (estimation), décide de l’essentiel, et aucune source ne la donne.',

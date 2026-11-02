@@ -441,14 +441,14 @@ export const HOMESTEAD_PARTS: PartInfo[] = [
     maintenance: maint(
       {
         failure:
-          'De la cendre vidée « froide » qui ne l’était pas : c’est ainsi qu’un seau peut mettre le feu à un garage. Ou un seau de plastique qui fond, et un couvercle perdu.',
+          'De la cendre vidée « froide » qui ne l’était pas : sous la surface, des braises peuvent rester chaudes longtemps. Ou un seau de plastique qui fond, et un couvercle perdu.',
         check:
           'Le couvercle, et le fond du seau pour la rouille. Une cendre retirée reste suspecte plusieurs jours : personne ne donne de durée sûre, et nous n’en donnons pas.',
         care: 'Vider dans un endroit minéral ou au compost une fois bien éteinte. Noter le poids : il mesure aussi bien la journée que le tas de bois.',
       },
       {
         failure:
-          'Ash emptied “cold” that was not: that is how a bucket can set a garage alight. Or a plastic bucket that melts, and a lost lid.',
+          'Ash emptied “cold” that was not: under the surface, embers can stay hot for a long time. Or a plastic bucket that melts, and a lost lid.',
         check:
           'The lid, and the bottom of the bucket for rust. Ash taken out stays suspect for days: nobody gives a safe time, and neither do we.',
         care: 'Empty onto mineral ground, or into the compost once truly out. Note the weight: it measures the day as well as the pile does.',
