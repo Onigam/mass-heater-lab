@@ -2,11 +2,11 @@
   "name": "mass-heater-lab",
   "private": true,
   "version": "0.1.0",
-  "description": "Interactive 3D lab of a rocket mass heater: a short hot burn stored in a masonry bench",
+  "description": "Interactive 3D lab of a J-tube mass heater: a fire lying down, a drum that heats at once, an earthen bench that gives back later. Two fires a day, for which house? It explains, it gives no plan",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "node scripts/check-narration.mjs && tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
