@@ -1,6 +1,6 @@
 {
-  "id": "lab-template",
-  "title": { "fr": "Lab Template", "en": "Lab Template" },
+  "id": "mass-heater-lab",
+  "title": { "fr": "Mass Heater Lab", "en": "Mass Heater Lab" },
   "tagline": { "fr": "Un lab à remplacer", "en": "A lab to replace" },
   "tags": [],
   "difficulty": 1,

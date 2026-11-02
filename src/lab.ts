@@ -13,11 +13,11 @@ import { createDeviceScene } from './three/device';
 // The lab described to the kit. Edit the content here and in src/data, src/three, src/sim, src/drawings;
 // the kit supplies the whole application frame (see BRIEF.md: the frame is locked).
 
-configureDrawings({ project: { fr: 'LAB TEMPLATE — dispositif', en: 'LAB TEMPLATE — device' } });
+configureDrawings({ project: { fr: 'MASS HEATER LAB — dispositif', en: 'MASS HEATER LAB — device' } });
 
 export const lab: LabDefinition<DemoSim> = {
-  id: 'lab-template',
-  brand: { title: 'LAB TEMPLATE', tagline: strL('tagline'), icon: './favicon.svg' },
+  id: 'mass-heater-lab',
+  brand: { title: 'MASS HEATER LAB', tagline: strL('tagline'), icon: './favicon.svg' },
   sim: new DemoSim(),
   defaultScene: 'device',
   parts: PARTS,
