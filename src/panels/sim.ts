@@ -22,6 +22,7 @@ import {
   claimReadouts,
   dayChartData,
   dayReadouts,
+  GOLD,
   hotChartData,
   mainReadouts,
   moreReadouts,
@@ -112,7 +113,7 @@ export class SimPanel implements PanelController {
       height: 170,
       series: [
         { key: 'seatHot', label: () => st('seriesSeatHot'), color: SERIES_COLORS.dump, bold: true },
-        { key: 'seatCold', label: () => st('seriesSeatCold'), color: SERIES_COLORS.pv },
+        { key: 'seatCold', label: () => st('seriesSeatCold'), color: GOLD },
         { key: 'room', label: () => st('seriesRoom'), color: SERIES_COLORS.load, bold: true },
         { key: 'outside', label: () => st('seriesOutside'), color: SERIES_COLORS.hydro, dash: true },
       ],
@@ -125,7 +126,7 @@ export class SimPanel implements PanelController {
       height: 130,
       series: [
         { key: 'fire', label: () => st('seriesFire'), color: SERIES_COLORS.dump, dash: true },
-        { key: 'drum', label: () => st('seriesDrum'), color: SERIES_COLORS.pv, bold: true },
+        { key: 'drum', label: () => st('seriesDrum'), color: GOLD, bold: true },
         { key: 'bench', label: () => st('seriesBench'), color: SERIES_COLORS.load, bold: true },
       ],
       yMin: 0,
@@ -138,7 +139,7 @@ export class SimPanel implements PanelController {
       height: 120,
       series: [
         { key: 'chamber', label: () => st('seriesChamber'), color: SERIES_COLORS.dump, bold: true },
-        { key: 'drum', label: () => st('seriesDrum'), color: SERIES_COLORS.pv },
+        { key: 'drum', label: () => st('seriesDrum'), color: GOLD },
         { key: 'exhaust', label: () => st('seriesExhaust'), color: SERIES_COLORS.hydro },
       ],
       yMin: 0,
@@ -156,7 +157,7 @@ export class SimPanel implements PanelController {
     this.pathChart = new LineChart(this.pathOpts);
     this.gasOpts = {
       height: 110,
-      series: [{ key: 'gas', label: () => st('seriesGas'), color: SERIES_COLORS.pv, bold: true }],
+      series: [{ key: 'gas', label: () => st('seriesGas'), color: GOLD, bold: true }],
       yMin: 0,
       yFmt: (v) => num(v),
       xFmt: (v) => `${num(v, 1)} m`,

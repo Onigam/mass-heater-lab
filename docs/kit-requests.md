@@ -26,3 +26,7 @@ Numbered, one paragraph each. Nothing here was worked around by patching the kit
 ## From the integration of the same lab
 
 18. **The Plans panel does not follow the sheet.** `drawing` is not in the keys that redraw the side panel (`panelKeys` in `dist/ui/app.js`), so that after choosing another sheet the list still highlights the first one and the card below it still gives the first one's title, description and parts. The sheet itself changes. Every lab of kit 0.5.1 has this: seen here at 1280, 768 and 390 px, no workaround in the lab. Asked: `drawing` in `panelKeys`.
+
+## From the correction wave, on kit 0.6.0
+
+19. **`--sun` as a line on the light card.** `SERIES_COLORS.pv` reads `--sun`, `#c99700` in light: 2.5:1 on the card, under the 3:1 of a graphic. This lab's four gold series and the bench's part of the wood bar use its own `GOLD`, `#a98000`, which holds 3.4:1 in light and 4.1:1 in dark but no longer follows the theme. A darker `--sun` in light would let it go back to the kit's.

@@ -97,16 +97,29 @@ export interface Segment {
   colour: string;
 }
 
+/** Gold, where the kit's `--sun` (and `SERIES_COLORS.pv`, which reads it) gives only 2.5:1 on the light card. A canvas cannot read `var()`: one value that holds in both themes. */
+export const GOLD = '#a98000';
+
+/** The bar of a day's wood: the kit's tokens, which follow the theme; gold as above, and an earth no token has. `model.test.ts` holds them at 3:1 on the card, in both themes. */
+export const BUDGET_COLOUR = {
+  drum: 'var(--copper)',
+  bench: GOLD,
+  core: '#8a7a5c',
+  flueIn: 'var(--leaf)',
+  lost: 'var(--water)',
+  unburned: 'var(--ink)',
+} as const;
+
 /** A day's wood, split as the gas gave it up. They add up to the wood. */
 export function budgetSegments(d: DayResult): Segment[] {
   const s = d.summary;
   return [
-    { key: 'budgetDrum', share: s.shareDrum, colour: '#c0562f' },
-    { key: 'budgetBench', share: s.shareBench, colour: '#c99700' },
-    { key: 'budgetCore', share: s.shareCore + s.shareSpill, colour: '#8a7a5c' },
-    { key: 'budgetFlueIn', share: s.shareFlueIndoors, colour: '#2f8f5b' },
-    { key: 'budgetLost', share: s.shareExit + s.shareExitIdle + s.shareFlueOutdoors, colour: '#4f6d8f' },
-    { key: 'budgetUnburned', share: s.shareUnburned, colour: '#3a3a3a' },
+    { key: 'budgetDrum', share: s.shareDrum, colour: BUDGET_COLOUR.drum },
+    { key: 'budgetBench', share: s.shareBench, colour: BUDGET_COLOUR.bench },
+    { key: 'budgetCore', share: s.shareCore + s.shareSpill, colour: BUDGET_COLOUR.core },
+    { key: 'budgetFlueIn', share: s.shareFlueIndoors, colour: BUDGET_COLOUR.flueIn },
+    { key: 'budgetLost', share: s.shareExit + s.shareExitIdle + s.shareFlueOutdoors, colour: BUDGET_COLOUR.lost },
+    { key: 'budgetUnburned', share: s.shareUnburned, colour: BUDGET_COLOUR.unburned },
   ];
 }
 

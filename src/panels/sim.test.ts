@@ -210,7 +210,7 @@ describe('what the panel’s model says', () => {
   it('the budget sums to the wood, each with its colour', () => {
     const rows = budgetSegments(d);
     expect(rows.reduce((a, r) => a + r.share, 0)).toBeCloseTo(1, 2);
-    for (const r of rows) expect(r.colour).toMatch(/^#/);
+    for (const r of rows) expect(r.colour).toMatch(/^(#|var\(--)/);
   });
   it('the charts have as many points as hours', () => {
     const a = dayChartData(d);
