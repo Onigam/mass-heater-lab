@@ -7,8 +7,8 @@ import { ALARM_TEXTS, PHASE_TEXTS, PRESET_TEXTS, REGIME_TEXTS, SCENARIO_TEXTS, t
 const PANEL = {
   simTitle2: ['Simulation', 'Simulation'],
   simIntro: [
-    'Un modèle d’un poêle générique dans une maison générique. Personne n’a mesuré en laboratoire la chaleur que rend un vrai poêle de ce type : les chiffres viennent de ce calcul, avec des estimations là où les sources se taisent.',
-    'A model of a generic heater in a generic house. Nobody has measured in a laboratory the heat a real heater of this kind delivers: the figures come from this calculation, with estimates where the sources are silent.',
+    'Un modèle d’un poêle générique dans une maison générique. Nous n’avons trouvé aucune mesure en laboratoire de la chaleur que rend un vrai poêle de ce type : les chiffres viennent de ce calcul, avec des estimations là où les sources se taisent.',
+    'A model of a generic heater in a generic house. We found no laboratory measurement of the heat a real heater of this kind delivers: the figures come from this calculation, with estimates where the sources are silent.',
   ],
   safetyNote: [
     'Une absence d’alarme ici ne dit rien d’une vraie installation : un modèle ne peut pas dire qu’un poêle est sûr. Ce sont un détecteur de monoxyde dans la pièce, un professionnel du conduit et votre assureur qui le peuvent.',
@@ -75,6 +75,11 @@ const PANEL = {
   ],
 
   // ---- the hour
+  thermalLabel: ['Vue thermique', 'Thermal view'],
+  thermalHint: [
+    'En °C, la même échelle partout : déplacez l’heure et regardez la banquette se charger puis rendre sa chaleur.',
+    'In °C, the same scale everywhere: move the hour and watch the bench charge, then give its heat back.',
+  ],
   hourLabel: ['L’heure de la journée', 'The hour of the day'],
   hourHint: [
     'Faites glisser : la machine se place à cette heure de sa journée établie, et le temps repart de là.',
@@ -90,7 +95,7 @@ const PANEL = {
   liveFire: ['Feu', 'Fire'],
   liveChamber: ['Chambre', 'Chamber'],
   liveExhaust: ['Sortie', 'Exhaust'],
-  liveDraft: ['Tirage', 'Draft'],
+  liveDraft: ['Tirage', 'Draught'],
   liveDrum: ['Bidon', 'Drum'],
   liveSeatHot: ['Banc, chaud', 'Bench, hot'],
   liveSeatCold: ['Banc, froid', 'Bench, cold'],
@@ -115,8 +120,8 @@ const PANEL = {
   dayTitle: ['Une journée, une fois le rythme pris', 'A day, once the rhythm has settled'],
   chartBench: ['La banquette se charge, puis rend (°C)', 'The bench charges, then gives back (°C)'],
   chartBenchHint: [
-    'Le feu s’arrête, et le banc continue de monter : la chaleur traverse la terre. C’est ce qu’on sent en s’asseyant, des heures plus tard.',
-    'The fire stops, and the bench goes on rising: the heat is crossing the earth. That is what you feel when you sit down, hours later.',
+    'Le feu s’arrête, et le banc continue de monter : la chaleur traverse la terre. C’est ce qu’on sent en s’asseyant, une à deux heures après la flamme.',
+    'The fire stops, and the bench goes on rising: the heat is crossing the earth. That is what you feel when you sit down, one to two hours after the flame.',
   ],
   chartPower: ['Ce que chacun rend à la maison (kW)', 'What each gives to the house (kW)'],
   chartPowerHint: [
@@ -144,8 +149,8 @@ const PANEL = {
   budgetLost: ['Parti dehors', 'Gone outside'],
   budgetUnburned: ['Non brûlé', 'Unburned'],
   budgetHint: [
-    'Aucune source ne donne ce partage : il sort du modèle, et il dépend d’abord de l’air qui entre, le chiffre que personne n’a mesuré. Le rendement ci-dessous bouge de plus de dix points avec lui.',
-    'No source gives this split: it comes out of the model, and it depends first on the air coming in, the figure nobody has measured. The efficiency below moves by over ten points with it.',
+    'Aucune source ne donne ce partage : il sort du modèle, et il dépend d’abord de l’air qui entre, le chiffre qu’aucune source ne donne. Le rendement ci-dessous bouge de plus de dix points avec lui.',
+    'No source gives this split: it comes out of the model, and it depends first on the air coming in, the figure no source gives. The efficiency below moves by over ten points with it.',
   ],
   effDelivered: ['Ce que la maison garde du bois', 'What the house keeps of the wood'],
   effFlue: ['Ce qu’un calcul de fumées dirait', 'What a flue calculation would say'],
@@ -173,8 +178,8 @@ const PANEL = {
 
   chartSection: ['Du conduit à l’assise (°C)', 'From the duct to the seat (°C)'],
   chartSectionHint: [
-    'La température à travers la terre, à cet instant, au début et à la fin du banc. Pendant le feu, la terre près du conduit monte vite et l’assise ne bouge pas ; des heures plus tard, cette chaleur monte encore vers l’assise.',
-    'The temperature through the earth, at this moment, at the start and the end of the bench. During the fire the earth by the duct climbs fast and the seat does not move; hours later, that heat is still rising to the seat.',
+    'La température à travers la terre, à cet instant, au début et à la fin du banc. Pendant le feu, la terre près du conduit monte vite et l’assise bien moins ; une à deux heures après la flamme, cette chaleur monte encore vers l’assise.',
+    'The temperature through the earth, at this moment, at the start and the end of the bench. During the fire the earth by the duct climbs fast and the seat far less; one to two hours after the flame, that heat is still rising to the seat.',
   ],
   seriesHotEnd: ['Début du banc', 'Start of the bench'],
   seriesColdEnd: ['Fin du banc', 'End of the bench'],
@@ -276,7 +281,7 @@ const PANEL = {
 
   // ---- the strip
   stripFire: ['Feu', 'Fire'],
-  stripDraft: ['Tirage', 'Draft'],
+  stripDraft: ['Tirage', 'Draught'],
   stripExhaust: ['Sortie', 'Exhaust'],
   stripDrum: ['Bidon', 'Drum'],
   stripSeat: ['Banc', 'Bench'],

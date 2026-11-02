@@ -70,6 +70,14 @@ export class SimPanel implements PanelController {
   private draftBox = h('div', { class: 'loss-legend' });
   private computing = h('p', { class: 'hint' });
   private controls: Control[] = [];
+  /** The switch of the 3D worlds' thermal view: a view, not a setting, so the scenario's lesson stays. */
+  private thermalButton = h('button', {
+    class: 'btn',
+    onclick: () => {
+      this.ctx.sim.set({ thermalView: !this.ctx.sim.params.thermalView });
+      this.syncThermal();
+    },
+  });
 
   private benchChart: LineChart;
   private powerChart: LineChart;
@@ -166,6 +174,13 @@ export class SimPanel implements PanelController {
     this.sectionChart = new LineChart(this.sectionOpts);
   }
 
+  private syncThermal(): void {
+    const on = this.ctx.sim.params.thermalView;
+    this.thermalButton.className = on ? 'btn btn--primary' : 'btn';
+    this.thermalButton.textContent = st('thermalLabel');
+    this.thermalButton.setAttribute('aria-pressed', String(on));
+  }
+
   /** Apply a change live; the panel is not rebuilt, so the dragged input survives. */
   private set(patch: Partial<HeaterParams>): void {
     this.ctx.sim.set(patch);
@@ -178,6 +193,7 @@ export class SimPanel implements PanelController {
   render(): void {
     const sim = this.ctx.sim;
     const p = sim.params;
+    this.syncThermal();
     this.controls = [];
 
     const presetSelect = h(
@@ -280,6 +296,8 @@ export class SimPanel implements PanelController {
       this.lesson,
       hourSlider,
       hint('hourHint'),
+      this.thermalButton,
+      hint('thermalHint'),
       h(
         'div',
         { class: 'part-chips' },

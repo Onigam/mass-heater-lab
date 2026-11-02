@@ -69,22 +69,22 @@ export const SCENARIO_TEXTS: Record<ScenarioId, { name: Pair; lesson: Pair }> = 
   'short-bench': {
     name: ['Un banc trop court', 'A bench too short'],
     lesson: [
-      'La moitié du conduit : le banc brûle presque sous la main, la cheminée reçoit des fumées chaudes, et le bois chauffe le ciel. Un vrai poêle au banc trop petit a donné cela.',
-      'Half the duct: the bench nearly burns under the hand, the chimney gets hot gas, and the wood heats the sky. A real heater with too small a bench did just that.',
+      'La moitié du conduit : la banquette n’en est pas plus chaude, elle stocke moins. La cheminée reçoit des fumées chaudes, et le bois chauffe le ciel. Un vrai poêle au banc trop petit a donné cela.',
+      'Half the duct: the bench is no warmer for it, it stores less. The chimney gets hot gas, and the wood heats the sky. A real heater with too small a bench did just that.',
     ],
   },
   'long-bench': {
     name: ['Un banc trop long', 'A bench too long'],
     lesson: [
       'Le double du conduit : presque toute la chaleur reste dans la maison, mais les fumées arrivent froides. Le tirage faiblit, et l’eau se condense dans le conduit. Le bon bilan a un prix.',
-      'Twice the duct: nearly all the heat stays in the house, but the gas arrives cold. The draft weakens, and water condenses in the flue. The fine balance has a price.',
+      'Twice the duct: nearly all the heat stays in the house, but the gas arrives cold. The draught weakens, and water condenses in the flue. The fine balance has a price.',
     ],
   },
   'low-chimney': {
     name: ['Une cheminée trop basse', 'A chimney too low'],
     lesson: [
       'Moins de hauteur, moins de tirage. Le poêle semble gagner en rendement, mais la pression sous le couvercle du bidon remonte presque à celle de la pièce : il reste peu de marge avant qu’un défaut de joint laisse sortir des fumées.',
-      'Less height, less draft. The heater seems to gain in efficiency, but the pressure under the drum’s lid climbs almost to the room’s: little margin is left before a flaw in the seal lets gas out.',
+      'Less height, less draught. The heater seems to gain in efficiency, but the pressure under the drum’s lid climbs almost to the room’s: little margin is left before a flaw in the seal lets gas out.',
     ],
   },
   'small-gap': {
@@ -105,7 +105,7 @@ export const SCENARIO_TEXTS: Record<ScenarioId, { name: Pair; lesson: Pair }> = 
     name: ['La hotte de cuisine', 'The kitchen fan'],
     lesson: [
       'Le feu est presque fini, le tirage retombe. Une hotte met la maison en dépression, et le courant s’inverse : l’air vient du conduit, et ce qui reste du feu part vers la pièce. Une prise d’air existe pour cela.',
-      'The fire is nearly over, the draft falls. A fan puts the house under depression and the flow reverses: air comes down the flue, and what is left of the fire goes into the room. That is what an air inlet is for.',
+      'The fire is nearly over, the draught falls. A fan puts the house under depression and the flow reverses: air comes down the flue, and what is left of the fire goes into the room. That is what an air inlet is for.',
     ],
   },
   'damper-on-embers': {

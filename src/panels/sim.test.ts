@@ -89,7 +89,7 @@ describe('what the panel offers', () => {
   it('says it is a model, and that a model cannot say a heater is safe', () => {
     const { root } = open('en');
     expect(root.textContent).toContain(st('safetyNote'));
-    expect(root.textContent).toContain('Nobody has measured');
+    expect(root.textContent).toContain('We found no laboratory measurement');
   });
 
   it('holds the CO as a regime first, with a band, never one figure as if measured', () => {
@@ -134,6 +134,18 @@ describe('what a click does', () => {
     sliders[1]!.dispatch('input');
     run(panel, sim, 0.2);
     expect(root.textContent).not.toContain(sx('lesson', 'wet-wood'));
+  });
+  it('the thermal view is a view: its button flips the switch and leaves the scenario’s lesson', () => {
+    const { root, sim } = open('en');
+    button(root, sx('scenario', 'wet-wood')).click();
+    const preset = sim.params.preset;
+    expect(sim.params.thermalView).toBe(false);
+    button(root, st('thermalLabel')).click();
+    expect(sim.params.thermalView).toBe(true);
+    expect(sim.params.preset).toBe(preset);
+    expect(root.textContent).toContain(sx('lesson', 'wet-wood'));
+    button(root, st('thermalLabel')).click();
+    expect(sim.params.thermalView).toBe(false);
   });
   it('reset comes back to the start', () => {
     const { root, sim, panel } = open('en');

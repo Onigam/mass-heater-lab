@@ -61,7 +61,7 @@ describe('the panel’s words', () => {
   });
   it('say the model is a model once, and that a model cannot say a heater is safe once', () => {
     const count = (re: RegExp) => entries.filter(([, [, en]]) => re.test(en)).length;
-    expect(count(/Nobody has measured/)).toBe(1);
+    expect(count(/We found no laboratory measurement/)).toBe(1);
     expect(count(/cannot say that a heater is safe/)).toBe(1);
   });
   it('never promise: no word reads as a guarantee, a design value or an instruction to build', () => {
