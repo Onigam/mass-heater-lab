@@ -30,21 +30,21 @@
       "scope": "scene:living-room",
       "title": "The drum at once, the bench later",
       "scene": "living-room",
-      "text": "[[home]] Let’s go in: here is the room where people live. [[frame:steel-drum]] The drum, first, radiating as soon as the fire catches. [[frame:cob-bench,bench-backrest]] The bench runs along two walls, with its backrest. [[frame:chimney-flue]] The chimney rises towards the roof, [[frame:co-alarm,smoke-alarm]] and the two alarms watch over everyone. [[frame:inner-stone-wall]] The stone wall, for its part, keeps its share. [[home]] [[cutaway:on]] Let’s say it plainly. The drum gives about twice the bench’s heat, in great bursts. The bench gives a little, day and night: three to five hundred watts. It does not carry the house alone: it smooths. [[cutaway:off]] So the room runs from seventeen to twenty-four degrees. To see this heat in colour, the Thermal view button is in the Simulation, under the hour slider."
+      "text": "[[home]] Let’s go in: here is the room where people live. [[frame:steel-drum]] The drum, first, radiating as soon as the fire catches. [[frame:cob-bench,bench-backrest]] The bench runs along two walls, with its backrest. [[frame:chimney-flue]] The chimney rises towards the roof, [[frame:co-alarm,smoke-alarm]] and here are the two alarms, each for its own danger. [[frame:inner-stone-wall]] The stone wall, for its part, keeps its share. [[home]] [[cutaway:on]] Let’s say it plainly. The drum gives about twice the bench’s heat, in great bursts. The bench gives a little, day and night: three to five hundred watts. It does not carry the house alone: it smooths. [[cutaway:off]] So the room runs from seventeen to twenty-four degrees. To see this heat in colour, the Thermal view button is in the Simulation, under the hour slider."
     },
     {
       "id": "scene-fire-core",
       "scope": "scene:fire-core",
       "title": "Where it burns, and which way it goes",
       "scene": "fire-core",
-      "text": "[[home]] Still in section, and this time right up close to the fire. [[frame:feed-tube]] The wood stands upright in the tube, [[frame:burn-tunnel]] and the flame lies down in the tunnel. [[frame:heat-riser]] The smoke finishes burning in the heat riser. [[frame:top-gap]] Under the lid, the gases turn right round, [[frame:downdraft-annulus]] then they fall back along the drum. [[home]] [[flows:on]] But what makes all this draw? Everyone blames the riser. Wrong! With the fall down the drum, it weighs in at just over one pascal. The chimney, nearly fifteen. [[flows:off]] Let it go cold, and the flow runs backwards: the fire does not turn it alone. The scenario The fire refuses shows you."
+      "text": "[[home]] Still in section, and this time right up close to the fire. [[frame:feed-tube]] The wood stands upright in the tube, [[frame:burn-tunnel]] and the flame lies down in the tunnel. [[frame:heat-riser]] The smoke finishes burning in the heat riser. [[frame:top-gap]] Under the lid, the gases turn right round, [[frame:downdraft-annulus]] then they fall back along the drum. [[home]] [[flows:on]] But what makes all this draw? Everyone blames the riser. Wrong! At full fire, with the fall down the drum, it weighs in at just over one pascal. The chimney, nearly fifteen. [[flows:off]] Let it go cold, and the flow runs backwards: the fire does not turn it alone. The scenario The fire refuses shows you."
     },
     {
       "id": "scene-bench-section",
       "scope": "scene:bench-section",
       "title": "Where the heat goes",
       "scene": "bench-section",
-      "text": "[[home]] A slice of bench, greatly magnified. [[frame:duct-hot-run,duct-cold-run]] The start of the duct and its end, side by side. [[frame:cob-casing,stone-filler]] All around, the earth and its stones, [[frame:earthen-plaster]] then the plaster, the skin you touch. [[frame:chimney-tee]] Further on, the tee, where the path climbs. [[frame:pebble-section]] And the pebble bench, the other school. [[home]] [[cutaway:on]] These tints are false colour: at sixty degrees, earth does not glow. An hour passes here every second, and the day breathes before your eyes. Heat leaves the duct, where the earth climbs to sixty-four degrees. It rises, slowly, and carries on once the flame is dead. The seat is warmest one to two hours after the flame, at thirty-two degrees. [[cutaway:off]] Then it gives all that back, gently, the whole night through: this is the wonder of the lab."
+      "text": "[[home]] A slice of bench, greatly magnified. [[frame:duct-hot-run,duct-cold-run]] The start of the duct and its end, side by side. [[frame:cob-casing,stone-filler]] All around, the earth and its stones, [[frame:earthen-plaster]] then the plaster, the skin you touch. [[frame:chimney-tee]] Further on, the tee, where the path climbs. [[frame:pebble-section]] And the pebble bench, the other school. [[home]] [[cutaway:on]] These tints are false colour: at sixty degrees, earth does not glow. An hour passes here every second, and the day breathes before your eyes. Heat leaves the duct, where the earth climbs to sixty-four degrees. It rises, slowly, and carries on once the flame is dead. The seat is warmest one to two hours after the flame, at thirty-two degrees. [[cutaway:off]] Then it gives that heat back, gently, the whole night through: this is the wonder of the lab."
     },
     {
       "id": "part-house-shell",
@@ -58,7 +58,7 @@
       "scope": "part:chimney-cap",
       "title": "Chimney cap",
       "scene": "homestead",
-      "text": "[[flows:on]] The end of the journey. Our breath of air leaves here at about eighty degrees at full fire. Smoke that is white and short, in a hard frost, is often steam. Grey and lingering, it is fuel going to waste. [[flows:off]] The cap keeps out rain and birds, with no mechanism at all."
+      "text": "[[flows:on]] The end of the journey. Our breath of air leaves here at about ninety degrees at full fire. [[flows:off]] Smoke that is white and short, in a hard frost, is often steam. Grey and lingering, it is fuel going to waste. But a clear cap says nothing of carbon monoxide. And the plume in this picture follows our sums. The cap keeps out rain and birds, with no mechanism at all."
     },
     {
       "id": "part-sweep-access",
@@ -72,7 +72,7 @@
       "scope": "part:outside-air-inlet",
       "title": "Outside air inlet",
       "scene": "homestead",
-      "text": "[[flows:on]] The fire breathes! About forty-six cubic metres of air an hour at full fire: that air has to come from somewhere. [[flows:off]] Without this inlet, the fire pulls on the rest of the house. Its most common failure: someone who felt a draught, and closed it."
+      "text": "[[flows:on]] The fire breathes! About forty-six cubic metres of air an hour, as the mean of a fire: that air has to come from somewhere. [[flows:off]] This inlet is meant to keep the fire from pulling on the rest of the house. Our model has none. Its most common failure: someone who felt a draught, and closed it."
     },
     {
       "id": "part-woodshed",
@@ -93,7 +93,7 @@
       "scope": "part:moisture-meter",
       "title": "Moisture meter",
       "scene": "homestead",
-      "text": "Two pins, a figure, next to no cost: the first gesture of the day. At thirty per cent moisture, the same wood costs the room three degrees, and the monoxide more than triples. The eye sees nothing of it. The pins go in a freshly split face: the outside of a log dries well before its heart."
+      "text": "A small box, two pins, a figure: the first gesture of the day. At thirty per cent moisture, the same wood costs the room three degrees, and the monoxide more than triples. The eye sees nothing of it. The pins go in a freshly split face: the outside of a log dries well before its heart."
     },
     {
       "id": "part-kindling-block",
@@ -107,7 +107,7 @@
       "scope": "part:ash-bucket",
       "title": "Ash bucket",
       "scene": "homestead",
-      "text": "A metal bucket, a lid, and it waits outside. One builder weighed it: twenty-six kilos of wood, two hundred grams of ash. So little! But ash covers embers that stay hot for a long time, and many a garage fire starts that way. Nobody can say when it is truly out, and neither can we."
+      "text": "A metal bucket, a lid, and it waits outside. One builder weighed it: twenty-six kilos of wood, two hundred grams of ash. So little! But ash covers embers that stay hot for a long time: nobody gives a figure for how long, and neither do we. So this bucket goes neither in a garage, nor against a wooden wall."
     },
     {
       "id": "part-coppice-lot",
@@ -135,7 +135,7 @@
       "scope": "part:cob-bench",
       "title": "The cob bench",
       "scene": "living-room",
-      "text": "Nearly three tonnes of earth and stone, around nine metres of duct. [[cutaway:on]] Heat crosses it slowly, and the seat runs from twenty-five to thirty-two degrees. [[cutaway:off]] Seven hours after the evening fire it is still at nearly twenty-eight, when the room has fallen to eighteen and a half. A blanket on the bench, a book, and January can wait outside! On this sheet, the Thermal view button shows you the heat arriving."
+      "text": "Nearly three tonnes of earth and stone, around nine metres of duct. [[cutaway:on]] Heat crosses it slowly, and the seat runs from twenty-five to thirty-two degrees. [[cutaway:off]] Seven hours after the evening fire it is still at nearly twenty-eight, when the room has fallen to eighteen and a half. A blanket on the bench, a book, and January can wait outside! On this sheet, switch on Thermal view and Section: the colour climbs from the duct to the seat."
     },
     {
       "id": "part-bench-backrest",
@@ -177,7 +177,7 @@
       "scope": "part:ceiling-crossing",
       "title": "Ceiling crossing",
       "scene": "living-room",
-      "text": "The place where a house catches fire. The risk is not the everyday flue gas: it is a chimney fire. The safety distance is in the flue’s own instructions, and it is not to be reduced. Once the ceiling is closed, a small inspection hatch is well worth having."
+      "text": "The place where a house catches fire. The greater risk is not the everyday gas: it is a flue fire. The safety distance is in the flue’s own instructions, and it is not to be reduced. Once the ceiling is closed, a small inspection hatch is well worth having."
     },
     {
       "id": "part-hearth-slab",
@@ -191,7 +191,7 @@
       "scope": "part:heat-shield",
       "title": "Heat shield",
       "scene": "living-room",
-      "text": "A plain steel sheet, and behind it, air. The drum heats the wall beside it by radiation: the sheet takes it, and the passing air carries the rest away. A thick slab of brick stuck to the wall ends up hot, and passes it on. And a handsome sheet fixed straight to the wall hardly protects at all."
+      "text": "A plain steel sheet, and behind it, air. The drum heats the wall beside it by radiation: the sheet takes it, and the passing air carries much of it away. A thick slab of brick stuck to the wall ends up hot, and passes it on. And a handsome sheet fixed straight to the wall hardly protects at all."
     },
     {
       "id": "part-co-alarm",
@@ -240,7 +240,7 @@
       "scope": "part:bench-cushion",
       "title": "Cushion",
       "scene": "living-room",
-      "text": "At thirty-two degrees a cushion has nothing to fear… and nor has your back. But it keeps for itself what the bench would give the room. And a blanket forgotten all winter hides a crack: it comes off now and then. Near the drum, no foam, ever."
+      "text": "At thirty-two degrees a cushion has nothing to fear… and your back asks for more. But it keeps for itself what the bench would give the room. And a blanket forgotten all winter hides a crack: it comes off now and then. Near the drum, no foam, ever."
     },
     {
       "id": "part-inner-stone-wall",
@@ -282,14 +282,14 @@
       "scope": "part:ash-bed",
       "title": "The ash bed",
       "scene": "fire-core",
-      "text": "About a hundred grams of ash a day. Beneath it, embers: here comes the most deceptive moment. No more flame, it all looks over… and the monoxide in the flue gas is at its highest: about nine times full fire, as an order of magnitude. As long as the flue stays warm and open, it leaves by the chimney."
+      "text": "About a hundred grams of ash a day. Beneath it, embers: here comes the most deceptive moment. No more flame, it all looks over… and the monoxide in the flue gas is at its highest: about nine times full fire, as an order of magnitude. In our model, as long as the flue stays warm and open, it leaves by the chimney. A real machine also has its cracks and joints."
     },
     {
       "id": "part-heat-riser",
       "scope": "part:heat-riser",
       "title": "The heat riser",
       "scene": "fire-core",
-      "text": "[[xray:on]] The hottest place in the house! Our breath of air climbs it, and the smoke finishes burning here, on three conditions: heat, air and time. That is what sets this machine apart from a stove on a slow burn. [[xray:off]] Taller or shorter, our calculation mostly moves the heat around: more drum, less bench."
+      "text": "[[xray:on]] The hottest place in the house! Our breath of air climbs it, and the smoke finishes burning here, on three conditions: heat, air and time. That is what sets this machine apart from a stove on a slow burn. [[xray:off]] Clean, then? Nothing says so: our estimate gives six times the monoxide of a masonry heater in a laboratory. Taller or shorter, our calculation mostly moves the heat around: more drum, less bench."
     },
     {
       "id": "part-riser-insulation",
@@ -331,14 +331,14 @@
       "scope": "part:downdraft-annulus",
       "title": "The fall inside the drum",
       "scene": "fire-core",
-      "text": "[[flows:on]] The slowest fall in the machine. Our breath of air enters at about four hundred and sixty degrees, and leaves the bottom at about two hundred and fifty. [[flows:off]] It leaves here thirty-eight per cent of what the wood gives. So the drum is no bonus: its share comes out of everything else."
+      "text": "[[flows:on]] The slowest fall in the machine. At full fire, our breath of air enters near four hundred and sixty degrees, and leaves near two hundred and fifty. [[flows:off]] It leaves here thirty-eight per cent of what the wood gives. So the drum is no bonus: its share comes out of everything else."
     },
     {
       "id": "part-drum-seal",
       "scope": "part:drum-seal",
       "title": "The lid seal",
       "scene": "fire-core",
-      "text": "A drum’s lid comes off: there is a joint at head height. One machine filmed in its thirteenth winter relies on ash, and smokes a little after refitting. What protects it most is the draught: nearly nine pascals at full fire. A refitted drum restarts with the alarm on, and never at night."
+      "text": "A drum’s lid comes off: there is a joint at head height. One machine filmed in its thirteenth winter relies on ash, and smokes a little after refitting. What protects it most is the suction: nearly nine pascals at full fire. Let the flow turn round, and it is gone. A refitted drum restarts with the alarm on, and never at night."
     },
     {
       "id": "part-drum-plinth",
@@ -359,7 +359,7 @@
       "scope": "part:duct-cold-run",
       "title": "The cold run",
       "scene": "bench-section",
-      "text": "The last six metres: our breath of air arrives tired, and it leaves at eighty degrees. Why not take it all? Over eighteen metres it would leave at thirty-four degrees, but the draught would fall by half. Enough duct for the heat, not so much as to smother the draught: that is the whole question of the bench."
+      "text": "The last six metres: our breath of air arrives tired. It leaves the bench near a hundred and fourteen degrees at full fire. Why not take it all? Over eighteen metres it would reach the cap at a mean of thirty-four degrees, but the draught would fall by half. Enough duct for the heat, not so much as to smother the draught: that is the whole question of the bench."
     },
     {
       "id": "part-duct-bend",
@@ -429,7 +429,7 @@
       "scope": "part:temperature-lance",
       "title": "The probe",
       "scene": "bench-section",
-      "text": "What this subject lacks most: figures. One builder slid fifteen sensors into a concrete bench, without publishing a full winter. No source gives a whole day logged in a lived-in house. Our probe, for its part, follows the model. So, one piece of advice: measure, write it down, publish!"
+      "text": "What this subject lacks most: figures. One builder slid fifteen sensors into a concrete bench, without publishing a full winter. No source gives a whole day logged in a lived-in house. Our probe is only a drawing: its needle follows our sums. So, one piece of advice: measure, write it down, publish!"
     },
     {
       "id": "part-pebble-section",

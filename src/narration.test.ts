@@ -20,8 +20,8 @@ const MODES = ['explore', 'assembly', 'install', 'sim', 'plans', 'lessons'];
 const CAMERA_CUES = ['home', 'scene', 'frame', 'select'];
 /** Ceiling set by the owner for the spoken characters of one language. */
 const BUDGET = 30_000;
-/** What this lab's guide aims for: the brief says about 20,000 to 22,000. */
-const AIM = [20_000, 22_500] as const;
+/** What this lab's guide aims for: the brief said about 20,000 to 22,000; the sheets' corrections of 2/11/2026 added about 500 characters in French, within the series' 17,000 to 24,000. */
+const AIM = [20_000, 23_000] as const;
 /** generate.mjs refuses a longer segment. */
 const SEGMENT_CAP = 2_500;
 /** This lab's guide is in the local voice (generate.mjs --engine voicebox): a change of voice must be a decision, not an accident. */
@@ -115,10 +115,10 @@ const ONCE: Record<string, Record<string, [RegExp, string]>> = {
   },
 };
 
-/** Never said, anywhere: the old reading of the peak (docs/physics.md, K56), a fire called clean, or a promise. */
+/** Never said, anywhere: the old reading of the peak (docs/physics.md, K56), a fire called clean, a promise, or what the sheets withdrew for want of a source (a garage fire, a price). */
 const REFUSED: Record<string, RegExp> = {
-  fr: /quatre à huit heures|feu propre|brûle proprement|sans danger|sans risque|en toute sécurité|non dangereu/i,
-  en: /four to eight hours|clean fire|burns clean|without danger|without risk|no risk|\bsafely\b|harmless/i,
+  fr: /quatre à huit heures|feu propre|brûle proprement|sans danger|sans risque|en toute sécurité|non dangereu|veillent sur|feux? de garage|quelques euros/i,
+  en: /four to eight hours|clean fire|burns clean|without danger|without risk|no risk|\bsafely\b|harmless|watch over|garage fire|next to no cost/i,
 };
 
 /** A figure of the simulation, as the voice rounds it, and where the voice says it: if the physics moves (as on 2/11/2026), this says which segments to rewrite. */
@@ -138,8 +138,14 @@ const FIGURES: [value: number, said: number, fr: RegExp, en: RegExp, id: string]
   [ASSUMED.leakyH, 300, /trois cents watts/, /three hundred watts/, 'part-house-shell'],
   [MODEL.leakyRoomLow, 6, /entre six et/, /between six and/, 'part-house-shell'],
   [MODEL.leakyRoomHigh, 14, /et quatorze degrés/, /and fourteen degrees/, 'part-house-shell'],
-  [MODEL.exhaust, 80, /quatre-vingts degrés/, /eighty degrees/, 'part-chimney-cap'],
-  [MODEL.airM3h, 46, /quarante-six mètres cubes/, /forty-six cubic metres/, 'part-outside-air-inlet'],
+  [MODEL.exhaustAt9, 90, /quatre-vingt-dix degrés à plein feu/, /ninety degrees at full fire/, 'part-chimney-cap'],
+  [
+    MODEL.airM3h,
+    46,
+    /quarante-six mètres cubes d’air par heure, en moyenne d’un feu/,
+    /forty-six cubic metres of air an hour, as the mean of a fire/,
+    'part-outside-air-inlet',
+  ],
   [DERIVED.seasonTonnes, 2, /près de deux tonnes/, /nearly two tonnes/, 'part-cordwood-stack'],
   [MODEL.saved35, 55, /cinquante-cinq pour cent/, /fifty-five per cent/, 'part-coppice-lot'],
   [MODEL.saved72, 7, /sept seulement/, /only seven/, 'part-coppice-lot'],
@@ -170,13 +176,21 @@ const FIGURES: [value: number, said: number, fr: RegExp, en: RegExp, id: string]
   [MODEL.damperWhoMin, 38, /trente-huit minutes/, /thirty-eight minutes/, 'part-feed-lid'],
   [MODEL.chamber, 467, /quatre cent soixante-sept/, /four hundred and sixty-seven/, 'part-burn-tunnel'],
   [MODEL.coEnd / MODEL.coLean, 9, /neuf fois/, /nine times/, 'part-ash-bed'],
+  [MODEL.coPerMj / 240, 6, /six fois/, /six times/, 'part-heat-riser'],
   [MODEL.riserTop, 460, /quatre cent soixante degrés/, /four hundred and sixty degrees/, 'part-downdraft-annulus'],
   [MODEL.shareDrum, 38, /trente-huit pour cent/, /thirty-eight per cent/, 'part-downdraft-annulus'],
   [MODEL.lidPa, 9, /près de neuf pascals/, /nearly nine pascals/, 'part-drum-seal'],
   [MODEL.hotRunShare, 42, /quarante-deux pour cent/, /forty-two per cent/, 'part-duct-hot-run'],
   [MODEL.filmLowEta, 69, /soixante-neuf/, /sixty-nine/, 'part-duct-hot-run'],
   [MODEL.filmHighEta, 85, /quatre-vingt-cinq pour cent/, /eighty-five per cent/, 'part-duct-hot-run'],
-  [MODEL.longExhaust, 34, /trente-quatre degrés/, /thirty-four degrees/, 'part-duct-cold-run'],
+  [
+    MODEL.ductOutT,
+    114,
+    /cent quatorze degrés à plein feu/,
+    /a hundred and fourteen degrees at full fire/,
+    'part-duct-cold-run',
+  ],
+  [MODEL.longExhaust, 34, /trente-quatre degrés en moyenne/, /a mean of thirty-four degrees/, 'part-duct-cold-run'],
   [MODEL.longWater * 1000, 400, /quatre cents grammes/, /four hundred grams/, 'part-condensate-drain'],
   [MODEL.turnMin, 3, /trois minutes/, /three minutes/, 'part-chimney-tee'],
   [MODEL.pebbleSeat, 36, /trente-six degrés/, /thirty-six degrees/, 'part-pebble-section'],
@@ -365,6 +379,17 @@ describe.each(Object.keys(scripts))('narration script %s', (lang) => {
     const thermal = PANEL_STRINGS.thermalLabel![i];
     expect(where(new RegExp(thermal))).toEqual(['intro', 'scene-living-room', 'part-cob-bench']);
     expect(where(new RegExp(SCENARIO_TEXTS['cold-start'].name[i]))).toEqual(['scene-fire-core']);
+  });
+
+  it('says on the bench what the thermal view needs, and keeps the flows off the plume, which they do not draw', () => {
+    // the view alone colours the bench's surface; only with the section does the colour show inside (docs/data.md, Tools). The kit's button is « Coupe », "Section".
+    const [thermal, section] = lang === 'fr' ? ['Vue thermique', 'Coupe'] : ['Thermal view', 'Section'];
+    const bench = spokenOf(seg('part-cob-bench'));
+    expect(bench).toContain(thermal);
+    expect(bench).toContain(section);
+    const cap = seg('part-chimney-cap').text;
+    expect(cap.indexOf('[[flows:off]]')).toBeGreaterThan(-1);
+    expect(cap.indexOf('[[flows:off]]')).toBeLessThan(cap.search(/fumée|Smoke/));
   });
 
   it('follows one breath of cold air through the machine, from the intro to the chimney', () => {

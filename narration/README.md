@@ -13,10 +13,10 @@ HOME=$(mktemp -d) node ~/Dev/lab-kit/tools/narration/generate.mjs --src narratio
 
 | Language | Total  | Intro | Worlds                                                 | Parts  | Longest parts                                                                       |
 | -------- | ------ | ----- | ------------------------------------------------------ | ------ | ----------------------------------------------------------------------------------- |
-| French   | 22,179 | 2,380 | 2,631 (house 707, room 666, core 564, bench 694)       | 17,168 | `feed-lid` 493, `co-alarm` 480, `feed-tube` 468, `cob-bench` 431, `steel-drum` 429  |
-| English  | 20,848 | 2,211 | 2,544 (house 691, room 632, core 539, bench 682)       | 16,093 | `feed-tube` 473, `co-alarm` 457, `feed-lid` 451, `steel-drum` 415, `cob-bench` 399  |
+| French   | 22,708 | 2,380 | 2,648 (house 707, room 669, core 577, bench 695)       | 17,680 | `feed-lid` 493, `co-alarm` 480, `feed-tube` 468, `cob-bench` 451, `steel-drum` 429  |
+| English  | 21,352 | 2,211 | 2,573 (house 691, room 646, core 553, bench 683)       | 16,568 | `feed-tube` 473, `co-alarm` 457, `feed-lid` 451, `cob-bench` 427, `steel-drum` 415  |
 
-The ceiling is 30,000 per language; the brief asked for about 20,000 to 22,000 (`src/narration.test.ts` holds 20,000 to 22,500). `generate.mjs` refuses a segment over 2,500 characters. The median part is 290 characters in French, 278 in English; the hero parts of the research (`steel-drum`, `cob-bench`, `feed-tube`, `co-alarm`) get more, and `feed-lid` too because it carries the damper. `heat-riser` (303) and `cob-casing` (337) gave characters back: the budget would not hold six heroes at 400.
+The ceiling is 30,000 per language; the brief asked for about 20,000 to 22,000 (`src/narration.test.ts` holds 20,000 to 23,000). `generate.mjs` refuses a segment over 2,500 characters. The median part is 293 characters in French, 282 in English; the hero parts of the research (`steel-drum`, `cob-bench`, `feed-tube`, `co-alarm`) get more, and `feed-lid` too because it carries the damper. `cob-casing` (337) gave characters back: the budget would not hold six heroes at 400.
 
 ## Register
 
@@ -47,7 +47,7 @@ Pelton Lab's tone (`lab-kit/docs/narration-style.md`). The thread is **one breat
 
 **Why 78 % and the claim are not on their sheets' parts.** `flue-thermometer` says 82 % and « four points more than the house keeps »; `coppice-lot` gives the sums (55, 7, 85) without restating the claim; `smoky-neighbour` says « to cut your wood by ten », which is the sheet's 8 % stove in other words, the closest thing to a second mention.
 
-**Hedges.** « dans le modèle » is never said. « notre modèle », « notre calcul », « notre scénario », « notre estimation » appear only where a figure stands against a source or where the model is itself the subject (13 segments, a test caps them at 14). The word « mesure » only denies a measurement or asks for one (`intro`, `duct-hot-run`, `stone-filler`, `temperature-lance`): a test holds the list.
+**Hedges.** « dans le modèle » is never said. « notre modèle », « notre calcul », « notre scénario », « notre estimation » appear only where a figure stands against a source or where the model is itself the subject (14 segments, a test caps them at 14). The word « mesure » only denies a measurement or asks for one (`intro`, `duct-hot-run`, `stone-filler`, `temperature-lance`): a test holds the list.
 
 **Anonymous.** « une constructrice », « un concepteur », « un manuel français », « un projet de texte », « une vidéo », « le seul article revu par des pairs ». The international health body the sheets name is « les repères sanitaires », « the health guidelines ». A test refuses every name of the Sources, and the intro says once that the Sources panel says who said what.
 
@@ -80,16 +80,16 @@ Figures spoken that no sheet prints as such: « environ six cent cinquante kilos
 
 ## Checked
 
-`npx vitest run src/narration.test.ts`: the contract, ids, scopes and starting worlds, known cues on real ids, frames in the current world, what is switched on is switched off, tools per world, no camera cue in a part, 35 characters between camera moves, the hops of the intro, each truth once in its place, what is refused everywhere, **51 spoken figures held to today's `src/data/figures.ts`** (so a change of the physics names the segments to rewrite), the word « mesure », the hedges, the controls named by the voice against the panel's own words, the breath of air, no name, spoken text only, sentences at most 135 characters, exclamations and questions, no « tu », British English, the budget, no run of seven words from the private transcripts (`~/.cache/lab-review/research/mass-heater-lab/`, 18 files, both languages), the same cues in the same order within a tenth of the segment between languages, and the manifests once they exist, in the local voice.
+`npx vitest run src/narration.test.ts`: the contract, ids, scopes and starting worlds, known cues on real ids, frames in the current world, what is switched on is switched off, tools per world, no camera cue in a part, 35 characters between camera moves, the hops of the intro, each truth once in its place, what is refused everywhere, **53 spoken figures held to today's `src/data/figures.ts`** (so a change of the physics names the segments to rewrite), the word « mesure », the hedges, the controls named by the voice against the panel's own words, the breath of air, no name, spoken text only, sentences at most 135 characters, exclamations and questions, no « tu », British English, the budget, no run of seven words from the private transcripts (`~/.cache/lab-review/research/mass-heater-lab/`, 18 files, both languages), the same cues in the same order within a tenth of the segment between languages, and the manifests once they exist, in the local voice.
 
 `node ~/Dev/lab-kit/tools/narration/tone-stats.mjs narration/fr.json`, against Pelton's script:
 
 | Measure                      | French | Pelton | English | Pelton's English | Why they differ                                                                                                                                                      |
 | ---------------------------- | ------ | ------ | ------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Average sentence, characters | 67     | 79     | 63      | 69               | Subtitles cut at sentence ends, and the rule since Pelton is short sentences: the same as the sand lab (70, 67), Mill (71), Piggott (67)                              |
+| Average sentence, characters | 68     | 79     | 63      | 69               | Subtitles cut at sentence ends, and the rule since Pelton is short sentences: the same as the sand lab (70, 67), Mill (71), Piggott (67)                              |
 | Sentences over 120           | 1      | 35     | 0       | 2                | Pelton's 35 are its one departure from its own rule. The French one is the warning (127), kept as one sentence as the brief asks                                       |
-| Exclamations per 1,000       | 0.77   | 0.80   | 0.82    | 0.83             | Held there on purpose                                                                                                                                                 |
-| Questions per 1,000          | 0.50   | 0.29   | 0.53    | 0.35             | Above Pelton, like Mill (0.43), the sand lab (0.42) and Piggott (0.48). This lab is an inquiry: for which house, who draws, who is right. Eleven questions in all     |
+| Exclamations per 1,000       | 0.75   | 0.80   | 0.80    | 0.83             | Held there on purpose                                                                                                                                                 |
+| Questions per 1,000          | 0.53   | 0.29   | 0.56    | 0.35             | Above Pelton, like Mill (0.43), the sand lab (0.42) and Piggott (0.48). This lab is an inquiry: for which house, who draws, who is right. Twelve questions in all     |
 | « tu », digits or symbols    | 0      | 0      | 0       | 0                |                                                                                                                                                                       |
 
 ## To listen for in the sample (not measured, a script cannot tell)
