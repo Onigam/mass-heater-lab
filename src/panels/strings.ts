@@ -11,8 +11,8 @@ const PANEL = {
     'A model of a generic heater in a generic house. We found no laboratory measurement of the heat a real heater of this kind delivers: the figures come from this calculation, with estimates where the sources are silent.',
   ],
   safetyNote: [
-    'Une absence d’alarme ici ne dit rien d’une vraie installation : un modèle ne peut pas dire qu’un poêle est sûr. Ce sont un détecteur de monoxyde dans la pièce, un professionnel du conduit et votre assureur qui le peuvent.',
-    'The absence of an alarm here says nothing about a real installation: a model cannot say that a heater is safe. A CO alarm in the room, a flue professional and your insurer can.',
+    'Une absence d’alarme ici ne dit rien d’une vraie installation : un modèle ne peut pas dire qu’un poêle est sûr. Une vraie maison demande un détecteur de monoxyde dans la pièce, un professionnel du conduit et l’avis de votre assureur : l’un signale une panne, l’autre juge le conduit, le dernier dit ce qu’il couvre. Aucun ne garantit l’air de la pièce.',
+    'The absence of an alarm here says nothing about a real installation: a model cannot say that a heater is safe. A real house calls for a CO alarm in the room, a flue professional and your insurer’s word: one signals a fault, one judges the flue, the last says what it covers. None of them vouches for the air in the room.',
   ],
   tagLegend: [
     '† résultat du modèle · * estimation : les sources se taisent.',
@@ -33,8 +33,8 @@ const PANEL = {
     'The fire is out. The bench goes on giving back what it took.',
   ],
   statusCatching: [
-    'Le feu prend, le foyer est encore froid : c’est là que la fumée est la plus sale.',
-    'The fire is catching, the core is still cold: this is when the smoke is dirtiest.',
+    'Le feu prend, le foyer est encore froid : la fumée n’a pas encore la chaleur qu’il lui faut pour finir de brûler.',
+    'The fire is catching, the core is still cold: the smoke does not yet have the heat it needs to finish burning.',
   ],
   statusBurningHot: [
     'La flamme est couchée, la chambre est chaude : la fumée finit de brûler dans la cheminée interne.',
@@ -160,8 +160,8 @@ const PANEL = {
   effPeak: ['Le banc culmine', 'The bench peaks'],
   effPeakUnit: ['h après le début du dernier feu', 'h after the last fire began'],
   effNeeded: ['Bois pour tenir la pièce à sa consigne', 'Wood to hold the room at its target'],
-  effExhaust: ['Sortie, à plein feu', 'Exhaust, at full fire'],
-  effLambda: ['Excès d’air, à plein feu', 'Excess air, at full fire'],
+  effExhaust: ['Sortie, en moyenne d’un feu', 'Exhaust, mean of a fire'],
+  effLambda: ['Excès d’air, en moyenne d’un feu', 'Excess air, mean of a fire'],
   effCondensate: ['Eau condensée', 'Water condensed'],
 
   // ---- the pressure along the path

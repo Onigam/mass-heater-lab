@@ -74,6 +74,11 @@ describe('the panel’s words', () => {
     }
     // the one sentence that uses the word says the opposite
     expect(PANEL_STRINGS.safetyNote![1]).toContain('cannot say');
+    // nor do the alarm, the professional and the insurer: the CO alarm's sheet says it signals a fault and does not vouch for the air
+    expect(PANEL_STRINGS.safetyNote![0]).toContain('Aucun ne garantit l’air de la pièce');
+    expect(PANEL_STRINGS.safetyNote![1]).toContain('None of them vouches for the air in the room');
+    expect(PANEL_STRINGS.safetyNote![0]).not.toMatch(/qui le peuvent/);
+    expect(PANEL_STRINGS.safetyNote![1]).not.toMatch(/insurer can\./);
     expect(PANEL_STRINGS.machineHint![1]).toContain('None is a size to build');
   });
   it('the panel’s lookups work in both languages', () => {

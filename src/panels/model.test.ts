@@ -1,7 +1,11 @@
 import { beforeAll, describe, expect, it } from 'vitest';
-import { BUDGET_COLOUR, GOLD } from './model';
+import { MODEL } from '../data/figures';
+import { MassHeaterSim } from '../sim/engine';
+import { SCENARIO_TEXTS } from '../sim/texts';
+import { BUDGET_COLOUR, GOLD, statusOf } from './model';
+import { PANEL_STRINGS } from './strings';
 
-// The colours this lab writes into its panel, read on the kit's own card in both themes.
+// The colours this lab writes into its panel, read on the kit's own card in both themes, and the panel's words against the model that prints beside them.
 
 // the stylesheet comes from disk: the test runner empties any import of a .css. No node types in this lab: the module is named at run time.
 const load = (name: string): Promise<any> => import(/* @vite-ignore */ name);
@@ -73,5 +77,38 @@ describe('the colours of the panel', () => {
       expect(source).not.toMatch(/#[0-9a-fA-F]{3,8}\b/);
       expect(source).not.toMatch(/SERIES_COLORS\.pv/);
     }
+  });
+});
+
+describe('the panel’s words against the model', () => {
+  it('the fire catching is not the dirtiest moment: the end of a fire is, as lesson 2 says', () => {
+    const sim = new MassHeaterSim();
+    sim.set({ hour: 7 });
+    expect(statusOf(sim.state, sim.params).key).toBe('statusCatching');
+    for (const text of PANEL_STRINGS.statusCatching!) expect(text).not.toMatch(/la plus sale|dirtiest/);
+    sim.set({ hour: 7.25 });
+    const start = sim.state.flueCo;
+    sim.set({ hour: 10 });
+    expect(sim.state.flueCo).toBeGreaterThan(3 * start);
+  });
+
+  it('the mean of a fire is labelled as one, not as the state at full fire', () => {
+    expect(PANEL_STRINGS.effExhaust).toEqual(['Sortie, en moyenne d’un feu', 'Exhaust, mean of a fire']);
+    expect(PANEL_STRINGS.effLambda).toEqual(['Excès d’air, en moyenne d’un feu', 'Excess air, mean of a fire']);
+  });
+
+  it('a winter day’s lesson says the room’s swing as it is: 6.7 K, near seven degrees', () => {
+    expect(Math.round(MODEL.roomSwing)).toBe(7);
+    const [fr, en] = SCENARIO_TEXTS['winter-two-fires'].lesson;
+    expect(fr).toMatch(/près de sept degrés/);
+    expect(en).toMatch(/nearly seven degrees/);
+  });
+
+  it('the fan’s lesson does not lean on an air inlet the model does not have', () => {
+    const [fr, en] = SCENARIO_TEXTS['extract-fan'].lesson;
+    expect(fr).toMatch(/ce modèle n’en a pas/);
+    expect(en).toMatch(/this model has none/);
+    expect(fr).not.toMatch(/existe pour cela/);
+    expect(en).not.toMatch(/what an air inlet is for/);
   });
 });

@@ -34,8 +34,8 @@ export const SCENARIO_TEXTS: Record<ScenarioId, { name: Pair; lesson: Pair }> = 
   'winter-two-fires': {
     name: ['Deux feux, un jour d’hiver', 'Two fires, a winter day'],
     lesson: [
-      'Le bidon réchauffe tout de suite, la banquette plus tard et plus longtemps. La pièce reste dans une plage de quelques degrés, et le banc ne descend jamais à sa température. Faites glisser l’heure et regardez la chaleur traverser la terre.',
-      'The drum warms the room at once, the bench later and for longer. The room stays within a few degrees, and the bench never falls to its temperature. Drag the hour and watch the heat cross the earth.',
+      'Le bidon réchauffe tout de suite, la banquette plus tard et plus longtemps. La pièce varie de près de sept degrés dans la journée (résultat du modèle), et le banc ne descend jamais à sa température. Faites glisser l’heure et regardez la chaleur traverser la terre.',
+      'The drum warms the room at once, the bench later and for longer. The room moves by nearly seven degrees over the day (model result), and the bench never falls to its temperature. Drag the hour and watch the heat cross the earth.',
     ],
   },
   'cold-start': {
@@ -104,8 +104,8 @@ export const SCENARIO_TEXTS: Record<ScenarioId, { name: Pair; lesson: Pair }> = 
   'extract-fan': {
     name: ['La hotte de cuisine', 'The kitchen fan'],
     lesson: [
-      'Le feu est presque fini, le tirage retombe. Une hotte met la maison en dépression, et le courant s’inverse : l’air vient du conduit, et ce qui reste du feu part vers la pièce. Une prise d’air existe pour cela.',
-      'The fire is nearly over, the draught falls. A fan puts the house under depression and the flow reverses: air comes down the flue, and what is left of the fire goes into the room. That is what an air inlet is for.',
+      'Le feu est presque fini, le tirage retombe. Une hotte met la maison en dépression, et le courant s’inverse : l’air vient du conduit, et ce qui reste du feu part vers la pièce. Une prise d’air extérieure vise à l’éviter : ce modèle n’en a pas, et il ne dit pas ce qu’elle y change.',
+      'The fire is nearly over, the draught falls. A fan puts the house under depression and the flow reverses: air comes down the flue, and what is left of the fire goes into the room. An outside air inlet is meant to avoid that: this model has none, and does not say what it changes.',
     ],
   },
   'damper-on-embers': {
