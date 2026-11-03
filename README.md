@@ -13,7 +13,7 @@ It belongs to a series that started with [Pelton Lab](https://github.com/Onigam/
 - **Six lessons with twelve questions**, going through the simulation's twelve scenarios: the fire that goes sideways, smoke is fuel, where the heat goes, charge and give back, two fires for which house, carbon monoxide and the insurer.
 - **A simulation** (a pure, unit-tested thermal model): the fire, the draught along the path in both directions, the bench's cross-section, the room and its house, four starting points and twelve scenarios.
 - **Ten A3 explanatory sheets** generated from the same dimensions as the 3D model and from the model's results, with overall sizes only, each marked as not for construction.
-- **A spoken guide** comes last, once the owner has seen the lab.
+- **A spoken guide** in both languages: the scripts in `narration/`, the audio in `public/audio/`, in a local voice.
 
 ## What is real and what is not
 

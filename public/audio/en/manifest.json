@@ -1,0 +1,3185 @@
+{
+  "lang": "en",
+  "model": "qwen3-tts-1.7B",
+  "generatedAt": "2026-11-03T12:11:01.220Z",
+  "voiceLabel": {
+    "fr": "Voix de synthèse",
+    "en": "Synthetic voice"
+  },
+  "totalSeconds": 1250.98,
+  "segments": [
+    {
+      "id": "intro",
+      "scope": "intro",
+      "title": "About the lab",
+      "scene": "homestead",
+      "file": "intro.mp3",
+      "duration": 129.82,
+      "chars": 2211,
+      "hash": "ac4efc2800aab165",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.9,
+          "text": "Picture a night in January."
+        },
+        {
+          "t0": 1.9,
+          "t1": 5.5,
+          "text": "Outside it is snowing, and the fire has been out for hours."
+        },
+        {
+          "t0": 5.5,
+          "t1": 6.38,
+          "text": "The room has cooled…"
+        },
+        {
+          "t0": 6.38,
+          "t1": 10.26,
+          "text": "and yet you lay your hand on a bench of earth, and it is still warm."
+        },
+        {
+          "t0": 10.26,
+          "t1": 12.8,
+          "text": "How can an evening’s fire last like that?"
+        },
+        {
+          "t0": 12.8,
+          "t1": 15.56,
+          "text": "Let’s follow one small breath of cold air."
+        },
+        {
+          "t0": 15.56,
+          "t1": 18.72,
+          "text": "It slips into an open tube, where the wood stands upright."
+        },
+        {
+          "t0": 18.72,
+          "t1": 23.16,
+          "text": "Pulled sideways, it rushes into the fire, and the flame lies down with it."
+        },
+        {
+          "t0": 23.16,
+          "t1": 27.32,
+          "text": "Burning hot now, it climbs an insulated chimney, where the smoke finishes burning."
+        },
+        {
+          "t0": 27.32,
+          "t1": 31.88,
+          "text": "Then it falls back down the side of a steel drum, and leaves it a good share of its heat."
+        },
+        {
+          "t0": 31.88,
+          "t1": 33.62,
+          "text": "That drum warms the room straight away."
+        },
+        {
+          "t0": 33.62,
+          "t1": 38.1,
+          "text": "But our breath of air is not done: now it crawls under the bench."
+        },
+        {
+          "t0": 38.1,
+          "t1": 41.4,
+          "text": "Nine metres of duct, nearly three tonnes of earth."
+        },
+        {
+          "t0": 41.4,
+          "t1": 46.38,
+          "text": "It cools there, and its heat climbs towards the seat, slowly, even once the flame is dead."
+        },
+        {
+          "t0": 46.38,
+          "t1": 50.72,
+          "text": "And off it goes through the roof, with just enough left to make the chimney draw."
+        },
+        {
+          "t0": 50.72,
+          "t1": 55.28,
+          "text": "That is the whole story: a breath of air, a fire lying down, a drum, a bench…"
+        },
+        {
+          "t0": 55.28,
+          "t1": 56.82,
+          "text": "and a hand on warm earth."
+        },
+        {
+          "t0": 56.82,
+          "t1": 60.64,
+          "text": "Which leaves the real question: two fires a day, for which house?"
+        },
+        {
+          "t0": 60.64,
+          "t1": 66.04,
+          "text": "Because a fire, here, is a tended session of two to four hours, feeding the tube."
+        },
+        {
+          "t0": 66.04,
+          "t1": 67.78,
+          "text": "Not an armful and away!"
+        },
+        {
+          "t0": 67.78,
+          "t1": 74.26,
+          "text": "A few landmarks: four views, the house, the room, the core and the bench."
+        },
+        {
+          "t0": 74.26,
+          "t1": 77.52,
+          "text": "Click on anything: its sheet opens, and you can hear its story."
+        },
+        {
+          "t0": 77.52,
+          "t1": 82.28,
+          "text": "One guide tells how a mason raises it, another what must be true before the first fire."
+        },
+        {
+          "t0": 82.28,
+          "t1": 87.66,
+          "text": "The simulation runs the day, plays twelve scenarios, and its Thermal view colours the heat."
+        },
+        {
+          "t0": 87.66,
+          "t1": 90.45,
+          "text": "Six lessons, with quizzes, explain the physics."
+        },
+        {
+          "t0": 90.45,
+          "t1": 93.02,
+          "text": "Ten sheets gather the drawings."
+        },
+        {
+          "t0": 93.02,
+          "t1": 97.84,
+          "text": "One last thing: this lab is an educational reconstruction, of a generic machine."
+        },
+        {
+          "t0": 97.84,
+          "t1": 100.5,
+          "text": "It explains, and it gives no plan to build from."
+        },
+        {
+          "t0": 100.5,
+          "t1": 106.32,
+          "text": "Unless a source is quoted, the figures come from our simulation: calculations, not measurements."
+        },
+        {
+          "t0": 106.32,
+          "t1": 108.7,
+          "text": "The Sources panel says who said what."
+        },
+        {
+          "t0": 108.7,
+          "t1": 110.54,
+          "text": "How much of the wood’s heat stays in the house?"
+        },
+        {
+          "t0": 110.54,
+          "t1": 115.52,
+          "text": "It finds about seventy-eight per cent, and we found no independent test of such a machine."
+        },
+        {
+          "t0": 115.52,
+          "t1": 120.9,
+          "text": "One warning, just one: fire and carbon monoxide can kill; before any project, an alarm,"
+        },
+        {
+          "t0": 120.9,
+          "t1": 122.86,
+          "text": "your insurer, and the law."
+        },
+        {
+          "t0": 122.86,
+          "t1": 127,
+          "text": "And no model, ours included, can say a real installation is safe."
+        },
+        {
+          "t0": 127,
+          "t1": 129.82,
+          "text": "Now, make yourself at home: the bench is still warm!"
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 10.26,
+          "do": {
+            "frame": [
+              "house-shell"
+            ]
+          }
+        },
+        {
+          "t": 15.56,
+          "do": {
+            "scene": "fire-core"
+          }
+        },
+        {
+          "t": 18.72,
+          "do": {
+            "frame": [
+              "burn-tunnel"
+            ]
+          }
+        },
+        {
+          "t": 23.16,
+          "do": {
+            "frame": [
+              "heat-riser"
+            ]
+          }
+        },
+        {
+          "t": 27.32,
+          "do": {
+            "frame": [
+              "downdraft-annulus"
+            ]
+          }
+        },
+        {
+          "t": 31.88,
+          "do": {
+            "scene": "living-room"
+          }
+        },
+        {
+          "t": 33.62,
+          "do": {
+            "frame": [
+              "cob-bench"
+            ]
+          }
+        },
+        {
+          "t": 38.1,
+          "do": {
+            "scene": "bench-section"
+          }
+        },
+        {
+          "t": 38.1,
+          "do": {
+            "cutaway": true
+          }
+        },
+        {
+          "t": 46.38,
+          "do": {
+            "cutaway": false
+          }
+        },
+        {
+          "t": 46.38,
+          "do": {
+            "scene": "homestead"
+          }
+        },
+        {
+          "t": 50.72,
+          "do": {
+            "frame": [
+              "chimney-cap"
+            ]
+          }
+        },
+        {
+          "t": 56.82,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 77.52,
+          "do": {
+            "mode": "assembly"
+          }
+        },
+        {
+          "t": 79.64,
+          "do": {
+            "mode": "install"
+          }
+        },
+        {
+          "t": 82.28,
+          "do": {
+            "mode": "sim"
+          }
+        },
+        {
+          "t": 87.66,
+          "do": {
+            "mode": "lessons"
+          }
+        },
+        {
+          "t": 90.45,
+          "do": {
+            "mode": "plans"
+          }
+        },
+        {
+          "t": 93.02,
+          "do": {
+            "mode": "explore"
+          }
+        },
+        {
+          "t": 100.5,
+          "do": {
+            "scene": "homestead"
+          }
+        },
+        {
+          "t": 127,
+          "do": {
+            "select": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene-homestead",
+      "scope": "scene:homestead",
+      "title": "Two fires a day: for which house?",
+      "scene": "homestead",
+      "file": "scene-homestead.mp3",
+      "duration": 40.08,
+      "chars": 691,
+      "hash": "83a32929413a954f",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.94,
+          "text": "A little house at the edge of the forest, under the snow."
+        },
+        {
+          "t0": 2.94,
+          "t1": 6.74,
+          "text": "Inside, a J-tube mass heater, often called a rocket."
+        },
+        {
+          "t0": 6.74,
+          "t1": 13.8,
+          "text": "Same name, another machine: the little rocket cook stove belongs outdoors, and a mass heater has a chimney."
+        },
+        {
+          "t0": 13.8,
+          "t1": 16.36,
+          "text": "There it is, right at the top, above the ridge."
+        },
+        {
+          "t0": 16.36,
+          "t1": 19.84,
+          "text": "Beside it, the woodshed and a whole season of wood."
+        },
+        {
+          "t0": 19.84,
+          "t1": 22.62,
+          "text": "Further off, the neighbour and that grey column."
+        },
+        {
+          "t0": 22.62,
+          "t1": 25.8,
+          "text": "You read it everywhere: eighty to ninety per cent less wood."
+        },
+        {
+          "t0": 25.8,
+          "t1": 29.46,
+          "text": "That does not balance from the stove alone: insulation does most of it!"
+        },
+        {
+          "t0": 29.46,
+          "t1": 33.3,
+          "text": "Here, about twelve and a half kilos a day hold twenty degrees."
+        },
+        {
+          "t0": 33.3,
+          "t1": 37.06,
+          "text": "If the house lost nearly three times as much, it would take thirty-six."
+        },
+        {
+          "t0": 37.06,
+          "t1": 40.08,
+          "text": "The hero of this story does not smoke: it is the walls."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 2.94,
+          "do": {
+            "frame": [
+              "house-shell"
+            ]
+          }
+        },
+        {
+          "t": 13.8,
+          "do": {
+            "frame": [
+              "chimney-cap"
+            ]
+          }
+        },
+        {
+          "t": 16.36,
+          "do": {
+            "frame": [
+              "woodshed",
+              "cordwood-stack"
+            ]
+          }
+        },
+        {
+          "t": 19.84,
+          "do": {
+            "frame": [
+              "smoky-neighbour"
+            ]
+          }
+        },
+        {
+          "t": 22.62,
+          "do": {
+            "home": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene-living-room",
+      "scope": "scene:living-room",
+      "title": "The drum at once, the bench later",
+      "scene": "living-room",
+      "file": "scene-living-room.mp3",
+      "duration": 36.32,
+      "chars": 646,
+      "hash": "e8b4a45aa98ef672",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.6,
+          "text": "Let’s go in: here is the room where people live."
+        },
+        {
+          "t0": 3.6,
+          "t1": 7.5,
+          "text": "The drum, first, radiating as soon as the fire catches."
+        },
+        {
+          "t0": 7.5,
+          "t1": 10.66,
+          "text": "The bench runs along two walls, with its backrest."
+        },
+        {
+          "t0": 10.66,
+          "t1": 15.28,
+          "text": "The chimney rises towards the roof, and here are the two alarms, each for its own danger."
+        },
+        {
+          "t0": 15.28,
+          "t1": 17.86,
+          "text": "The stone wall, for its part, keeps its share."
+        },
+        {
+          "t0": 17.86,
+          "t1": 19.38,
+          "text": "Let’s say it plainly."
+        },
+        {
+          "t0": 19.38,
+          "t1": 22.6,
+          "text": "The drum gives about twice the bench’s heat, in great bursts."
+        },
+        {
+          "t0": 22.6,
+          "t1": 26.48,
+          "text": "The bench gives a little, day and night: three to five hundred watts."
+        },
+        {
+          "t0": 26.48,
+          "t1": 28.34,
+          "text": "It does not carry the house alone: it smooths."
+        },
+        {
+          "t0": 28.34,
+          "t1": 31.38,
+          "text": "So the room runs from seventeen to twenty-four degrees."
+        },
+        {
+          "t0": 31.38,
+          "t1": 36.32,
+          "text": "To see this heat in colour, the Thermal view button is in the Simulation, under the hour slider."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 3.6,
+          "do": {
+            "frame": [
+              "steel-drum"
+            ]
+          }
+        },
+        {
+          "t": 7.5,
+          "do": {
+            "frame": [
+              "cob-bench",
+              "bench-backrest"
+            ]
+          }
+        },
+        {
+          "t": 10.66,
+          "do": {
+            "frame": [
+              "chimney-flue"
+            ]
+          }
+        },
+        {
+          "t": 12.2,
+          "do": {
+            "frame": [
+              "co-alarm",
+              "smoke-alarm"
+            ]
+          }
+        },
+        {
+          "t": 15.28,
+          "do": {
+            "frame": [
+              "inner-stone-wall"
+            ]
+          }
+        },
+        {
+          "t": 17.86,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 17.86,
+          "do": {
+            "cutaway": true
+          }
+        },
+        {
+          "t": 28.34,
+          "do": {
+            "cutaway": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene-fire-core",
+      "scope": "scene:fire-core",
+      "title": "Where it burns, and which way it goes",
+      "scene": "fire-core",
+      "file": "scene-fire-core.mp3",
+      "duration": 33.52,
+      "chars": 553,
+      "hash": "418203a4899ad035",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.68,
+          "text": "Still in section, and this time right up close to the fire."
+        },
+        {
+          "t0": 3.68,
+          "t1": 8.36,
+          "text": "The wood stands upright in the tube, and the flame lies down in the tunnel."
+        },
+        {
+          "t0": 8.36,
+          "t1": 11.06,
+          "text": "The smoke finishes burning in the heat riser."
+        },
+        {
+          "t0": 11.06,
+          "t1": 15.78,
+          "text": "Under the lid, the gases turn right round, then they fall back along the drum."
+        },
+        {
+          "t0": 15.78,
+          "t1": 17.6,
+          "text": "But what makes all this draw?"
+        },
+        {
+          "t0": 17.6,
+          "t1": 19.02,
+          "text": "Everyone blames the riser."
+        },
+        {
+          "t0": 19.02,
+          "t1": 19.38,
+          "text": "Wrong!"
+        },
+        {
+          "t0": 19.38,
+          "t1": 24.42,
+          "text": "At full fire, with the fall down the drum, it weighs in at just over one pascal."
+        },
+        {
+          "t0": 24.42,
+          "t1": 26.28,
+          "text": "The chimney, nearly fifteen."
+        },
+        {
+          "t0": 26.28,
+          "t1": 31.26,
+          "text": "Let it go cold, and the flow runs backwards: the fire does not turn it alone."
+        },
+        {
+          "t0": 31.26,
+          "t1": 33.52,
+          "text": "The scenario The fire refuses shows you."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 3.68,
+          "do": {
+            "frame": [
+              "feed-tube"
+            ]
+          }
+        },
+        {
+          "t": 5.72,
+          "do": {
+            "frame": [
+              "burn-tunnel"
+            ]
+          }
+        },
+        {
+          "t": 8.36,
+          "do": {
+            "frame": [
+              "heat-riser"
+            ]
+          }
+        },
+        {
+          "t": 11.06,
+          "do": {
+            "frame": [
+              "top-gap"
+            ]
+          }
+        },
+        {
+          "t": 13.76,
+          "do": {
+            "frame": [
+              "downdraft-annulus"
+            ]
+          }
+        },
+        {
+          "t": 15.78,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 15.78,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 26.28,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene-bench-section",
+      "scope": "scene:bench-section",
+      "title": "Where the heat goes",
+      "scene": "bench-section",
+      "file": "scene-bench-section.mp3",
+      "duration": 39.52,
+      "chars": 683,
+      "hash": "c69d77e8e0cef666",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.84,
+          "text": "A slice of bench, greatly magnified."
+        },
+        {
+          "t0": 2.84,
+          "t1": 5.78,
+          "text": "The start of the duct and its end, side by side."
+        },
+        {
+          "t0": 5.78,
+          "t1": 10.94,
+          "text": "All around, the earth and its stones, then the plaster, the skin you touch."
+        },
+        {
+          "t0": 10.94,
+          "t1": 13.4,
+          "text": "Further on, the tee, where the path climbs."
+        },
+        {
+          "t0": 13.4,
+          "t1": 15.72,
+          "text": "And the pebble bench, the other school."
+        },
+        {
+          "t0": 15.72,
+          "t1": 19.78,
+          "text": "These tints are false colour: at sixty degrees, earth does not glow."
+        },
+        {
+          "t0": 19.78,
+          "t1": 24.04,
+          "text": "An hour passes here every second, and the day breathes before your eyes."
+        },
+        {
+          "t0": 24.04,
+          "t1": 27.67,
+          "text": "Heat leaves the duct, where the earth climbs to sixty-four degrees."
+        },
+        {
+          "t0": 27.67,
+          "t1": 30.74,
+          "text": "It rises, slowly, and carries on once the flame is dead."
+        },
+        {
+          "t0": 30.74,
+          "t1": 34.6,
+          "text": "The seat is warmest one to two hours after the flame, at thirty-two degrees."
+        },
+        {
+          "t0": 34.6,
+          "t1": 39.52,
+          "text": "Then it gives that heat back, gently, the whole night through: this is the wonder of the lab."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 2.84,
+          "do": {
+            "frame": [
+              "duct-hot-run",
+              "duct-cold-run"
+            ]
+          }
+        },
+        {
+          "t": 5.78,
+          "do": {
+            "frame": [
+              "cob-casing",
+              "stone-filler"
+            ]
+          }
+        },
+        {
+          "t": 8.18,
+          "do": {
+            "frame": [
+              "earthen-plaster"
+            ]
+          }
+        },
+        {
+          "t": 10.94,
+          "do": {
+            "frame": [
+              "chimney-tee"
+            ]
+          }
+        },
+        {
+          "t": 13.4,
+          "do": {
+            "frame": [
+              "pebble-section"
+            ]
+          }
+        },
+        {
+          "t": 15.72,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 15.72,
+          "do": {
+            "cutaway": true
+          }
+        },
+        {
+          "t": 34.6,
+          "do": {
+            "cutaway": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-house-shell",
+      "scope": "part:house-shell",
+      "title": "The insulated house",
+      "scene": "homestead",
+      "file": "part-house-shell.mp3",
+      "duration": 19.2,
+      "chars": 320,
+      "hash": "89ada28e387978d9",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.92,
+          "text": "The real wood-saver is not a stove: it is these walls."
+        },
+        {
+          "t0": 3.92,
+          "t1": 8.52,
+          "text": "We take them to lose a hundred and six watts per degree of difference with the outside."
+        },
+        {
+          "t0": 8.52,
+          "t1": 14.6,
+          "text": "Same machine, same wood, at three hundred watts: the room stays between six and fourteen degrees."
+        },
+        {
+          "t0": 14.6,
+          "t1": 19.2,
+          "text": "And every kilowatt saved here lasts as long as the house, without a single log."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-chimney-cap",
+      "scope": "part:chimney-cap",
+      "title": "Chimney cap",
+      "scene": "homestead",
+      "file": "part-chimney-cap.mp3",
+      "duration": 19.92,
+      "chars": 359,
+      "hash": "8f5177406f70487c",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.2,
+          "text": "The end of the journey."
+        },
+        {
+          "t0": 1.2,
+          "t1": 4.92,
+          "text": "Our breath of air leaves here at about ninety degrees at full fire."
+        },
+        {
+          "t0": 4.92,
+          "t1": 8.62,
+          "text": "Smoke that is white and short, in a hard frost, is often steam."
+        },
+        {
+          "t0": 8.62,
+          "t1": 11.44,
+          "text": "Grey and lingering, it is fuel going to waste."
+        },
+        {
+          "t0": 11.44,
+          "t1": 14.14,
+          "text": "But a clear cap says nothing of carbon monoxide."
+        },
+        {
+          "t0": 14.14,
+          "t1": 16.6,
+          "text": "And the plume in this picture follows our sums."
+        },
+        {
+          "t0": 16.6,
+          "t1": 19.92,
+          "text": "The cap keeps out rain and birds, with no mechanism at all."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 4.92,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-sweep-access",
+      "scope": "part:sweep-access",
+      "title": "Sweep’s access",
+      "scene": "homestead",
+      "file": "part-sweep-access.mp3",
+      "duration": 15.04,
+      "chars": 253,
+      "hash": "79ab7382154c9e57",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.8,
+          "text": "A duct under a bench needs thinking through for the sweep."
+        },
+        {
+          "t0": 3.8,
+          "t1": 8.26,
+          "text": "Rules vary by country, and a common one asks for two sweeps a year."
+        },
+        {
+          "t0": 8.26,
+          "t1": 11.42,
+          "text": "And nothing proves these machines escape flue fires."
+        },
+        {
+          "t0": 11.42,
+          "t1": 15.04,
+          "text": "Many sweeps have never seen one: find yours before you picture the bench."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-outside-air-inlet",
+      "scope": "part:outside-air-inlet",
+      "title": "Outside air inlet",
+      "scene": "homestead",
+      "file": "part-outside-air-inlet.mp3",
+      "duration": 16,
+      "chars": 287,
+      "hash": "20439e04456c4ae7",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.16,
+          "text": "The fire breathes!"
+        },
+        {
+          "t0": 1.16,
+          "t1": 7.56,
+          "text": "About forty-six cubic metres of air an hour, as the mean of a fire: that air has to come from somewhere."
+        },
+        {
+          "t0": 7.56,
+          "t1": 11.08,
+          "text": "This inlet is meant to keep the fire from pulling on the rest of the house."
+        },
+        {
+          "t0": 11.08,
+          "t1": 12.29,
+          "text": "Our model has none."
+        },
+        {
+          "t0": 12.29,
+          "t1": 16,
+          "text": "Its most common failure: someone who felt a draught, and closed it."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 7.56,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-woodshed",
+      "scope": "part:woodshed",
+      "title": "Woodshed",
+      "scene": "homestead",
+      "file": "part-woodshed.mp3",
+      "duration": 14.08,
+      "chars": 250,
+      "hash": "56110819fd8e00d9",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.26,
+          "text": "A roof for the rain, open sides for the wind, and a year or more."
+        },
+        {
+          "t0": 4.26,
+          "t1": 10.46,
+          "text": "Water in the wood is paid for in heat: at thirty per cent moisture, a kilo gives a fifth less than at fifteen."
+        },
+        {
+          "t0": 10.46,
+          "t1": 14.08,
+          "text": "And this year’s wood is stacked beside last year’s, never in front of it."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-cordwood-stack",
+      "scope": "part:cordwood-stack",
+      "title": "Split-wood stack",
+      "scene": "homestead",
+      "file": "part-cordwood-stack.mp3",
+      "duration": 13.68,
+      "chars": 238,
+      "hash": "1a8c1000a8727ac7",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.42,
+          "text": "A whole season, to scale: nearly two tonnes of wood, beside the basket of a single day."
+        },
+        {
+          "t0": 5.42,
+          "t1": 7.72,
+          "text": "It goes down as the fires go by."
+        },
+        {
+          "t0": 7.72,
+          "t1": 12.06,
+          "text": "This is the most honest argument in the lab: it rests on no announced efficiency."
+        },
+        {
+          "t0": 12.06,
+          "t1": 13.68,
+          "text": "What has been burnt can be weighed!"
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-moisture-meter",
+      "scope": "part:moisture-meter",
+      "title": "Moisture meter",
+      "scene": "homestead",
+      "file": "part-moisture-meter.mp3",
+      "duration": 16.4,
+      "chars": 286,
+      "hash": "7dad98229e696190",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.18,
+          "text": "A small box, two pins, a figure: the first gesture of the day."
+        },
+        {
+          "t0": 4.18,
+          "t1": 10.08,
+          "text": "At thirty per cent moisture, the same wood costs the room three degrees, and the monoxide more than triples."
+        },
+        {
+          "t0": 10.08,
+          "t1": 11.76,
+          "text": "The eye sees nothing of it."
+        },
+        {
+          "t0": 11.76,
+          "t1": 16.4,
+          "text": "The pins go in a freshly split face: the outside of a log dries well before its heart."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-kindling-block",
+      "scope": "part:kindling-block",
+      "title": "Kindling block",
+      "scene": "homestead",
+      "file": "part-kindling-block.mp3",
+      "duration": 14.56,
+      "chars": 266,
+      "hash": "1264d85863a00bc8",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 6.16,
+          "text": "An ordinary log will not fit in here: it wants under eight centimetres across, says a French manual."
+        },
+        {
+          "t0": 6.16,
+          "t1": 9.56,
+          "text": "So there has to be a hatchet, a block at the right height, and a habit."
+        },
+        {
+          "t0": 9.56,
+          "t1": 11.58,
+          "text": "Nobody puts a figure on that work."
+        },
+        {
+          "t0": 11.58,
+          "t1": 14.56,
+          "text": "And the day’s wood is split before dark, not by lamplight."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-ash-bucket",
+      "scope": "part:ash-bucket",
+      "title": "Ash bucket",
+      "scene": "homestead",
+      "file": "part-ash-bucket.mp3",
+      "duration": 18.32,
+      "chars": 307,
+      "hash": "187cd4f06407d8c8",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.3,
+          "text": "A metal bucket, a lid, and it waits outside."
+        },
+        {
+          "t0": 3.3,
+          "t1": 8.02,
+          "text": "One builder weighed it: twenty-six kilos of wood, two hundred grams of ash."
+        },
+        {
+          "t0": 8.02,
+          "t1": 9.04,
+          "text": "So little!"
+        },
+        {
+          "t0": 9.04,
+          "t1": 14.78,
+          "text": "But ash covers embers that stay hot for a long time: nobody gives a figure for how long, and neither do we."
+        },
+        {
+          "t0": 14.78,
+          "t1": 18.32,
+          "text": "So this bucket goes neither in a garage, nor against a wooden wall."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-coppice-lot",
+      "scope": "part:coppice-lot",
+      "title": "Coppice",
+      "scene": "homestead",
+      "file": "part-coppice-lot.mp3",
+      "duration": 18.04,
+      "chars": 308,
+      "hash": "fcfda07dc1a20278",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.2,
+          "text": "How much forest for a house?"
+        },
+        {
+          "t0": 2.2,
+          "t1": 5.28,
+          "text": "No source gives this coppice’s yield: no hectares here."
+        },
+        {
+          "t0": 5.28,
+          "t1": 10.92,
+          "text": "Against an old stove delivering thirty-five per cent, this machine saves fifty-five per cent of the wood."
+        },
+        {
+          "t0": 10.92,
+          "t1": 14.32,
+          "text": "Against a good stove at seventy-two, only seven."
+        },
+        {
+          "t0": 14.32,
+          "t1": 18.04,
+          "text": "Insulate as well a house that lost three times as much: eighty-five."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-smoky-neighbour",
+      "scope": "part:smoky-neighbour",
+      "title": "Neighbour’s chimney",
+      "scene": "homestead",
+      "file": "part-smoky-neighbour.mp3",
+      "duration": 18.16,
+      "chars": 308,
+      "hash": "30e63b0b1ad6bfd8",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 6.34,
+          "text": "The neighbour’s wood is no worse: it is the stove, on a slow burn, keeping its heat by cutting the air."
+        },
+        {
+          "t0": 6.34,
+          "t1": 11.72,
+          "text": "A masonry heater made to smoulder, in a laboratory: three and a half times the monoxide."
+        },
+        {
+          "t0": 11.72,
+          "t1": 15.66,
+          "text": "To cut your wood by ten, this is the stove you would have to replace."
+        },
+        {
+          "t0": 15.66,
+          "t1": 18.16,
+          "text": "Let’s not judge: it is set to last the night."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-steel-drum",
+      "scope": "part:steel-drum",
+      "title": "The two-hundred-litre drum",
+      "scene": "living-room",
+      "file": "part-steel-drum.mp3",
+      "duration": 24.08,
+      "chars": 415,
+      "hash": "05269a1923a8711d",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.04,
+          "text": "A stock drum, upside down over the fire."
+        },
+        {
+          "t0": 3.04,
+          "t1": 8.9,
+          "text": "Our breath of air falls into it, and gives up its heat to a wall barely more than a millimetre thick."
+        },
+        {
+          "t0": 8.9,
+          "t1": 14.12,
+          "text": "It keeps almost nothing: what it receives, it gives back, and a cold room warms at once."
+        },
+        {
+          "t0": 14.12,
+          "t1": 16.3,
+          "text": "About twenty-two kilowatt-hours a day."
+        },
+        {
+          "t0": 16.3,
+          "t1": 20.08,
+          "text": "Its lid climbs to a hundred and eighty degrees, and touched, it burns."
+        },
+        {
+          "t0": 20.08,
+          "t1": 24.08,
+          "text": "A recovered drum, with its residues and paint, is a hazard all by itself."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "xray": true
+          }
+        },
+        {
+          "t": 8.9,
+          "do": {
+            "xray": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-cob-bench",
+      "scope": "part:cob-bench",
+      "title": "The cob bench",
+      "scene": "living-room",
+      "file": "part-cob-bench.mp3",
+      "duration": 23.36,
+      "chars": 427,
+      "hash": "ca457986b78c4ffc",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.94,
+          "text": "Nearly three tonnes of earth and stone, around nine metres of duct."
+        },
+        {
+          "t0": 3.94,
+          "t1": 8.86,
+          "text": "Heat crosses it slowly, and the seat runs from twenty-five to thirty-two degrees."
+        },
+        {
+          "t0": 8.86,
+          "t1": 12.25,
+          "text": "Seven hours after the evening fire it is still at nearly twenty-eight,"
+        },
+        {
+          "t0": 12.3,
+          "t1": 14.78,
+          "text": "when the room has fallen to eighteen and a half."
+        },
+        {
+          "t0": 14.78,
+          "t1": 18.28,
+          "text": "A blanket on the bench, a book, and January can wait outside!"
+        },
+        {
+          "t0": 18.28,
+          "t1": 23.36,
+          "text": "On this sheet, switch on Thermal view and Section: the colour climbs from the duct to the seat."
+        }
+      ],
+      "cues": [
+        {
+          "t": 3.94,
+          "do": {
+            "cutaway": true
+          }
+        },
+        {
+          "t": 8.86,
+          "do": {
+            "cutaway": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-bench-backrest",
+      "scope": "part:bench-backrest",
+      "title": "The backrest",
+      "scene": "living-room",
+      "file": "part-bench-backrest.mp3",
+      "duration": 16.72,
+      "chars": 249,
+      "hash": "1bebae3c1a3daa16",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.02,
+          "text": "A warm back: that is its whole job."
+        },
+        {
+          "t0": 3.02,
+          "t1": 7.18,
+          "text": "The backrest has no duct in it, and warms by what it touches."
+        },
+        {
+          "t0": 7.18,
+          "t1": 12.4,
+          "text": "That is comfort, and comfort is no small thing, on a machine you live beside."
+        },
+        {
+          "t0": 12.4,
+          "t1": 16.72,
+          "text": "Behind it, the bench loses nearly a kilowatt-hour a day through the wall."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-manifold",
+      "scope": "part:manifold",
+      "title": "The manifold",
+      "scene": "living-room",
+      "file": "part-manifold.mp3",
+      "duration": 16.48,
+      "chars": 253,
+      "hash": "1c40259b0937c423",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.12,
+          "text": "At the foot of the drum, our breath of air makes a quarter turn,"
+        },
+        {
+          "t0": 3.12,
+          "t1": 6.64,
+          "text": "at about two hundred and fifty degrees at full fire."
+        },
+        {
+          "t0": 6.64,
+          "t1": 9.86,
+          "text": "The turn slows it, and fly ash falls there."
+        },
+        {
+          "t0": 9.86,
+          "t1": 13.64,
+          "text": "A plain bend would clog, and be hard to clean."
+        },
+        {
+          "t0": 13.64,
+          "t1": 16.48,
+          "text": "This box gets vacuumed cold, at every sweep."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 13.64,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-manifold-cleanout",
+      "scope": "part:manifold-cleanout",
+      "title": "Manifold cleanout",
+      "scene": "living-room",
+      "file": "part-manifold-cleanout.mp3",
+      "duration": 15.52,
+      "chars": 262,
+      "hash": "48163ee1a92bda08",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.08,
+          "text": "A round, gas-tight door to take out the fly ash, and only when cold."
+        },
+        {
+          "t0": 4.08,
+          "t1": 7.04,
+          "text": "At full fire, a leak here steals draught."
+        },
+        {
+          "t0": 7.04,
+          "t1": 10.32,
+          "text": "But if the flow turns back, the same leak lets gas out into the room."
+        },
+        {
+          "t0": 10.32,
+          "t1": 13.42,
+          "text": "Its silliest failure: a door not properly closed."
+        },
+        {
+          "t0": 13.42,
+          "t1": 15.52,
+          "text": "Hence its place, in plain view."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-chimney-flue",
+      "scope": "part:chimney-flue",
+      "title": "The chimney",
+      "scene": "living-room",
+      "file": "part-chimney-flue.mp3",
+      "duration": 18.8,
+      "chars": 315,
+      "hash": "a233cc4195e37ec0",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.92,
+          "text": "The real engine of the machine, as long as it stays warm: hence its insulation."
+        },
+        {
+          "t0": 4.92,
+          "t1": 6.22,
+          "text": "Is taller better?"
+        },
+        {
+          "t0": 6.22,
+          "t1": 10.36,
+          "text": "At eight metres it pulls useless air, and the efficiency falls to seventy per cent."
+        },
+        {
+          "t0": 10.36,
+          "t1": 14.16,
+          "text": "Lower, at two metres seventy, it climbs to eighty-seven…"
+        },
+        {
+          "t0": 14.16,
+          "t1": 16.08,
+          "text": "but the margin melts away."
+        },
+        {
+          "t0": 16.08,
+          "t1": 18.8,
+          "text": "A fine efficiency can hide a more fragile heater."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-chimney-cleanout",
+      "scope": "part:chimney-cleanout",
+      "title": "Chimney-foot cleanout",
+      "scene": "living-room",
+      "file": "part-chimney-cleanout.mp3",
+      "duration": 14.72,
+      "chars": 241,
+      "hash": "efa58d0141d9af58",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.8,
+          "text": "Under the tee, a small closed cap."
+        },
+        {
+          "t0": 2.8,
+          "t1": 6.68,
+          "text": "Everything that falls stops here: soot, ash, condensate."
+        },
+        {
+          "t0": 6.68,
+          "t1": 11.64,
+          "text": "Opened at full fire, it would give the room’s air a short cut, and the draught would collapse."
+        },
+        {
+          "t0": 11.64,
+          "t1": 14.72,
+          "text": "Sticky black deposit tells of a flue running too cold."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-ceiling-crossing",
+      "scope": "part:ceiling-crossing",
+      "title": "Ceiling crossing",
+      "scene": "living-room",
+      "file": "part-ceiling-crossing.mp3",
+      "duration": 14.8,
+      "chars": 257,
+      "hash": "07c0868f8132fdda",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.1,
+          "text": "The place where a house catches fire."
+        },
+        {
+          "t0": 2.1,
+          "t1": 6.26,
+          "text": "The greater risk is not the everyday gas: it is a flue fire."
+        },
+        {
+          "t0": 6.26,
+          "t1": 10.84,
+          "text": "The safety distance is in the flue’s own instructions, and it is not to be reduced."
+        },
+        {
+          "t0": 10.84,
+          "t1": 14.8,
+          "text": "Once the ceiling is closed, a small inspection hatch is well worth having."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-hearth-slab",
+      "scope": "part:hearth-slab",
+      "title": "The slab",
+      "scene": "living-room",
+      "file": "part-hearth-slab.mp3",
+      "duration": 17.2,
+      "chars": 260,
+      "hash": "cc88e3d6acd9b3c4",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.78,
+          "text": "Let’s lift everything: all that rises rests on this one part."
+        },
+        {
+          "t0": 4.78,
+          "t1": 10.52,
+          "text": "This heater is no object set down, it is masonry, nearly three and a half tonnes."
+        },
+        {
+          "t0": 10.52,
+          "t1": 17.2,
+          "text": "Under the bench, about six hundred and fifty kilos per square metre: three times what a light floor is designed for!"
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "explode": 0.5
+          }
+        },
+        {
+          "t": 4.78,
+          "do": {
+            "explode": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-heat-shield",
+      "scope": "part:heat-shield",
+      "title": "Heat shield",
+      "scene": "living-room",
+      "file": "part-heat-shield.mp3",
+      "duration": 17.2,
+      "chars": 296,
+      "hash": "683c4285575dde94",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.18,
+          "text": "A plain steel sheet, and behind it, air."
+        },
+        {
+          "t0": 3.18,
+          "t1": 7.02,
+          "text": "The drum heats the wall beside it by radiation: the sheet takes it,"
+        },
+        {
+          "t0": 7.02,
+          "t1": 9.8,
+          "text": "and the passing air carries much of it away."
+        },
+        {
+          "t0": 9.8,
+          "t1": 13.9,
+          "text": "A thick slab of brick stuck to the wall ends up hot, and passes it on."
+        },
+        {
+          "t0": 13.9,
+          "t1": 17.2,
+          "text": "And a handsome sheet fixed straight to the wall hardly protects at all."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-co-alarm",
+      "scope": "part:co-alarm",
+      "title": "CO alarm",
+      "scene": "living-room",
+      "file": "part-co-alarm.mp3",
+      "duration": 26.48,
+      "chars": 457,
+      "hash": "af9922150e0a7aac",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 6.54,
+          "text": "A gas you cannot see, cannot smell, in a house where people sleep: that is why this little box is here."
+        },
+        {
+          "t0": 6.54,
+          "t1": 11.64,
+          "text": "It comes from a fire short of air, and above all from the embers, after the flame."
+        },
+        {
+          "t0": 11.64,
+          "t1": 14.8,
+          "text": "This alarm is essential, and it is not enough!"
+        },
+        {
+          "t0": 14.8,
+          "t1": 19.46,
+          "text": "According to the manuals, it can stay silent for two hours at thirty parts per million."
+        },
+        {
+          "t0": 19.46,
+          "t1": 21.72,
+          "text": "Health guidelines already refuse that level."
+        },
+        {
+          "t0": 21.72,
+          "t1": 24.42,
+          "text": "If it sounds: get out, open up, call for help."
+        },
+        {
+          "t0": 24.42,
+          "t1": 26.48,
+          "text": "And never silence it to finish the evening."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-smoke-alarm",
+      "scope": "part:smoke-alarm",
+      "title": "Smoke alarm",
+      "scene": "living-room",
+      "file": "part-smoke-alarm.mp3",
+      "duration": 16,
+      "chars": 291,
+      "hash": "8763d0ee98d8a6b5",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.54,
+          "text": "Another danger, another job."
+        },
+        {
+          "t0": 2.54,
+          "t1": 8.24,
+          "text": "This one spots the particles of a starting fire, and says nothing of carbon monoxide, which has no smoke."
+        },
+        {
+          "t0": 8.24,
+          "t1": 10.5,
+          "text": "Many countries require one in every home."
+        },
+        {
+          "t0": 10.5,
+          "t1": 14.7,
+          "text": "If it sounds at the season’s first fire, as the drum’s paint burns off, open the windows,"
+        },
+        {
+          "t0": 14.7,
+          "t1": 16,
+          "text": "and keep the battery in."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-ventilation-grille",
+      "scope": "part:ventilation-grille",
+      "title": "Ventilation grille",
+      "scene": "living-room",
+      "file": "part-ventilation-grille.mp3",
+      "duration": 18.4,
+      "chars": 300,
+      "hash": "49945dd370bccdf8",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.12,
+          "text": "It lets the cold in, so you are tempted to block it."
+        },
+        {
+          "t0": 3.12,
+          "t1": 3.48,
+          "text": "Don’t!"
+        },
+        {
+          "t0": 3.48,
+          "t1": 7.44,
+          "text": "After the fire the draught falls, and the embers carry on."
+        },
+        {
+          "t0": 7.44,
+          "t1": 12.36,
+          "text": "A kitchen fan depressurises the house, and the air looks for a way in: the flue."
+        },
+        {
+          "t0": 12.36,
+          "t1": 18.4,
+          "text": "In our scenario the monoxide climbs to sixty-three parts per million, and the alarm may stay silent."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-wood-basket",
+      "scope": "part:wood-basket",
+      "title": "The day’s basket",
+      "scene": "living-room",
+      "file": "part-wood-basket.mp3",
+      "duration": 15.12,
+      "chars": 263,
+      "hash": "5fd6b4d7f7e8d1b9",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.38,
+          "text": "One winter’s day: about twelve and a half kilos of split wood, fifty-two kilowatt-hours."
+        },
+        {
+          "t0": 5.38,
+          "t1": 9.28,
+          "text": "We count two sessions of two and a half hours, morning and evening."
+        },
+        {
+          "t0": 9.28,
+          "t1": 11.9,
+          "text": "It is not much, and it holds for this house."
+        },
+        {
+          "t0": 11.9,
+          "t1": 15.12,
+          "text": "At minus ten degrees, it would take nearly twenty-four kilos."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-kettle",
+      "scope": "part:kettle",
+      "title": "The kettle",
+      "scene": "living-room",
+      "file": "part-kettle.mp3",
+      "duration": 13.44,
+      "chars": 218,
+      "hash": "d3948050f53c1705",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.2,
+          "text": "The drum’s lid doubles as a hotplate."
+        },
+        {
+          "t0": 2.2,
+          "t1": 7.14,
+          "text": "Enough to boil water, but only during the fires: on waking, no tea!"
+        },
+        {
+          "t0": 7.14,
+          "t1": 10.52,
+          "text": "A warm habit, which teaches the hand that this spot burns."
+        },
+        {
+          "t0": 10.52,
+          "t1": 13.44,
+          "text": "A pot holder on a hook, and nothing flammable on top."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-flue-thermometer",
+      "scope": "part:flue-thermometer",
+      "title": "Flue thermometer",
+      "scene": "living-room",
+      "file": "part-flue-thermometer.mp3",
+      "duration": 16.64,
+      "chars": 330,
+      "hash": "bfcf5439ba895f0b",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.58,
+          "text": "The one instrument in the house."
+        },
+        {
+          "t0": 1.58,
+          "t1": 5.76,
+          "text": "Too hot, and the wood heats the sky; too cold, and the draught weakens."
+        },
+        {
+          "t0": 5.76,
+          "t1": 10.42,
+          "text": "A flue calculation would say eighty-two per cent here, four points more than the house keeps."
+        },
+        {
+          "t0": 10.42,
+          "t1": 13.58,
+          "text": "It sees neither the outdoor flue, nor the wall, nor the ground."
+        },
+        {
+          "t0": 13.58,
+          "t1": 16.64,
+          "text": "Every published figure above eighty per cent is such a calculation."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-bench-cushion",
+      "scope": "part:bench-cushion",
+      "title": "Cushion",
+      "scene": "living-room",
+      "file": "part-bench-cushion.mp3",
+      "duration": 14.64,
+      "chars": 248,
+      "hash": "5a51ef986e40ba78",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.56,
+          "text": "At thirty-two degrees a cushion has nothing to fear…"
+        },
+        {
+          "t0": 2.56,
+          "t1": 4.86,
+          "text": "and your back asks for more."
+        },
+        {
+          "t0": 4.86,
+          "t1": 7.76,
+          "text": "But it keeps for itself what the bench would give the room."
+        },
+        {
+          "t0": 7.76,
+          "t1": 12.48,
+          "text": "And a blanket forgotten all winter hides a crack: it comes off now and then."
+        },
+        {
+          "t0": 12.48,
+          "t1": 14.64,
+          "text": "Near the drum, no foam, ever."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-inner-stone-wall",
+      "scope": "part:inner-stone-wall",
+      "title": "The stone wall",
+      "scene": "living-room",
+      "file": "part-inner-stone-wall.mp3",
+      "duration": 16.56,
+      "chars": 292,
+      "hash": "5cd88da6f10c1e92",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.06,
+          "text": "Not everything happens in the bench."
+        },
+        {
+          "t0": 2.06,
+          "t1": 7.64,
+          "text": "Nearly seven tonnes of stone, more than the bench itself, and nobody paid for them for this heater."
+        },
+        {
+          "t0": 7.64,
+          "t1": 13.7,
+          "text": "Over a day this wall moves barely more than a degree, while the air around it changes by nearly seven."
+        },
+        {
+          "t0": 13.7,
+          "t1": 16.56,
+          "text": "A sheet of insulation over it, and it stops playing."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-feed-tube",
+      "scope": "part:feed-tube",
+      "title": "The feed tube",
+      "scene": "fire-core",
+      "file": "part-feed-tube.mp3",
+      "duration": 28.88,
+      "chars": 473,
+      "hash": "e96022c2197e2125",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.7,
+          "text": "The oddity of this machine: an open tube, which does not smoke as long as the draught holds."
+        },
+        {
+          "t0": 5.7,
+          "t1": 10.28,
+          "text": "Our breath of air comes in here, with the wood upright, only its foot burning."
+        },
+        {
+          "t0": 10.28,
+          "t1": 12.4,
+          "text": "No door: a rhythm."
+        },
+        {
+          "t0": 12.4,
+          "t1": 16.88,
+          "text": "This opening decides the efficiency, and no source gives a figure for it."
+        },
+        {
+          "t0": 16.88,
+          "t1": 23.4,
+          "text": "Wide open, our calculation falls to fifty-two per cent; nine tenths hidden, it climbs to eighty-eight."
+        },
+        {
+          "t0": 23.4,
+          "t1": 28.88,
+          "text": "If the draught fails, it sends smoke and flame back at whoever feeds it: you never take your eyes off it."
+        }
+      ],
+      "cues": [
+        {
+          "t": 5.7,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 12.4,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-feed-lid",
+      "scope": "part:feed-lid",
+      "title": "The feed lid",
+      "scene": "fire-core",
+      "file": "part-feed-lid.mp3",
+      "duration": 26.48,
+      "chars": 451,
+      "hash": "3babda450f0859b3",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.82,
+          "text": "Not a door: a lid laid on between two fires, so the house does not empty through the flue."
+        },
+        {
+          "t0": 4.82,
+          "t1": 6.48,
+          "text": "And a damper in the flue?"
+        },
+        {
+          "t0": 6.48,
+          "t1": 8.88,
+          "text": "There is none here, and here is why."
+        },
+        {
+          "t0": 8.88,
+          "t1": 12.94,
+          "text": "Shut over embers, it sends their monoxide back into the house."
+        },
+        {
+          "t0": 12.94,
+          "t1": 14.97,
+          "text": "Shut ten minutes after the last wood,"
+        },
+        {
+          "t0": 15.14,
+          "t1": 19.28,
+          "text": "our scenario passes the one-hour health guideline in thirty-eight minutes."
+        },
+        {
+          "t0": 19.28,
+          "t1": 23.4,
+          "text": "It would win a few points of efficiency: a bad evening costs far more!"
+        },
+        {
+          "t0": 23.4,
+          "t1": 26.48,
+          "text": "This lid follows the same rule: never over embers."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-fuel-sticks",
+      "scope": "part:fuel-sticks",
+      "title": "The sticks",
+      "scene": "fire-core",
+      "file": "part-fuel-sticks.mp3",
+      "duration": 15.28,
+      "chars": 250,
+      "hash": "b39cfa10baf65ccd",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.9,
+          "text": "The sticks stand upright, only their feet burn, and they slide down by themselves as they go."
+        },
+        {
+          "t0": 5.9,
+          "t1": 10.56,
+          "text": "So the waiting wood stays cold, a step from the chamber: that is the whole principle."
+        },
+        {
+          "t0": 10.56,
+          "t1": 15.28,
+          "text": "Natural wood and nothing else: not painted, not treated, no cardboard."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "explode": 0.5
+          }
+        },
+        {
+          "t": 5.9,
+          "do": {
+            "explode": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-burn-tunnel",
+      "scope": "part:burn-tunnel",
+      "title": "The burn tunnel",
+      "scene": "fire-core",
+      "file": "part-burn-tunnel.mp3",
+      "duration": 18.96,
+      "chars": 344,
+      "hash": "a5b5783ea98e83fc",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.34,
+          "text": "The image that made this machine famous: the flame lies down, and races sideways."
+        },
+        {
+          "t0": 5.34,
+          "t1": 9.08,
+          "text": "A fire in a hurry, drawn by a chimney at the far end of the path."
+        },
+        {
+          "t0": 9.08,
+          "t1": 12.9,
+          "text": "One builder announces a clean burn from five hundred and forty degrees."
+        },
+        {
+          "t0": 12.9,
+          "t1": 16.92,
+          "text": "Our calculation reads a mean of four hundred and sixty-seven, below that range."
+        },
+        {
+          "t0": 16.92,
+          "t1": 18.96,
+          "text": "A thermocouple in the flame would read more."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 9.08,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-ash-bed",
+      "scope": "part:ash-bed",
+      "title": "The ash bed",
+      "scene": "fire-core",
+      "file": "part-ash-bed.mp3",
+      "duration": 21.28,
+      "chars": 361,
+      "hash": "7de717ee4625e64f",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.8,
+          "text": "About a hundred grams of ash a day."
+        },
+        {
+          "t0": 2.8,
+          "t1": 6.14,
+          "text": "Beneath it, embers: here comes the most deceptive moment."
+        },
+        {
+          "t0": 6.14,
+          "t1": 8.08,
+          "text": "No more flame, it all looks over…"
+        },
+        {
+          "t0": 8.08,
+          "t1": 14.66,
+          "text": "and the monoxide in the flue gas is at its highest: about nine times full fire, as an order of magnitude."
+        },
+        {
+          "t0": 14.66,
+          "t1": 18.86,
+          "text": "In our model, as long as the flue stays warm and open, it leaves by the chimney."
+        },
+        {
+          "t0": 18.86,
+          "t1": 21.28,
+          "text": "A real machine also has its cracks and joints."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-heat-riser",
+      "scope": "part:heat-riser",
+      "title": "The heat riser",
+      "scene": "fire-core",
+      "file": "part-heat-riser.mp3",
+      "duration": 23.68,
+      "chars": 401,
+      "hash": "3782e2f7aa8de2da",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.74,
+          "text": "The hottest place in the house!"
+        },
+        {
+          "t0": 1.74,
+          "t1": 8.4,
+          "text": "Our breath of air climbs it, and the smoke finishes burning here, on three conditions: heat, air and time."
+        },
+        {
+          "t0": 8.4,
+          "t1": 11.86,
+          "text": "That is what sets this machine apart from a stove on a slow burn."
+        },
+        {
+          "t0": 11.86,
+          "t1": 12.94,
+          "text": "Clean, then?"
+        },
+        {
+          "t0": 12.94,
+          "t1": 18.32,
+          "text": "Nothing says so: our estimate gives six times the monoxide of a masonry heater in a laboratory."
+        },
+        {
+          "t0": 18.32,
+          "t1": 23.68,
+          "text": "Taller or shorter, our calculation mostly moves the heat around: more drum, less bench."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "xray": true
+          }
+        },
+        {
+          "t": 11.86,
+          "do": {
+            "xray": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-riser-insulation",
+      "scope": "part:riser-insulation",
+      "title": "Riser insulation",
+      "scene": "fire-core",
+      "file": "part-riser-insulation.mp3",
+      "duration": 15.76,
+      "chars": 254,
+      "hash": "5222543281ab4407",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.84,
+          "text": "Three materials for one job: keeping the fire hot."
+        },
+        {
+          "t0": 3.84,
+          "t1": 7.56,
+          "text": "An insulating brick, a fibre blanket, perlite."
+        },
+        {
+          "t0": 7.56,
+          "t1": 11.68,
+          "text": "Our model tries all three: within a point of efficiency of each other."
+        },
+        {
+          "t0": 11.68,
+          "t1": 15.76,
+          "text": "So the choice comes down to how it holds up, its weight, and health during the build."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-riser-sleeve",
+      "scope": "part:riser-sleeve",
+      "title": "The steel sleeve",
+      "scene": "fire-core",
+      "file": "part-riser-sleeve.mp3",
+      "duration": 16.24,
+      "chars": 254,
+      "hash": "73d358650e7d614d",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.18,
+          "text": "A plain rolled sheet, holding the insulation."
+        },
+        {
+          "t0": 3.18,
+          "t1": 7.66,
+          "text": "One designer notes that steel corrodes fast above seven hundred and sixty degrees."
+        },
+        {
+          "t0": 7.66,
+          "t1": 11.72,
+          "text": "So it stays on the cold side, at about two hundred."
+        },
+        {
+          "t0": 11.72,
+          "t1": 16.24,
+          "text": "What sees the flame does not rust, and what rusts does not see the flame."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-firebrick-base",
+      "scope": "part:firebrick-base",
+      "title": "The firebrick base",
+      "scene": "fire-core",
+      "file": "part-firebrick-base.mp3",
+      "duration": 14.56,
+      "chars": 236,
+      "hash": "1c607446238f0b85",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.8,
+          "text": "Fireclay, where the fire sits: the least exotic part of the machine."
+        },
+        {
+          "t0": 4.8,
+          "t1": 9.06,
+          "text": "About a hundred and fifty kilos of dense brick, to keep the flame hot."
+        },
+        {
+          "t0": 9.06,
+          "t1": 11.02,
+          "text": "A stove mason knows it well."
+        },
+        {
+          "t0": 11.02,
+          "t1": 14.56,
+          "text": "And a cracked core is not filled with shop mastic: it gets rebuilt."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "explode": 0.5
+          }
+        },
+        {
+          "t": 4.8,
+          "do": {
+            "explode": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-core-casing",
+      "scope": "part:core-casing",
+      "title": "The earthen casing",
+      "scene": "fire-core",
+      "file": "part-core-casing.mp3",
+      "duration": 19.04,
+      "chars": 291,
+      "hash": "7282b73052b0e074",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.84,
+          "text": "Earth holds the core, and closes the path of the gases."
+        },
+        {
+          "t0": 3.84,
+          "t1": 10.16,
+          "text": "It dries, the core expands at every fire: a crack is the normal result of a normal build."
+        },
+        {
+          "t0": 10.16,
+          "t1": 13.3,
+          "text": "But here, a crack is a leak, and our model has none."
+        },
+        {
+          "t0": 13.3,
+          "t1": 19.04,
+          "text": "Beautiful, cheap, and with no airtightness certificate: that is the delicate point of earth."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-top-gap",
+      "scope": "part:top-gap",
+      "title": "The gap under the lid",
+      "scene": "fire-core",
+      "file": "part-top-gap.mp3",
+      "duration": 15.84,
+      "chars": 278,
+      "hash": "7a33a9872f7e18cd",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.22,
+          "text": "Our breath of air turns round here."
+        },
+        {
+          "t0": 2.22,
+          "t1": 6.3,
+          "text": "The one peer-reviewed paper says too small a gap threatens everything."
+        },
+        {
+          "t0": 6.3,
+          "t1": 10.18,
+          "text": "Our model, at a centimetre and a half, sees almost nothing change."
+        },
+        {
+          "t0": 10.18,
+          "t1": 11.22,
+          "text": "Who is right?"
+        },
+        {
+          "t0": 11.22,
+          "t1": 13.66,
+          "text": "We cannot settle it without reading it in full."
+        },
+        {
+          "t0": 13.66,
+          "t1": 15.84,
+          "text": "And that allows nobody to reduce anything."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 13.66,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-downdraft-annulus",
+      "scope": "part:downdraft-annulus",
+      "title": "The fall inside the drum",
+      "scene": "fire-core",
+      "file": "part-downdraft-annulus.mp3",
+      "duration": 14.4,
+      "chars": 273,
+      "hash": "76758f593dfbca00",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.66,
+          "text": "The slowest fall in the machine."
+        },
+        {
+          "t0": 1.66,
+          "t1": 5.66,
+          "text": "At full fire, our breath of air enters near four hundred and sixty degrees,"
+        },
+        {
+          "t0": 5.66,
+          "t1": 8.3,
+          "text": "and leaves near two hundred and fifty."
+        },
+        {
+          "t0": 8.3,
+          "t1": 11.36,
+          "text": "It leaves here thirty-eight per cent of what the wood gives."
+        },
+        {
+          "t0": 11.36,
+          "t1": 14.4,
+          "text": "So the drum is no bonus: its share comes out of everything else."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 8.3,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-drum-seal",
+      "scope": "part:drum-seal",
+      "title": "The lid seal",
+      "scene": "fire-core",
+      "file": "part-drum-seal.mp3",
+      "duration": 21.12,
+      "chars": 329,
+      "hash": "c02535ff2d333701",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.92,
+          "text": "A drum’s lid comes off: there is a joint at head height."
+        },
+        {
+          "t0": 3.92,
+          "t1": 9.96,
+          "text": "One machine filmed in its thirteenth winter relies on ash, and smokes a little after refitting."
+        },
+        {
+          "t0": 9.96,
+          "t1": 14.68,
+          "text": "What protects it most is the suction: nearly nine pascals at full fire."
+        },
+        {
+          "t0": 14.68,
+          "t1": 17.46,
+          "text": "Let the flow turn round, and it is gone."
+        },
+        {
+          "t0": 17.46,
+          "t1": 21.12,
+          "text": "A refitted drum restarts with the alarm on, and never at night."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-drum-plinth",
+      "scope": "part:drum-plinth",
+      "title": "The drum’s foot",
+      "scene": "fire-core",
+      "file": "part-drum-plinth.mp3",
+      "duration": 15.28,
+      "chars": 244,
+      "hash": "ba2a3b08f5b30472",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.82,
+          "text": "Where steel meets earth."
+        },
+        {
+          "t0": 1.82,
+          "t1": 5.96,
+          "text": "Let’s part them: the drum leaves alone, and this foot stays below."
+        },
+        {
+          "t0": 5.96,
+          "t1": 10.54,
+          "text": "Steel expands at every fire against what hardly moves, and the joint works."
+        },
+        {
+          "t0": 10.54,
+          "t1": 15.28,
+          "text": "There is no perfect answer, only upkeep: going back to it, with fresh earth."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "explode": 0.6
+          }
+        },
+        {
+          "t": 5.96,
+          "do": {
+            "explode": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-duct-hot-run",
+      "scope": "part:duct-hot-run",
+      "title": "The hot run",
+      "scene": "bench-section",
+      "file": "part-duct-hot-run.mp3",
+      "duration": 13.2,
+      "chars": 242,
+      "hash": "4df2841689da770f",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.62,
+          "text": "Our breath of air arrives still hot."
+        },
+        {
+          "t0": 2.62,
+          "t1": 6.94,
+          "text": "These first three metres take forty-two per cent of what the whole duct gives up."
+        },
+        {
+          "t0": 6.94,
+          "t1": 9.1,
+          "text": "And that exchange, nobody has measured."
+        },
+        {
+          "t0": 9.1,
+          "t1": 13.2,
+          "text": "Double it or halve it: the efficiency runs from sixty-nine to eighty-five per cent."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "cutaway": true
+          }
+        },
+        {
+          "t": 6.94,
+          "do": {
+            "cutaway": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-duct-cold-run",
+      "scope": "part:duct-cold-run",
+      "title": "The cold run",
+      "scene": "bench-section",
+      "file": "part-duct-cold-run.mp3",
+      "duration": 19.84,
+      "chars": 364,
+      "hash": "022a5dc29218b0b2",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.72,
+          "text": "The last six metres: our breath of air arrives tired."
+        },
+        {
+          "t0": 3.72,
+          "t1": 7.44,
+          "text": "It leaves the bench near a hundred and fourteen degrees at full fire."
+        },
+        {
+          "t0": 7.44,
+          "t1": 8.94,
+          "text": "Why not take it all?"
+        },
+        {
+          "t0": 8.94,
+          "t1": 12.5,
+          "text": "Over eighteen metres it would reach the cap at a mean of thirty-four degrees,"
+        },
+        {
+          "t0": 12.74,
+          "t1": 14.64,
+          "text": "but the draught would fall by half."
+        },
+        {
+          "t0": 14.64,
+          "t1": 19.84,
+          "text": "Enough duct for the heat, not so much as to smother the draught: that is the whole question of the bench."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-duct-bend",
+      "scope": "part:duct-bend",
+      "title": "The bend",
+      "scene": "bench-section",
+      "file": "part-duct-bend.mp3",
+      "duration": 13.44,
+      "chars": 249,
+      "hash": "7146bcbe3b480c9f",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.8,
+          "text": "A straight bench would suit the gases, but a room has walls."
+        },
+        {
+          "t0": 3.8,
+          "t1": 6.66,
+          "text": "Three bends in our drawing, and they cost little draught."
+        },
+        {
+          "t0": 6.66,
+          "t1": 11.28,
+          "text": "Their real price is ash: on the outside of the turn the flow slows, and it settles."
+        },
+        {
+          "t0": 11.28,
+          "t1": 13.44,
+          "text": "That is where a brush jams, and a joint works."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 11.28,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-duct-joint",
+      "scope": "part:duct-joint",
+      "title": "The duct joint",
+      "scene": "bench-section",
+      "file": "part-duct-joint.mp3",
+      "duration": 16.24,
+      "chars": 268,
+      "hash": "ed2dc653bbb3d4eb",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.4,
+          "text": "Look closely at this joint: once covered, nobody ever sees it again."
+        },
+        {
+          "t0": 4.4,
+          "t1": 6.96,
+          "text": "At full fire, a leak draws air in."
+        },
+        {
+          "t0": 6.96,
+          "t1": 11.44,
+          "text": "But if the flow turns back, it lets gas into the earth, then into the room."
+        },
+        {
+          "t0": 11.44,
+          "t1": 16.24,
+          "text": "All its upkeep happens on the day it can still be seen: show it, test it, photograph it."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "isolate": true
+          }
+        },
+        {
+          "t": 11.44,
+          "do": {
+            "isolate": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-cob-casing",
+      "scope": "part:cob-casing",
+      "title": "The cob casing",
+      "scene": "bench-section",
+      "file": "part-cob-casing.mp3",
+      "duration": 17.84,
+      "chars": 303,
+      "hash": "5e522afde3197d1c",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.14,
+          "text": "Slow, on purpose!"
+        },
+        {
+          "t0": 1.14,
+          "t1": 6.26,
+          "text": "Zero point six watts per metre per degree, and that slowness is the whole thing."
+        },
+        {
+          "t0": 6.26,
+          "t1": 10.16,
+          "text": "Studies differ by a factor of nearly nine, with no consensus."
+        },
+        {
+          "t0": 10.16,
+          "t1": 12.58,
+          "text": "The simple sum promised a much later peak."
+        },
+        {
+          "t0": 12.58,
+          "t1": 17.84,
+          "text": "But a fire of two and a half hours is no single pulse, and the gases go on cooling the duct’s side."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "cutaway": true
+          }
+        },
+        {
+          "t": 10.16,
+          "do": {
+            "cutaway": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-stone-filler",
+      "scope": "part:stone-filler",
+      "title": "The stones",
+      "scene": "bench-section",
+      "file": "part-stone-filler.mp3",
+      "duration": 15.28,
+      "chars": 254,
+      "hash": "d0e4ffee70f23210",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.14,
+          "text": "Some builders say their bench holds far more stone than earth, and an earth with no fibre."
+        },
+        {
+          "t0": 5.14,
+          "t1": 8.84,
+          "text": "Fibre insulates: it has no business in a heat store."
+        },
+        {
+          "t0": 8.84,
+          "t1": 12.06,
+          "text": "Our model, for its part, counts about one fifth stones."
+        },
+        {
+          "t0": 12.06,
+          "t1": 14.06,
+          "text": "More stones, an earlier peak?"
+        },
+        {
+          "t0": 14.06,
+          "t1": 15.28,
+          "text": "We found no measurement."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-earthen-plaster",
+      "scope": "part:earthen-plaster",
+      "title": "The earthen plaster",
+      "scene": "bench-section",
+      "file": "part-earthen-plaster.mp3",
+      "duration": 14.16,
+      "chars": 254,
+      "hash": "40b6d9f7b6cd7477",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.18,
+          "text": "The bench’s skin."
+        },
+        {
+          "t0": 1.18,
+          "t1": 5.08,
+          "text": "About sixty per cent of its heat leaves as radiation, to the body and the walls,"
+        },
+        {
+          "t0": 5.08,
+          "t1": 7.16,
+          "text": "without going through the air."
+        },
+        {
+          "t0": 7.16,
+          "t1": 10.64,
+          "text": "It is also a cheap sensor: what changes, shows."
+        },
+        {
+          "t0": 10.64,
+          "t1": 14.16,
+          "text": "A pencil stroke at each end of a crack, a date, and there is the instrument."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-floor-barrier",
+      "scope": "part:floor-barrier",
+      "title": "The floor layer",
+      "scene": "bench-section",
+      "file": "part-floor-barrier.mp3",
+      "duration": 13.52,
+      "chars": 238,
+      "hash": "ed2c7748c6869488",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.14,
+          "text": "Count the layers under the seat: the weight of three tonnes passes through them all."
+        },
+        {
+          "t0": 4.14,
+          "t1": 8.36,
+          "text": "A French manual warns that foam under a stove can melt, or smoulder."
+        },
+        {
+          "t0": 8.36,
+          "t1": 10.38,
+          "text": "So a slab is also a screen."
+        },
+        {
+          "t0": 10.38,
+          "t1": 13.52,
+          "text": "And what lies beneath is often found only by demolition."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "explode": 0.5
+          }
+        },
+        {
+          "t": 4.14,
+          "do": {
+            "explode": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-bench-cleanout",
+      "scope": "part:bench-cleanout",
+      "title": "The bench cleanout",
+      "scene": "bench-section",
+      "file": "part-bench-cleanout.mp3",
+      "duration": 13.68,
+      "chars": 236,
+      "hash": "a5c7f768456ef03c",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.02,
+          "text": "A small round door: the sweep’s way into the duct."
+        },
+        {
+          "t0": 3.02,
+          "t1": 6.58,
+          "text": "Its place decides, since a brush does not take a tight bend."
+        },
+        {
+          "t0": 6.58,
+          "t1": 10.5,
+          "text": "Each door is a possible leak, but cheaper than rebuilding a bench."
+        },
+        {
+          "t0": 10.5,
+          "t1": 13.68,
+          "text": "And a hatch you have to look for is a hatch nobody opens."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-chimney-tee",
+      "scope": "part:chimney-tee",
+      "title": "The chimney tee",
+      "scene": "bench-section",
+      "file": "part-chimney-tee.mp3",
+      "duration": 17.44,
+      "chars": 316,
+      "hash": "6c8678af06ce7aac",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.92,
+          "text": "Here the path turns upwards."
+        },
+        {
+          "t0": 1.92,
+          "t1": 3.2,
+          "text": "But when everything is cold?"
+        },
+        {
+          "t0": 3.2,
+          "t1": 9.1,
+          "text": "At minus five degrees, after days with no fire, the flow stays backwards, even with a fire lit."
+        },
+        {
+          "t0": 9.1,
+          "t1": 11.4,
+          "text": "Our model does not see it turn by itself!"
+        },
+        {
+          "t0": 11.4,
+          "t1": 14.56,
+          "text": "A little heat at this foot, builders say, and it tips over."
+        },
+        {
+          "t0": 14.56,
+          "t1": 17.44,
+          "text": "About three minutes here: the least sure figure in this lab."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 11.4,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-condensate-drain",
+      "scope": "part:condensate-drain",
+      "title": "The drain",
+      "scene": "bench-section",
+      "file": "part-condensate-drain.mp3",
+      "duration": 15.6,
+      "chars": 263,
+      "hash": "158c12f3c325d050",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.68,
+          "text": "A small drain at the low point, for acid water."
+        },
+        {
+          "t0": 2.68,
+          "t1": 8.96,
+          "text": "Over our nine metres nothing condenses; over eighteen, about four hundred grams of water a day."
+        },
+        {
+          "t0": 8.96,
+          "t1": 10.86,
+          "text": "Yet a real machine has its cold moments."
+        },
+        {
+          "t0": 10.86,
+          "t1": 15.6,
+          "text": "And a drain that runs all winter tells of a machine colder than anyone thinks."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-temperature-lance",
+      "scope": "part:temperature-lance",
+      "title": "The probe",
+      "scene": "bench-section",
+      "file": "part-temperature-lance.mp3",
+      "duration": 19.28,
+      "chars": 300,
+      "hash": "663974aed0c13416",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3,
+          "text": "What this subject lacks most: figures."
+        },
+        {
+          "t0": 3,
+          "t1": 8.44,
+          "text": "One builder slid fifteen sensors into a concrete bench, without publishing a full winter."
+        },
+        {
+          "t0": 8.44,
+          "t1": 11.72,
+          "text": "No source gives a whole day logged in a lived-in house."
+        },
+        {
+          "t0": 11.72,
+          "t1": 15.34,
+          "text": "Our probe is only a drawing: its needle follows our sums."
+        },
+        {
+          "t0": 15.34,
+          "t1": 19.28,
+          "text": "So, one piece of advice: measure, write it down, publish!"
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-pebble-section",
+      "scope": "part:pebble-section",
+      "title": "The pebble bench",
+      "scene": "bench-section",
+      "file": "part-pebble-section.mp3",
+      "duration": 15.84,
+      "chars": 286,
+      "hash": "fd283ce9854c5419",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 0.74,
+          "text": "The other school."
+        },
+        {
+          "t0": 0.74,
+          "t1": 5.34,
+          "text": "Of the twelve builds in one video, six are in earth, and six in pebbles."
+        },
+        {
+          "t0": 5.34,
+          "t1": 10.46,
+          "text": "No source puts a figure on any of it: our seat at thirty-six degrees is our estimate talking."
+        },
+        {
+          "t0": 10.46,
+          "t1": 15.84,
+          "text": "Its advantage needs no figure: you can open it up and see the duct again, without breaking any earth."
+        }
+      ],
+      "cues": []
+    }
+  ]
+}

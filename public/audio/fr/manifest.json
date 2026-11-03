@@ -1,0 +1,3220 @@
+{
+  "lang": "fr",
+  "model": "qwen3-tts-1.7B",
+  "generatedAt": "2026-11-03T05:33:47.179Z",
+  "voiceLabel": {
+    "fr": "Voix de synthèse",
+    "en": "Synthetic voice"
+  },
+  "totalSeconds": 1314.02,
+  "segments": [
+    {
+      "id": "intro",
+      "scope": "intro",
+      "title": "Présentation du labo",
+      "scene": "homestead",
+      "file": "intro.mp3",
+      "duration": 136.68,
+      "chars": 2380,
+      "hash": "da817804496ead4d",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.63,
+          "text": "Imaginez une nuit de janvier."
+        },
+        {
+          "t0": 1.63,
+          "t1": 5.7,
+          "text": "Dehors, il neige, et le feu est éteint depuis des heures."
+        },
+        {
+          "t0": 5.7,
+          "t1": 6.7,
+          "text": "La pièce a fraîchi…"
+        },
+        {
+          "t0": 6.7,
+          "t1": 11.1,
+          "text": "et pourtant, vous posez la main sur un banc de terre, et il est encore tiède."
+        },
+        {
+          "t0": 11.1,
+          "t1": 13.56,
+          "text": "Comment un feu du soir peut-il durer ainsi ?"
+        },
+        {
+          "t0": 13.56,
+          "t1": 16.02,
+          "text": "Suivons un petit souffle d’air froid."
+        },
+        {
+          "t0": 16.02,
+          "t1": 18.82,
+          "text": "Il entre par un tube ouvert, où le bois se tient debout."
+        },
+        {
+          "t0": 18.82,
+          "t1": 22.68,
+          "text": "Aspiré de côté, il se jette dans le feu, et la flamme se couche avec lui."
+        },
+        {
+          "t0": 22.68,
+          "t1": 27.02,
+          "text": "Le voici brûlant : il monte dans une cheminée isolée, où la fumée finit de brûler."
+        },
+        {
+          "t0": 27.02,
+          "t1": 32.48,
+          "text": "Puis il retombe le long d’un bidon d’acier, et lui laisse une bonne part de sa chaleur."
+        },
+        {
+          "t0": 32.48,
+          "t1": 34.26,
+          "text": "Ce bidon chauffe la pièce tout de suite."
+        },
+        {
+          "t0": 34.26,
+          "t1": 37.2,
+          "text": "Mais notre souffle n’a pas fini : il rampe maintenant sous la banquette."
+        },
+        {
+          "t0": 37.2,
+          "t1": 39.86,
+          "text": "Neuf mètres de conduit, près de trois tonnes de terre."
+        },
+        {
+          "t0": 39.86,
+          "t1": 45.84,
+          "text": "Il s’y refroidit, et sa chaleur monte vers l’assise, lentement, même quand la flamme est morte."
+        },
+        {
+          "t0": 45.84,
+          "t1": 50.12,
+          "text": "Et le voilà qui s’en va par le toit, avec juste de quoi faire tirer la cheminée."
+        },
+        {
+          "t0": 50.12,
+          "t1": 55.08,
+          "text": "Voilà toute l’histoire : un souffle, un feu couché, un bidon, un banc…"
+        },
+        {
+          "t0": 55.08,
+          "t1": 57.26,
+          "text": "et une main sur la terre tiède."
+        },
+        {
+          "t0": 57.26,
+          "t1": 61.36,
+          "text": "Reste la vraie question : deux feux par jour, pour quelle maison ?"
+        },
+        {
+          "t0": 61.36,
+          "t1": 66.32,
+          "text": "Car un feu, ici, c’est une séance menée de deux à quatre heures, à nourrir le tube."
+        },
+        {
+          "t0": 66.32,
+          "t1": 68.04,
+          "text": "Pas une brassée et un départ !"
+        },
+        {
+          "t0": 68.04,
+          "t1": 72.76,
+          "text": "Quelques repères : quatre vues, la maison, la pièce, le foyer et le banc."
+        },
+        {
+          "t0": 72.76,
+          "t1": 76.98,
+          "text": "Cliquez sur un objet : sa fiche s’ouvre, et vous pouvez écouter son histoire."
+        },
+        {
+          "t0": 76.98,
+          "t1": 82.34,
+          "text": "Un guide raconte comment un maçon l’élève, un autre ce qui doit être vrai avant le premier feu."
+        },
+        {
+          "t0": 82.34,
+          "t1": 89.1,
+          "text": "La simulation fait défiler la journée, lance douze scénarios, et sa Vue thermique colore la chaleur."
+        },
+        {
+          "t0": 89.1,
+          "t1": 92.68,
+          "text": "Six leçons, avec des quiz, expliquent la physique."
+        },
+        {
+          "t0": 92.68,
+          "t1": 94.46,
+          "text": "Dix planches réunissent les dessins."
+        },
+        {
+          "t0": 94.46,
+          "t1": 100.38,
+          "text": "Une dernière chose : ce laboratoire est une reconstitution pédagogique, d’une machine générique."
+        },
+        {
+          "t0": 100.38,
+          "t1": 103.98,
+          "text": "Il explique, et il ne donne aucun plan pour construire."
+        },
+        {
+          "t0": 103.98,
+          "t1": 110.6,
+          "text": "Sauf quand une source est citée, les chiffres viennent de notre simulation : des calculs, pas des mesures."
+        },
+        {
+          "t0": 110.6,
+          "t1": 112.8,
+          "text": "Le panneau Sources dit qui a dit quoi."
+        },
+        {
+          "t0": 112.8,
+          "t1": 115.66,
+          "text": "Quelle part de la chaleur du bois reste dans la maison ?"
+        },
+        {
+          "t0": 115.66,
+          "t1": 117.51,
+          "text": "Elle trouve environ soixante-dix-huit pour cent,"
+        },
+        {
+          "t0": 117.54,
+          "t1": 121.8,
+          "text": "et nous n’avons trouvé aucun essai indépendant d’une telle machine."
+        },
+        {
+          "t0": 121.8,
+          "t1": 126.28,
+          "text": "Une seule mise en garde : feu et monoxyde de carbone peuvent tuer ; avant tout projet,"
+        },
+        {
+          "t0": 126.56,
+          "t1": 129.1,
+          "text": "un détecteur, votre assureur, et la loi."
+        },
+        {
+          "t0": 129.1,
+          "t1": 133.8,
+          "text": "Et aucun modèle, pas même le nôtre, ne peut dire qu’une vraie installation est sûre."
+        },
+        {
+          "t0": 133.8,
+          "t1": 136.68,
+          "text": "Allez, installez-vous : la banquette est encore tiède !"
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 11.1,
+          "do": {
+            "frame": [
+              "house-shell"
+            ]
+          }
+        },
+        {
+          "t": 16.02,
+          "do": {
+            "scene": "fire-core"
+          }
+        },
+        {
+          "t": 18.82,
+          "do": {
+            "frame": [
+              "burn-tunnel"
+            ]
+          }
+        },
+        {
+          "t": 22.68,
+          "do": {
+            "frame": [
+              "heat-riser"
+            ]
+          }
+        },
+        {
+          "t": 27.02,
+          "do": {
+            "frame": [
+              "downdraft-annulus"
+            ]
+          }
+        },
+        {
+          "t": 32.48,
+          "do": {
+            "scene": "living-room"
+          }
+        },
+        {
+          "t": 34.26,
+          "do": {
+            "frame": [
+              "cob-bench"
+            ]
+          }
+        },
+        {
+          "t": 37.2,
+          "do": {
+            "scene": "bench-section"
+          }
+        },
+        {
+          "t": 37.2,
+          "do": {
+            "cutaway": true
+          }
+        },
+        {
+          "t": 45.84,
+          "do": {
+            "cutaway": false
+          }
+        },
+        {
+          "t": 45.84,
+          "do": {
+            "scene": "homestead"
+          }
+        },
+        {
+          "t": 50.12,
+          "do": {
+            "frame": [
+              "chimney-cap"
+            ]
+          }
+        },
+        {
+          "t": 57.26,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 76.98,
+          "do": {
+            "mode": "assembly"
+          }
+        },
+        {
+          "t": 79.26,
+          "do": {
+            "mode": "install"
+          }
+        },
+        {
+          "t": 82.34,
+          "do": {
+            "mode": "sim"
+          }
+        },
+        {
+          "t": 89.1,
+          "do": {
+            "mode": "lessons"
+          }
+        },
+        {
+          "t": 92.68,
+          "do": {
+            "mode": "plans"
+          }
+        },
+        {
+          "t": 94.46,
+          "do": {
+            "mode": "explore"
+          }
+        },
+        {
+          "t": 103.98,
+          "do": {
+            "scene": "homestead"
+          }
+        },
+        {
+          "t": 133.8,
+          "do": {
+            "select": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene-homestead",
+      "scope": "scene:homestead",
+      "title": "Deux feux par jour : pour quelle maison ?",
+      "scene": "homestead",
+      "file": "scene-homestead.mp3",
+      "duration": 43.95,
+      "chars": 707,
+      "hash": "348511b027d499a2",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.94,
+          "text": "Une petite maison au bord de la forêt, sous la neige."
+        },
+        {
+          "t0": 2.94,
+          "t1": 7.32,
+          "text": "Dedans, un poêle de masse à tube en J, qu’on appelle souvent rocket."
+        },
+        {
+          "t0": 7.32,
+          "t1": 13.68,
+          "text": "Même nom, autre machine : le petit réchaud rocket se garde dehors, et un poêle de masse a une cheminée."
+        },
+        {
+          "t0": 13.68,
+          "t1": 16.94,
+          "text": "La voici, tout en haut, au-dessus du faîtage."
+        },
+        {
+          "t0": 16.94,
+          "t1": 20.26,
+          "text": "À côté, le bûcher et toute une saison de bois."
+        },
+        {
+          "t0": 20.26,
+          "t1": 23.88,
+          "text": "Plus loin, le voisin et sa colonne grise."
+        },
+        {
+          "t0": 23.88,
+          "t1": 27.88,
+          "text": "On lit partout : quatre-vingts à quatre-vingt-dix pour cent de bois en moins."
+        },
+        {
+          "t0": 27.88,
+          "t1": 32.88,
+          "text": "Cela ne boucle pas avec le poêle seul : l’isolation fait l’essentiel !"
+        },
+        {
+          "t0": 32.88,
+          "t1": 36.64,
+          "text": "Ici, environ douze kilos et demi par jour tiennent vingt degrés."
+        },
+        {
+          "t0": 36.64,
+          "t1": 40.62,
+          "text": "Si la maison perdait près de trois fois plus, il en faudrait trente-six."
+        },
+        {
+          "t0": 40.62,
+          "t1": 43.95,
+          "text": "Le héros de cette histoire ne fume pas : ce sont ses murs."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 2.94,
+          "do": {
+            "frame": [
+              "house-shell"
+            ]
+          }
+        },
+        {
+          "t": 13.68,
+          "do": {
+            "frame": [
+              "chimney-cap"
+            ]
+          }
+        },
+        {
+          "t": 16.94,
+          "do": {
+            "frame": [
+              "woodshed",
+              "cordwood-stack"
+            ]
+          }
+        },
+        {
+          "t": 20.26,
+          "do": {
+            "frame": [
+              "smoky-neighbour"
+            ]
+          }
+        },
+        {
+          "t": 23.88,
+          "do": {
+            "home": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene-living-room",
+      "scope": "scene:living-room",
+      "title": "Le bidon tout de suite, la banquette ensuite",
+      "scene": "living-room",
+      "file": "scene-living-room.mp3",
+      "duration": 38.72,
+      "chars": 669,
+      "hash": "6c4b4574ed2187d2",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.52,
+          "text": "Entrons : voici la pièce où l’on vit."
+        },
+        {
+          "t0": 2.52,
+          "t1": 5.72,
+          "text": "Le bidon, d’abord, qui rayonne dès que le feu prend."
+        },
+        {
+          "t0": 5.72,
+          "t1": 8.62,
+          "text": "La banquette longe deux murs, avec son dossier."
+        },
+        {
+          "t0": 8.62,
+          "t1": 14.16,
+          "text": "Le conduit vertical file vers le toit, et voici les deux détecteurs, chacun pour son danger."
+        },
+        {
+          "t0": 14.16,
+          "t1": 16.82,
+          "text": "Le mur de pierre, lui, garde sa part."
+        },
+        {
+          "t0": 16.82,
+          "t1": 17.96,
+          "text": "Disons-le simplement."
+        },
+        {
+          "t0": 17.96,
+          "t1": 22.5,
+          "text": "Le bidon donne à peu près deux fois plus de chaleur que la banquette, par grands coups."
+        },
+        {
+          "t0": 22.5,
+          "t1": 26.78,
+          "text": "La banquette donne un peu, jour et nuit : trois à cinq cents watts."
+        },
+        {
+          "t0": 26.78,
+          "t1": 29.44,
+          "text": "Elle ne porte pas la maison à elle seule : elle lisse."
+        },
+        {
+          "t0": 29.44,
+          "t1": 33.1,
+          "text": "Ainsi, la pièce va de dix-sept à vingt-quatre degrés."
+        },
+        {
+          "t0": 33.1,
+          "t1": 37.16,
+          "text": "Pour voir cette chaleur en couleurs, le bouton Vue thermique est dans la Simulation,"
+        },
+        {
+          "t0": 37.16,
+          "t1": 38.72,
+          "text": "sous le curseur de l’heure."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 2.52,
+          "do": {
+            "frame": [
+              "steel-drum"
+            ]
+          }
+        },
+        {
+          "t": 5.72,
+          "do": {
+            "frame": [
+              "cob-bench",
+              "bench-backrest"
+            ]
+          }
+        },
+        {
+          "t": 8.62,
+          "do": {
+            "frame": [
+              "chimney-flue"
+            ]
+          }
+        },
+        {
+          "t": 10.42,
+          "do": {
+            "frame": [
+              "co-alarm",
+              "smoke-alarm"
+            ]
+          }
+        },
+        {
+          "t": 14.16,
+          "do": {
+            "frame": [
+              "inner-stone-wall"
+            ]
+          }
+        },
+        {
+          "t": 16.82,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 16.82,
+          "do": {
+            "cutaway": true
+          }
+        },
+        {
+          "t": 29.44,
+          "do": {
+            "cutaway": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene-fire-core",
+      "scope": "scene:fire-core",
+      "title": "Où ça brûle, et dans quel sens ça va",
+      "scene": "fire-core",
+      "file": "scene-fire-core.mp3",
+      "duration": 33.63,
+      "chars": 577,
+      "hash": "94d86af691ff8851",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.84,
+          "text": "Toujours en coupe, et cette fois tout près du feu."
+        },
+        {
+          "t0": 2.84,
+          "t1": 7.4,
+          "text": "Le bois se tient debout dans le tube, et la flamme se couche dans le tunnel."
+        },
+        {
+          "t0": 7.4,
+          "t1": 10.22,
+          "text": "La fumée finit de brûler dans la cheminée interne."
+        },
+        {
+          "t0": 10.22,
+          "t1": 15.08,
+          "text": "Sous le couvercle, les gaz font demi-tour, puis ils retombent le long du bidon."
+        },
+        {
+          "t0": 15.08,
+          "t1": 17,
+          "text": "Mais qui fait tirer tout cela ?"
+        },
+        {
+          "t0": 17,
+          "t1": 18.76,
+          "text": "On accuse la cheminée interne."
+        },
+        {
+          "t0": 18.76,
+          "t1": 19.44,
+          "text": "Erreur !"
+        },
+        {
+          "t0": 19.44,
+          "t1": 23.62,
+          "text": "À plein feu, avec la chute dans le bidon, elle ne pèse qu’un peu plus d’un pascal."
+        },
+        {
+          "t0": 23.62,
+          "t1": 26.54,
+          "text": "Le conduit vertical, lui, près de quinze."
+        },
+        {
+          "t0": 26.54,
+          "t1": 31.18,
+          "text": "Qu’il soit froid, et le courant va à l’envers : le feu ne le retourne pas seul."
+        },
+        {
+          "t0": 31.18,
+          "t1": 33.63,
+          "text": "Le scénario Le feu refuse vous le montre."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 2.84,
+          "do": {
+            "frame": [
+              "feed-tube"
+            ]
+          }
+        },
+        {
+          "t": 4.94,
+          "do": {
+            "frame": [
+              "burn-tunnel"
+            ]
+          }
+        },
+        {
+          "t": 7.4,
+          "do": {
+            "frame": [
+              "heat-riser"
+            ]
+          }
+        },
+        {
+          "t": 10.22,
+          "do": {
+            "frame": [
+              "top-gap"
+            ]
+          }
+        },
+        {
+          "t": 12.98,
+          "do": {
+            "frame": [
+              "downdraft-annulus"
+            ]
+          }
+        },
+        {
+          "t": 15.08,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 15.08,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 26.54,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene-bench-section",
+      "scope": "scene:bench-section",
+      "title": "Où va la chaleur",
+      "scene": "bench-section",
+      "file": "scene-bench-section.mp3",
+      "duration": 39.84,
+      "chars": 695,
+      "hash": "61155ee17feaed2d",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.46,
+          "text": "Une tranche de banquette, très grossie."
+        },
+        {
+          "t0": 2.46,
+          "t1": 5.12,
+          "text": "Le début du conduit et sa fin, côte à côte."
+        },
+        {
+          "t0": 5.12,
+          "t1": 9.94,
+          "text": "Tout autour, la terre et ses pierres, puis l’enduit, la peau qu’on touche."
+        },
+        {
+          "t0": 9.94,
+          "t1": 12.26,
+          "text": "Plus loin, le té, où le chemin monte."
+        },
+        {
+          "t0": 12.26,
+          "t1": 14.22,
+          "text": "Et le banc de galets, l’autre école."
+        },
+        {
+          "t0": 14.22,
+          "t1": 18.72,
+          "text": "Ces teintes, c’est une fausse couleur : à soixante degrés, la terre ne rougit pas."
+        },
+        {
+          "t0": 18.72,
+          "t1": 22.52,
+          "text": "Une heure passe ici à chaque seconde, et la journée respire sous vos yeux."
+        },
+        {
+          "t0": 22.52,
+          "t1": 26.8,
+          "text": "La chaleur part du conduit, où la terre monte à soixante-quatre degrés."
+        },
+        {
+          "t0": 26.8,
+          "t1": 30.07,
+          "text": "Elle grimpe, lentement, et continue quand la flamme est morte."
+        },
+        {
+          "t0": 30.07,
+          "t1": 34.8,
+          "text": "L’assise est au plus chaud une à deux heures après la flamme, à trente-deux degrés."
+        },
+        {
+          "t0": 34.8,
+          "t1": 39.84,
+          "text": "Puis elle rend sa chaleur, doucement, toute la nuit : voilà la merveille de ce labo."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 2.46,
+          "do": {
+            "frame": [
+              "duct-hot-run",
+              "duct-cold-run"
+            ]
+          }
+        },
+        {
+          "t": 5.12,
+          "do": {
+            "frame": [
+              "cob-casing",
+              "stone-filler"
+            ]
+          }
+        },
+        {
+          "t": 7.38,
+          "do": {
+            "frame": [
+              "earthen-plaster"
+            ]
+          }
+        },
+        {
+          "t": 9.94,
+          "do": {
+            "frame": [
+              "chimney-tee"
+            ]
+          }
+        },
+        {
+          "t": 12.26,
+          "do": {
+            "frame": [
+              "pebble-section"
+            ]
+          }
+        },
+        {
+          "t": 14.22,
+          "do": {
+            "home": true
+          }
+        },
+        {
+          "t": 14.22,
+          "do": {
+            "cutaway": true
+          }
+        },
+        {
+          "t": 34.8,
+          "do": {
+            "cutaway": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-house-shell",
+      "scope": "part:house-shell",
+      "title": "La maison isolée",
+      "scene": "homestead",
+      "file": "part-house-shell.mp3",
+      "duration": 17.84,
+      "chars": 313,
+      "hash": "8c941f788d707209",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.28,
+          "text": "Le vrai économiseur de bois n’est pas un poêle : ce sont ces murs."
+        },
+        {
+          "t0": 4.28,
+          "t1": 8.4,
+          "text": "Nous les supposons à cent six watts perdus par degré d’écart avec le dehors."
+        },
+        {
+          "t0": 8.4,
+          "t1": 13.84,
+          "text": "Même machine, même bois, à trois cents watts : la pièce reste entre six et quatorze degrés."
+        },
+        {
+          "t0": 13.84,
+          "t1": 17.84,
+          "text": "Et chaque kilowatt gagné ici dure autant que la maison, sans une seule bûche."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-chimney-cap",
+      "scope": "part:chimney-cap",
+      "title": "Chapeau de cheminée",
+      "scene": "homestead",
+      "file": "part-chimney-cap.mp3",
+      "duration": 21.6,
+      "chars": 386,
+      "hash": "4458120cc1b52094",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.32,
+          "text": "Le bout du voyage."
+        },
+        {
+          "t0": 1.32,
+          "t1": 5.46,
+          "text": "Notre souffle sort ici à environ quatre-vingt-dix degrés à plein feu."
+        },
+        {
+          "t0": 5.46,
+          "t1": 9.88,
+          "text": "Une fumée blanche et courte, par grand froid, c’est souvent de la vapeur."
+        },
+        {
+          "t0": 9.88,
+          "t1": 13.24,
+          "text": "Grise, et qui s’attarde, c’est du combustible qui s’en va."
+        },
+        {
+          "t0": 13.24,
+          "t1": 15.62,
+          "text": "Mais un chapeau clair ne dit rien du monoxyde."
+        },
+        {
+          "t0": 15.62,
+          "t1": 18.12,
+          "text": "Et le panache de cette image suit nos calculs."
+        },
+        {
+          "t0": 18.12,
+          "t1": 21.6,
+          "text": "Le chapeau garde dehors la pluie et les oiseaux, sans aucun mécanisme."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 5.46,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-sweep-access",
+      "scope": "part:sweep-access",
+      "title": "Accès du ramoneur",
+      "scene": "homestead",
+      "file": "part-sweep-access.mp3",
+      "duration": 16.08,
+      "chars": 290,
+      "hash": "009a46d248ff0091",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.04,
+          "text": "Un conduit sous une banquette, il faut y penser pour le ramoneur."
+        },
+        {
+          "t0": 4.04,
+          "t1": 8.16,
+          "text": "En France, la règle la plus citée demande deux ramonages par an."
+        },
+        {
+          "t0": 8.16,
+          "t1": 11.42,
+          "text": "Et rien ne prouve que ces machines échappent au feu de conduit."
+        },
+        {
+          "t0": 11.42,
+          "t1": 16.08,
+          "text": "Beaucoup de ramoneurs n’en ont jamais vu une : cherchez le vôtre avant d’imaginer la banquette."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-outside-air-inlet",
+      "scope": "part:outside-air-inlet",
+      "title": "Prise d’air extérieure",
+      "scene": "homestead",
+      "file": "part-outside-air-inlet.mp3",
+      "duration": 17.12,
+      "chars": 311,
+      "hash": "aa4826b410c06e56",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.42,
+          "text": "Le feu respire !"
+        },
+        {
+          "t0": 1.42,
+          "t1": 3.91,
+          "text": "Environ quarante-six mètres cubes d’air par heure,"
+        },
+        {
+          "t0": 4.08,
+          "t1": 7.76,
+          "text": "en moyenne d’un feu : cet air doit bien venir de quelque part."
+        },
+        {
+          "t0": 7.76,
+          "t1": 11.52,
+          "text": "Cette prise vise à éviter au feu de tirer sur le reste de la maison."
+        },
+        {
+          "t0": 11.52,
+          "t1": 13.08,
+          "text": "Notre modèle n’en a pas."
+        },
+        {
+          "t0": 13.08,
+          "t1": 17.12,
+          "text": "Sa panne la plus courante : quelqu’un qui sentait un courant d’air, et qui l’a fermée."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 7.76,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-woodshed",
+      "scope": "part:woodshed",
+      "title": "Bûcher",
+      "scene": "homestead",
+      "file": "part-woodshed.mp3",
+      "duration": 16.32,
+      "chars": 269,
+      "hash": "c0d51780bcece34a",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.1,
+          "text": "Un toit pour la pluie, des côtés ouverts pour le vent, et un an ou plus."
+        },
+        {
+          "t0": 5.1,
+          "t1": 8.8,
+          "text": "L’eau du bois se paie en chaleur : à trente pour cent d’humidité,"
+        },
+        {
+          "t0": 9.1,
+          "t1": 12.12,
+          "text": "un kilo rend un cinquième de moins qu’à quinze."
+        },
+        {
+          "t0": 12.12,
+          "t1": 16.32,
+          "text": "Et le bois de cette année se range à côté de celui de l’an dernier, jamais devant."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-cordwood-stack",
+      "scope": "part:cordwood-stack",
+      "title": "Pile de bois fendu",
+      "scene": "homestead",
+      "file": "part-cordwood-stack.mp3",
+      "duration": 14.24,
+      "chars": 260,
+      "hash": "2bc451da2c009138",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.3,
+          "text": "Toute une saison, à l’échelle : près de deux tonnes de bois, à côté du panier d’une seule journée."
+        },
+        {
+          "t0": 5.3,
+          "t1": 7.44,
+          "text": "Elle baisse à mesure que les feux passent."
+        },
+        {
+          "t0": 7.44,
+          "t1": 12.06,
+          "text": "C’est l’argument le plus honnête de ce labo : elle ne dépend d’aucun rendement annoncé."
+        },
+        {
+          "t0": 12.06,
+          "t1": 14.24,
+          "text": "Ce qu’on a brûlé, ça se pèse !"
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-moisture-meter",
+      "scope": "part:moisture-meter",
+      "title": "Humidimètre",
+      "scene": "homestead",
+      "file": "part-moisture-meter.mp3",
+      "duration": 17.76,
+      "chars": 293,
+      "hash": "27031ff54da075ec",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.98,
+          "text": "Un petit boîtier, deux pointes, un chiffre : le premier geste de la journée."
+        },
+        {
+          "t0": 4.98,
+          "t1": 9.08,
+          "text": "À trente pour cent d’humidité, le même bois coûte trois degrés à la pièce,"
+        },
+        {
+          "t0": 9.08,
+          "t1": 11.78,
+          "text": "et le monoxyde fait plus que tripler."
+        },
+        {
+          "t0": 11.78,
+          "t1": 13.22,
+          "text": "L’œil n’y voit rien."
+        },
+        {
+          "t0": 13.22,
+          "t1": 17.76,
+          "text": "On le plante sur une face fraîchement fendue : le dehors sèche bien avant le cœur."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-kindling-block",
+      "scope": "part:kindling-block",
+      "title": "Billot à petit bois",
+      "scene": "homestead",
+      "file": "part-kindling-block.mp3",
+      "duration": 17.12,
+      "chars": 278,
+      "hash": "93ea6ee562832a5b",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 6.44,
+          "text": "Une bûche ordinaire n’entre pas ici : il lui faut moins de huit centimètres de côté, dit un manuel français."
+        },
+        {
+          "t0": 6.44,
+          "t1": 11.16,
+          "text": "Il faut donc une hachette, un billot à bonne hauteur, et une habitude."
+        },
+        {
+          "t0": 11.16,
+          "t1": 13.44,
+          "text": "Personne ne chiffre ce temps de travail."
+        },
+        {
+          "t0": 13.44,
+          "t1": 17.12,
+          "text": "Et le bois du jour se fend avant la nuit, pas à la lampe."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-ash-bucket",
+      "scope": "part:ash-bucket",
+      "title": "Seau à cendres",
+      "scene": "homestead",
+      "file": "part-ash-bucket.mp3",
+      "duration": 19.84,
+      "chars": 317,
+      "hash": "291fd54b2fa29685",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.04,
+          "text": "Un seau de métal, un couvercle, et il attend dehors."
+        },
+        {
+          "t0": 4.04,
+          "t1": 9.1,
+          "text": "Une constructrice a pesé : vingt-six kilos de bois, deux cents grammes de cendre."
+        },
+        {
+          "t0": 9.1,
+          "t1": 10.18,
+          "text": "Si peu !"
+        },
+        {
+          "t0": 10.18,
+          "t1": 16.26,
+          "text": "Mais la cendre couvre des braises qui restent chaudes longtemps : personne n’en donne la durée, et nous non plus."
+        },
+        {
+          "t0": 16.26,
+          "t1": 19.84,
+          "text": "Alors ce seau ne va ni au garage, ni contre un mur de bois."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-coppice-lot",
+      "scope": "part:coppice-lot",
+      "title": "Taillis",
+      "scene": "homestead",
+      "file": "part-coppice-lot.mp3",
+      "duration": 19.84,
+      "chars": 347,
+      "hash": "fc573a79c3edd961",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.12,
+          "text": "Combien de forêt pour une maison ?"
+        },
+        {
+          "t0": 2.12,
+          "t1": 6.7,
+          "text": "Aucune source ne donne le rendement de ce taillis : pas d’hectares ici."
+        },
+        {
+          "t0": 6.7,
+          "t1": 9.09,
+          "text": "Face à un vieux poêle qui rend trente-cinq pour cent,"
+        },
+        {
+          "t0": 9.14,
+          "t1": 12.4,
+          "text": "cette machine économise cinquante-cinq pour cent du bois."
+        },
+        {
+          "t0": 12.4,
+          "t1": 15.26,
+          "text": "Face à un bon poêle à soixante-douze, sept seulement."
+        },
+        {
+          "t0": 15.26,
+          "t1": 19.84,
+          "text": "Isolez en plus une maison qui perdait trois fois plus : quatre-vingt-cinq."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-smoky-neighbour",
+      "scope": "part:smoky-neighbour",
+      "title": "Cheminée du voisin",
+      "scene": "homestead",
+      "file": "part-smoky-neighbour.mp3",
+      "duration": 17.44,
+      "chars": 326,
+      "hash": "3856a82e15fbf129",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.42,
+          "text": "Le voisin n’a pas de mauvais bois : il a un poêle au ralenti, qui garde sa chaleur en coupant l’air."
+        },
+        {
+          "t0": 5.42,
+          "t1": 10.84,
+          "text": "Un poêle de masse qu’on fait couver, en laboratoire : trois fois et demie plus de monoxyde."
+        },
+        {
+          "t0": 10.84,
+          "t1": 14.56,
+          "text": "Pour diviser son bois par dix, c’est ce poêle-là qu’il faudrait remplacer."
+        },
+        {
+          "t0": 14.56,
+          "t1": 17.44,
+          "text": "Ne le jugeons pas : il est réglé pour durer toute la nuit."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-steel-drum",
+      "scope": "part:steel-drum",
+      "title": "Le bidon de deux cents litres",
+      "scene": "living-room",
+      "file": "part-steel-drum.mp3",
+      "duration": 24.56,
+      "chars": 429,
+      "hash": "bb057fc71a7e90f5",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.08,
+          "text": "Un bidon du commerce, renversé sur le feu."
+        },
+        {
+          "t0": 3.08,
+          "t1": 7.9,
+          "text": "Notre souffle y descend, et cède sa chaleur à une paroi d’à peine plus d’un millimètre."
+        },
+        {
+          "t0": 7.9,
+          "t1": 14.18,
+          "text": "Elle ne garde presque rien : ce qu’elle reçoit, elle le rend, et une pièce froide se réchauffe à l’instant."
+        },
+        {
+          "t0": 14.18,
+          "t1": 16.44,
+          "text": "Environ vingt-deux kilowattheures par jour."
+        },
+        {
+          "t0": 16.44,
+          "t1": 20.54,
+          "text": "Son couvercle monte à cent quatre-vingts degrés, et touché, il brûle."
+        },
+        {
+          "t0": 20.54,
+          "t1": 24.56,
+          "text": "Un bidon récupéré, avec ses restes et sa peinture, est un danger à lui seul."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "xray": true
+          }
+        },
+        {
+          "t": 7.9,
+          "do": {
+            "xray": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-cob-bench",
+      "scope": "part:cob-bench",
+      "title": "La banquette",
+      "scene": "living-room",
+      "file": "part-cob-bench.mp3",
+      "duration": 24.48,
+      "chars": 451,
+      "hash": "d2a6c45a81c3c1a2",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.26,
+          "text": "Près de trois tonnes de terre et de pierres, autour de neuf mètres de conduit."
+        },
+        {
+          "t0": 4.26,
+          "t1": 9.28,
+          "text": "La chaleur la traverse lentement, et l’assise va de vingt-cinq à trente-deux degrés."
+        },
+        {
+          "t0": 9.28,
+          "t1": 12.59,
+          "text": "Sept heures après le feu du soir, elle est encore à près de vingt-huit,"
+        },
+        {
+          "t0": 12.62,
+          "t1": 15.26,
+          "text": "quand la pièce est tombée à dix-huit et demi."
+        },
+        {
+          "t0": 15.26,
+          "t1": 19.42,
+          "text": "Une couverture sur le banc, un livre, et janvier peut bien attendre dehors !"
+        },
+        {
+          "t0": 19.42,
+          "t1": 24.48,
+          "text": "Sur cette fiche, allumez Vue thermique et Coupe : la couleur monte du conduit vers l’assise."
+        }
+      ],
+      "cues": [
+        {
+          "t": 4.26,
+          "do": {
+            "cutaway": true
+          }
+        },
+        {
+          "t": 9.28,
+          "do": {
+            "cutaway": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-bench-backrest",
+      "scope": "part:bench-backrest",
+      "title": "Le dossier",
+      "scene": "living-room",
+      "file": "part-bench-backrest.mp3",
+      "duration": 14.56,
+      "chars": 258,
+      "hash": "cf7093ce54992689",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.76,
+          "text": "Un dos chaud : voilà tout son métier."
+        },
+        {
+          "t0": 2.76,
+          "t1": 6.24,
+          "text": "Le dossier n’a pas de conduit, et il chauffe par ce qu’il touche."
+        },
+        {
+          "t0": 6.24,
+          "t1": 10.7,
+          "text": "C’est du confort, et ce n’est pas rien, pour une machine dont on vit à côté."
+        },
+        {
+          "t0": 10.7,
+          "t1": 14.56,
+          "text": "Derrière lui, le banc perd près d’un kilowattheure par jour à travers le mur."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-manifold",
+      "scope": "part:manifold",
+      "title": "Le collecteur",
+      "scene": "living-room",
+      "file": "part-manifold.mp3",
+      "duration": 15.52,
+      "chars": 269,
+      "hash": "c0e4ea6d5f49831b",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 6.08,
+          "text": "Au pied du bidon, notre souffle tourne d’un quart de tour, à environ deux cent cinquante degrés à plein feu."
+        },
+        {
+          "t0": 6.08,
+          "t1": 9.7,
+          "text": "Le virage le ralentit, et la cendre volante tombe là."
+        },
+        {
+          "t0": 9.7,
+          "t1": 12.66,
+          "text": "Un simple coude se boucherait, et se nettoierait mal."
+        },
+        {
+          "t0": 12.66,
+          "t1": 15.52,
+          "text": "Cette boîte, on l’aspire à froid, à chaque ramonage."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 12.66,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-manifold-cleanout",
+      "scope": "part:manifold-cleanout",
+      "title": "Trappe du collecteur",
+      "scene": "living-room",
+      "file": "part-manifold-cleanout.mp3",
+      "duration": 17.52,
+      "chars": 283,
+      "hash": "297bdc9fd6ce153d",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.08,
+          "text": "Une porte ronde et étanche, pour retirer la cendre volante, et seulement à froid."
+        },
+        {
+          "t0": 5.08,
+          "t1": 8.3,
+          "text": "À plein feu, une fuite ici vole du tirage."
+        },
+        {
+          "t0": 8.3,
+          "t1": 12.74,
+          "text": "Mais si le courant se retourne, la même fuite laisse sortir des gaz dans la pièce."
+        },
+        {
+          "t0": 12.74,
+          "t1": 16.04,
+          "text": "Sa panne la plus bête : une porte mal refermée."
+        },
+        {
+          "t0": 16.04,
+          "t1": 17.52,
+          "text": "D’où sa place, bien en vue."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-chimney-flue",
+      "scope": "part:chimney-flue",
+      "title": "Le conduit vertical",
+      "scene": "living-room",
+      "file": "part-chimney-flue.mp3",
+      "duration": 20.16,
+      "chars": 331,
+      "hash": "9811ae29be34eab6",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.28,
+          "text": "Le vrai moteur de la machine, tant qu’il reste chaud : d’où son isolant."
+        },
+        {
+          "t0": 4.28,
+          "t1": 6.2,
+          "text": "Plus haut, est-ce mieux ?"
+        },
+        {
+          "t0": 6.2,
+          "t1": 11.06,
+          "text": "À huit mètres, il tire de l’air inutile, et le rendement tombe à soixante-dix pour cent."
+        },
+        {
+          "t0": 11.06,
+          "t1": 15.36,
+          "text": "Plus bas, à deux mètres soixante-dix, il monte à quatre-vingt-sept…"
+        },
+        {
+          "t0": 15.36,
+          "t1": 16.86,
+          "text": "mais la marge fond."
+        },
+        {
+          "t0": 16.86,
+          "t1": 20.16,
+          "text": "Une belle efficacité peut cacher un poêle plus fragile."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-chimney-cleanout",
+      "scope": "part:chimney-cleanout",
+      "title": "Trappe de pied",
+      "scene": "living-room",
+      "file": "part-chimney-cleanout.mp3",
+      "duration": 14.4,
+      "chars": 244,
+      "hash": "c192e7073a87cdaf",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.68,
+          "text": "Sous le té, un petit capuchon fermé."
+        },
+        {
+          "t0": 2.68,
+          "t1": 6.31,
+          "text": "Tout ce qui tombe s’arrête ici : suie, cendre, condensats."
+        },
+        {
+          "t0": 6.31,
+          "t1": 11.88,
+          "text": "Ouvert en plein feu, il offrirait un raccourci à l’air de la pièce, et le tirage s’effondrerait."
+        },
+        {
+          "t0": 11.88,
+          "t1": 14.4,
+          "text": "Un dépôt noir et collant dit un conduit trop froid."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-ceiling-crossing",
+      "scope": "part:ceiling-crossing",
+      "title": "Traversée de plafond",
+      "scene": "living-room",
+      "file": "part-ceiling-crossing.mp3",
+      "duration": 15.6,
+      "chars": 280,
+      "hash": "687b1a72e3456f48",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.12,
+          "text": "L’endroit où une maison prend feu."
+        },
+        {
+          "t0": 2.12,
+          "t1": 6.66,
+          "text": "Le plus grand risque, ce ne sont pas les fumées de tous les jours : c’est le feu de conduit."
+        },
+        {
+          "t0": 6.66,
+          "t1": 11.64,
+          "text": "La distance de sécurité se lit sur la notice du conduit, et elle ne se réduit pas."
+        },
+        {
+          "t0": 11.64,
+          "t1": 15.6,
+          "text": "Une fois le plafond fermé, une petite trappe de visite vaut la peine."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-hearth-slab",
+      "scope": "part:hearth-slab",
+      "title": "La dalle",
+      "scene": "living-room",
+      "file": "part-hearth-slab.mp3",
+      "duration": 14.88,
+      "chars": 267,
+      "hash": "80f1cba70da78445",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.88,
+          "text": "Écartons tout : ce qui se soulève repose sur cette seule pièce."
+        },
+        {
+          "t0": 3.88,
+          "t1": 8.78,
+          "text": "Ce poêle n’est pas un objet posé, c’est une maçonnerie, près de trois tonnes et demie."
+        },
+        {
+          "t0": 8.78,
+          "t1": 14.88,
+          "text": "Sous le banc, environ six cent cinquante kilos par mètre carré : trois fois ce qu’on compte pour un plancher léger !"
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "explode": 0.5
+          }
+        },
+        {
+          "t": 3.88,
+          "do": {
+            "explode": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-heat-shield",
+      "scope": "part:heat-shield",
+      "title": "Écran thermique",
+      "scene": "living-room",
+      "file": "part-heat-shield.mp3",
+      "duration": 18.08,
+      "chars": 293,
+      "hash": "63df725fd042146c",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.18,
+          "text": "Une simple tôle, et derrière elle, de l’air."
+        },
+        {
+          "t0": 3.18,
+          "t1": 7.34,
+          "text": "Le bidon chauffe le mur d’à côté par rayonnement : la tôle le reçoit,"
+        },
+        {
+          "t0": 7.34,
+          "t1": 10.3,
+          "text": "et l’air qui passe en emporte une bonne part."
+        },
+        {
+          "t0": 10.3,
+          "t1": 14.64,
+          "text": "Une épaisse plaque de brique collée au mur finit chaude, et transmet."
+        },
+        {
+          "t0": 14.64,
+          "t1": 18.08,
+          "text": "Et une belle tôle fixée à même le mur ne protège presque plus."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-co-alarm",
+      "scope": "part:co-alarm",
+      "title": "Détecteur de monoxyde",
+      "scene": "living-room",
+      "file": "part-co-alarm.mp3",
+      "duration": 27.6,
+      "chars": 480,
+      "hash": "72e23936646de313",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.19,
+          "text": "Un gaz qu’on ne voit pas, qu’on ne sent pas,"
+        },
+        {
+          "t0": 2.38,
+          "t1": 6.18,
+          "text": "dans une maison où l’on dort : voilà pourquoi cette petite boîte est là."
+        },
+        {
+          "t0": 6.18,
+          "t1": 10.56,
+          "text": "Il naît d’un feu qui manque d’air, et surtout des braises, après la flamme."
+        },
+        {
+          "t0": 10.56,
+          "t1": 13.7,
+          "text": "Ce détecteur est indispensable, et il ne suffit pas !"
+        },
+        {
+          "t0": 13.7,
+          "t1": 18.06,
+          "text": "Selon les manuels, il peut se taire deux heures à trente parties par million."
+        },
+        {
+          "t0": 18.06,
+          "t1": 21.26,
+          "text": "Les repères sanitaires refusent déjà ce niveau."
+        },
+        {
+          "t0": 21.26,
+          "t1": 25.24,
+          "text": "S’il sonne : on sort, on aère, on appelle les secours."
+        },
+        {
+          "t0": 25.24,
+          "t1": 27.6,
+          "text": "Et on ne le fait jamais taire pour finir la soirée."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-smoke-alarm",
+      "scope": "part:smoke-alarm",
+      "title": "Détecteur de fumée",
+      "scene": "living-room",
+      "file": "part-smoke-alarm.mp3",
+      "duration": 16.96,
+      "chars": 290,
+      "hash": "2295e02e08fb50c4",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.54,
+          "text": "Un autre danger, un autre travail."
+        },
+        {
+          "t0": 2.54,
+          "t1": 8.42,
+          "text": "Celui-ci repère les particules d’un début d’incendie, et il ne dit rien du monoxyde, qui ne fume pas."
+        },
+        {
+          "t0": 8.42,
+          "t1": 11.22,
+          "text": "En France, il est obligatoire dans les logements."
+        },
+        {
+          "t0": 11.22,
+          "t1": 16.96,
+          "text": "S’il sonne au premier feu de la saison, quand la peinture du bidon brûle, on aère, et on garde la pile."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-ventilation-grille",
+      "scope": "part:ventilation-grille",
+      "title": "Grille d’aération",
+      "scene": "living-room",
+      "file": "part-ventilation-grille.mp3",
+      "duration": 18.16,
+      "chars": 325,
+      "hash": "c092dcd38b0084ce",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.04,
+          "text": "Elle laisse passer le froid, alors on a envie de la boucher."
+        },
+        {
+          "t0": 3.04,
+          "t1": 4.02,
+          "text": "Surtout pas !"
+        },
+        {
+          "t0": 4.02,
+          "t1": 7.48,
+          "text": "Après le feu, le tirage retombe, et les braises continuent."
+        },
+        {
+          "t0": 7.48,
+          "t1": 11.84,
+          "text": "Une hotte met la maison en dépression, et l’air cherche un chemin : le conduit."
+        },
+        {
+          "t0": 11.84,
+          "t1": 18.16,
+          "text": "Dans notre scénario, le monoxyde monte à soixante-trois parties par million, et le détecteur peut rester muet."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-wood-basket",
+      "scope": "part:wood-basket",
+      "title": "Le panier du jour",
+      "scene": "living-room",
+      "file": "part-wood-basket.mp3",
+      "duration": 16.08,
+      "chars": 279,
+      "hash": "0ee3338de8a7c9a2",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.68,
+          "text": "Une journée d’hiver : environ douze kilos et demi de bois fendu, cinquante-deux kilowattheures."
+        },
+        {
+          "t0": 5.68,
+          "t1": 10.06,
+          "text": "Nous comptons deux séances de deux heures et demie, le matin et le soir."
+        },
+        {
+          "t0": 10.06,
+          "t1": 12.66,
+          "text": "C’est peu, et cela vaut pour cette maison-là."
+        },
+        {
+          "t0": 12.66,
+          "t1": 16.08,
+          "text": "Par moins dix degrés, il en faudrait près de vingt-quatre kilos."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-kettle",
+      "scope": "part:kettle",
+      "title": "La bouilloire",
+      "scene": "living-room",
+      "file": "part-kettle.mp3",
+      "duration": 15.28,
+      "chars": 273,
+      "hash": "7ced8ae47b7389eb",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.42,
+          "text": "Le couvercle du bidon sert aussi de plaque."
+        },
+        {
+          "t0": 2.42,
+          "t1": 7.72,
+          "text": "Assez pour faire bouillir de l’eau, mais seulement pendant les feux : au réveil, pas de thé !"
+        },
+        {
+          "t0": 7.72,
+          "t1": 11.82,
+          "text": "Une habitude chaleureuse, qui apprend à la main que cet endroit brûle."
+        },
+        {
+          "t0": 11.82,
+          "t1": 15.28,
+          "text": "Une manique sur un crochet, et rien d’inflammable sur le dessus."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-flue-thermometer",
+      "scope": "part:flue-thermometer",
+      "title": "Thermomètre de fumée",
+      "scene": "living-room",
+      "file": "part-flue-thermometer.mp3",
+      "duration": 20,
+      "chars": 349,
+      "hash": "1b5de332f7927866",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.72,
+          "text": "Le seul instrument de la maison."
+        },
+        {
+          "t0": 1.72,
+          "t1": 6.32,
+          "text": "Trop chaud, le bois chauffe le ciel ; trop froid, le tirage faiblit."
+        },
+        {
+          "t0": 6.32,
+          "t1": 12.22,
+          "text": "Un calcul de fumées dirait ici quatre-vingt-deux pour cent, quatre points de plus que la maison n’en garde."
+        },
+        {
+          "t0": 12.22,
+          "t1": 16.02,
+          "text": "Il ne voit ni le conduit dehors, ni le mur, ni le sol."
+        },
+        {
+          "t0": 16.02,
+          "t1": 20,
+          "text": "Tous les chiffres publiés au-dessus de quatre-vingts pour cent sont de tels calculs."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-bench-cushion",
+      "scope": "part:bench-cushion",
+      "title": "Coussin",
+      "scene": "living-room",
+      "file": "part-bench-cushion.mp3",
+      "duration": 15.2,
+      "chars": 263,
+      "hash": "fcf70ee00055476b",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.08,
+          "text": "À trente-deux degrés, un coussin n’a rien à craindre…"
+        },
+        {
+          "t0": 3.08,
+          "t1": 4.88,
+          "text": "et votre dos en redemande."
+        },
+        {
+          "t0": 4.88,
+          "t1": 8.14,
+          "text": "Mais il garde pour lui ce que le banc rendrait à la pièce."
+        },
+        {
+          "t0": 8.14,
+          "t1": 13.38,
+          "text": "Et une couverture oubliée tout l’hiver cache une fissure : on la retire de temps en temps."
+        },
+        {
+          "t0": 13.38,
+          "t1": 15.2,
+          "text": "Près du bidon, jamais de mousse."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-inner-stone-wall",
+      "scope": "part:inner-stone-wall",
+      "title": "Le mur de refend",
+      "scene": "living-room",
+      "file": "part-inner-stone-wall.mp3",
+      "duration": 15.6,
+      "chars": 283,
+      "hash": "0e327f13dbfc3569",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.64,
+          "text": "Tout ne se joue pas dans le banc."
+        },
+        {
+          "t0": 1.64,
+          "t1": 6.9,
+          "text": "Près de sept tonnes de pierre, plus que le banc lui-même, et personne ne les a payées pour ce poêle."
+        },
+        {
+          "t0": 6.9,
+          "t1": 12.64,
+          "text": "Sur une journée, ce mur bouge à peine plus d’un degré, quand l’air autour en change de près de sept."
+        },
+        {
+          "t0": 12.64,
+          "t1": 15.6,
+          "text": "Une plaque isolante dessus, et il ne joue plus."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-feed-tube",
+      "scope": "part:feed-tube",
+      "title": "Le tube d’alimentation",
+      "scene": "fire-core",
+      "file": "part-feed-tube.mp3",
+      "duration": 28.84,
+      "chars": 468,
+      "hash": "6552af971b08b677",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.88,
+          "text": "La curiosité de cette machine : un tube ouvert, qui ne fume pas tant que le tirage tient."
+        },
+        {
+          "t0": 5.88,
+          "t1": 10.4,
+          "text": "Notre souffle entre ici, avec le bois debout, dont seul le pied brûle."
+        },
+        {
+          "t0": 10.4,
+          "t1": 12.32,
+          "text": "Pas de porte : un rythme."
+        },
+        {
+          "t0": 12.32,
+          "t1": 15.9,
+          "text": "Ce passage décide du rendement, et aucune source ne le chiffre."
+        },
+        {
+          "t0": 15.9,
+          "t1": 21.01,
+          "text": "Grand ouvert, notre calcul tombe à cinquante-deux pour cent ; caché aux neuf dixièmes,"
+        },
+        {
+          "t0": 21.06,
+          "t1": 23.02,
+          "text": "il monte à quatre-vingt-huit."
+        },
+        {
+          "t0": 23.02,
+          "t1": 28.84,
+          "text": "Si le tirage manque, il renvoie fumée et flammes vers qui le nourrit : on ne le quitte pas des yeux."
+        }
+      ],
+      "cues": [
+        {
+          "t": 5.88,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 12.32,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-feed-lid",
+      "scope": "part:feed-lid",
+      "title": "Le couvercle",
+      "scene": "fire-core",
+      "file": "part-feed-lid.mp3",
+      "duration": 29.12,
+      "chars": 493,
+      "hash": "60b9e6be3eeb5b2c",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 6.1,
+          "text": "Pas une porte : un couvercle posé entre deux feux, pour que la maison ne se vide pas par le conduit."
+        },
+        {
+          "t0": 6.1,
+          "t1": 8.1,
+          "text": "Et un clapet dans le conduit ?"
+        },
+        {
+          "t0": 8.1,
+          "t1": 11.08,
+          "text": "Il n’y en a aucun ici, et voici pourquoi."
+        },
+        {
+          "t0": 11.08,
+          "t1": 14.64,
+          "text": "Fermé sur des braises, il renvoie leur monoxyde dans la maison."
+        },
+        {
+          "t0": 14.64,
+          "t1": 16.73,
+          "text": "Fermé dix minutes après le dernier bois,"
+        },
+        {
+          "t0": 16.92,
+          "t1": 21.38,
+          "text": "notre scénario passe le repère sanitaire d’une heure en trente-huit minutes."
+        },
+        {
+          "t0": 21.38,
+          "t1": 25.98,
+          "text": "Il gagnerait quelques points de rendement : un mauvais soir se paie autrement !"
+        },
+        {
+          "t0": 25.98,
+          "t1": 29.12,
+          "text": "Ce couvercle suit la même règle : jamais sur des braises."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-fuel-sticks",
+      "scope": "part:fuel-sticks",
+      "title": "Les bûchettes",
+      "scene": "fire-core",
+      "file": "part-fuel-sticks.mp3",
+      "duration": 15.6,
+      "chars": 250,
+      "hash": "22b5f384b97abe51",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.46,
+          "text": "Les bûchettes tiennent debout, seul leur pied brûle, et elles glissent d’elles-mêmes à mesure."
+        },
+        {
+          "t0": 5.46,
+          "t1": 10.8,
+          "text": "Le bois en attente reste donc froid, à deux pas de la chambre : tout le principe est là."
+        },
+        {
+          "t0": 10.8,
+          "t1": 15.6,
+          "text": "Du bois naturel, et rien d’autre : ni peint, ni traité, ni carton."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "explode": 0.5
+          }
+        },
+        {
+          "t": 5.46,
+          "do": {
+            "explode": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-burn-tunnel",
+      "scope": "part:burn-tunnel",
+      "title": "Le tunnel de feu",
+      "scene": "fire-core",
+      "file": "part-burn-tunnel.mp3",
+      "duration": 20,
+      "chars": 360,
+      "hash": "4368be1b537b8ee2",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.5,
+          "text": "L’image qui a rendu cette machine célèbre : la flamme se couche, et file à l’horizontale."
+        },
+        {
+          "t0": 5.5,
+          "t1": 9.06,
+          "text": "Un feu pressé, tiré par une cheminée à l’autre bout du chemin."
+        },
+        {
+          "t0": 9.06,
+          "t1": 13.48,
+          "text": "Une constructrice annonce une combustion propre à partir de cinq cent quarante degrés."
+        },
+        {
+          "t0": 13.48,
+          "t1": 17.72,
+          "text": "Notre calcul lit une moyenne de quatre cent soixante-sept, sous cette plage."
+        },
+        {
+          "t0": 17.72,
+          "t1": 20,
+          "text": "Un thermocouple dans la flamme lirait plus."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 9.06,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-ash-bed",
+      "scope": "part:ash-bed",
+      "title": "Le lit de cendres",
+      "scene": "fire-core",
+      "file": "part-ash-bed.mp3",
+      "duration": 21.92,
+      "chars": 382,
+      "hash": "590ab044f17438f3",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.36,
+          "text": "Environ cent grammes de cendre par jour."
+        },
+        {
+          "t0": 2.36,
+          "t1": 5.52,
+          "text": "Dessous, des braises : voici le moment le plus trompeur."
+        },
+        {
+          "t0": 5.52,
+          "t1": 7.68,
+          "text": "Plus de flamme, tout a l’air fini…"
+        },
+        {
+          "t0": 7.68,
+          "t1": 13.82,
+          "text": "et le monoxyde des fumées est au plus haut : environ neuf fois plus qu’à plein feu, en ordre de grandeur."
+        },
+        {
+          "t0": 13.82,
+          "t1": 19,
+          "text": "Dans notre modèle, tant que le conduit reste chaud et ouvert, il s’en va par la cheminée."
+        },
+        {
+          "t0": 19,
+          "t1": 21.92,
+          "text": "Une vraie machine a aussi ses fissures et ses joints."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-heat-riser",
+      "scope": "part:heat-riser",
+      "title": "La cheminée interne",
+      "scene": "fire-core",
+      "file": "part-heat-riser.mp3",
+      "duration": 26.08,
+      "chars": 421,
+      "hash": "9a616e2f05e6c5d1",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.3,
+          "text": "L’endroit le plus chaud de la maison !"
+        },
+        {
+          "t0": 2.3,
+          "t1": 10.3,
+          "text": "Notre souffle y monte, et la fumée y finit de brûler, à trois conditions : de la chaleur, de l’air, du temps."
+        },
+        {
+          "t0": 10.3,
+          "t1": 13.1,
+          "text": "C’est ce qui sépare cette machine d’un poêle au ralenti."
+        },
+        {
+          "t0": 13.1,
+          "t1": 14.62,
+          "text": "Propre pour autant ?"
+        },
+        {
+          "t0": 14.62,
+          "t1": 20.16,
+          "text": "Rien ne le dit : notre estimation donne six fois le monoxyde d’un poêle de masse en laboratoire."
+        },
+        {
+          "t0": 20.16,
+          "t1": 26.08,
+          "text": "Plus haute ou plus basse, notre calcul déplace surtout la chaleur : plus de bidon, moins de banc."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "xray": true
+          }
+        },
+        {
+          "t": 13.1,
+          "do": {
+            "xray": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-riser-insulation",
+      "scope": "part:riser-insulation",
+      "title": "L’isolant de la cheminée",
+      "scene": "fire-core",
+      "file": "part-riser-insulation.mp3",
+      "duration": 15.84,
+      "chars": 273,
+      "hash": "cf790b1129516254",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.54,
+          "text": "Trois matières pour un seul travail : garder le feu chaud."
+        },
+        {
+          "t0": 3.54,
+          "t1": 7.42,
+          "text": "Une brique isolante, une couverture de fibre, de la perlite."
+        },
+        {
+          "t0": 7.42,
+          "t1": 11.92,
+          "text": "Notre modèle les essaie toutes les trois : à un point de rendement l’une de l’autre."
+        },
+        {
+          "t0": 11.92,
+          "t1": 15.84,
+          "text": "Le choix se fait donc sur la tenue, le poids, et la santé à la pose."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-riser-sleeve",
+      "scope": "part:riser-sleeve",
+      "title": "La chemise d’acier",
+      "scene": "fire-core",
+      "file": "part-riser-sleeve.mp3",
+      "duration": 14.64,
+      "chars": 256,
+      "hash": "c6138bccd1fac622",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.98,
+          "text": "Une simple tôle roulée, qui tient l’isolant."
+        },
+        {
+          "t0": 2.98,
+          "t1": 8.06,
+          "text": "Un concepteur note que l’acier se corrode vite au-delà de sept cent soixante degrés."
+        },
+        {
+          "t0": 8.06,
+          "t1": 10.96,
+          "text": "Elle reste donc du côté froid, vers deux cents."
+        },
+        {
+          "t0": 10.96,
+          "t1": 14.64,
+          "text": "Ce qui voit la flamme ne rouille pas, et ce qui rouille ne voit pas la flamme."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-firebrick-base",
+      "scope": "part:firebrick-base",
+      "title": "Le socle en briques",
+      "scene": "fire-core",
+      "file": "part-firebrick-base.mp3",
+      "duration": 14.64,
+      "chars": 266,
+      "hash": "8f86b030b2a3fe00",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.26,
+          "text": "L’argile réfractaire, là où se tient le feu : la partie la moins exotique de la machine."
+        },
+        {
+          "t0": 5.26,
+          "t1": 9.2,
+          "text": "Environ cent cinquante kilos de brique dense, pour garder la flamme chaude."
+        },
+        {
+          "t0": 9.2,
+          "t1": 10.94,
+          "text": "Un maçon de poêles la connaît bien."
+        },
+        {
+          "t0": 10.94,
+          "t1": 14.64,
+          "text": "Et un foyer fissuré ne se rebouche pas au mastic : il se reprend."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "explode": 0.5
+          }
+        },
+        {
+          "t": 5.26,
+          "do": {
+            "explode": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-core-casing",
+      "scope": "part:core-casing",
+      "title": "L’enveloppe de terre",
+      "scene": "fire-core",
+      "file": "part-core-casing.mp3",
+      "duration": 18.92,
+      "chars": 312,
+      "hash": "8a8ea72acf1e0336",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.82,
+          "text": "La terre tient le foyer, et ferme le chemin des gaz."
+        },
+        {
+          "t0": 3.82,
+          "t1": 9.68,
+          "text": "Elle sèche, le foyer se dilate à chaque feu : une fissure est le résultat normal d’un chantier normal."
+        },
+        {
+          "t0": 9.68,
+          "t1": 13.92,
+          "text": "Mais ici, une fissure est une fuite, et notre modèle n’en a aucune."
+        },
+        {
+          "t0": 13.92,
+          "t1": 18.92,
+          "text": "Belle, bon marché, et sans certificat d’étanchéité : voilà le point délicat de la terre."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-top-gap",
+      "scope": "part:top-gap",
+      "title": "L’espace sous le couvercle",
+      "scene": "fire-core",
+      "file": "part-top-gap.mp3",
+      "duration": 17.28,
+      "chars": 300,
+      "hash": "1578bc3a44ec9f22",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.32,
+          "text": "Notre souffle fait ici demi-tour."
+        },
+        {
+          "t0": 2.32,
+          "t1": 6.46,
+          "text": "Le seul article revu par des pairs dit qu’un jeu trop faible menace tout."
+        },
+        {
+          "t0": 6.46,
+          "t1": 10.98,
+          "text": "Notre modèle, à un centimètre et demi, ne voit presque rien changer."
+        },
+        {
+          "t0": 10.98,
+          "t1": 12.3,
+          "text": "Qui a raison ?"
+        },
+        {
+          "t0": 12.3,
+          "t1": 15.02,
+          "text": "Nous ne pouvons pas trancher sans le lire en entier."
+        },
+        {
+          "t0": 15.02,
+          "t1": 17.28,
+          "text": "Et cela n’autorise personne à réduire quoi que ce soit."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 15.02,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-downdraft-annulus",
+      "scope": "part:downdraft-annulus",
+      "title": "La chute dans le bidon",
+      "scene": "fire-core",
+      "file": "part-downdraft-annulus.mp3",
+      "duration": 15.6,
+      "chars": 281,
+      "hash": "30e9f075efdc5476",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.04,
+          "text": "La chute la plus lente de la machine."
+        },
+        {
+          "t0": 2.04,
+          "t1": 6.04,
+          "text": "À plein feu, notre souffle arrive en haut vers quatre cent soixante degrés,"
+        },
+        {
+          "t0": 6.04,
+          "t1": 8.9,
+          "text": "et sort en bas vers deux cent cinquante."
+        },
+        {
+          "t0": 8.9,
+          "t1": 11.82,
+          "text": "Il laisse ici trente-huit pour cent de ce que donne le bois."
+        },
+        {
+          "t0": 11.82,
+          "t1": 15.6,
+          "text": "Le bidon n’est donc pas un bonus : sa part se prend sur le reste."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 8.9,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-drum-seal",
+      "scope": "part:drum-seal",
+      "title": "Le joint du couvercle",
+      "scene": "fire-core",
+      "file": "part-drum-seal.mp3",
+      "duration": 22.88,
+      "chars": 371,
+      "hash": "2c7e9ac570150105",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.36,
+          "text": "Le couvercle d’un bidon s’enlève : voilà un joint à hauteur de tête."
+        },
+        {
+          "t0": 4.36,
+          "t1": 10.12,
+          "text": "Une machine filmée à son treizième hiver s’en remet à la cendre, et elle fume un peu après remontage."
+        },
+        {
+          "t0": 10.12,
+          "t1": 15.2,
+          "text": "Ce qui le protège surtout, c’est l’aspiration : près de neuf pascals à plein feu."
+        },
+        {
+          "t0": 15.2,
+          "t1": 17.8,
+          "text": "Que le courant se retourne, et elle disparaît."
+        },
+        {
+          "t0": 17.8,
+          "t1": 22.88,
+          "text": "Un bidon remonté repart avec le détecteur en marche, et jamais la nuit."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-drum-plinth",
+      "scope": "part:drum-plinth",
+      "title": "Le pied du bidon",
+      "scene": "fire-core",
+      "file": "part-drum-plinth.mp3",
+      "duration": 15.52,
+      "chars": 258,
+      "hash": "34583f7c1bc92e39",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.32,
+          "text": "Là où l’acier rencontre la terre."
+        },
+        {
+          "t0": 2.32,
+          "t1": 6.3,
+          "text": "Écartons : le bidon s’en va seul, et ce pied reste en bas."
+        },
+        {
+          "t0": 6.3,
+          "t1": 10.84,
+          "text": "L’acier se dilate à chaque feu contre ce qui bouge peu, et le joint travaille."
+        },
+        {
+          "t0": 10.84,
+          "t1": 15.52,
+          "text": "Il n’a pas de solution parfaite, mais une d’entretien : y revenir, à la terre fraîche."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "explode": 0.6
+          }
+        },
+        {
+          "t": 6.3,
+          "do": {
+            "explode": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-duct-hot-run",
+      "scope": "part:duct-hot-run",
+      "title": "Le début du conduit",
+      "scene": "bench-section",
+      "file": "part-duct-hot-run.mp3",
+      "duration": 14.08,
+      "chars": 265,
+      "hash": "4942c59f97f4dea4",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.02,
+          "text": "Notre souffle arrive encore chaud."
+        },
+        {
+          "t0": 2.02,
+          "t1": 6.22,
+          "text": "Ces trois premiers mètres prennent quarante-deux pour cent de ce que cède tout le conduit."
+        },
+        {
+          "t0": 6.22,
+          "t1": 8.7,
+          "text": "Et cet échange, personne ne l’a mesuré."
+        },
+        {
+          "t0": 8.7,
+          "t1": 14.08,
+          "text": "Doublez-le ou divisez-le par deux : le rendement va de soixante-neuf à quatre-vingt-cinq pour cent."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "cutaway": true
+          }
+        },
+        {
+          "t": 6.22,
+          "do": {
+            "cutaway": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-duct-cold-run",
+      "scope": "part:duct-cold-run",
+      "title": "La fin du conduit",
+      "scene": "bench-section",
+      "file": "part-duct-cold-run.mp3",
+      "duration": 18.8,
+      "chars": 369,
+      "hash": "cbb5d653b7227719",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.02,
+          "text": "Les six derniers mètres : notre souffle arrive fatigué,"
+        },
+        {
+          "t0": 3.02,
+          "t1": 5.76,
+          "text": "et il quitte le banc vers cent quatorze degrés à plein feu."
+        },
+        {
+          "t0": 5.76,
+          "t1": 7.66,
+          "text": "Pourquoi ne pas tout lui prendre ?"
+        },
+        {
+          "t0": 7.66,
+          "t1": 11.31,
+          "text": "Sur dix-huit mètres, il finirait au chapeau à trente-quatre degrés en moyenne,"
+        },
+        {
+          "t0": 11.46,
+          "t1": 13.6,
+          "text": "mais le tirage tomberait de moitié."
+        },
+        {
+          "t0": 13.6,
+          "t1": 18.8,
+          "text": "Assez de conduit pour la chaleur, pas assez pour étouffer le tirage : toute la question du banc est là."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-duct-bend",
+      "scope": "part:duct-bend",
+      "title": "Le coude",
+      "scene": "bench-section",
+      "file": "part-duct-bend.mp3",
+      "duration": 16.48,
+      "chars": 284,
+      "hash": "68dd1aedcbfb620f",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.96,
+          "text": "Un banc en ligne droite plairait aux gaz, mais une pièce a des murs."
+        },
+        {
+          "t0": 3.96,
+          "t1": 7.56,
+          "text": "Trois coudes dans notre dessin, et ils coûtent peu de tirage."
+        },
+        {
+          "t0": 7.56,
+          "t1": 13.36,
+          "text": "Leur vrai prix, c’est la cendre : à l’extérieur du virage, le flux ralentit, et elle se pose."
+        },
+        {
+          "t0": 13.36,
+          "t1": 16.48,
+          "text": "C’est là qu’une brosse se bloque, et qu’un joint travaille."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 13.36,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-duct-joint",
+      "scope": "part:duct-joint",
+      "title": "Le raccord",
+      "scene": "bench-section",
+      "file": "part-duct-joint.mp3",
+      "duration": 19.2,
+      "chars": 305,
+      "hash": "ac3241a6e8048939",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.8,
+          "text": "Regardez bien ce raccord : une fois recouvert, on ne le reverra jamais."
+        },
+        {
+          "t0": 4.8,
+          "t1": 8.1,
+          "text": "À plein feu, une fuite aspire de l’air."
+        },
+        {
+          "t0": 8.1,
+          "t1": 13.26,
+          "text": "Mais que le courant s’inverse, et elle laisse entrer les gaz dans la terre, puis dans la pièce."
+        },
+        {
+          "t0": 13.26,
+          "t1": 19.2,
+          "text": "Tout son entretien a lieu le jour où on le voit encore : le montrer, le tester, le photographier."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "isolate": true
+          }
+        },
+        {
+          "t": 13.26,
+          "do": {
+            "isolate": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-cob-casing",
+      "scope": "part:cob-casing",
+      "title": "La terre qui garde",
+      "scene": "bench-section",
+      "file": "part-cob-casing.mp3",
+      "duration": 18.48,
+      "chars": 337,
+      "hash": "fc2b9a1de7e756db",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.01,
+          "text": "Lente, exprès !"
+        },
+        {
+          "t0": 1.01,
+          "t1": 6.14,
+          "text": "Zéro virgule six watt par mètre et par degré, et cette lenteur est toute l’affaire."
+        },
+        {
+          "t0": 6.14,
+          "t1": 10.18,
+          "text": "Les études vont du simple à presque neuf fois plus, sans consensus."
+        },
+        {
+          "t0": 10.18,
+          "t1": 12.98,
+          "text": "Le calcul simple annonçait un pic bien plus tardif."
+        },
+        {
+          "t0": 12.98,
+          "t1": 15.74,
+          "text": "Mais un feu de deux heures et demie n’est pas un coup de chaleur,"
+        },
+        {
+          "t0": 15.86,
+          "t1": 18.48,
+          "text": "et les gaz refroidissent encore le côté du conduit."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "cutaway": true
+          }
+        },
+        {
+          "t": 10.18,
+          "do": {
+            "cutaway": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-stone-filler",
+      "scope": "part:stone-filler",
+      "title": "Les pierres",
+      "scene": "bench-section",
+      "file": "part-stone-filler.mp3",
+      "duration": 17.76,
+      "chars": 303,
+      "hash": "46c4096bbc463c97",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 5.5,
+          "text": "Des constructeurs disent que leur banc contient bien plus de pierre que de terre, et une terre sans fibre."
+        },
+        {
+          "t0": 5.5,
+          "t1": 9.62,
+          "text": "La fibre isole : elle n’a rien à faire dans une réserve de chaleur."
+        },
+        {
+          "t0": 9.62,
+          "t1": 13.6,
+          "text": "Notre modèle, lui, compte environ un cinquième de pierres."
+        },
+        {
+          "t0": 13.6,
+          "t1": 15.92,
+          "text": "Plus de pierres, un pic plus tôt ?"
+        },
+        {
+          "t0": 15.92,
+          "t1": 17.76,
+          "text": "Nous n’avons trouvé aucune mesure."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-earthen-plaster",
+      "scope": "part:earthen-plaster",
+      "title": "L’enduit de terre",
+      "scene": "bench-section",
+      "file": "part-earthen-plaster.mp3",
+      "duration": 15.6,
+      "chars": 281,
+      "hash": "7e7a2f9e389086ca",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 1.56,
+          "text": "La peau de la banquette."
+        },
+        {
+          "t0": 1.56,
+          "t1": 4.72,
+          "text": "Environ soixante pour cent de sa chaleur part en rayonnement,"
+        },
+        {
+          "t0": 4.72,
+          "t1": 8.34,
+          "text": "vers le corps et vers les murs, sans passer par l’air."
+        },
+        {
+          "t0": 8.34,
+          "t1": 11.6,
+          "text": "C’est aussi un capteur à bas prix : ce qui change se voit."
+        },
+        {
+          "t0": 11.6,
+          "t1": 15.6,
+          "text": "Un trait de crayon à chaque bout d’une fissure, une date, et voilà l’instrument."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-floor-barrier",
+      "scope": "part:floor-barrier",
+      "title": "La couche sur la dalle",
+      "scene": "bench-section",
+      "file": "part-floor-barrier.mp3",
+      "duration": 13.76,
+      "chars": 270,
+      "hash": "48ad4a401ba6f036",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 4.38,
+          "text": "Comptez les couches sous l’assise : le poids des trois tonnes passe à travers toutes."
+        },
+        {
+          "t0": 4.38,
+          "t1": 8.66,
+          "text": "Un manuel français prévient qu’une mousse sous un poêle peut fondre, ou couver."
+        },
+        {
+          "t0": 8.66,
+          "t1": 10.5,
+          "text": "Une dalle est donc aussi un écran."
+        },
+        {
+          "t0": 10.5,
+          "t1": 13.76,
+          "text": "Et ce qu’il y a dessous, on ne le découvre souvent qu’en démolissant."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "explode": 0.5
+          }
+        },
+        {
+          "t": 4.38,
+          "do": {
+            "explode": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-bench-cleanout",
+      "scope": "part:bench-cleanout",
+      "title": "Trappe du banc",
+      "scene": "bench-section",
+      "file": "part-bench-cleanout.mp3",
+      "duration": 15.28,
+      "chars": 282,
+      "hash": "8eac1454fa6802e2",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.62,
+          "text": "Une petite porte ronde : le chemin du ramoneur dans le conduit."
+        },
+        {
+          "t0": 3.62,
+          "t1": 7.8,
+          "text": "Son emplacement décide, car une brosse ne prend pas un virage serré."
+        },
+        {
+          "t0": 7.8,
+          "t1": 12.42,
+          "text": "Chaque porte est une fuite possible, mais moins chère qu’une banquette à refaire."
+        },
+        {
+          "t0": 12.42,
+          "t1": 15.28,
+          "text": "Et une trappe qu’il faut chercher est une trappe qu’on n’ouvre pas."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-chimney-tee",
+      "scope": "part:chimney-tee",
+      "title": "Le té de pied",
+      "scene": "bench-section",
+      "file": "part-chimney-tee.mp3",
+      "duration": 19.92,
+      "chars": 349,
+      "hash": "7c584045fdd2b12c",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 2.1,
+          "text": "Ici, le chemin tourne vers le haut."
+        },
+        {
+          "t0": 2.1,
+          "t1": 3.82,
+          "text": "Mais quand tout est froid ?"
+        },
+        {
+          "t0": 3.82,
+          "t1": 10.16,
+          "text": "Par moins cinq degrés, après des jours sans feu, le courant reste à l’envers, même feu allumé."
+        },
+        {
+          "t0": 10.16,
+          "t1": 12.7,
+          "text": "Notre modèle ne le voit pas se retourner seul !"
+        },
+        {
+          "t0": 12.7,
+          "t1": 16.54,
+          "text": "Un peu de chaleur à ce pied, racontent les constructeurs, et il bascule."
+        },
+        {
+          "t0": 16.54,
+          "t1": 19.92,
+          "text": "Environ trois minutes chez nous : le chiffre le moins sûr de ce labo."
+        }
+      ],
+      "cues": [
+        {
+          "t": 0,
+          "do": {
+            "flows": true
+          }
+        },
+        {
+          "t": 12.7,
+          "do": {
+            "flows": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "part-condensate-drain",
+      "scope": "part:condensate-drain",
+      "title": "La purge",
+      "scene": "bench-section",
+      "file": "part-condensate-drain.mp3",
+      "duration": 15.52,
+      "chars": 281,
+      "hash": "4eae5ed61ff43a03",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.48,
+          "text": "Une petite purge au point bas, pour une eau acide."
+        },
+        {
+          "t0": 3.48,
+          "t1": 9.12,
+          "text": "Sur nos neuf mètres, rien ne condense ; sur dix-huit, environ quatre cents grammes d’eau par jour."
+        },
+        {
+          "t0": 9.12,
+          "t1": 11.72,
+          "text": "Une vraie machine a pourtant ses moments froids."
+        },
+        {
+          "t0": 11.72,
+          "t1": 15.52,
+          "text": "Et une purge qui coule tout l’hiver dit une machine plus froide qu’on ne le croit."
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-temperature-lance",
+      "scope": "part:temperature-lance",
+      "title": "La sonde",
+      "scene": "bench-section",
+      "file": "part-temperature-lance.mp3",
+      "duration": 22.72,
+      "chars": 330,
+      "hash": "630b65ff14df761d",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 3.14,
+          "text": "Ce qui manque le plus à ce sujet : des chiffres."
+        },
+        {
+          "t0": 3.14,
+          "t1": 8.66,
+          "text": "Un constructeur a glissé quinze capteurs dans un banc de béton, sans publier d’hiver complet."
+        },
+        {
+          "t0": 8.66,
+          "t1": 13.22,
+          "text": "Aucune source ne donne une journée entière relevée dans une maison habitée."
+        },
+        {
+          "t0": 13.22,
+          "t1": 17.88,
+          "text": "Notre sonde n’est qu’un dessin : son aiguille suit nos calculs."
+        },
+        {
+          "t0": 17.88,
+          "t1": 22.72,
+          "text": "Alors, un conseil : mesurez, écrivez, publiez !"
+        }
+      ],
+      "cues": []
+    },
+    {
+      "id": "part-pebble-section",
+      "scope": "part:pebble-section",
+      "title": "Le banc de galets",
+      "scene": "bench-section",
+      "file": "part-pebble-section.mp3",
+      "duration": 16.88,
+      "chars": 296,
+      "hash": "d663a33b0335d006",
+      "captions": [
+        {
+          "t0": 0,
+          "t1": 0.94,
+          "text": "L’autre école."
+        },
+        {
+          "t0": 0.94,
+          "t1": 6.1,
+          "text": "Sur les douze réalisations d’une vidéo, six sont en terre, et six en galets."
+        },
+        {
+          "t0": 6.1,
+          "t1": 11.84,
+          "text": "Aucune source n’en chiffre rien : notre assise à trente-six degrés, c’est notre estimation qui parle."
+        },
+        {
+          "t0": 11.84,
+          "t1": 16.88,
+          "text": "Son avantage se comprend sans chiffre : on peut le rouvrir et revoir le conduit, sans casser de terre."
+        }
+      ],
+      "cues": []
+    }
+  ]
+}
