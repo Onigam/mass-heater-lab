@@ -17,7 +17,7 @@ import { ASSUMED, DERIVED, ESTIMATE, FIG, MODEL } from './figures';
 import { partIds, PART_CATEGORIES, WORLDS, type WorldId } from './ids';
 import { INSTALL } from './install';
 import { LESSONS } from './lessons';
-import { OVERVIEWS } from './overviews';
+import { FIRE_LINE, OVERVIEWS } from './overviews';
 import { PARTS } from './parts';
 import { DIM_SPECS } from './parts/dim-specs';
 import { ACCESS, CHAPTERS, LAW, MAIN_VIDEO, NOT_LINKED, SOURCES } from './sources';
@@ -417,6 +417,14 @@ describe('the visitor texts', () => {
     // the line between a rocket cook stove and a mass heater is drawn once, where the word is defined, and again in the lesson that says when this machine is wrong
     expect(OVERVIEWS.homestead.text.en).toMatch(/a mass heater has a chimney/);
     expect(OVERVIEWS.homestead.text.fr).toMatch(/un poêle de masse a une cheminée/);
+  });
+
+  it('every overview says the plain line on fire and carbon monoxide, before what there is to look at (review D6)', () => {
+    for (const [world, o] of Object.entries(OVERVIEWS)) {
+      expect(o.text.fr, world).toContain(FIRE_LINE.fr);
+      expect(o.text.en, world).toContain(FIRE_LINE.en);
+      expect(o.text.en.indexOf(FIRE_LINE.en), world).toBeLessThan(o.text.en.lastIndexOf('\n\n'));
+    }
   });
 
   it('say once what is to be said once', () => {
