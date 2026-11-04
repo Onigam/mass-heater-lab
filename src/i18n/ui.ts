@@ -21,8 +21,8 @@ export const LAB_STRINGS = {
   goFireCore: ['Ouvrir le foyer', 'Open the core'],
   goBenchSection: ['Voir le banc en coupe', 'See the bench in section'],
 
-  // ---- the kit's pill when no alarm is on says « Tout fonctionne » / « All good »: a model that raises no alert has not said the air is good. `registerStrings` overwrites a common key
-  allGood: ['Aucune alerte du modèle', 'No alert in the model'],
+  // ---- the kit's pill when no alarm is on says « Tout fonctionne » / « All good »: a model that raises no alert has not said the air is good. `registerStrings` overwrites a common key. At 1024 px the strip has room for about 14 characters: « Aucune alerte du modèle » ran off the window
+  allGood: ['Aucune alerte', 'No alert'],
 
   // ---- the intros
   plansIntro: [
