@@ -21,7 +21,7 @@ import {
 import { DEFAULT_PARAMS, createHeaterStage, type HeaterOptions } from '../room/stage';
 import { type RoomShell } from '../room/shell';
 import { Field, type ThermalView, rampBar, rampY } from '../thermal';
-import { anchor, hotspots, type HotspotDef } from '../world';
+import { anchor, box, hotspots, viewFrom, type HotspotDef, type PartFraming } from '../world';
 
 // The `living-room` world, the machine at home: a room seen as a stage, the walls between the eye and the room stepping aside by themselves. Warm, full and lived in. The drum on its base of earth, the bench along two walls, the chimney up through
 // the ceiling, a real fire in the feed that follows the model. The section opens the whole path of the gases at once, X-ray shows the same path through the shells, and the thermal view (`params.thermalView`) is the lab's « aha »: the room dark, the drum and the bench
@@ -92,6 +92,32 @@ export const EXPLODE: Record<LivingPart, [number, number, number]> = {
   'wood-basket': [0.25, 0.25, 0.3],
   'flue-thermometer': [0, 0, 0.32],
   'inner-stone-wall': [-0.55, 0, 0],
+};
+
+/**
+ * How each part is framed: from which side, whatever the camera was doing before, the wall behind it staying where it is; and on what, where the whole box of a long part would keep the camera 20 m away. The two detectors are framed
+ * together by the voice from the direction the chimney leaves it in, so the chimney is looked at from low enough to see under the ledger the smoke alarm hangs from. Directions found by rendering each part with and without itself from a
+ * grid of directions (`docs/3d.md`).
+ */
+export const FRAMING: Record<LivingPart, PartFraming> = {
+  'steel-drum': { viewDir: viewFrom(25, -10) },
+  'cob-bench': { viewDir: viewFrom(30, -15), frame: box(-0.6, 0, -1.2, 1.8, 0.5, 0.4) },
+  'bench-backrest': { viewDir: viewFrom(30, -30), frame: box(0.2, 0.45, -1.6, 2.0, 0.85, 0) },
+  manifold: { viewDir: viewFrom(30, -100) },
+  'manifold-cleanout': { viewDir: viewFrom(60, 30) },
+  'chimney-flue': { viewDir: viewFrom(4, -10) },
+  'chimney-cleanout': { viewDir: viewFrom(8, 0) },
+  'ceiling-crossing': { viewDir: viewFrom(8, 0) },
+  'hearth-slab': { viewDir: viewFrom(45, 30), frame: box(-3, -0.1, -2.5, -0.8, 0.02, -0.3) },
+  'heat-shield': { viewDir: viewFrom(30, -30) },
+  'co-alarm': { viewDir: viewFrom(18, 0) },
+  'smoke-alarm': { viewDir: viewFrom(0, -30) },
+  'ventilation-grille': { viewDir: viewFrom(18, 0) },
+  'wood-basket': { viewDir: viewFrom(30, 0) },
+  kettle: { viewDir: viewFrom(30, 0) },
+  'flue-thermometer': { viewDir: viewFrom(18, 0) },
+  'bench-cushion': { viewDir: viewFrom(30, -30), frame: box(1.2, 0.45, -1.7, 2.4, 0.79, -0.5) },
+  'inner-stone-wall': { viewDir: viewFrom(30, 75), frame: box(-3.3, 0.3, -2, -3, 2.2, 0.6) },
 };
 
 export type { HeaterOptions };
@@ -203,7 +229,7 @@ export function createLivingRoomScene(opts: HeaterOptions = {}): LivingRoomScene
   anchors['cob-bench#t60'] = anchor(scale, 0.07, rampY(60, BAR_H, BAR_Y0), 0.02, 't60');
 
   // ---- register, after the merges
-  for (const id of LIVING_PARTS) registry.add(id, roots[id], V(...EXPLODE[id]));
+  for (const id of LIVING_PARTS) registry.add(id, roots[id], V(...EXPLODE[id]), undefined, FRAMING[id]);
 
   // ---- what moves or hides with a part without being one
   const followers = new Followers();

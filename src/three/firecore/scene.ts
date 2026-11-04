@@ -9,7 +9,7 @@ import type { GasFlow } from '../fire/gas';
 import type { MachineAssembly } from '../machine/assembly';
 import { buildKettle, buildShield } from '../room/items';
 import { DEFAULT_PARAMS, createHeaterStage, type HeaterOptions } from '../room/stage';
-import { anchor, hotspots, type HotspotDef } from '../world';
+import { anchor, box, hotspots, viewFrom, type HotspotDef, type PartFraming } from '../world';
 
 // The `fire-core` world: where it burns and which way it goes. The same room and the same machine as `living-room`, the lights low, always cut along the gases' path. The flame lies down in the tunnel at the length the model gives, comes back up the feed when the flow reverses;
 // the riser's liner glows when the model says it is hot enough; the dots run from the feed to the manifold at the speed of the mass flow, and « Flux » adds the beads of pressure. No section tool: it is always on. No thermal view: on a ramp of 15 to 65 °C all of this is one colour, and it would teach nothing.
@@ -65,6 +65,27 @@ export const EXPLODE: Record<FirePart, [number, number, number]> = {
   'drum-plinth': [0.26, 0.05, 0],
   'firebrick-base': [0, 0, 0],
   'core-casing': [0.2, -0.02, 0.32],
+};
+
+/**
+ * How each part is framed. The core only exists on the cut, which faces +z: everything is seen from that side, whatever the camera was doing before. What is thin or what lies along the cut is framed where it shows, not on its whole box.
+ * Directions found by rendering each part with and without itself from a grid of directions (`docs/3d.md`).
+ */
+export const FRAMING: Record<FirePart, PartFraming> = {
+  'feed-tube': { viewDir: viewFrom(8, 0) },
+  'feed-lid': { viewDir: viewFrom(10, -15) },
+  'fuel-sticks': { viewDir: viewFrom(30, 0), frame: box(-2.77, 0.1, -1.93, -2.62, 0.7, -1.77) },
+  'burn-tunnel': { viewDir: viewFrom(8, 0) },
+  'ash-bed': { viewDir: viewFrom(25, 0) },
+  'heat-riser': { viewDir: viewFrom(8, 0) },
+  'riser-insulation': { viewDir: viewFrom(8, 0) },
+  'riser-sleeve': { viewDir: viewFrom(12, -55), frame: box(-2.1, 0.45, -2.0, -1.95, 0.85, -1.85) },
+  'firebrick-base': { viewDir: viewFrom(4, 15) },
+  'core-casing': { viewDir: viewFrom(12, -50), frame: box(-2.89, 0, -1.95, -2.4, 0.38, -1.85) },
+  'top-gap': { viewDir: viewFrom(8, 0), frame: box(-2.45, 0.88, -1.95, -1.85, 1.12, -1.85) },
+  'downdraft-annulus': { viewDir: viewFrom(8, 0), frame: box(-2.42, 0.4, -1.92, -2.3, 0.85, -1.85) },
+  'drum-seal': { viewDir: viewFrom(0, -30), frame: box(-1.95, 0.96, -1.95, -1.83, 1.08, -1.85) },
+  'drum-plinth': { viewDir: viewFrom(8, 10), frame: box(-2.42, 0, -2.0, -1.8, 0.2, -1.85) },
 };
 
 export interface FireCoreScene extends SceneModule<HeaterState> {
@@ -140,7 +161,7 @@ export function createFireCoreScene(opts: HeaterOptions = {}): FireCoreScene {
   at('drum-seal', c.drumR, c.drumTop - 0.012, 0);
   at('drum-plinth', c.plinthOut - 0.03, c.drumFoot - 0.03, 0);
 
-  for (const id of FIRE_PARTS) registry.add(id, m.core.roots[id], V(...EXPLODE[id]));
+  for (const id of FIRE_PARTS) registry.add(id, m.core.roots[id], V(...EXPLODE[id]), undefined, FRAMING[id]);
 
   // ---- the drum rides with its lid's seal, its kettle with it; the manifold stays in the earth; the room's shells go when the parts do
   const followers = new Followers();

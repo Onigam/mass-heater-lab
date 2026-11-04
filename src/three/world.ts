@@ -12,6 +12,23 @@ export interface HotspotDef {
   minor?: boolean;
   /** World to open when the label is clicked. */
   goto?: string;
+/** Where a part is looked at from: `elevation` above the ground and a `bearing` from +z towards +x, in degrees. */
+export function viewFrom(elevation: number, bearing: number): THREE.Vector3 {
+  const e = (elevation * Math.PI) / 180;
+  const b = (bearing * Math.PI) / 180;
+  return new THREE.Vector3(Math.sin(b) * Math.cos(e), Math.sin(e), Math.cos(b) * Math.cos(e));
+}
+
+/** How a click or the voice frames a part: from which side, and on what, when the part's whole box would keep the camera too far. */
+export interface PartFraming {
+  viewDir: THREE.Vector3;
+  frame?: THREE.Box3;
+}
+
+/** A world-space box from its two corners. */
+export const box = (x0: number, y0: number, z0: number, x1: number, y1: number, z1: number): THREE.Box3 =>
+  new THREE.Box3(new THREE.Vector3(x0, y0, z0), new THREE.Vector3(x1, y1, z1));
+
 }
 
 /** An empty marker at a position of `parent`: the label follows it, also during the explode. */
@@ -29,7 +46,10 @@ export function hotspots(defs: HotspotDef[], anchors: Record<string, THREE.Objec
     partId: d.id.replace(/#.*$/, ''),
     anchor: anchors[d.id],
     label: l(d.fr, d.en),
-    minor: d.minor,
+    get minor() {
+      return d.minor || (!!d.wide && typeof window !== 'undefined' && window.innerWidth < WIDE_FROM);
+    },
+    wide: d.wide,
     goto: d.goto,
   }));
 }

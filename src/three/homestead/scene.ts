@@ -9,7 +9,7 @@ import { Puffs } from '../fire/puffs';
 import { FLUE_PIECES, buildFlue } from '../machine/flue';
 import { machineMaterials } from '../machine/materials';
 import { mergeStatic } from '../merge';
-import { anchor, hotspots, type HotspotDef } from '../world';
+import { anchor, box, hotspots, viewFrom, type HotspotDef, type PartFraming } from '../world';
 import { buildHouse, houseMaterials, roofY, simpleHouse, type HouseBuild } from './house';
 import {
   buildBlock,
@@ -44,6 +44,24 @@ export const HOME_PARTS = [
   'smoky-neighbour',
 ] as const;
 export type HomePart = (typeof HOME_PARTS)[number];
+
+/**
+ * How each part is framed: from the open side of the site, whatever the camera was doing before; and on what, where the whole box keeps the camera 70 m away. The chimney's cap is framed with the ridge it stands above. Directions found by
+ * rendering each part with and without itself from a grid of directions (`docs/3d.md`).
+ */
+export const FRAMING: Record<HomePart, PartFraming> = {
+  'house-shell': { viewDir: viewFrom(14, 30), frame: box(-7, 0.5, -2.5, 1, 4.5, 3.5) },
+  'chimney-cap': { viewDir: viewFrom(30, 30), frame: box(1.5, 4.2, 1.2, 3.4, 5.7, 2.6) },
+  'sweep-access': { viewDir: viewFrom(22, 30) },
+  'outside-air-inlet': { viewDir: viewFrom(14, 90) },
+  woodshed: { viewDir: viewFrom(22, 30) },
+  'cordwood-stack': { viewDir: viewFrom(8, 0) },
+  'moisture-meter': { viewDir: viewFrom(35, 30) },
+  'kindling-block': { viewDir: viewFrom(22, 30) },
+  'ash-bucket': { viewDir: viewFrom(22, 30) },
+  'coppice-lot': { viewDir: viewFrom(14, 30), frame: box(15, 0, -21, 25, 5, -15) },
+  'smoky-neighbour': { viewDir: viewFrom(14, 30), frame: box(-35, 0.6, -14, -29, 8, -8) },
+};
 
 const HOTSPOTS: HotspotDef[] = [
   { id: 'house-shell', fr: 'La maison', en: 'The house', goto: 'living-room' },
@@ -329,7 +347,7 @@ export function createHomesteadScene(opts: HomesteadOptions = {}): HomesteadScen
   );
   at('smoky-neighbour', N.x, 0.6 + N.wallH + N.roofH + 0.4, N.z);
 
-  for (const id of HOME_PARTS) registry.add(id, roots[id], V(...EXPLODE[id]));
+  for (const id of HOME_PARTS) registry.add(id, roots[id], V(...EXPLODE[id]), undefined, FRAMING[id]);
 
   const drawn = { snow: 1, night: 0, sunHour: HELD_HOUR, held: false };
   let fast = false;

@@ -15,7 +15,7 @@ import { roomMaterials } from '../room/shell';
 import { Caps, ClipSet, capRects } from '../section';
 import { concreteMap, fbm, knitMap, pebbleMap, tiled } from '../textures';
 import { Field, SLICE_H, SLICE_W, ThermalView, rampBar, rampY, sliceT, writeSlice } from '../thermal';
-import { anchor, hotspots, type HotspotDef } from '../world';
+import { anchor, box, hotspots, viewFrom, type HotspotDef, type PartFraming } from '../world';
 import { DEFAULT_PARAMS, type HeaterOptions } from '../room/stage';
 
 // The `bench-section` world: where the heat goes. The bench at human scale, cut like a cake: two slices side by side with their faces towards you, the hot run under its thick cover and the cold run under its thin one, the same profile, the same duct as the bench of `living-room`.
@@ -71,6 +71,27 @@ export const EXPLODE: Record<BenchPart, [number, number, number]> = {
   'condensate-drain': [-0.3, 0, 0.1],
   'floor-barrier': [0, -0.02, 0.5],
   'pebble-section': [0.42, 0.25, 0.3],
+};
+
+/**
+ * How each part is framed. The slices show their faces to +z, and what is laid open behind them is looked at from above, over the slices and past the chimney. A part spread over the world is framed on the face of the hot slice, where it
+ * reads, or on one of its joints: its whole box would take the camera back from the home view. The voice frames the two runs together, then the earth and its stones, keeping the direction it arrived with. Directions found by rendering
+ * each part with and without itself from a grid of directions (`docs/3d.md`).
+ */
+export const FRAMING: Record<BenchPart, PartFraming> = {
+  'duct-hot-run': { viewDir: viewFrom(18, 0), frame: box(-1.85, 0, -0.3, -1.2, 0.45, 0) },
+  'duct-cold-run': { viewDir: viewFrom(18, 0), frame: box(-0.62, 0, -0.3, -0.1, 0.45, 0) },
+  'duct-bend': { viewDir: viewFrom(55, -30) },
+  'duct-joint': { viewDir: viewFrom(60, -30), frame: box(0.3, 0.1, -3.3, 0.85, 0.42, -2.9) },
+  'cob-casing': { viewDir: viewFrom(18, 0), frame: box(-1.95, 0, -0.3, -1.2, 0.45, 0) },
+  'stone-filler': { viewDir: viewFrom(12, 0), frame: box(-1.95, 0.05, -0.3, -1.2, 0.42, 0) },
+  'earthen-plaster': { viewDir: viewFrom(30, 20), frame: box(-1.95, 0.25, -0.5, -1.2, 0.47, 0) },
+  'floor-barrier': { viewDir: viewFrom(10, 0), frame: box(-1.95, 0, -0.25, -1.45, 0.12, 0) },
+  'bench-cleanout': { viewDir: viewFrom(18, 0) },
+  'chimney-tee': { viewDir: viewFrom(30, -60) },
+  'condensate-drain': { viewDir: viewFrom(18, 0) },
+  'temperature-lance': { viewDir: viewFrom(18, 0) },
+  'pebble-section': { viewDir: viewFrom(18, 30), frame: box(0.72, 0, -0.7, 1.22, 0.45, 0) },
 };
 
 /** The slices: where each one's wall side stands along X, how long it is, its place along the run. */
@@ -826,7 +847,7 @@ export function createBenchSectionScene(opts: HeaterOptions = {}): BenchSectionS
   anchors['cob-casing#t60'] = anchor(scale, 0.06, rampY(60, BAR_H, BAR_Y0), 0.02, 't60');
 
   for (const id of BENCH_PARTS) {
-    registry.add(id, roots[id], V(...EXPLODE[id]));
+    registry.add(id, roots[id], V(...EXPLODE[id]), undefined, FRAMING[id]);
   }
 
   // ---- the gases: along each slice's duct, along the corner, to the tee and up to the cut; on with the section and with « Flux »
