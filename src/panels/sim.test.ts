@@ -70,10 +70,22 @@ describe('what the panel offers', () => {
   it('shows the live figures in boxes, each with its tag in the data', () => {
     const { root, sim, panel } = open();
     run(panel, sim, 1);
-    expect(root.find('.readout')).toHaveLength(mainReadouts(sim.state).length + 1);
+    expect(root.find('.readout')).toHaveLength(mainReadouts(sim.state).length + 2);
     for (const r of mainReadouts(sim.state)) expect(['†', '*', '']).toContain(r.tag);
     expect(root.textContent).toContain('†');
     expect(root.textContent).toContain('°C');
+  });
+
+  it('never writes the carbon monoxide in the room as a bare figure, and no « 0 ppm » at all (review D4)', () => {
+    const { root, sim, panel } = open();
+    sim.set({ hour: 8.5 });
+    run(panel, sim, 1);
+    expect(root.textContent).toContain(st('coNoLeak'));
+    expect(root.textContent).not.toMatch(/\b0 ppm/);
+    sim.applyScenario('damper-on-embers');
+    run(panel, sim, 40);
+    expect(sim.state.roomCo).toBeGreaterThan(1);
+    expect(root.textContent).toMatch(/\d – \d+[.,]?\d* ppm †/);
   });
 
   it('runs the long jobs one by one and fills the day, the claims, the wood needed', () => {

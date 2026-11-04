@@ -109,6 +109,7 @@ const PANEL = {
   coRegime: ['Régime', 'Regime'],
   coFlue: ['Dans les fumées', 'In the flue'],
   coRoom: ['Dans la pièce', 'In the room'],
+  coNoLeak: ['aucune fuite simulée', 'no leak simulated'],
   coIntoRoom: ['Part qui entre dans la pièce', 'Share entering the room'],
   coLid: ['Pression sous le couvercle du bidon', 'Pressure under the drum’s lid'],
   coHint: [

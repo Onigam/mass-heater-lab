@@ -21,6 +21,15 @@ const r = (key: PanelKey, value: number, digits: number, unit: string, tag: Read
   tag,
 });
 
+/**
+ * The carbon monoxide in the room, as words or as a band, never a bare figure. With no leak and no reversal the model has nothing to put in the room: it has not measured a clean air, and a « 0 ppm » would read as one. With a leak it is
+ * the middle of the same band of one to nine as the flue's, so it is written as that band.
+ */
+export function roomCoText(s: HeaterState): { noLeak: boolean; low: number; high: number } {
+  const noLeak = s.coIntoRoom <= 0 && s.roomCo < 0.05;
+  return { noLeak, low: s.roomCo / 3, high: s.roomCo * 3 };
+}
+
 /** The figures that stay in sight. */
 export function mainReadouts(s: HeaterState): Readout[] {
   return [
@@ -35,7 +44,6 @@ export function mainReadouts(s: HeaterState): Readout[] {
     r('liveDrumOut', s.drumOut / 1000, 1, 'kW'),
     r('liveBenchOut', s.benchOut / 1000, 2, 'kW'),
     r('liveWood', s.woodToday, 1, 'kg'),
-    r('liveRoomCo', s.roomCo, 0, 'ppm'),
   ];
 }
 

@@ -16,7 +16,7 @@ import type { MassHeaterSim } from '../sim/engine';
 import type { BenchFill, RiserInsulationId } from '../sim/machine';
 import { PRESET_IDS, RANGES, SCENARIO_IDS, type RangedKey } from '../sim/presets';
 import type { DayResult, WoodAnswer } from '../sim/runs';
-import type { HeaterParams, PresetId, ScenarioId } from '../sim/types';
+import type { HeaterParams, HeaterState, PresetId, ScenarioId } from '../sim/types';
 import {
   budgetSegments,
   claimReadouts,
@@ -32,6 +32,7 @@ import {
   sectionChartData,
   statusOf,
   type Readout,
+  roomCoText,
 } from './model';
 import { num, st, sx, type PanelKey } from './strings';
 
@@ -49,6 +50,14 @@ interface Control {
   kind: 'slider' | 'toggle' | 'select';
   fmt?: (v: number) => string;
 }
+
+/** The carbon monoxide in the room: words while there is no leak, then the band, never a bare figure (`roomCoText`). */
+const roomCoValue = (s: HeaterState): HTMLElement => {
+  const c = roomCoText(s);
+  if (c.noLeak) return h('b', {}, h('small', {}, st('coNoLeak')));
+  const digits = c.high < 10 ? 1 : 0;
+  return h('b', {}, `${num(c.low, digits)} – ${num(c.high, digits)}`, h('small', {}, ' ppm †'));
+};
 
 const hourText = (v: number): string => {
   const hh = Math.floor(v) % 24;
@@ -530,6 +539,7 @@ export class SimPanel implements PanelController {
           h('b', {}, num(r.value, r.digits), h('small', {}, ` ${r.unit}${r.tag ? ` ${r.tag}` : ''}`)),
         ),
       ),
+      h('div', { class: 'readout' }, h('span', {}, st('liveRoomCo')), roomCoValue(s)),
     );
     fill(this.more, ...moreReadouts(s, sim.benchMass).map((r) => this.line(r)));
     fill(
@@ -542,7 +552,7 @@ export class SimPanel implements PanelController {
         h('b', {}, `${num(s.flueCoLow)} – ${num(s.flueCoHigh)}`),
         h('small', {}, ' ppm †'),
       ),
-      h('span', {}, `${st('coRoom')} `, h('b', {}, num(s.roomCo, s.roomCo < 10 ? 1 : 0)), h('small', {}, ' ppm †')),
+      h('span', {}, `${st('coRoom')} `, roomCoValue(s)),
       h('span', {}, `${st('coIntoRoom')} `, h('b', {}, num(100 * s.coIntoRoom)), h('small', {}, ' % †')),
       h('span', {}, `${st('coLid')} `, h('b', {}, num(s.lidPressure, 1)), h('small', {}, ' Pa †')),
     );

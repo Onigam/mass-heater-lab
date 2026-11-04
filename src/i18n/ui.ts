@@ -21,6 +21,9 @@ export const LAB_STRINGS = {
   goFireCore: ['Ouvrir le foyer', 'Open the core'],
   goBenchSection: ['Voir le banc en coupe', 'See the bench in section'],
 
+  // ---- the kit's pill when no alarm is on says « Tout fonctionne » / « All good »: a model that raises no alert has not said the air is good. `registerStrings` overwrites a common key
+  allGood: ['Aucune alerte du modèle', 'No alert in the model'],
+
   // ---- the intros
   plansIntro: [
     'Dix planches A3 générées à partir des dimensions du modèle 3D et des résultats de la simulation : la pièce, le chemin des gaz déroulé, le foyer en coupe, le tracé du conduit, le banc en coupe, les matériaux, la journée, le tirage, le bilan et la chaîne de sécurité. Ce sont des schémas explicatifs, avec des cotes d’ensemble seulement : aucun n’est un plan de construction.',
