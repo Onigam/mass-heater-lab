@@ -112,7 +112,7 @@ export const lab: LabDefinition<MassHeaterSim> = {
   },
   lessons: { items: LESSONS, intro: strL('lessonsIntro') },
   plans: { sheets: SHEETS, groups: PLAN_GROUPS, intro: strL('plansIntro') },
-  // spoken guide: audio and subtitles generated from narration/<lang>.json; until the audio exists the kit shows nothing of it
+  // spoken guide: audio and subtitles generated from narration/<lang>.json, in the local voice
   narration: { manifest: 'audio/{lang}/manifest.json' },
   simPanel: (ctx: AppContext<MassHeaterSim>) => {
     stageOf = ctx;
