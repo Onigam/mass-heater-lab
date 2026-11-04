@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import type { Hotspot, SceneModule } from '@onigam/lab-kit/three';
 import type { HeaterState } from '../sim/types';
+import type { LabHotspot } from './world';
 
 // Where the visitor's camera and the hotspot labels end up, without a browser: a replica of what the kit does when a world is shown (`Stage.frameAll()` and the CSS of `.hotspot`). Used by
 // `labels.test.ts` to keep the labels of the default views apart and inside the picture at every size; if the kit changes either, change them here too. From Mill Lab.
@@ -18,8 +19,10 @@ export function homeCamera(
   mod: SceneModule<HeaterState>,
   size: Size,
   toolbar = 0,
+  covered = false,
 ): THREE.PerspectiveCamera & { free: Size } {
-  const narrow = narrowness(size);
+  // a view with a sheet over it fits the extents as a narrow one does, however wide it is (`Stage.fitBox`)
+  const narrow = covered ? 1 : narrowness(size);
   const free = { w: size.w, h: size.h - toolbar * narrow };
   const half = Math.tan((FOV * Math.PI) / 360);
   const camera = new THREE.PerspectiveCamera(
@@ -88,8 +91,14 @@ export const LABEL_HEIGHT = 22;
 export const labelWidth = (text: string, goto: boolean): number => 38 + CHAR * (text.length + (goto ? 2 : 0));
 
 /** The box of each label of the world as the visitor sees it, in a canvas of `size`. */
-export function labelBoxes(mod: SceneModule<HeaterState>, size: Size, lang: 'fr' | 'en', toolbar = 0): LabelBox[] {
-  const camera = homeCamera(mod, size, toolbar);
+export function labelBoxes(
+  mod: SceneModule<HeaterState>,
+  size: Size,
+  lang: 'fr' | 'en',
+  toolbar = 0,
+  covered = false,
+): LabelBox[] {
+  const camera = homeCamera(mod, size, toolbar, covered);
   const free = camera.free;
   const p = new THREE.Vector3();
   const shown = (o: THREE.Object3D | null): boolean => (o ? o.visible && shown(o.parent) : true);
@@ -111,7 +120,8 @@ export function labelBoxes(mod: SceneModule<HeaterState>, size: Size, lang: 'fr'
         ax,
         ay,
         inFront: ndc.z > -1 && ndc.z < 1,
-        minor: !!h.minor,
+        // a view under 700 px is a window under `WIDE_FROM`: the sheet takes the rest
+        minor: !!h.minor || (!!(h as LabHotspot).wide && free.w < 700),
         text,
       };
     });

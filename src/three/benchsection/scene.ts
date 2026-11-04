@@ -843,18 +843,18 @@ export function createBenchSectionScene(opts: HeaterOptions = {}): BenchSectionS
   };
   const xh = SLICES.hot.x0;
   const xc = SLICES.cold.x0;
-  at('duct-hot-run', xh + 0.06, H + 0.01, -0.95);
-  at('duct-cold-run', xc + D / 2, cold.axis - DUCT.r * 0.2, 0.02);
+  at('duct-hot-run', xh + 0.38, H + 0.01, -0.55);
+  at('duct-cold-run', xc + D / 2 - 0.06, cold.axis - DUCT.r * 0.5, 0.02);
   at('cob-casing', xh + 0.09, 0.14, 0.01);
   at('stone-filler', xh + 0.38, 0.13, 0.01);
   at('earthen-plaster', xh + 0.2, H, -0.2);
   at('floor-barrier', xh + 0.03, B * 0.5, 0.02);
   at('temperature-lance', lanceX, H + 0.15, 0.03);
-  at('pebble-section', pebbleX + D / 2, B + 0.06, 0.01);
+  at('pebble-section', pebbleX + 0.04, H + 0.01, -0.5);
   at('duct-bend', C.ductX - rb * 0.3, axisC + DUCT.r, C.ductZ + rb * 0.3);
   at('duct-joint', C.ductX - rb, axisC + DUCT.collarR, C.ductZ);
   at('bench-cleanout', clX, axisC + 0.06, clZ1 + 0.02);
-  at('chimney-tee', FLUE.x, FLUE.teeY + 0.17, FLUE.z + FLUE.r);
+  at('chimney-tee', FLUE.x - FLUE.r - 0.09, FLUE.teeY + 0.24, FLUE.z + FLUE.r);
   at('condensate-drain', FLUE.x - FLUE.capR - 0.12, FLUE.drainY + 0.02, FLUE.z);
   anchors['cob-casing#t20'] = anchor(scale, 0.06, rampY(20, BAR_H, BAR_Y0), 0.02, 't20');
   anchors['cob-casing#t60'] = anchor(scale, 0.06, rampY(60, BAR_H, BAR_Y0), 0.02, 't60');
@@ -921,10 +921,10 @@ export function createBenchSectionScene(opts: HeaterOptions = {}): BenchSectionS
     scale,
     section: () => sectionOn,
     scenery: () => [setting, footFrame],
-    home: { position: V(-0.32, 1.95, 4.6), target: V(-0.32, 0.32, -1.1) },
+    home: { position: V(1.54, 1.95, 4.29), target: V(-0.32, 0.32, -1.1) },
     minDistance: 0.3,
     maxDistance: 11,
-    homePadding: 0.8,
+    homePadding: 0.92,
     update(s, dt, view) {
       const p = params();
       thermal.update(s, p.thermalView, dt);

@@ -52,7 +52,7 @@ export type LivingPart = (typeof LIVING_PARTS)[number];
 const HOTSPOTS: HotspotDef[] = [
   { id: 'steel-drum', fr: 'Le bidon', en: 'The drum', goto: 'fire-core' },
   { id: 'cob-bench', fr: 'La banquette', en: 'The bench', goto: 'bench-section' },
-  { id: 'chimney-flue', fr: 'Conduit', en: 'Chimney' },
+  { id: 'chimney-flue', fr: 'Conduit', en: 'Chimney', wide: true },
   { id: 'co-alarm', fr: 'Détecteur de CO', en: 'CO alarm' },
   { id: 'cob-bench#t20', fr: '20 °C', en: '20 °C' },
   { id: 'cob-bench#t60', fr: '60 °C', en: '60 °C' },
@@ -211,7 +211,7 @@ export function createLivingRoomScene(opts: HeaterOptions = {}): LivingRoomScene
   const cz = CORE.z;
   // the core's pieces have their origin on the riser's axis, the others on the room's
   at('steel-drum', -0.1, CORE.drumTop - 0.3, CORE.drumR + 0.01);
-  at('cob-bench', 0.95, BENCH.height * 0.62, ROOM.z0 + BENCH.depth);
+  at('cob-bench', 0.6, BENCH.height * 0.62, ROOM.z0 + BENCH.depth);
   at('bench-backrest', 1.3, BENCH.height + BENCH.backrestHeight, ROOM.z0 + BENCH.backrestDepth);
   at('manifold', 0.3, 0.3, -0.3);
   at('manifold-cleanout', 0.27, CORE.casingTop + 0.05, -0.43);

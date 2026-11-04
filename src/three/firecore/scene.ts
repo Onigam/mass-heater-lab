@@ -35,8 +35,8 @@ const HOTSPOTS: HotspotDef[] = [
   { id: 'feed-tube', fr: 'Le tube d’alimentation', en: 'The feed tube' },
   { id: 'burn-tunnel', fr: 'Le tunnel de feu', en: 'The burn tunnel' },
   { id: 'heat-riser', fr: 'La cheminée interne', en: 'The heat riser' },
-  { id: 'top-gap', fr: 'L’espace sous le couvercle', en: 'The gap under the lid' },
-  { id: 'downdraft-annulus', fr: 'La chute dans le bidon', en: 'The fall inside the drum' },
+  { id: 'top-gap', fr: 'Sous le couvercle', en: 'Under the lid' },
+  { id: 'downdraft-annulus', fr: 'La chute', en: 'The fall' },
   { id: 'feed-lid', fr: 'Le couvercle', en: 'The feed lid', minor: true },
   { id: 'fuel-sticks', fr: 'Les bûchettes', en: 'The sticks', minor: true },
   { id: 'ash-bed', fr: 'Le lit de cendres', en: 'The ash bed', minor: true },
@@ -142,7 +142,7 @@ export function createFireCoreScene(opts: HeaterOptions = {}): FireCoreScene {
   riserLight.position.set(CORE.x, CORE.lidTop + 0.18, CORE.z + 0.02);
   scene.add(tunnelLight, riserLight);
 
-  // ---- anchors of the labels, in the core's frame: they point into the section
+  // ---- anchors of the labels, in the core's frame: they point into the section. A label runs to the right of its point and the kit cannot turn it, so those of the drum stand on its left: at 768 px the view is 380 px wide and the drum in its right half (docs/kit-requests.md, 22)
   const anchors: Record<string, THREE.Object3D> = {};
   const at = (id: FirePart, x: number, y: number, z: number) => {
     anchors[id] = anchor(m.core.roots[id], x, y, z, `${id}-label`);
@@ -153,13 +153,13 @@ export function createFireCoreScene(opts: HeaterOptions = {}): FireCoreScene {
   at('fuel-sticks', c.feedAxis - 0.02, c.feedTop + 0.24, 0);
   at('burn-tunnel', -0.22, c.lidTop - 0.01, 0.02);
   at('ash-bed', c.feedNear, c.tunnelFloor + 0.015, 0);
-  at('heat-riser', 0.03, (c.riserFoot + c.riserTop) / 2 + 0.12, 0);
+  at('heat-riser', -0.1, (c.riserFoot + c.riserTop) / 2 + 0.12, 0);
   at('riser-insulation', -(c.boreR + c.linerT + 0.03), c.riserTop - 0.2, 0);
   at('riser-sleeve', c.sleeveR, c.riserTop - 0.36, 0);
   at('firebrick-base', -0.15, c.tunnelFloor * 0.5, 0.02);
   at('core-casing', c.casingX0 + 0.05, c.casingTop - 0.06, 0);
-  at('top-gap', 0.11, c.riserTop + c.topGap / 2, 0);
-  at('downdraft-annulus', (c.sleeveR + c.drumR) / 2, (c.lidTop + c.riserTop) / 2 - 0.05, 0);
+  at('top-gap', -0.26, c.riserTop + c.topGap / 2, 0);
+  at('downdraft-annulus', -(c.sleeveR + c.drumR) / 2, (c.lidTop + c.riserTop) / 2 - 0.05, 0);
   at('drum-seal', c.drumR, c.drumTop - 0.012, 0);
   at('drum-plinth', c.plinthOut - 0.03, c.drumFoot - 0.03, 0);
 

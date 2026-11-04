@@ -12,6 +12,17 @@ export interface HotspotDef {
   minor?: boolean;
   /** World to open when the label is clicked. */
   goto?: string;
+  /** A main label that only has room in a wide view: at the far edge of a narrow one its name would be cut, and the kit cannot turn it round (`docs/kit-requests.md`, 22). Narrower, it counts as minor. */
+  wide?: boolean;
+}
+
+/** The window under which a `wide` label steps back. The kit reads `minor` each time it refreshes the labels: on a change of world, of selection, of label mode. */
+export const WIDE_FROM = 1100;
+
+export interface LabHotspot extends Hotspot {
+  wide?: boolean;
+}
+
 /** Where a part is looked at from: `elevation` above the ground and a `bearing` from +z towards +x, in degrees. */
 export function viewFrom(elevation: number, bearing: number): THREE.Vector3 {
   const e = (elevation * Math.PI) / 180;
@@ -69,7 +80,7 @@ export function anchor(parent: THREE.Object3D, x: number, y: number, z: number, 
   return o;
 }
 
-export function hotspots(defs: HotspotDef[], anchors: Record<string, THREE.Object3D>): Hotspot[] {
+export function hotspots(defs: HotspotDef[], anchors: Record<string, THREE.Object3D>): LabHotspot[] {
   return defs.map((d) => ({
     partId: d.id.replace(/#.*$/, ''),
     anchor: anchors[d.id],
