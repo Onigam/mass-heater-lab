@@ -3,7 +3,8 @@ import { describe, expect, it } from 'vitest';
 import { STATIONS } from '../../sim/types';
 import { createBenchSectionScene, SLICES } from '../benchsection/scene';
 import { benchProfile, ductAxisAt, ductPath } from './bench';
-import type { CorePiece } from './core';
+import { CORE_PIECES, type CorePiece } from './core';
+import { FLUE_PIECES } from './flue';
 import { BENCH, CORE, DUCT, FLUE, HOME, ITEMS, MACHINE, MANIFOLD, ROOM, SHIELD } from '../dims';
 import { createFireCoreScene } from '../firecore/scene';
 import { createHomesteadScene } from '../homestead/scene';
@@ -353,6 +354,31 @@ describe('the section', () => {
     expect(m.clips.core.removed(new THREE.Vector3(CORE.x, 0.5, CORE.z + 0.1))).toBe(false);
     for (const c of m.caps.of('steel-drum')) expect(c.visible).toBe(false);
     expect(m.core.sticksFront.visible).toBe(true);
+  });
+  it('leaves every piece of the core under the core’s planes, in both worlds: a material holds one set, and the chimney’s must not overwrite it (review D2)', () => {
+    for (const mod of [fire, living]) {
+      const m = mod.machine;
+      for (const id of CORE_PIECES) {
+        if (id === 'core-casing' || id === 'manifold' || id === 'manifold-cleanout') continue;
+        m.core.roots[id].traverse((o) => {
+          const mesh = o as THREE.Mesh;
+          if (!mesh.isMesh || mesh.userData.cap || mesh.userData.notClipped) return;
+          for (const mat of ([] as THREE.Material[]).concat(mesh.material))
+            expect(mat.clippingPlanes, `${mod.id} ${id} ${mesh.name}`).toBe(m.clips.core.planes);
+        });
+      }
+      m.core.roots['manifold'].traverse((o) => {
+        const mesh = o as THREE.Mesh;
+        if (mesh.isMesh && !mesh.userData.cap)
+          expect((mesh.material as THREE.Material).clippingPlanes, `${mod.id} manifold`).toBe(m.clips.manifold.planes);
+      });
+      for (const id of FLUE_PIECES)
+        m.flue.roots[id].traverse((o) => {
+          const mesh = o as THREE.Mesh;
+          if (mesh.isMesh && !mesh.userData.cap)
+            expect((mesh.material as THREE.Material).clippingPlanes, `${mod.id} flue ${id}`).toBe(m.clips.run.planes);
+        });
+    }
   });
   it('never changes the number of planes, so pressing the tool compiles nothing', () => {
     const mat = living.machine.shell.material as THREE.Material;

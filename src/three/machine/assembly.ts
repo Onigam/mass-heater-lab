@@ -116,9 +116,21 @@ export function buildMachine(registered: ReadonlySet<string> = new Set()): Machi
   cleanoutCap.castShadow = true;
   cleanoutCap.receiveShadow = true;
 
-  // ---- the chimney
-  const flue = buildFlue(mats);
-  const dial = buildDial(mats);
+  // ---- the chimney. A material holds one set of planes, and the chimney's are the run's: what it would share with the core gets its own copy, or the run's planes take the lid, the seal, the feed's rim and the insulation away with them
+  const own = (m: THREE.MeshStandardMaterial): THREE.MeshStandardMaterial => {
+    const c = m.clone();
+    c.userData.noShare = true;
+    return c;
+  };
+  const flueMats: MachineMaterials = {
+    ...mats,
+    steel: own(mats.steel),
+    steelDark: own(mats.steelDark),
+    gasket: own(mats.gasket),
+    insulation: own(mats.insulation),
+  };
+  const flue = buildFlue(flueMats);
+  const dial = buildDial(flueMats);
   dial.group.position.set(FLUE.x, FLUE.thermometerY, FLUE.z + FLUE.outerR - dial.backZ);
 
   // ---- the casing past the step: the same geometry, drawn again with the other planes
