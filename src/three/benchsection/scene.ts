@@ -925,6 +925,7 @@ export function createBenchSectionScene(opts: HeaterOptions = {}): BenchSectionS
     minDistance: 0.3,
     maxDistance: 11,
     homePadding: 0.92,
+    declutter: true,
     update(s, dt, view) {
       const p = params();
       thermal.update(s, p.thermalView, dt);

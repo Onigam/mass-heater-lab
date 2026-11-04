@@ -190,6 +190,7 @@ export function createFireCoreScene(opts: HeaterOptions = {}): FireCoreScene {
     minDistance: 0.3,
     maxDistance: 6,
     homePadding: 0.86,
+    declutter: true,
     update(s, dt, view) {
       const p = params();
       const cover = s.phase === 'cold' && p.lidAfterFire ? 1 : p.feedCover;

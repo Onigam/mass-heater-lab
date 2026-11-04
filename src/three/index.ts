@@ -26,6 +26,8 @@ export const WORLD = {
     cutaway: false,
     xrayNeedsSelection: true,
     slowMo: false,
+    /** A few small things would move and the house would stay: the explode teaches nothing at this scale. */
+    explode: false,
     partPadding: 2.8,
     stepFrame: { padding: 1.7, minRadius: 1.5 },
   },

@@ -4,10 +4,11 @@ import type { Hotspot, SceneModule } from '@onigam/lab-kit/three';
 import type { HeaterState } from '../../sim/types';
 import { boxAt, joined } from '../common';
 import { CORE, FLUE, HOME, HOUSE } from '../dims';
-import { GasFlow } from '../fire/gas';
+import { GasFlow, type GasNode } from '../fire/gas';
 import { Puffs } from '../fire/puffs';
 import { FLUE_PIECES, buildFlue } from '../machine/flue';
 import { machineMaterials } from '../machine/materials';
+import { ductRun, flueRun } from '../machine/paths';
 import { mergeStatic } from '../merge';
 import { anchor, box, hotspots, viewFrom, type HotspotDef, type PartFraming } from '../world';
 import { buildHouse, houseMaterials, roofY, simpleHouse, type HouseBuild } from './house';
@@ -305,7 +306,11 @@ export function createHomesteadScene(opts: HomesteadOptions = {}): HomesteadScen
   const inletY = HOME.at[1] + HOME.inlet.y;
   const inletZ = CORE.z + 0.5;
   const A = Math.PI * FLUE.r * FLUE.r;
-  const gas = new GasFlow(70, 5);
+  // at this distance the dots must be seen: larger, and also on the way through the house, the duct under the bench and up the chimney, as the machine lies inside (they draw over the walls)
+  const gas = new GasFlow(150, 8);
+  const inHouse = (nodes: GasNode[]): GasNode[] => nodes.map((n) => ({ ...n, p: n.p.clone().add(V(...HOME.at)) }));
+  gas.addRun(inHouse(ductRun()), 46);
+  gas.addRun(inHouse(flueRun()), 24);
   gas.addRun(
     [
       { p: V(HOUSE.x1 + 3.2, inletY - 0.2, inletZ + 0.8), st: 0, A: A * 1.6, h: 0.2 },
@@ -374,6 +379,7 @@ export function createHomesteadScene(opts: HomesteadOptions = {}): HomesteadScen
     minDistance: 1.2,
     maxDistance: 190,
     homePadding: 0.56,
+    declutter: true,
     update(s, dt, view) {
       // ---- the sun: it holds its hour at a fast clock, follows the slider and the slow clock
       clockReal += dt;

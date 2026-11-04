@@ -286,6 +286,7 @@ export function createLivingRoomScene(opts: HeaterOptions = {}): LivingRoomScene
     minDistance: 0.55,
     maxDistance: 22,
     homePadding: 0.77,
+    declutter: true,
     update(s, dt, view) {
       const p = params();
       const cover = s.phase === 'cold' && p.lidAfterFire ? 1 : p.feedCover;
