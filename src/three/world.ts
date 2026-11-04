@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { l } from '@onigam/lab-kit/i18n';
-import type { Hotspot } from '@onigam/lab-kit/three';
+import { PartRegistry, type Hotspot } from '@onigam/lab-kit/three';
 
 // What the worlds share: the hotspot declarations.
 
@@ -29,6 +29,34 @@ export interface PartFraming {
 export const box = (x0: number, y0: number, z0: number, x1: number, y1: number, z1: number): THREE.Box3 =>
   new THREE.Box3(new THREE.Vector3(x0, y0, z0), new THREE.Vector3(x1, y1, z1));
 
+/**
+ * A registry that keeps some boxes off the part's sheet. The kit prints the box of the selected part as « Encombrement », and prints nothing for an empty box. The box of the inside of the core is its sizing, which this lab refuses
+ * to give (`src/data/parts/dim-specs.ts`), and the box of what lies in several places measures the layout of a world, not a thing. So a refused part has an empty box while it is the one selected, and only to whoever asks for `bounds`
+ * directly: the camera still gets the real one through `frameBounds`, and the overview and the guide read it while nothing is selected. To delete when the kit answers `docs/kit-requests.md`, 21.
+ */
+export class SheetRegistry extends PartRegistry {
+  private framing = 0;
+
+  constructor(
+    private readonly refused: ReadonlySet<string>,
+    private readonly selected: () => string | null = () => null,
+  ) {
+    super();
+  }
+
+  override bounds(id: string): THREE.Box3 {
+    if (!this.framing && this.refused.has(id) && this.selected() === id) return new THREE.Box3();
+    return super.bounds(id);
+  }
+
+  override frameBounds(id: string): THREE.Box3 {
+    this.framing++;
+    try {
+      return super.frameBounds(id);
+    } finally {
+      this.framing--;
+    }
+  }
 }
 
 /** An empty marker at a position of `parent`: the label follows it, also during the explode. */

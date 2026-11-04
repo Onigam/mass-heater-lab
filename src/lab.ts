@@ -33,6 +33,7 @@ const THERMAL_PARTS = new Set([
   'duct-hot-run',
   'duct-cold-run',
 ]);
+const selected = (): string | null => stageOf?.ui.selected ?? null;
 
 export const lab: LabDefinition<MassHeaterSim> = {
   id: 'mass-heater-lab',
@@ -61,7 +62,7 @@ export const lab: LabDefinition<MassHeaterSim> = {
     {
       id: 'living-room',
       label: strL('sceneLivingRoom'),
-      module: createLivingRoomScene({ params: () => sim.params, selected: () => stageOf?.ui.selected ?? null }),
+      module: createLivingRoomScene({ params: () => sim.params, selected }),
       ...WORLD['living-room'],
       overview: {
         ...OVERVIEWS['living-room'],
@@ -75,7 +76,7 @@ export const lab: LabDefinition<MassHeaterSim> = {
     {
       id: 'fire-core',
       label: strL('sceneFireCore'),
-      module: createFireCoreScene({ params: () => sim.params }),
+      module: createFireCoreScene({ params: () => sim.params, selected }),
       ...WORLD['fire-core'],
       overview: {
         ...OVERVIEWS['fire-core'],
@@ -88,7 +89,7 @@ export const lab: LabDefinition<MassHeaterSim> = {
     {
       id: 'bench-section',
       label: strL('sceneBenchSection'),
-      module: createBenchSectionScene({ params: () => sim.params }),
+      module: createBenchSectionScene({ params: () => sim.params, selected }),
       ...WORLD['bench-section'],
       overview: {
         ...OVERVIEWS['bench-section'],

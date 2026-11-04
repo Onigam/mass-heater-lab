@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { PartRegistry, damp } from '@onigam/lab-kit/three';
+import { damp } from '@onigam/lab-kit/three';
 import type { Hotspot, SceneModule } from '@onigam/lab-kit/three';
 import type { HeaterState } from '../../sim/types';
 import { BENCH, CORE, FLUE, ITEMS, ROOM } from '../dims';
@@ -21,7 +21,7 @@ import {
 import { DEFAULT_PARAMS, createHeaterStage, type HeaterOptions } from '../room/stage';
 import { type RoomShell } from '../room/shell';
 import { Field, type ThermalView, rampBar, rampY } from '../thermal';
-import { anchor, box, hotspots, viewFrom, type HotspotDef, type PartFraming } from '../world';
+import { SheetRegistry, anchor, box, hotspots, viewFrom, type HotspotDef, type PartFraming } from '../world';
 
 // The `living-room` world, the machine at home: a room seen as a stage, the walls between the eye and the room stepping aside by themselves. Warm, full and lived in. The drum on its base of earth, the bench along two walls, the chimney up through
 // the ceiling, a real fire in the feed that follows the model. The section opens the whole path of the gases at once, X-ray shows the same path through the shells, and the thermal view (`params.thermalView`) is the lab's « aha »: the room dark, the drum and the bench
@@ -94,6 +94,9 @@ export const EXPLODE: Record<LivingPart, [number, number, number]> = {
   'inner-stone-wall': [-0.55, 0, 0],
 };
 
+/** The manifold lies inside the core: its box is the core's sizing, and its cleanout's with it. */
+export const LIVING_REFUSED: ReadonlySet<string> = new Set<LivingPart>(['manifold', 'manifold-cleanout']);
+
 /**
  * How each part is framed: from which side, whatever the camera was doing before, the wall behind it staying where it is; and on what, where the whole box of a long part would keep the camera 20 m away. The two detectors are framed
  * together by the voice from the direction the chimney leaves it in, so the chimney is looked at from low enough to see under the ledger the smoke alarm hangs from. Directions found by rendering each part with and without itself from a
@@ -143,7 +146,7 @@ export function createLivingRoomScene(opts: HeaterOptions = {}): LivingRoomScene
   const params = opts.params ?? DEFAULT_PARAMS;
   const st = createHeaterStage('living-room', new Set<string>(LIVING_PARTS), { lights: 1, fireLight: 1, dotSize: 4 });
   const { scene, machine: m, room, furniture, thermal, flame, gas, smoke, long } = st;
-  const registry = new PartRegistry();
+  const registry = new SheetRegistry(LIVING_REFUSED, opts.selected);
 
   const roots = {} as Record<LivingPart, THREE.Group>;
   const part = (id: LivingPart): THREE.Group => {

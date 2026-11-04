@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { PartRegistry, rng } from '@onigam/lab-kit/three';
+import { rng } from '@onigam/lab-kit/three';
 import type { Hotspot, SceneModule } from '@onigam/lab-kit/three';
 import type { HeaterState } from '../../sim/types';
 import { TAU, boxAt, joined, lathe, plate, polyShape, stick, v3 } from '../common';
@@ -15,7 +15,7 @@ import { roomMaterials } from '../room/shell';
 import { Caps, ClipSet, capRects } from '../section';
 import { concreteMap, fbm, knitMap, pebbleMap, tiled } from '../textures';
 import { Field, SLICE_H, SLICE_W, ThermalView, rampBar, rampY, sliceT, writeSlice } from '../thermal';
-import { anchor, box, hotspots, viewFrom, type HotspotDef, type PartFraming } from '../world';
+import { SheetRegistry, anchor, box, hotspots, viewFrom, type HotspotDef, type PartFraming } from '../world';
 import { DEFAULT_PARAMS, type HeaterOptions } from '../room/stage';
 
 // The `bench-section` world: where the heat goes. The bench at human scale, cut like a cake: two slices side by side with their faces towards you, the hot run under its thick cover and the cold run under its thin one, the same profile, the same duct as the bench of `living-room`.
@@ -72,6 +72,19 @@ export const EXPLODE: Record<BenchPart, [number, number, number]> = {
   'floor-barrier': [0, -0.02, 0.5],
   'pebble-section': [0.42, 0.25, 0.3],
 };
+
+/** This world is a layout: slices cut to show, side by side, and an opened corner. A part that lies in several of them has a box that measures the layout, not a thing, and the sheet does not print it (five joints give « 2.92 × 0.27 × 2.43 m »). */
+export const BENCH_REFUSED: ReadonlySet<string> = new Set<BenchPart>([
+  'duct-hot-run',
+  'duct-cold-run',
+  'duct-bend',
+  'duct-joint',
+  'cob-casing',
+  'stone-filler',
+  'earthen-plaster',
+  'floor-barrier',
+  'pebble-section',
+]);
 
 /**
  * How each part is framed. The slices show their faces to +z, and what is laid open behind them is looked at from above, over the slices and past the chimney. A part spread over the world is framed on the face of the hot slice, where it
@@ -292,7 +305,7 @@ export function createBenchSectionScene(opts: HeaterOptions = {}): BenchSectionS
   warm.position.set(-0.4, 1.5, 1.9);
   scene.add(hemi, key, key.target, warm);
 
-  const registry = new PartRegistry();
+  const registry = new SheetRegistry(BENCH_REFUSED, opts.selected);
   const thermal = new ThermalView();
   const caps = new Caps();
   const mats: MachineMaterials = machineMaterials();

@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { PartRegistry } from '@onigam/lab-kit/three';
 import type { Hotspot, SceneModule } from '@onigam/lab-kit/three';
 import type { HeaterState } from '../../sim/types';
 import { CORE } from '../dims';
@@ -9,7 +8,7 @@ import type { GasFlow } from '../fire/gas';
 import type { MachineAssembly } from '../machine/assembly';
 import { buildKettle, buildShield } from '../room/items';
 import { DEFAULT_PARAMS, createHeaterStage, type HeaterOptions } from '../room/stage';
-import { anchor, box, hotspots, viewFrom, type HotspotDef, type PartFraming } from '../world';
+import { SheetRegistry, anchor, box, hotspots, viewFrom, type HotspotDef, type PartFraming } from '../world';
 
 // The `fire-core` world: where it burns and which way it goes. The same room and the same machine as `living-room`, the lights low, always cut along the gases' path. The flame lies down in the tunnel at the length the model gives, comes back up the feed when the flow reverses;
 // the riser's liner glows when the model says it is hot enough; the dots run from the feed to the manifold at the speed of the mass flow, and « Flux » adds the beads of pressure. No section tool: it is always on. No thermal view: on a ramp of 15 to 65 °C all of this is one colour, and it would teach nothing.
@@ -67,6 +66,9 @@ export const EXPLODE: Record<FirePart, [number, number, number]> = {
   'core-casing': [0.2, -0.02, 0.32],
 };
 
+/** The sheets of this world print no box but the casing's: the box of anything else in here is the inside of the core, which the lab refuses to size (`src/data/parts/dim-specs.ts`). */
+export const FIRE_REFUSED: ReadonlySet<string> = new Set<FirePart>(FIRE_PARTS.filter((id) => id !== 'core-casing'));
+
 /**
  * How each part is framed. The core only exists on the cut, which faces +z: everything is seen from that side, whatever the camera was doing before. What is thin or what lies along the cut is framed where it shows, not on its whole box.
  * Directions found by rendering each part with and without itself from a grid of directions (`docs/3d.md`).
@@ -106,7 +108,7 @@ export function createFireCoreScene(opts: HeaterOptions = {}): FireCoreScene {
     dotSize: 4.5,
   });
   const { scene, machine: m, room, flame, gas } = st;
-  const registry = new PartRegistry();
+  const registry = new SheetRegistry(FIRE_REFUSED, opts.selected);
 
   // ---- the kettle, the shield and the basket are the room's, not parts here
   const kettle = buildKettle();
