@@ -207,3 +207,73 @@ Worst is `fire-core`, where « L'ESPACE SOUS » and « LA CHUTE » run under the
 - Whether the model is honest: `docs/physics.md` not audited, and no figure traced to its source. The law lines in Sources were not read against anything.
 - Links inside the Sources panel. The lab's main video, which `src/lab.ts:44` still calls the research's proposal with « the owner's answer pending »: to confirm with the owner.
 - Section in `living-room` close to the lid (D2).
+
+## Material pass review
+
+- **Date:** 2026-11-12. **Commit:** `f585cf2`, local `main`, eight commits over `origin/main` = `58503d9` (the live bundle `index-NxfeCt5i.js`; a build of that commit gives the same name).
+- **Reviewer:** built none of it. First browser look at the pass.
+- **Served from** `git archive` copies of both commits, `node_modules` linked. Dev servers for the walks, `vite build` + `preview` for the performance. Chrome for Testing 154 on Metal, under `chrome.lock`.
+- **Walked:** 1280, 768, 390 px, FR and EN, dark and light. 678 kit-walk shots (1280 FR and 390 FR with every part at 3 distances; the other runs with worlds, tools, 8 modes), 56 before/after, 205 targeted, 114 guide frames, 8 flicker. Screens: `docs/qa/m1-*.jpg`.
+- **The pass touches** 20 files, none in `src/data`, `i18n`, `panels`, `sim`, `narration`, `public`. No part, dimension or draw call moved.
+
+### Verdict
+
+Push: yes, from this review. Blockers 0, major 1, minor 8. First frame +5 %, entering the room +32 % at CPU x4, bytes +1 %, draws and frame time unchanged here. Look at MP1 first. Not measured: a real phone's GPU. The old build is the way back.
+
+### Gates
+
+typecheck pass · format:check pass · 597 tests / 21 files pass · build pass (`index-LIWpSAEz.js` 1,515.46 kB, gzip 470.45) · standard: none printed · dev console: only the 4 kit font 403s · production console: clean · 24 sliders to both ends + 12 scenario chips: no error.
+
+### Pass says vs measured
+
+| 3d.md                     | Measured                                                                     |
+| ------------------------- | ---------------------------------------------------------------------------- |
+| flat 18.2 → 4.8 %         | 24.5 → 6.1 % on 28 views; four stay at 13–32 % (`l1`, `l7`, `b1`, `b6`: MP3) |
+| draws unchanged           | 139/230/139/113 both                                                         |
+| 33 maps, 18.5 MB          | textures 86 → 96, uploaded 208.6 → 210.9 MB                                  |
+| first frame 2.68 → 2.87 s | 2.65 → 2.78 s                                                                |
+| room 1.14 → 1.58 s        | 1.10 → 1.45 s (core 0.63 → 0.75, bench 0.43 → 0.57)                          |
+| programs 279 → 343        | 284 → 346                                                                    |
+| frame 16.6 ms             | 16.7 ms, p95 same; vsync off 5.6 → 5.9 ms (homestead)                        |
+| rooms 3–8 levels darker   | up to 11 levels; nothing under mean luma 53                                  |
+
+### Phone profile (CPU x4, 390x844 at pixel ratio 3, 3 runs, median)
+
+First frame 2,646 → 2,782 ms. Room 1,100 → 1,450 ms. Core 633 → 750. Bench 433 → 567. Programs 68/169/247/284 → 74/199/295/346. Wire bytes 546.6 → 551.9 kB. JS raw 1,500,114 → 1,515,468 B; brotli 372,164 → 376,340 B. Live sends br 470,347 B, so about +5 kB. CSS and fonts identical. Frame time 16.7 ms in both builds, 0 of 198 frames over 33 ms. Real phone frame rate: **not measured**.
+
+### Stability and stretching
+
+Kit flicker before → after (orbit/dolly): homestead 5.49/6.34 → 5.60/6.48; room 1.66/6.04 → 1.65/6.44; core 0.74/2.28 → 0.71/2.17, spike 6.19 → 5.40 (old D21); bench 0.39/1.87 → 0.44/2.11. Still camera, 14 frames of 12 views: 0 % changed in room and bench, core 0.68 % (flame, 0.66 % before), homestead 0–0.48 %. No z-fighting or seam seen. UV stretch: only the liner is bad (MP1).
+
+### Rules
+
+§1 all ✓ (no geometry in the diff; 56 close-ups; dims not checked). §2 ✓; Flux now shows in homestead (D10 answered). §3 ✓ with MP1–MP7; fire/gas unchanged. §3 warm/stable ✓. §4 pivot unchanged (held for `co-alarm` and `drum-plinth`, moves for big parts, as D1). Widths ✓, text unchanged. Invitation over the panel title at 768/390 (D15). §5, §6 not touched. §7 16 clips played ✓.
+
+### Guide
+
+16 clips (FR intro, 4 worlds, 6 parts; EN intro, 2 worlds, 2 parts). All end cleanly, none leaves a tool on, intro ends at homestead (D14 answered). Longest line 107 chars, gap ≤0.3 s, « Voix de synthèse » shown, legible over snow. The 3D follows; matter hides nothing named. Voice not judged.
+
+### Defects
+
+**Blockers:** none.
+
+**Major**
+
+- **MP1. The riser's liner reads as bark** (fire-core from the first view; `heat-riser`, mesh `liner`). `refractoryMap` lands on a lathe with unit UVs: stretch 4.2× on average, 12× max over 0.95 m². Pores become vertical streaks. `m1-05`, `m1-04`. Likely `lathe()` in `src/three/common.ts`, `machine/core.ts:355-370`. A per-mesh UV-scale test would catch it.
+
+**Minor**
+
+- MP2 plaster heavy and grey (`m1-03`, `m1-17`).
+- MP3 by day roofs and outside snow are flat white: living-room flat 24.2 → 24.8 %, chimney-flue 33.7 → 32.1 % (`m1-08`, `m1-17`, `m1-18`).
+- MP4 drum lid starburst (`m1-06`).
+- MP5 neighbour's windows plain orange squares (`m1-02`).
+- MP6 snow ripples one regular wave; footprints one oval (`m1-09`, `m1-10`).
+- MP7 slice caps read as sacking (`m1-04`).
+- MP8 room entry freeze 1.10 → 1.45 s at x4, 62 more programs (kit request 29).
+- MP9 old, not from the pass: at 390 the selected insulation sits behind five labels (`m1-07`); labels cut at the right edge on selection; fire-core pop 5.40 (D21); fire-core x-ray drops the brick (D24); invitation over the title (D15).
+
+**Not a defect:** one TypeError in the first extremes run came from the reviewer's script forcing the disabled « Réglages personnels » option. A clean run throws nothing.
+
+### Not checked
+
+Real phones and GPU; Safari, Firefox, other GLSL drivers; the voice; 50 of 61 FR and 56 of 61 EN segments; light theme in EN at 768; lessons beyond the list, quiz, guide steps and plans beyond the first, scenarios clicked but not looked at; D1–D3 not re-measured; real texture memory (counted uploads); single machine, single run. Folder of all shots: `~/.cache/lab-review/mass-heater-lab/2026-11-12-f585cf2/`.
