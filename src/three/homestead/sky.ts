@@ -200,7 +200,7 @@ export function createSky(scene: THREE.Scene): SkyRig {
       if (u.time) u.time.value = time;
       const sunI = 3.9 * smoothstep(-1 * DEG, 6 * DEG, alt) * (1 - 0.18 * low);
       // a low moon gives the snow less light than a high one did: its strength makes up for the angle, so that the field keeps its brightness
-      const moonI = 1.5 * (1 - day);
+      const moonI = 1.7 * (1 - day);
       if (sunI >= moonI) {
         lightDir.copy(sunDir);
         sun.color.copy(white).lerp(warm, low);

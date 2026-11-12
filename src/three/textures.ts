@@ -281,7 +281,7 @@ export const plasterMap = (): THREE.DataTexture =>
     const sand = tf(u, v, 64, 2) - 0.5;
     const grain = hash1(i, j) - 0.5;
     // the per-texel grain is what a wall keeps when the eye is a metre from it (a texel is then several pixels); from across the room it averages away
-    const k = 0.82 + 0.15 * broad + 0.08 * mid + 0.06 * stroke + 0.1 * sand + 0.045 * grain;
+    const k = 0.82 + 0.15 * broad + 0.08 * mid + 0.06 * stroke + 0.11 * sand + 0.055 * grain;
     // the thin places let a warmer coat through
     const warm = 0.012 * (mid + broad);
     return [k + warm, k * 0.985, k * 0.955 - warm];

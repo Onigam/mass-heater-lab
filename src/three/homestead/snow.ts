@@ -25,7 +25,7 @@ export const SNOW_LIGHT_GLSL = /* glsl */ `
     vec3 snTint = mix( vec3( 0.74, 0.85, 1.07 ), vec3( 1.03, 1.0, 0.96 ), smoothstep( -0.15, 0.5, snNl ) );
     outgoingLight = mix( outgoingLight, outgoingLight * snTint, gSnowAmt );
     // snow in full sun is the brightest thing of a landscape and would burn out, its relief with it: a soft shoulder, for the snow only (dim snow keeps its value)
-    outgoingLight = mix( outgoingLight, outgoingLight / ( 1.0 + 0.32 * dot( outgoingLight, vec3( 0.2126, 0.7152, 0.0722 ) ) ), gSnowAmt );
+    outgoingLight = mix( outgoingLight, outgoingLight / ( 1.0 + 0.45 * max( dot( outgoingLight, vec3( 0.2126, 0.7152, 0.0722 ) ) - 0.5, 0.0 ) ), gSnowAmt );
     vec3 snV = normalize( vViewPosition );
     vec3 snH = normalize( snL + snV );
     // lit, or in a cast shadow: what the direct light left on this pixel says it
