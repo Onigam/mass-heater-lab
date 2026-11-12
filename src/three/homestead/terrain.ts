@@ -299,7 +299,8 @@ export function buildTerrain(canopy: (x: number, z: number) => number = () => 0)
             vec3 d = uPools[ i ] - vLandP;
             float r2 = dot( d, d );
             float nl = max( dot( normal, ( viewMatrix * vec4( d * inversesqrt( r2 ), 0.0 ) ).xyz ), 0.0 );
-            pool += nl / ( 1.0 + 0.3 * r2 );
+            // a window lights what lies under it and little beyond: each pool stays a pool
+            pool += nl / ( 1.0 + 0.11 * r2 * r2 );
           }
           outgoingLight += diffuseColor.rgb * vec3( 1.0, 0.62, 0.3 ) * pool * uPoolGlow;
         }

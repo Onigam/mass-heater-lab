@@ -403,7 +403,7 @@ export function createHomesteadScene(opts: HomesteadOptions = {}): HomesteadScen
       house.glass.emissiveIntensity = nightGlow * 1.5;
       // next door a lamp is left on low, and what both houses' windows throw on the snow follows them
       nm.glass.emissiveIntensity = nightGlow * 0.38;
-      WINDOW_POOLS.glow.value = nightGlow * 1.3;
+      WINDOW_POOLS.glow.value = nightGlow * 0.8;
 
       // ---- the snow lies below about 4 °C of mean air
       const mean = opts.params?.().outsideMean ?? 2;
