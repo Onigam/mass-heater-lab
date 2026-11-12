@@ -379,13 +379,26 @@ export const perliteMap = (): THREE.DataTexture =>
     return [k, k * 0.985, k * 0.95];
   });
 
-/** A wood-fibre or straw board in section, as a wall's insulation shows at its cut: fibres pressed flat in two directions, a few darker shives. To be tinted. One tile about 0.6 m. */
+/**
+ * A wood-fibre board in section, as a wall's insulation shows at its cut: short wisps of fibre lying mostly flat, each a little off its neighbour's line, a few darker shives, a body that is never one tone. To be tinted. One tile
+ * about 0.6 m. (The first version crossed two sets of long strokes, one along and one across, and a cut face read as sacking.)
+ */
 export const fibreMap = (): THREE.DataTexture =>
   map('fibre', 256, (u, v, i, j) => {
-    const along = tn(u * 96, v * 10, 96, 10) - 0.5;
-    const across = tn(u * 10 + 3, v * 96, 10, 96) - 0.5;
-    const shive = smoothstep(0.7, 0.8, tn(u * 64 + 9, v * 16 + 5, 64, 16)) * 0.14;
-    const k = 0.84 + 0.2 * along + 0.2 * across + 0.1 * (tf(u, v, 6, 2) - 0.5) - shive + 0.03 * (hash1(i, j) - 0.5);
+    // the lines the wisps lie on wander with the board's body: no two neighbours run alike
+    const wander = tf(u, v, 6, 2) - 0.5;
+    const along = tn(u * 64 + 9 * wander, v * 40 + 3 * wander, 64, 40) - 0.5;
+    const second = tn(u * 40 + 4 + 7 * wander, v * 64 + 5, 40, 64) - 0.5;
+    const fine = tn(u * 128, v * 128, 128, 128) - 0.5;
+    const shive = smoothstep(0.7, 0.8, tn(u * 20 + 9, v * 56 + 5, 20, 56)) * 0.12;
+    const k =
+      0.84 +
+      0.17 * along +
+      0.07 * second +
+      0.1 * fine +
+      0.1 * (tf(u, v, 5, 2) - 0.5) -
+      shive +
+      0.03 * (hash1(i, j) - 0.5);
     return [k, k * 0.98, k * 0.93];
   });
 

@@ -181,6 +181,9 @@ describe('the shader edits of the material pass', () => {
     for (const y of ys) expect(fragmentShader).toContain(`abs( vEwP.y - ${y.toFixed(4)} )`);
     expect(fragmentShader).toContain('metalnessFactor = mix( metalnessFactor');
     expect(fragmentShader.match(/float dtKeep/g)?.length).toBe(1);
+    // a flat top (the lid) wears at its rim only, its streaks running round it, not out from its centre
+    expect(fragmentShader).toContain('ew *= mix( 1.0, smoothstep(');
+    expect(fragmentShader).toContain('mix( vEwP.y, ewR, ewFlat )');
   });
 
   it('the snow of a roof takes its relief, its tint and its glints; a bough takes the tint only', () => {

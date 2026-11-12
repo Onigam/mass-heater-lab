@@ -272,8 +272,8 @@ export function edgeWear(mat: THREE.MeshStandardMaterial, ys: readonly number[],
   mat.userData.edgeWear = true;
   patch(mat, `edge-wear-${ys.join(',')}-${half}-${radius}`, (shader) => {
     shader.vertexShader = shader.vertexShader
-      .replace('#include <common>', '#include <common>\nvarying vec3 vEwP;')
-      .replace('#include <begin_vertex>', '#include <begin_vertex>\nvEwP = position;');
+      .replace('#include <common>', '#include <common>\nvarying vec3 vEwP;\nvarying vec3 vEwN;')
+      .replace('#include <begin_vertex>', '#include <begin_vertex>\nvEwP = position;\nvEwN = normal;');
     const bands = ys
       .map(
         (y) =>
@@ -281,15 +281,22 @@ export function edgeWear(mat: THREE.MeshStandardMaterial, ys: readonly number[],
       )
       .join('\n          ');
     shader.fragmentShader = shader.fragmentShader
-      .replace('#include <common>', `#include <common>\nvarying vec3 vEwP;\nfloat gEw;\n${NOISE_GLSL}`)
+      .replace(
+        '#include <common>',
+        `#include <common>\nvarying vec3 vEwP;\nvarying vec3 vEwN;\nfloat gEw;\n${NOISE_GLSL}`,
+      )
       .replace(
         '#include <color_fragment>',
         /* glsl */ `#include <color_fragment>
         {
           float ew = 0.0;
           ${bands}
+          // a lid lies in every band at once, and bands round an axis mean nothing on it (the streaks ran out from its centre in sixteen wedges): a flat top wears at its rim only, and its streaks run round the rim
+          float ewFlat = smoothstep( 0.55, 0.85, abs( vEwN.y ) );
+          float ewR = length( vEwP.xz );
+          ew *= mix( 1.0, smoothstep( ${(radius - 0.05).toFixed(4)}, ${(radius - 0.006).toFixed(4)}, ewR ), ewFlat );
           // long streaks round the drum, as a hoop wears where it rolled: two scales of them, so that no two stretches are alike
-          vec2 ewQ = vec2( atan( vEwP.z, vEwP.x ) * ${(radius * 11).toFixed(3)}, vEwP.y * 9.0 );
+          vec2 ewQ = vec2( atan( vEwP.z, vEwP.x ) * ${(radius * 11).toFixed(3)}, mix( vEwP.y, ewR, ewFlat ) * 9.0 );
           float ewKeep = dtKeep( length( fwidth( ewQ * 3.7 ) ) );
           float ewN = 0.5 + 0.3 * dtNoise( ewQ ) + 0.2 * dtNoise( ewQ * 3.7 + 11.0 ) * ewKeep;
           gEw = ew * ( 0.3 + 0.7 * smoothstep( 0.3, 0.75, ewN ) );
