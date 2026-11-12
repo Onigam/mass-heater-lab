@@ -3,7 +3,7 @@ import { rng } from '@onigam/lab-kit/three';
 import type { Hotspot, SceneModule } from '@onigam/lab-kit/three';
 import type { HeaterState } from '../../sim/types';
 import { TAU, boxAt, joined, lathe, plate, polyShape, stick, v3 } from '../common';
-import { contactShadow } from '../detail';
+import { contactShadow, roomOcclusionAll } from '../detail';
 import { BENCH, DUCT, FLUE, ROOM, ductAxis, MACHINE as M } from '../dims';
 import { Followers } from '../followers';
 import { GasFlow, gasColor, type GasNode } from '../fire/gas';
@@ -822,6 +822,11 @@ export function createBenchSectionScene(opts: HeaterOptions = {}): BenchSectionS
   mergeStatic(roots['pebble-section'], { name: 'pebble', scope, colours: false });
   for (const id of ['tee', 'foot-cap', 'drain'] as const)
     mergeStatic(flue.roots[id], { name: `flue-${id}`, scope, colours: false });
+  // the light a corner does not get: this set has a floor, a back wall and a side wall, and no more
+  roomOcclusionAll(setting, {
+    min: [-100, 0, backZ],
+    max: [sideX, 100, 100],
+  });
   thermal.patchAll(setting, thermal.surface);
   thermal.patchAll(roots['pebble-section'], thermal.surface);
   thermal.patchAll(footFrame, thermal.flue);

@@ -2,7 +2,18 @@ import * as THREE from 'three';
 import { boxAt, joined, plate, polyShape, stick, uvMetric, v3 } from '../common';
 import { patch } from '../detail';
 import { BENCH, CORE, FLUE, HOUSE, MACHINE, ROOM } from '../dims';
-import { boardsMap, concreteMap, masonryMap, oakMap, plasterMap, renderMap, tiled } from '../textures';
+import {
+  boardsMap,
+  concreteMap,
+  concreteNormalMap,
+  fibreMap,
+  masonryMap,
+  oakMap,
+  plasterMap,
+  plasterNormalMap,
+  renderMap,
+  tiled,
+} from '../textures';
 
 // The room as a set: floor, slab, the plastered back and gable walls with their deep windows, the stone wall, the beam, the front wall and the ceiling. A wall is drawn only while the camera is on its room's side: orbit anywhere and the
 // walls between the eye and the room step aside by themselves, with no tool and no change of material. Their tops show what a section of them shows: plaster, insulation, render.
@@ -25,6 +36,9 @@ export interface RoomMaterials {
   render: THREE.MeshStandardMaterial;
 }
 
+/** How deep the plaster's relief reads (the normal map's scale): enough for a raking light, not so much that the sand crawls in a slow dolly. */
+export const PLASTER_RELIEF = 0.42;
+
 export function roomMaterials(): RoomMaterials {
   const plaster = plasterMap();
   const wood = boardsMap();
@@ -36,10 +50,20 @@ export function roomMaterials(): RoomMaterials {
   const stone = masonryMap();
   const oak = oakMap();
   const conc = concreteMap();
+  const relief = plasterNormalMap();
+  // a wall plastered by hand: its tones wander, its face is not a plane, and its sand catches a light that rakes it
+  const plastered = () =>
+    m({
+      color: 0xf1e8d8,
+      map: tiled(plaster, 1 / 1.6),
+      normalMap: tiled(relief, 1 / 1.6),
+      normalScale: new THREE.Vector2(PLASTER_RELIEF, PLASTER_RELIEF),
+      roughness: 0.93,
+    });
   return {
-    plaster: m({ color: 0xece4d4, map: tiled(plaster, 1 / 1.6), roughness: 0.93 }),
-    plasterFront: m({ color: 0xece4d4, map: tiled(plaster, 1 / 1.6), roughness: 0.93 }),
-    plasterGable: m({ color: 0xece4d4, map: tiled(plaster, 1 / 1.6), roughness: 0.93 }),
+    plaster: plastered(),
+    plasterFront: plastered(),
+    plasterGable: plastered(),
     ceiling: m({ color: 0xb78a5c, map: tiled(wood, 1 / 1.2), roughness: 0.85 }),
     gable: m({ color: 0x8c6a48, map: tiled(wood, 1 / 1.2), roughness: 0.88 }),
     stone: m({
@@ -53,8 +77,14 @@ export function roomMaterials(): RoomMaterials {
     beam: m({ color: 0x6a4a30, map: tiled(wood, 1 / 0.8), roughness: 0.82 }),
     frame: m({ color: 0xcdb48c, map: tiled(wood, 1 / 0.5), roughness: 0.7 }),
     glass: m({ color: 0x9fb4c4, roughness: 0.3, metalness: 0.05, transparent: true, opacity: 0.2, depthWrite: false }),
-    slab: m({ color: 0xbfb9ac, map: tiled(conc, 1 / 1.3), roughness: 0.9 }),
-    insul: m({ color: 0xcdb483, map: tiled(renderMap(), 1 / 0.6), roughness: 1 }),
+    slab: m({
+      color: 0xbfb9ac,
+      map: tiled(conc, 1 / 1.3),
+      normalMap: tiled(concreteNormalMap(), 1 / 1.3),
+      normalScale: new THREE.Vector2(0.7, 0.7),
+      roughness: 0.9,
+    }),
+    insul: m({ color: 0xd9bf8c, map: tiled(fibreMap(), 1 / 0.6), roughness: 1 }),
     footing: m({ color: 0x8f8a80, map: tiled(conc, 1 / 1.2), roughness: 0.96 }),
     door: m({ color: 0x7c5532, map: tiled(wood, 1 / 0.9), roughness: 0.74 }),
     render: m({ color: 0xc9c3b4, map: tiled(renderMap(), 1 / 1.2), roughness: 0.96 }),

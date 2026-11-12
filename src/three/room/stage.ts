@@ -3,7 +3,7 @@ import { damp } from '@onigam/lab-kit/three';
 import { MODEL } from '../../sim/machine';
 import type { HeaterState } from '../../sim/types';
 import { smoothstep, softDotTexture } from '../common';
-import { applyWear, contactShadow } from '../detail';
+import { applyWear, contactShadow, roomOcclusion, roomOcclusionAll } from '../detail';
 import { BENCH, CORE, ITEMS, ROOM } from '../dims';
 import { Flame, fireFlicker } from '../fire/flame';
 import { GasFlow } from '../fire/gas';
@@ -67,6 +67,12 @@ export interface HeaterStage {
   /** The walls show from the room's side only. */
   sides(extra?: THREE.Object3D[]): void;
 }
+
+/** The room as a box, for the light its corners do not get. */
+export const ROOM_BOX = {
+  min: [ROOM.x0, 0, ROOM.z0] as [number, number, number],
+  max: [ROOM.x1, ROOM.height, ROOM.z1] as [number, number, number],
+};
 
 /** Simulated seconds per real second above which the room's light stops following the clock. */
 const CLOCK_FAST = 3000;
@@ -274,6 +280,20 @@ export function createHeaterStage(name: string, registered: ReadonlySet<string>,
       mergeStatic(exterior.group, { name: 'exterior', scope, colours: false });
       for (const g of extra) mergeStatic(g, { name: g.name, scope, colours: false });
       applyWear(furniture.group, 24, (x) => !!(x.material as THREE.Material).userData.worn);
+      // the light a corner does not get: the walls towards their corners, their foot and the ceiling, the floor towards the walls, the bench and the casing towards the floor and the wall behind them
+      for (const g of [
+        room.back,
+        room.gable,
+        room.front,
+        room.ceiling,
+        room.doorWall,
+        room.floor,
+        room.slab,
+        room.stone,
+      ])
+        roomOcclusionAll(g, ROOM_BOX);
+      for (const mat of [m.mats.earthSkin, m.mats.brick, m.mats.concrete]) roomOcclusion(mat, ROOM_BOX);
+      for (const body of [m.shell, m.backrest]) roomOcclusionAll(body, ROOM_BOX);
       thermalMachine(thermal, m, long);
       thermal.patchAll(room.stone, thermal.stone);
       thermal.patchAll(room.slab, thermal.slab);

@@ -3,7 +3,7 @@ import { emissive, rng } from '@onigam/lab-kit/three';
 import { boxAt, joined, lathe, softBox, stick, v3 } from '../common';
 import { BENCH, CORE, ITEMS, ROOM, SHIELD } from '../dims';
 import type { MachineMaterials } from '../machine/materials';
-import { clothMap, knitMap, tiled } from '../textures';
+import { clothMap, galvanisedMap, knitMap, steelNormalMap, tiled } from '../textures';
 
 // The parts of `living-room` that are not the machine's: the shield on its spacers, the kettle on the drum's lid, the day's basket on the slab, the two alarms, the grille, the cushions. All from `ITEMS` and `SHIELD`, in the room frame.
 
@@ -11,7 +11,15 @@ export function buildShield(mats: MachineMaterials): THREE.Group {
   const g = new THREE.Group();
   g.name = 'heat-shield';
   const z = ROOM.z0 + SHIELD.gap;
-  const sheet = new THREE.Mesh(boxAt(SHIELD.x0, SHIELD.y0, z, SHIELD.x1, SHIELD.y1, z + SHIELD.t), mats.steel.clone());
+  // a galvanised sheet: the zinc's spangle, and a sheet hung on nine spacers is never a plane, so what it throws back of the room bends
+  const zinc = mats.steel.clone();
+  zinc.color.set(0xc4c7c8);
+  zinc.map = tiled(galvanisedMap(), 1 / 0.5);
+  zinc.normalMap = tiled(steelNormalMap(), 1 / 0.9);
+  zinc.normalScale = new THREE.Vector2(0.22, 0.22);
+  zinc.roughness = 0.58;
+  zinc.metalness = 0.78;
+  const sheet = new THREE.Mesh(boxAt(SHIELD.x0, SHIELD.y0, z, SHIELD.x1, SHIELD.y1, z + SHIELD.t), zinc);
   sheet.castShadow = true;
   sheet.receiveShadow = true;
   g.add(sheet);

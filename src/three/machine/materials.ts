@@ -8,11 +8,18 @@ import {
   concreteMap,
   drumPaintMap,
   endGrainMap,
+  perliteMap,
   plasterMap,
+  refractoryMap,
+  sootMap,
   spiralMap,
   renderMap,
+  steelNormalMap,
+  steelRoughMap,
   tiled,
 } from '../textures';
+import { edgeWear } from '../detail';
+import { CORE } from '../dims';
 
 // The materials of the machine. Each world makes its own set: a world's section sets its planes on them. The maps are shared, generated once. UVs are in metres, so a `repeat` of 1 / tile keeps every material at its true scale.
 
@@ -85,6 +92,33 @@ export function machineMaterials(): MachineMaterials {
   const earth = earthMap();
   const brick = brickMap();
   const steelMap = renderMap();
+  const refractory = refractoryMap();
+  const soot = sootMap();
+  const rough = steelRoughMap();
+  const relief = steelNormalMap();
+  // a steel face is never one roughness nor one plane: smears, scratches, the slow waves of a sheet; UVs in metres, `tile` metres a tile
+  const steelFace = (tile: number, depth: number): THREE.MeshStandardMaterialParameters => ({
+    roughnessMap: tiled(rough, 1 / tile),
+    metalnessMap: tiled(rough, 1 / tile),
+    normalMap: tiled(relief, 1 / tile),
+    normalScale: new THREE.Vector2(depth, depth),
+  });
+  // the drum: stove paint over a 200 L drum, worn to the steel on its rolling hoops and its rims
+  const drum = noShare(
+    std({
+      color: 0xffffff,
+      map: tiled(drumPaintMap(), 1 / 1.2),
+      ...steelFace(0.6, 0.55),
+      roughness: 0.7,
+      metalness: 0.38,
+    }),
+  );
+  edgeWear(
+    drum,
+    [...CORE.hoops.map((h) => CORE.drumFoot + h * CORE.drumHeight), CORE.drumTop - 0.012, CORE.drumFoot + 0.004],
+    0.016,
+    CORE.drumR,
+  );
   const skin = noShare(
     std({
       color: 0xe6d6c2,
@@ -111,26 +145,59 @@ export function machineMaterials(): MachineMaterials {
     brickCut: noShare(std({ color: 0xffffff, map: tiled(brick, 1 / 0.44, 1 / 0.24), roughness: 0.95 })),
     liner: noShare(
       std({
-        color: 0x7a6856,
-        map: tiled(steelMap, 1 / 0.3),
+        color: 0x86735f,
+        map: tiled(refractory, 1 / 0.3),
+        bumpMap: tiled(refractory, 1 / 0.3),
+        bumpScale: 0.6,
         roughness: 0.95,
         emissive: 0xff5a10,
         emissiveIntensity: 0,
       }),
     ),
-    linerCut: noShare(std({ color: 0xa08a6e, roughness: 0.95, emissive: 0xff5a10, emissiveIntensity: 0 })),
-    insulation: noShare(std({ color: 0xe6d8b8, map: tiled(steelMap, 1 / 0.2), roughness: 1 })),
-    drum: noShare(std({ color: 0xffffff, map: tiled(drumPaintMap(), 1 / 1.2), roughness: 0.62, metalness: 0.38 })),
-    drumInside: noShare(std({ color: 0x2e2a26, roughness: 0.9, metalness: 0.2 })),
-    sleeve: noShare(std({ color: 0x77706a, map: tiled(steelMap, 1 / 0.5), roughness: 0.55, metalness: 0.65 })),
-    steel: std({ color: 0x8d8f90, roughness: 0.45, metalness: 0.72 }),
-    steelDark: std({ color: 0x2c2c2d, roughness: 0.58, metalness: 0.5 }),
-    duct: noShare(
-      std({ color: 0xffffff, map: tiled(spiralMap(), 1 / (Math.PI * 0.2), 1 / 0.3), roughness: 0.46, metalness: 0.72 }),
+    linerCut: noShare(
+      std({
+        color: 0xb09a7c,
+        map: tiled(refractory, 1 / 0.3),
+        roughness: 0.95,
+        emissive: 0xff5a10,
+        emissiveIntensity: 0,
+      }),
     ),
-    ductInside: noShare(std({ color: 0x3a312a, roughness: 0.95, metalness: 0.1 })),
-    flue: noShare(std({ color: 0xb8babb, roughness: 0.34, metalness: 0.86 })),
-    flueBand: std({ color: 0x8c8e8f, roughness: 0.4, metalness: 0.8 }),
+    insulation: noShare(std({ color: 0xf0e2c4, map: tiled(perliteMap(), 1 / 0.2), roughness: 1 })),
+    drum,
+    drumInside: noShare(
+      std({
+        color: 0x5a524a,
+        map: tiled(soot, 1 / 0.5),
+        bumpMap: tiled(soot, 1 / 0.5),
+        bumpScale: 0.5,
+        roughness: 0.92,
+        metalness: 0.15,
+      }),
+    ),
+    sleeve: noShare(
+      std({
+        color: 0x77706a,
+        map: tiled(steelMap, 1 / 0.5),
+        ...steelFace(0.5, 0.4),
+        roughness: 0.6,
+        metalness: 0.65,
+      }),
+    ),
+    steel: std({ color: 0x8d8f90, ...steelFace(0.6, 0.5), roughness: 0.52, metalness: 0.72 }),
+    steelDark: std({ color: 0x2c2c2d, ...steelFace(0.45, 0.5), roughness: 0.66, metalness: 0.5 }),
+    duct: noShare(
+      std({
+        color: 0xffffff,
+        map: tiled(spiralMap(), 1 / (Math.PI * 0.2), 1 / 0.3),
+        roughnessMap: tiled(rough, 1 / (Math.PI * 0.2), 1 / 0.6),
+        roughness: 0.54,
+        metalness: 0.72,
+      }),
+    ),
+    ductInside: noShare(std({ color: 0x70645a, map: tiled(soot, 2, 3), roughness: 0.95, metalness: 0.1 })),
+    flue: noShare(std({ color: 0xb8babb, roughnessMap: tiled(rough, 2, 3), roughness: 0.42, metalness: 0.86 })),
+    flueBand: std({ color: 0x8c8e8f, roughnessMap: tiled(rough, 2, 1), roughness: 0.48, metalness: 0.8 }),
     gasket: noShare(std({ color: 0xd9d4c6, roughness: 1 })),
     ash: noShare(std({ color: 0xffffff, map: tiled(ashMap(), 1 / 0.25), roughness: 1 })),
     ember: noShare(std({ color: 0x1b1412, roughness: 0.95, emissive: 0xff3a08, emissiveIntensity: 0 })),
@@ -142,7 +209,7 @@ export function machineMaterials(): MachineMaterials {
     gasFallCut: gasMat(0xff6a20),
     gasRiserCut: gasMat(0xff7a22),
     gasTunnelCut: gasMat(0xff6a18),
-    flueInside: noShare(std({ color: 0x4a4038, roughness: 0.92, metalness: 0.2 })),
+    flueInside: noShare(std({ color: 0x8a7a6c, map: tiled(soot, 2, 3), roughness: 0.92, metalness: 0.2 })),
     concrete: noShare(std({ color: 0xc9c4b8, map: tiled(concreteMap(), 1 / 1.2), roughness: 0.94 })),
   };
 }
