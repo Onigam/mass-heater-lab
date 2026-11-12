@@ -158,7 +158,7 @@ export function createHomesteadScene(opts: HomesteadOptions = {}): HomesteadScen
   mergeStatic(house.group, { name: 'house', scope: 'homestead', colours: false });
 
   // ---- the chimney, the very function of the other worlds: the cap is a part, the rest goes up through the roof from inside
-  const mm = machineMaterials();
+  const mm = machineMaterials({ sections: false });
   patchSnow(mm.flue, { lo: 0.8, hi: 0.95, gain: 0.6 });
   const flue = buildFlue(mm);
   const chimneyFrame = new THREE.Group();

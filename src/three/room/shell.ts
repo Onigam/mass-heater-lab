@@ -37,7 +37,7 @@ export interface RoomMaterials {
 }
 
 /** How deep the plaster's relief reads (the normal map's scale): enough for a raking light, not so much that the sand crawls in a slow dolly. */
-export const PLASTER_RELIEF = 0.42;
+export const PLASTER_RELIEF = 0.55;
 
 export function roomMaterials(): RoomMaterials {
   const plaster = plasterMap();

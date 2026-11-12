@@ -86,14 +86,24 @@ const gasMat = (emissive: number): THREE.MeshStandardMaterial =>
     }),
   );
 
-export function machineMaterials(): MachineMaterials {
+export interface MachineMaterialOptions {
+  /**
+   * False in a world that shows no section of the machine (the homestead draws its chimney and its wood): the grains that only a section or an open drum shows (refractory, perlite, soot) are not drawn, and those
+   * materials take the lime render's map, already made for the house. It keeps the first world's build short on a phone.
+   */
+  sections?: boolean;
+}
+
+export function machineMaterials(o: MachineMaterialOptions = {}): MachineMaterials {
   const cob = cobMap();
   const plaster = plasterMap();
   const earth = earthMap();
   const brick = brickMap();
   const steelMap = renderMap();
-  const refractory = refractoryMap();
-  const soot = sootMap();
+  const sections = o.sections ?? true;
+  const refractory = sections ? refractoryMap() : steelMap;
+  const soot = sections ? sootMap() : steelMap;
+  const perlite = sections ? perliteMap() : steelMap;
   const rough = steelRoughMap();
   const relief = steelNormalMap();
   // a steel face is never one roughness nor one plane: smears, scratches, the slow waves of a sheet; UVs in metres, `tile` metres a tile
@@ -147,8 +157,6 @@ export function machineMaterials(): MachineMaterials {
       std({
         color: 0x86735f,
         map: tiled(refractory, 1 / 0.3),
-        bumpMap: tiled(refractory, 1 / 0.3),
-        bumpScale: 0.6,
         roughness: 0.95,
         emissive: 0xff5a10,
         emissiveIntensity: 0,
@@ -163,14 +171,12 @@ export function machineMaterials(): MachineMaterials {
         emissiveIntensity: 0,
       }),
     ),
-    insulation: noShare(std({ color: 0xf0e2c4, map: tiled(perliteMap(), 1 / 0.2), roughness: 1 })),
+    insulation: noShare(std({ color: 0xf0e2c4, map: tiled(perlite, 1 / 0.2), roughness: 1 })),
     drum,
     drumInside: noShare(
       std({
         color: 0x5a524a,
         map: tiled(soot, 1 / 0.5),
-        bumpMap: tiled(soot, 1 / 0.5),
-        bumpScale: 0.5,
         roughness: 0.92,
         metalness: 0.15,
       }),
@@ -196,7 +202,7 @@ export function machineMaterials(): MachineMaterials {
       }),
     ),
     ductInside: noShare(std({ color: 0x70645a, map: tiled(soot, 2, 3), roughness: 0.95, metalness: 0.1 })),
-    flue: noShare(std({ color: 0xb8babb, roughnessMap: tiled(rough, 2, 3), roughness: 0.42, metalness: 0.86 })),
+    flue: noShare(std({ color: 0xb8babb, roughnessMap: tiled(rough, 2, 3), roughness: 0.36, metalness: 0.86 })),
     flueBand: std({ color: 0x8c8e8f, roughnessMap: tiled(rough, 2, 1), roughness: 0.48, metalness: 0.8 }),
     gasket: noShare(std({ color: 0xd9d4c6, roughness: 1 })),
     ash: noShare(std({ color: 0xffffff, map: tiled(ashMap(), 1 / 0.25), roughness: 1 })),

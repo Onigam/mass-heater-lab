@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 import { smoothstep } from '../common';
 import { HOME, HOUSE, ROOM, homeFromRoom } from '../dims';
-import { FRONT_HOLES, GABLE_HOLES } from '../room/shell';
+import { GABLE_HOLES } from '../room/shell';
+import { FRONT_WINDOWS } from './house';
 import { fbm, grassMap, snowMap } from '../textures';
 import { SNOW, SNOW_LIGHT_GLSL, SNOW_RELIEF } from './snow';
 
@@ -93,14 +94,14 @@ export function terrainHeight(x: number, z: number): number {
 
 const midY = (ROOM.windowSill + ROOM.windowHead) / 2;
 /**
- * What the lit windows throw on the snow at night: a warm pool under each window of the house's front and gable, and under the neighbour's middle windows. Each is the window's own place (from the room's holes), read by
+ * What the lit windows throw on the snow at night: a warm pool under the three front windows nearest the room, under the gable's, and under the neighbour's. Each is the window's own place (from the room's holes), read by
  * the land's shader as a small lamp that lights the snow only: no light is added to the scene, so no other material pays for it. `glow` follows the windows' own glow.
  */
 export const WINDOW_POOLS = {
   glow: { value: 0 },
   at: [
-    ...FRONT_HOLES.map((h) => new THREE.Vector3(...homeFromRoom((h.u0 + h.u1) / 2, midY, ROOM.z1 + ROOM.outerWall))),
-    ...GABLE_HOLES.map((h) => new THREE.Vector3(...homeFromRoom(ROOM.x1 + ROOM.outerWall, midY, (h.u0 + h.u1) / 2))),
+    ...FRONT_WINDOWS.slice(-3).map((u) => new THREE.Vector3(...homeFromRoom(u, midY, HOUSE.z1))),
+    ...GABLE_HOLES.map((h) => new THREE.Vector3(...homeFromRoom(HOUSE.x1, midY, (h.u0 + h.u1) / 2))),
     // the neighbour's front faces its own +z, turned by its yaw
     ...[-2.5, 2.5].map(
       (u) =>

@@ -24,6 +24,8 @@ export const SNOW_LIGHT_GLSL = /* glsl */ `
     float snNl = dot( normal, snL );
     vec3 snTint = mix( vec3( 0.74, 0.85, 1.07 ), vec3( 1.03, 1.0, 0.96 ), smoothstep( -0.15, 0.5, snNl ) );
     outgoingLight = mix( outgoingLight, outgoingLight * snTint, gSnowAmt );
+    // snow in full sun is the brightest thing of a landscape and would burn out, its relief with it: a soft shoulder, for the snow only (dim snow keeps its value)
+    outgoingLight = mix( outgoingLight, outgoingLight / ( 1.0 + 0.32 * dot( outgoingLight, vec3( 0.2126, 0.7152, 0.0722 ) ) ), gSnowAmt );
     vec3 snV = normalize( vViewPosition );
     vec3 snH = normalize( snL + snV );
     // lit, or in a cast shadow: what the direct light left on this pixel says it
@@ -121,7 +123,7 @@ export function patchSnow<T extends THREE.Material>(mat: T, o: SnowOptions = {})
             vec4 snB = texture2D( uSnowTex, vec2( vSnowP.z, -vSnowP.x ) * ${(1 / SNOW_RELIEF.rippleTile).toFixed(5)} + 0.37 );
             vec2 slA = ( snA.rg - 0.5 ) * 2.0;
             vec2 slB = ( snB.rg - 0.5 ) * 2.0;
-            gSnowSlope = ( 0.42 * slA + ${SNOW_RELIEF.ripple.toFixed(3)} * vec2( -slB.y, slB.x ) ) * gSnow;
+            gSnowSlope = ( 0.8 * slA + ${(SNOW_RELIEF.ripple * 1.5).toFixed(3)} * vec2( -slB.y, slB.x ) ) * gSnow;
             snowC *= mix( vec3( 0.9, 0.935, 0.99 ), vec3( 1.0 ), smoothstep( 0.2, 0.62, 0.7 * snA.b + 0.3 * snB.b ) );
             gSnowGlint = max( smoothstep( 0.3, 0.6, snB.a ), 0.7 * smoothstep( 0.3, 0.6, snA.a ) ) * gSnow;
           }`

@@ -55,6 +55,9 @@ export function houseMaterials(): HouseMaterials {
   };
 }
 
+/** estimate: where the windows of the house's front stand along it (x in the room frame), on the wall at `HOUSE.z1`. */
+export const FRONT_WINDOWS = [-8.6, -6.6, -4.2, -1.2, 2.2] as const;
+
 /** The height of the roof's top face at a place in the room frame. */
 export const roofY = (z: number): number => {
   const mid = (HOUSE.z0 + HOUSE.z1) / 2;
@@ -248,7 +251,7 @@ export function buildHouse(m: HouseMaterials): HouseBuild {
   for (const h of GABLE_HOLES) place({ wall: 'gable', u: (h.u0 + h.u1) / 2, w: h.u1 - h.u0, y0: h.y0, y1: h.y1 });
   void FRONT_HOLES;
   // and the rest of the house
-  for (const u of [-8.6, -6.6, -4.2, -1.2, 2.2]) place({ wall: 'front', u, w: 1.1, y0: sill, y1: head });
+  for (const u of FRONT_WINDOWS) place({ wall: 'front', u, w: 1.1, y0: sill, y1: head });
   for (const u of [-8.2, -5.2]) place({ wall: 'back', u, w: 0.95, y0: sill, y1: head });
   place({ wall: 'gable-w', u: midZ, w: 1.1, y0: sill, y1: head });
   // a small window in each gable's boards

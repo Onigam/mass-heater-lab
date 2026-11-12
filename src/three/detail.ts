@@ -288,12 +288,12 @@ export function edgeWear(mat: THREE.MeshStandardMaterial, ys: readonly number[],
         {
           float ew = 0.0;
           ${bands}
-          vec2 ewQ = vec2( atan( vEwP.z, vEwP.x ) * ${(radius * 46).toFixed(3)}, vEwP.y * 15.0 );
-          float ewKeep = dtKeep( length( fwidth( ewQ ) ) );
-          float ewN = 0.5 + 0.5 * dtNoise( ewQ ) * ewKeep;
-          // only where the surface stands out of the drum's wall or at a rim does the paint go
-          gEw = ew * smoothstep( 0.52, 0.86, ewN + 0.22 * ew );
-          diffuseColor.rgb = mix( diffuseColor.rgb, vec3( 0.3, 0.285, 0.27 ), 0.6 * gEw );
+          // long streaks round the drum, as a hoop wears where it rolled: two scales of them, so that no two stretches are alike
+          vec2 ewQ = vec2( atan( vEwP.z, vEwP.x ) * ${(radius * 11).toFixed(3)}, vEwP.y * 9.0 );
+          float ewKeep = dtKeep( length( fwidth( ewQ * 3.7 ) ) );
+          float ewN = 0.5 + 0.3 * dtNoise( ewQ ) + 0.2 * dtNoise( ewQ * 3.7 + 11.0 ) * ewKeep;
+          gEw = ew * ( 0.3 + 0.7 * smoothstep( 0.3, 0.75, ewN ) );
+          diffuseColor.rgb = mix( diffuseColor.rgb, vec3( 0.25, 0.24, 0.23 ), 0.6 * gEw );
         }`,
       )
       .replace(
