@@ -8,7 +8,9 @@ import * as THREE from 'three';
 // `detail.ts`, without their grass and stones.
 
 /** GLSL: value noise, a 3D blend of it, and the fade of a pattern by its size on screen. */
-const NOISE_GLSL = /* glsl */ `
+export const NOISE_GLSL = /* glsl */ `
+  #ifndef DT_NOISE
+  #define DT_NOISE
   float dtHash( vec2 p ) { p = fract( p * vec2( 123.34, 456.21 ) ); p += dot( p, p + 45.32 ); return fract( p.x * p.y ); }
   float dtNoise( vec2 p ) {
     vec2 i = floor( p ); vec2 f = fract( p ); vec2 u = f * f * ( 3.0 - 2.0 * f );
@@ -18,6 +20,7 @@ const NOISE_GLSL = /* glsl */ `
   float dtNoise3( vec3 p ) { return 0.35 * ( dtNoise( p.xy ) + dtNoise( p.yz + 17.3 ) ) + 0.3 * dtNoise( p.zx - 9.1 ); }
   // 1 while a cell of the pattern spans more than ~6 pixels, 0 once it is under ~2.5 (a pattern of two-pixel cells crawls as the camera moves)
   float dtKeep( float cellsPerPixel ) { return 1.0 - smoothstep( 0.17, 0.4, cellsPerPixel ); }
+  #endif
 `;
 
 /** Chain a shader edit after a material's own `onBeforeCompile`, and give the program its own cache key. */
@@ -189,4 +192,117 @@ export function contactShadow(w: number, d: number, falloff: number, strength = 
   m.userData.noShadow = true;
   m.raycast = () => {};
   return m;
+}
+
+// ------------------------------------------------------------------------------------------------ the light a corner does not get
+
+export interface RoomOcclusion {
+  /** The room's box, in the world. */
+  min: [number, number, number];
+  max: [number, number, number];
+  /** How far from a wall, a floor or a ceiling the darkening reaches, m. */
+  radius?: number;
+  /** How much of the ambient light a corner loses. */
+  strength?: number;
+}
+
+/**
+ * Contact darkening by rule, for a room that is a box: a point near a wall, the floor or the ceiling receives less of the sky's and the room's light, and the nearer the less. Every plane of the box counts but
+ * the one a face lies in, so a wall darkens towards its corners, its foot and the ceiling, the floor towards the walls, a bench towards the floor and the wall behind it. No pass, no texture, no sample: six
+ * exponentials a pixel. It dims the ambient light and half of the direct, as a soft shadow would, and leaves the emissive alone (a temperature on the thermal view stays what it is).
+ */
+export function roomOcclusion<T extends THREE.Material>(mat: T, o: RoomOcclusion): T {
+  if (mat.userData.roomOcclusion || !(mat as unknown as THREE.MeshStandardMaterial).isMeshStandardMaterial) return mat;
+  mat.userData.roomOcclusion = true;
+  const r = o.radius ?? 0.42;
+  const k = o.strength ?? 0.34;
+  const f = (v: number[]) => `vec3( ${v.map((x) => x.toFixed(4)).join(', ')} )`;
+  patch(mat, `room-occlusion-${o.min.join(',')}-${o.max.join(',')}-${r}-${k}`, (shader) => {
+    shader.vertexShader = shader.vertexShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vRoP;\nvarying vec3 vRoN;')
+      .replace(
+        '#include <beginnormal_vertex>',
+        '#include <beginnormal_vertex>\nvRoN = mat3( modelMatrix ) * objectNormal;',
+      )
+      .replace(
+        '#include <begin_vertex>',
+        '#include <begin_vertex>\nvRoP = ( modelMatrix * vec4( transformed, 1.0 ) ).xyz;',
+      );
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vRoP;\nvarying vec3 vRoN;')
+      .replace(
+        '#include <aomap_fragment>',
+        /* glsl */ `#include <aomap_fragment>
+        {
+          vec3 roN = abs( normalize( vRoN ) );
+          vec3 roLo = max( vRoP - ${f(o.min)}, 0.0 ) * ${(1 / r).toFixed(4)};
+          vec3 roHi = max( ${f(o.max)} - vRoP, 0.0 ) * ${(1 / r).toFixed(4)};
+          vec3 roE = exp( -roLo ) + exp( -roHi );
+          float roO = dot( 1.0 - roN, roE );
+          float roAo = 1.0 - ${k.toFixed(3)} * min( roO, 1.35 );
+          reflectedLight.indirectDiffuse *= roAo;
+          reflectedLight.indirectSpecular *= roAo;
+          reflectedLight.directDiffuse *= mix( 1.0, roAo, 0.5 );
+        }`,
+      );
+  });
+  return mat;
+}
+
+/** The same for every solid material under `root`. */
+export function roomOcclusionAll(root: THREE.Object3D, o: RoomOcclusion): void {
+  root.traverse((x) => {
+    const m = x as THREE.Mesh;
+    if (!m.isMesh) return;
+    for (const mat of Array.isArray(m.material) ? m.material : [m.material]) {
+      const s = mat as THREE.MeshStandardMaterial;
+      if (s.isMeshStandardMaterial && !s.transparent) roomOcclusion(s, o);
+    }
+  });
+}
+
+// ------------------------------------------------------------------------------------------------ paint worn at the edges
+
+/**
+ * Paint worn through to the steel where a drum is rolled and handled: bands round its axis (Y, through the origin of its own frame) at the heights `ys`, `half` metres to each side, broken by a streaky noise so that no
+ * band is a ruled line. There the colour goes to bare steel, the roughness down, the metalness up: a rim catches the light. The pattern fades before its streaks get under a few pixels.
+ */
+export function edgeWear(mat: THREE.MeshStandardMaterial, ys: readonly number[], half: number, radius: number): void {
+  if (mat.userData.edgeWear) return;
+  mat.userData.edgeWear = true;
+  patch(mat, `edge-wear-${ys.join(',')}-${half}-${radius}`, (shader) => {
+    shader.vertexShader = shader.vertexShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vEwP;')
+      .replace('#include <begin_vertex>', '#include <begin_vertex>\nvEwP = position;');
+    const bands = ys
+      .map(
+        (y) =>
+          `ew = max( ew, 1.0 - smoothstep( ${(half * 0.25).toFixed(4)}, ${half.toFixed(4)}, abs( vEwP.y - ${y.toFixed(4)} ) ) );`,
+      )
+      .join('\n          ');
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <common>', `#include <common>\nvarying vec3 vEwP;\nfloat gEw;\n${NOISE_GLSL}`)
+      .replace(
+        '#include <color_fragment>',
+        /* glsl */ `#include <color_fragment>
+        {
+          float ew = 0.0;
+          ${bands}
+          vec2 ewQ = vec2( atan( vEwP.z, vEwP.x ) * ${(radius * 46).toFixed(3)}, vEwP.y * 15.0 );
+          float ewKeep = dtKeep( length( fwidth( ewQ ) ) );
+          float ewN = 0.5 + 0.5 * dtNoise( ewQ ) * ewKeep;
+          // only where the surface stands out of the drum's wall or at a rim does the paint go
+          gEw = ew * smoothstep( 0.52, 0.86, ewN + 0.22 * ew );
+          diffuseColor.rgb = mix( diffuseColor.rgb, vec3( 0.3, 0.285, 0.27 ), 0.6 * gEw );
+        }`,
+      )
+      .replace(
+        '#include <roughnessmap_fragment>',
+        '#include <roughnessmap_fragment>\nroughnessFactor = mix( roughnessFactor, 0.4, gEw );',
+      )
+      .replace(
+        '#include <metalnessmap_fragment>',
+        '#include <metalnessmap_fragment>\nmetalnessFactor = mix( metalnessFactor, 0.85, gEw );',
+      );
+  });
 }

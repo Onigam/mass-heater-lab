@@ -49,6 +49,7 @@ export function fbm(x: number, y: number, octaves = 4, gain = 0.5): number {
 
 /** Value noise that repeats every `px` cells in x and `py` in y (at most 256): for tileable maps. */
 function tn(x: number, y: number, px: number, py: number): number {
+  if (px > LN || py > LN) throw new Error(`a tileable noise of ${px} × ${py} cells: the lattice holds ${LN}`);
   const ix = Math.floor(x);
   const iy = Math.floor(y);
   const fx = sm(x - ix);
@@ -131,6 +132,37 @@ function map(
   cache.set(name, t);
   stats.push({ name, size, bytes: Math.round(size * size * 4 * (4 / 3)) });
   return t;
+}
+
+/**
+ * A tangent-space normal map from a tileable height (any unit): the slope between a texel's neighbours times `strength`. Built once, as the colour maps are; mipmapped, so the relief
+ * flattens with distance instead of crawling.
+ */
+function normalMap(
+  name: string,
+  size: number,
+  height: (u: number, v: number, i: number, j: number) => number,
+  strength: number,
+): THREE.DataTexture {
+  const hit = cache.get(name);
+  if (hit) return hit;
+  const h = new Float32Array(size * size);
+  for (let j = 0; j < size; j++) for (let i = 0; i < size; i++) h[j * size + i] = height(i / size, j / size, i, j);
+  return map(
+    name,
+    size,
+    (_u, _v, i, j) => {
+      const l = h[j * size + ((i + size - 1) % size)];
+      const r = h[j * size + ((i + 1) % size)];
+      const d = h[((j + size - 1) % size) * size + i];
+      const t = h[((j + 1) % size) * size + i];
+      const nx = -(r - l) * strength;
+      const ny = -(t - d) * strength;
+      const inv = 1 / Math.hypot(nx, ny, 1);
+      return [0.5 + 0.5 * nx * inv, 0.5 + 0.5 * ny * inv, 0.5 + 0.5 * inv];
+    },
+    false,
+  );
 }
 
 /** A copy of a map with its own repeat (same pixels on the GPU's side of three: `source` is shared). */
@@ -232,15 +264,189 @@ export const earthMap = (): THREE.DataTexture =>
     return [k * 1.02, k * 0.83, k * 0.65];
   });
 
-/** Earth plaster: fine, warm, faint strokes of the float. To be tinted. */
+/**
+ * Earth plaster: fine, warm, laid by hand. Tones that wander over a hand's reach, the strokes of the float, a sand grain the eye reads from two metres, a few darker pits. To be tinted. One tile about 1.6 m, so a
+ * texel is 3 mm: the grain lives between 2 and 16 pixels of a film frame, where a flat colour has nothing.
+ */
 export const plasterMap = (): THREE.DataTexture =>
   map('plaster', 512, (u, v, i, j) => {
-    const broad = tf(u, v, 4, 3) - 0.5;
+    const broad = tf(u, v, 3, 3) - 0.5;
+    const mid = tf(u, v, 13, 3) - 0.5;
     const stroke = tf(u, v, 10, 2, 28) - 0.5;
+    const sand = tf(u, v, 64, 3) - 0.5;
     const grain = hash1(i, j) - 0.5;
-    const k = 0.82 + 0.13 * broad + 0.05 * stroke + 0.015 * grain;
-    return [k, k * 0.985, k * 0.955];
+    const pit = smoothstep(0.7, 0.82, tf(u + 0.31, v + 0.17, 96, 2)) * 0.05;
+    const k = 0.82 + 0.15 * broad + 0.08 * mid + 0.06 * stroke + 0.075 * sand + 0.016 * grain - pit;
+    // the thin places let a warmer coat through
+    const warm = 0.012 * (mid + broad);
+    return [k + warm, k * 0.985, k * 0.955 - warm];
   });
+
+/** The relief of the same plaster: the wall is not a plane (a hand's unevenness), the float left arcs, the sand stands proud. A tangent-space normal map. */
+export const plasterNormalMap = (): THREE.DataTexture =>
+  normalMap(
+    'plaster-normal',
+    512,
+    (u, v) => {
+      const hand = tf(u, v, 3, 2);
+      const arc = Math.sin((u + 0.1 * Math.sin(v * Math.PI * 6 + tf(u, v, 3, 1) * 6)) * Math.PI * 2 * 9 + v * 11);
+      const stroke = tf(u, v, 10, 2, 28);
+      const sand = tf(u, v, 64, 3);
+      const pit = smoothstep(0.7, 0.82, tf(u + 0.31, v + 0.17, 96, 2));
+      return 5.5 * hand + 0.1 * arc + 0.6 * stroke + 0.3 * sand - 0.25 * pit;
+    },
+    2.2,
+  );
+
+/** Sheet steel and paint on steel, the relief: the slow waves of a sheet that was never flat, an orange peel, a few dings. Tangent-space, one tile about 0.6 m. */
+export const steelNormalMap = (): THREE.DataTexture =>
+  normalMap(
+    'steel-normal',
+    256,
+    (u, v) => {
+      const wave = tf(u, v, 2, 2);
+      const peel = tf(u, v, 40, 2);
+      const d = voronoi(u, v, 5, 5, 0.9);
+      const ding = hash1(d.id, 4) > 0.6 ? smoothstep(0.16, 0.0, d.d1) : 0;
+      return 3.2 * wave + 0.1 * peel - 0.35 * ding;
+    },
+    1.6,
+  );
+
+/**
+ * How rough and how metallic a steel surface is from place to place (green: roughness, blue: metalness, as three reads them; red unused): smears where a hand or a cloth passed, fine scratches along U, dull
+ * spots where the mill scale stayed. A material multiplies its own roughness by it, so a flat grey gets a highlight that breaks.
+ */
+export const steelRoughMap = (): THREE.DataTexture =>
+  map(
+    'steel-rough',
+    256,
+    (u, v, i, j) => {
+      const smear = tf(u, v, 4, 3, 7) - 0.5;
+      const scratch = tn(u * 6, v * 128, 6, 128) - 0.5;
+      const spot = smoothstep(0.6, 0.78, tf(u + 0.4, v + 0.2, 9, 2));
+      const rough = 0.8 + 0.5 * smear + 0.16 * scratch + 0.2 * spot + 0.03 * (hash1(i, j) - 0.5);
+      return [1, Math.min(1, Math.max(0.35, rough)), 1 - 0.3 * spot];
+    },
+    false,
+  );
+
+/** Galvanised sheet: the zinc's spangle, crystals of a thumb's width each with its own grey, a bloom of white rust here and there. Colour map, one tile about 0.5 m. */
+export const galvanisedMap = (): THREE.DataTexture =>
+  map('galvanised', 256, (u, v, i, j) => {
+    const warp = (tf(u, v, 12, 2) - 0.5) * 0.03;
+    const c = voronoi(u + warp, v - warp, 14, 14, 0.95);
+    const c2 = voronoi(u - warp + 0.37, v + warp + 0.11, 23, 23, 0.95);
+    const tone = 0.6 * hash1(c.id, 5) + 0.4 * hash1(c2.id, 8);
+    const bloom = smoothstep(0.55, 0.8, tf(u, v, 5, 3)) * 0.07;
+    const k = 0.7 + 0.085 * (tone - 0.5) + 0.07 * (tf(u, v, 3, 2) - 0.5) + bloom + 0.015 * (hash1(i, j) - 0.5);
+    return [k * 0.985, k, k * 1.02];
+  });
+
+/** Soot on steel, seen from inside a drum or a duct: matt black that has run and flaked, grey ash caught in it. One tile about 0.5 m. */
+export const sootMap = (): THREE.DataTexture =>
+  map('soot', 256, (u, v, i, j) => {
+    const run = tf(u, v, 14, 3, 3) - 0.5;
+    const cloud = tf(u, v, 5, 3) - 0.5;
+    const flake = smoothstep(0.62, 0.7, tf(u + 0.2, v + 0.6, 22, 2));
+    const k = 0.62 + 0.5 * cloud + 0.34 * run + 0.3 * flake + 0.05 * (hash1(i, j) - 0.5);
+    return [k * 1.03, k, k * 0.95];
+  });
+
+/** A cast refractory or a ceramic fibre board, cut: a pale body, open pores, grog of several sizes. To be tinted. One tile about 0.3 m. */
+export const refractoryMap = (): THREE.DataTexture =>
+  map('refractory', 256, (u, v, i, j) => {
+    const body = tf(u, v, 6, 3) - 0.5;
+    const c = voronoi(u, v, 22, 22, 0.95);
+    const grog = hash1(c.id, 6) > 0.55 ? smoothstep(0.34, 0.2, c.d1) * (hash1(c.id, 2) - 0.35) * 0.3 : 0;
+    const pore = smoothstep(0.72, 0.8, tf(u + 0.13, v + 0.47, 40, 2)) * 0.16;
+    const k = 0.8 + 0.2 * body + grog - pore + 0.05 * (hash1(i, j) - 0.5);
+    return [k, k * 0.98, k * 0.94];
+  });
+
+/** Perlite bound with clay, as the riser's insulation shows in section: white grains of every size in a buff slip. To be tinted. One tile about 0.2 m. */
+export const perliteMap = (): THREE.DataTexture =>
+  map('perlite', 256, (u, v, i, j) => {
+    const a = voronoi(u, v, 18, 18, 0.95);
+    const b = voronoi(u + 0.41, v + 0.23, 37, 37, 0.95);
+    const ga = smoothstep(0.42, 0.26, a.d1) * (0.5 + 0.5 * hash1(a.id, 3));
+    const gb = smoothstep(0.4, 0.24, b.d1) * (0.4 + 0.6 * hash1(b.id, 7));
+    const grainy = Math.max(ga, gb * 0.8);
+    const slip = 0.66 + 0.16 * (tf(u, v, 7, 3) - 0.5);
+    const k = slip + 0.32 * grainy + 0.04 * (hash1(i, j) - 0.5);
+    return [k, k * 0.985, k * 0.95];
+  });
+
+/** A wood-fibre or straw board in section, as a wall's insulation shows at its cut: fibres pressed flat in two directions, a few darker shives. To be tinted. One tile about 0.6 m. */
+export const fibreMap = (): THREE.DataTexture =>
+  map('fibre', 256, (u, v, i, j) => {
+    const along = tn(u * 96, v * 10, 96, 10) - 0.5;
+    const across = tn(u * 10 + 3, v * 96, 10, 96) - 0.5;
+    const shive = smoothstep(0.7, 0.8, tn(u * 64 + 9, v * 16 + 5, 64, 16)) * 0.14;
+    const k = 0.84 + 0.2 * along + 0.2 * across + 0.1 * (tf(u, v, 6, 2) - 0.5) - shive + 0.03 * (hash1(i, j) - 0.5);
+    return [k, k * 0.98, k * 0.93];
+  });
+
+/** Cast concrete, the relief: the float's low waves and a pitted, sandy face. Tangent-space. */
+export const concreteNormalMap = (): THREE.DataTexture =>
+  normalMap(
+    'concrete-normal',
+    256,
+    (u, v) => 2.4 * tf(u, v, 4, 2) + 0.5 * tf(u, v, 30, 3) - 0.3 * smoothstep(0.68, 0.8, tf(u + 0.5, v + 0.2, 44, 2)),
+    1.8,
+  );
+
+/**
+ * Snow as the wind leaves it, one tile to be read at two scales (drifts every few metres, ripples a hand wide). Red and green: the slope of the surface (a normal's x and z, 0.5 is level); blue: its height, for the tint
+ * of the hollows; alpha: where a crystal lies flat enough to throw the light back (a few texels in a hundred). Linear data, tileable.
+ */
+export const snowMap = (): THREE.DataTexture => {
+  const name = 'snow';
+  const hit = cache.get(name);
+  if (hit) return hit;
+  const size = 512;
+  const h = new Float32Array(size * size);
+  for (let j = 0; j < size; j++)
+    for (let i = 0; i < size; i++) {
+      const u = i / size;
+      const v = j / size;
+      // the wind runs along U: long soft drifts, their lee side steeper, and ripples across it that the drifts bend
+      const drift = tf(u, v, 3, 3, 6);
+      const lee = smoothstep(0.35, 0.75, tf(u + 0.07, v, 3, 2, 6));
+      const bend = tf(u, v, 4, 2) * 2.4;
+      const ripple = 0.5 + 0.5 * Math.sin((v * 22 + bend + 0.6 * Math.sin(u * Math.PI * 2 * 3)) * Math.PI * 2);
+      const crust = tf(u, v, 56, 2);
+      // the ripples come in fields, where the wind found loose snow
+      const field = smoothstep(0.38, 0.62, tf(u + 0.5, v + 0.25, 5, 2));
+      h[j * size + i] = 1.0 * drift + 0.22 * lee + 0.06 * ripple * field * (0.4 + 0.6 * drift) + 0.035 * crust;
+    }
+  const data = new Uint8Array(size * size * 4);
+  const s = 9;
+  for (let j = 0; j < size; j++)
+    for (let i = 0; i < size; i++) {
+      const l = h[j * size + ((i + size - 1) % size)];
+      const r = h[j * size + ((i + 1) % size)];
+      const d = h[((j + size - 1) % size) * size + i];
+      const t = h[((j + 1) % size) * size + i];
+      const k = (j * size + i) * 4;
+      data[k] = b8(0.5 - 0.5 * Math.max(-1, Math.min(1, (r - l) * s)));
+      data[k + 1] = b8(0.5 - 0.5 * Math.max(-1, Math.min(1, (t - d) * s)));
+      data[k + 2] = b8(h[j * size + i] / 1.3);
+      data[k + 3] = hash1(i * 3 + 1, j * 5 + 2) > 0.972 ? b8(0.35 + 0.65 * hash1(j, i)) : 0;
+    }
+  const tex = new THREE.DataTexture(data, size, size, THREE.RGBAFormat);
+  tex.colorSpace = THREE.NoColorSpace;
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.magFilter = THREE.LinearFilter;
+  tex.minFilter = THREE.LinearMipmapLinearFilter;
+  tex.generateMipmaps = true;
+  tex.anisotropy = 16;
+  tex.name = name;
+  tex.needsUpdate = true;
+  cache.set(name, tex);
+  stats.push({ name, size, bytes: Math.round(size * size * 4 * (4 / 3)) });
+  return tex;
+};
 
 /** A rubble wall: stones in rough courses, a recessed lime mortar, each stone its own tone and a broken face. Colour map; the same is its relief. One tile is about 1.75 m. */
 export const masonryMap = (): THREE.DataTexture =>
