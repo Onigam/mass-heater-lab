@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { rng } from '@onigam/lab-kit/three';
-import { TAU, boxAt, joined, lathe, stick, v3 } from '../common';
+import { TAU, boxAt, joined, lathe, rod, stick, v3 } from '../common';
 import { FLUE, HOME, HOUSE } from '../dims';
 import { buildBasket } from '../room/items';
 import type { MachineMaterials } from '../machine/materials';
@@ -366,7 +366,7 @@ export function buildCoppiceDressing(m: HouseMaterials, y: (x: number, z: number
   const z1 = C.z + C.depth / 2 + 0.5;
   const post = (x: number, z: number) => {
     const h = y(x, z);
-    parts.push(stick(v3(x, h - 0.1, z), v3(x, h + 0.95, z), 0.05, 7));
+    parts.push(rod(v3(x, h - 0.1, z), v3(x, h + 0.95, z), 0.05, 7));
   };
   for (let x = x0; x <= x1; x += 3) {
     post(x, z1);
@@ -380,8 +380,8 @@ export function buildCoppiceDressing(m: HouseMaterials, y: (x: number, z: number
   let xa = x0;
   while (xa < x1 - 0.1) {
     const xb = Math.min(x1, xa + 3);
-    parts.push(stick(v3(xa, y(xa, z1) + 0.82, z1), v3(xb, y(xb, z1) + 0.82, z1), 0.028, 6));
-    parts.push(stick(v3(xa, y(xa, z1) + 0.42, z1), v3(xb, y(xb, z1) + 0.42, z1), 0.024, 6));
+    parts.push(rod(v3(xa, y(xa, z1) + 0.82, z1), v3(xb, y(xb, z1) + 0.82, z1), 0.028, 6));
+    parts.push(rod(v3(xa, y(xa, z1) + 0.42, z1), v3(xb, y(xb, z1) + 0.42, z1), 0.024, 6));
     xa = xb;
   }
   // a stack of cut poles at the corner
@@ -394,7 +394,7 @@ export function buildCoppiceDressing(m: HouseMaterials, y: (x: number, z: number
     const k = row === 0 ? i : row === 1 ? i - 7 : i - 12;
     const yy = py + 0.05 + row * 0.085;
     const z = pz + (k - 3 + row * 0.5) * 0.095;
-    parts.push(stick(v3(px - 1.5 + r() * 0.2, yy, z), v3(px + 1.5 + r() * 0.2, yy, z), 0.04 + r() * 0.012, 6));
+    parts.push(rod(v3(px - 1.5 + r() * 0.2, yy, z), v3(px + 1.5 + r() * 0.2, yy, z), 0.04 + r() * 0.012, 6));
   }
   const mesh = new THREE.Mesh(joined(parts), m.timber);
   mesh.castShadow = true;

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { emissive, rng } from '@onigam/lab-kit/three';
-import { boxAt, joined, lathe, softBox, stick, v3 } from '../common';
+import { boxAt, joined, lathe, revolve, rod, softBox, stick, v3 } from '../common';
 import { BENCH, CORE, ITEMS, ROOM, SHIELD } from '../dims';
 import type { MachineMaterials } from '../machine/materials';
 import { clothMap, galvanisedMap, knitMap, steelNormalMap, tiled } from '../textures';
@@ -27,8 +27,8 @@ export function buildShield(mats: MachineMaterials): THREE.Group {
   const sp: THREE.BufferGeometry[] = [];
   for (const x of [SHIELD.x0 + 0.08, (SHIELD.x0 + SHIELD.x1) / 2, SHIELD.x1 - 0.08])
     for (const y of [SHIELD.y0 + 0.1, (SHIELD.y0 + SHIELD.y1) / 2, SHIELD.y1 - 0.08]) {
-      sp.push(stick(v3(x, y, ROOM.z0), v3(x, y, z + SHIELD.t + 0.003), 0.008, 8));
-      sp.push(stick(v3(x, y, z + SHIELD.t), v3(x, y, z + SHIELD.t + 0.006), 0.013, 8));
+      sp.push(rod(v3(x, y, ROOM.z0), v3(x, y, z + SHIELD.t + 0.003), 0.008, 8));
+      sp.push(rod(v3(x, y, z + SHIELD.t), v3(x, y, z + SHIELD.t + 0.006), 0.013, 8));
     }
   const m = new THREE.Mesh(joined(sp), mats.steelDark.clone());
   m.castShadow = true;
@@ -109,7 +109,7 @@ export function buildBasket(mats: MachineMaterials): THREE.Group {
   const b = ITEMS.basket;
   const wicker = new THREE.MeshStandardMaterial({ color: 0x9c7443, map: tiled(knitMap(), 3, 4), roughness: 0.95 });
   const dark = new THREE.MeshStandardMaterial({ color: 0x6d4d2c, roughness: 0.9 });
-  const body = lathe(
+  const body = revolve(
     [
       [0, 0],
       [b.r * 0.82, 0],

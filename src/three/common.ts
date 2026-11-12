@@ -162,29 +162,88 @@ export class DotPath {
 // ------------------------------------------------------------------------------------------------ UVs in metres, shapes
 
 /**
- * UVs in metres on any geometry, the way a box is mapped: each vertex takes the two coordinates across its normal's main axis. So a material with `repeat` of 1 / tile keeps its size whatever the
- * shape, and a wall, a bench and a brick read at their true scale.
+ * UVs in metres on any geometry, the way a box is mapped: each triangle takes the two coordinates across its own face's main axis. So a material with `repeat` of 1 / tile keeps its size whatever the shape, and a wall,
+ * a bench and a brick read at their true scale. A triangle is never mapped from three different sides (a smooth normal on a rounded edge did it, and the map ran to a hundred times its size across that triangle): a
+ * vertex that two faces map from different sides is copied, with its position and its normal, so the shading stays what it was. A face tilted off its axis stretches the map by 1.73 at the most.
  */
 export function uvMetric(g: THREE.BufferGeometry, offset = 0): THREE.BufferGeometry {
-  const p = g.attributes.position as THREE.BufferAttribute;
   if (!g.attributes.normal) g.computeVertexNormals();
-  const n = g.attributes.normal as THREE.BufferAttribute;
-  const uv = new Float32Array(p.count * 2);
-  for (let i = 0; i < p.count; i++) {
-    const ax = Math.abs(n.getX(i));
-    const ay = Math.abs(n.getY(i));
-    const az = Math.abs(n.getZ(i));
-    let u = p.getX(i);
-    let v = p.getZ(i);
-    if (ax >= ay && ax >= az) {
-      u = p.getZ(i);
-      v = p.getY(i);
-    } else if (az >= ay && az >= ax) {
-      u = p.getX(i);
-      v = p.getY(i);
+  const p = g.attributes.position as THREE.BufferAttribute;
+  const nrm = g.attributes.normal as THREE.BufferAttribute;
+  const idx = g.index;
+  const corners = idx ? idx.count : p.count;
+  const tris = corners / 3;
+  const a = new THREE.Vector3();
+  const b = new THREE.Vector3();
+  const c = new THREE.Vector3();
+  const n = new THREE.Vector3();
+  /** The side each triangle is mapped from: 0 across x (a wall that faces x), 1 across y (a floor), 2 across z. */
+  const sideOf = new Uint8Array(tris);
+  for (let t = 0; t < tris; t++) {
+    const i0 = idx ? idx.getX(t * 3) : t * 3;
+    const i1 = idx ? idx.getX(t * 3 + 1) : t * 3 + 1;
+    const i2 = idx ? idx.getX(t * 3 + 2) : t * 3 + 2;
+    a.fromBufferAttribute(p, i0);
+    b.fromBufferAttribute(p, i1).sub(a);
+    c.fromBufferAttribute(p, i2).sub(a);
+    n.crossVectors(b, c);
+    // a sliver has no face of its own: it takes its vertices' normals
+    if (n.lengthSq() < 1e-18) {
+      n.set(0, 0, 0);
+      for (const i of [i0, i1, i2]) n.add(c.fromBufferAttribute(nrm, i));
     }
-    uv[i * 2] = u + offset;
-    uv[i * 2 + 1] = v + offset;
+    const ax = Math.abs(n.x);
+    const ay = Math.abs(n.y);
+    const az = Math.abs(n.z);
+    sideOf[t] = ax >= ay && ax >= az ? 0 : az >= ay && az >= ax ? 2 : 1;
+  }
+  const base = p.count;
+  const side: number[] = new Array(base).fill(-1);
+  if (idx) {
+    // a vertex mapped from one side keeps its place, one mapped from two or three is copied for each
+    const copies: number[] = [];
+    const slot = new Map<number, number>();
+    const next: number[] = new Array(corners);
+    for (let k = 0; k < corners; k++) {
+      const v = idx.getX(k);
+      const s = sideOf[(k / 3) | 0]!;
+      const key = v * 3 + s;
+      let at = slot.get(key);
+      if (at === undefined) {
+        if (side[v] === -1) {
+          at = v;
+          side[v] = s;
+        } else {
+          at = base + copies.length;
+          copies.push(v);
+          side.push(s);
+        }
+        slot.set(key, at);
+      }
+      next[k] = at;
+    }
+    if (copies.length) {
+      for (const name of Object.keys(g.attributes)) {
+        const old = g.attributes[name] as THREE.BufferAttribute;
+        const size = old.itemSize;
+        const grown = new (old.array.constructor as new (n: number) => THREE.TypedArray)((base + copies.length) * size);
+        grown.set(old.array);
+        copies.forEach((v, k) => {
+          for (let i = 0; i < size; i++) grown[(base + k) * size + i] = old.array[v * size + i]!;
+        });
+        g.setAttribute(name, new THREE.BufferAttribute(grown, size, old.normalized));
+      }
+    }
+    g.setIndex(next);
+  } else {
+    for (let k = 0; k < corners; k++) side[k] = sideOf[(k / 3) | 0]!;
+  }
+  const q = g.attributes.position as THREE.BufferAttribute;
+  const uv = new Float32Array(q.count * 2);
+  for (let i = 0; i < q.count; i++) {
+    const s = side[i]!;
+    uv[i * 2] = (s === 0 ? q.getZ(i) : q.getX(i)) + offset;
+    uv[i * 2 + 1] = (s === 1 ? q.getZ(i) : q.getY(i)) + offset;
   }
   g.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
   return g;
@@ -234,6 +293,131 @@ export function lathe(
     phiStart,
     phiLength,
   );
+}
+
+/**
+ * A body of revolution like `lathe`, with the same positions, the same normals and the same triangles, and its UVs in metres: a wall is mapped round and along its profile (u = the turn times its radius, v = the length along
+ * the profile), a ring or a disc that lies flat from above (x, z). A map drawn for metres then keeps its size on a riser, a drum or a duct, and a lid has no centre its grain runs to (the lathe's own 0..1 UVs stretched a
+ * map 4 times on a liner and 12 times at its worst). A corner where a wall meets a ring is two vertices here, one for each, so the map is not dragged round the edge. `phiStart` puts the seam of a whole turn where it is hidden.
+ */
+export function revolve(
+  profile: readonly (readonly [number, number])[],
+  segments = 48,
+  phiStart = 0,
+  phiLength = TAU,
+): THREE.BufferGeometry {
+  const src = lathe(profile, segments, phiStart, phiLength);
+  const sp = src.attributes.position as THREE.BufferAttribute;
+  const sn = src.attributes.normal as THREE.BufferAttribute;
+  const segs = Math.floor(segments);
+  const turn = Math.min(TAU, Math.max(0, phiLength));
+  const rings = segs + 1;
+  const n = profile.length;
+  const spans = n - 1;
+  const pos = new Float32Array(spans * rings * 2 * 3);
+  const nor = new Float32Array(spans * rings * 2 * 3);
+  const uv = new Float32Array(spans * rings * 2 * 2);
+  const index: number[] = [];
+  let along = 0;
+  for (let j = 0; j < spans; j++) {
+    const [r0, y0] = profile[j]!;
+    const [r1, y1] = profile[j + 1]!;
+    const dr = r1 - r0;
+    const length = Math.hypot(dr, y1 - y0);
+    // a span that lies more flat than upright is a ring or a disc: mapped from above
+    const flat = Math.abs(dr) > Math.abs(y1 - y0);
+    const rMid = (r0 + r1) / 2;
+    const first = j * rings * 2;
+    for (let i = 0; i < rings; i++) {
+      const phi = phiStart + (i / segs) * turn;
+      for (let k = 0; k < 2; k++) {
+        const v = first + i * 2 + k;
+        const from = j + k + i * n;
+        pos[v * 3] = sp.getX(from);
+        pos[v * 3 + 1] = sp.getY(from);
+        pos[v * 3 + 2] = sp.getZ(from);
+        nor[v * 3] = sn.getX(from);
+        nor[v * 3 + 1] = sn.getY(from);
+        nor[v * 3 + 2] = sn.getZ(from);
+        uv[v * 2] = flat ? sp.getX(from) : phi * rMid;
+        uv[v * 2 + 1] = flat ? sp.getZ(from) : along + k * length;
+      }
+    }
+    for (let i = 0; i < segs; i++) {
+      const a = first + i * 2;
+      index.push(a, a + 2, a + 1, a + 3, a + 1, a + 2);
+    }
+    along += length;
+  }
+  src.dispose();
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  g.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
+  g.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+  g.setIndex(index);
+  return g;
+}
+
+/**
+ * The UVs of a three cylinder in metres, in its own frame (call it before any move): the side round and along (u = the turn times the mean radius, v = the length along the axis), a cap flat from its axis (x, z). A cylinder
+ * from three has 0..1 on its side, so a map made for metres is stretched by the ratio of its size to a metre.
+ */
+export function cylinderMetric(g: THREE.CylinderGeometry): THREE.CylinderGeometry {
+  const { radiusTop, radiusBottom, height } = g.parameters;
+  const pos = g.attributes.position as THREE.BufferAttribute;
+  const nrm = g.attributes.normal as THREE.BufferAttribute;
+  const uv = g.attributes.uv as THREE.BufferAttribute;
+  const round = TAU * ((radiusTop + radiusBottom) / 2);
+  for (let i = 0; i < pos.count; i++) {
+    if (Math.abs(nrm.getY(i)) > 0.99) uv.setXY(i, pos.getX(i), pos.getZ(i));
+    else uv.setXY(i, uv.getX(i) * round, pos.getY(i) + height / 2);
+  }
+  uv.needsUpdate = true;
+  return g;
+}
+
+/** A cylinder with its UVs in metres (`cylinderMetric`). */
+export function cylinder(
+  rTop: number,
+  rBottom: number,
+  height: number,
+  radial = 16,
+  rows = 1,
+  open = false,
+): THREE.CylinderGeometry {
+  return cylinderMetric(new THREE.CylinderGeometry(rTop, rBottom, height, radial, rows, open));
+}
+
+/** A torus with its UVs in metres: u along the ring's own length, v round its tube (a bracket's ring, a hoop that wears a steel map). */
+export function torus(R: number, r: number, radial = 8, tubular = 24, arc = TAU): THREE.TorusGeometry {
+  const g = new THREE.TorusGeometry(R, r, radial, tubular, arc);
+  const uv = g.attributes.uv as THREE.BufferAttribute;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * arc * R, uv.getY(i) * TAU * r);
+  uv.needsUpdate = true;
+  return g;
+}
+
+/** A flat disc facing +z, its UVs in metres (x, y), for a stopper or a face that wears a map made for metres. */
+export function disc(r: number, segments = 24): THREE.CircleGeometry {
+  const g = new THREE.CircleGeometry(r, segments);
+  const pos = g.attributes.position as THREE.BufferAttribute;
+  const uv = g.attributes.uv as THREE.BufferAttribute;
+  for (let i = 0; i < pos.count; i++) uv.setXY(i, pos.getX(i), pos.getY(i));
+  uv.needsUpdate = true;
+  return g;
+}
+
+/** `stick` with its UVs in metres, for a rod a matter map is put on (steel, a flue's cap, a dial's case). */
+export function rod(a: THREE.Vector3, b: THREE.Vector3, r: number, segments = 10, caps = true): THREE.BufferGeometry {
+  const g = cylinderMetric(new THREE.CylinderGeometry(r, r, a.distanceTo(b), segments, 1, !caps));
+  g.applyMatrix4(
+    new THREE.Matrix4().compose(
+      a.clone().add(b).multiplyScalar(0.5),
+      new THREE.Quaternion().setFromUnitVectors(UP, b.clone().sub(a).normalize()),
+      new THREE.Vector3(1, 1, 1),
+    ),
+  );
+  return g;
 }
 
 /** A plate cut from a shape in plan: `shape` holds (x, z) as its (x, y), the plate spans y0 to y1. UVs in metres. */

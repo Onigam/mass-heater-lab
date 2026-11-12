@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { TAU, boxAt, joined, lathe, stick, uvMetric, v3 } from '../common';
+import { TAU, boxAt, joined, lathe, revolve, rod, torus, uvMetric, v3 } from '../common';
 import { BENCH, DUCT, FLUE, ROOM } from '../dims';
 import type { MachineMaterials } from './materials';
 import { tubeAlong } from './bench';
@@ -32,9 +32,9 @@ export function buildFlue(mats: MachineMaterials): FlueBuild {
   };
   const x = FLUE.x;
   const z = FLUE.z;
-  const cyl = (y0: number, y1: number, r: number, seg = 28) => stick(v3(x, y0, z), v3(x, y1, z), r, seg, false);
+  const cyl = (y0: number, y1: number, r: number, seg = 28) => rod(v3(x, y0, z), v3(x, y1, z), r, seg, false);
   const collar = (y: number, r: number, h = 0.03) =>
-    lathe(
+    revolve(
       [
         [r, y - h / 2],
         [r + 0.004, y - h / 2 + 0.004],
@@ -54,7 +54,7 @@ export function buildFlue(mats: MachineMaterials): FlueBuild {
       tubeAlong(branch, DUCT.r + 0.002, 24),
       collar(teeTop, FLUE.r + 0.006),
       collar(FLUE.footY + 0.1, FLUE.r + 0.006),
-      stick(v3(x, FLUE.teeY, z - 0.17), v3(x, FLUE.teeY, z - 0.115), DUCT.collarR, 24),
+      rod(v3(x, FLUE.teeY, z - 0.17), v3(x, FLUE.teeY, z - 0.115), DUCT.collarR, 24),
     ]),
     mats.duct,
   );
@@ -63,26 +63,26 @@ export function buildFlue(mats: MachineMaterials): FlueBuild {
     'foot-cap',
     joined([
       cyl(FLUE.footY + 0.015, FLUE.footY + 0.1, FLUE.capR),
-      lathe(
+      revolve(
         [
           [0.0, FLUE.footY + 0.015],
           [FLUE.capR, FLUE.footY + 0.015],
         ],
         28,
       ).translate(x, 0, z),
-      stick(
+      rod(
         v3(x - 0.05, FLUE.footY + 0.06, z + FLUE.capR + 0.015),
         v3(x + 0.05, FLUE.footY + 0.06, z + FLUE.capR + 0.015),
         0.006,
         8,
       ),
-      stick(
+      rod(
         v3(x - 0.05, FLUE.footY + 0.06, z + FLUE.capR),
         v3(x - 0.05, FLUE.footY + 0.06, z + FLUE.capR + 0.015),
         0.005,
         8,
       ),
-      stick(
+      rod(
         v3(x + 0.05, FLUE.footY + 0.06, z + FLUE.capR),
         v3(x + 0.05, FLUE.footY + 0.06, z + FLUE.capR + 0.015),
         0.005,
@@ -100,10 +100,10 @@ export function buildFlue(mats: MachineMaterials): FlueBuild {
   put(
     'drain',
     joined([
-      stick(v3(dx0, dy, z), v3(dx1, dy, z), 0.0075, 10),
-      stick(v3(dx1, dy, z), v3(dx1, dy - 0.022, z), 0.0075, 10),
-      stick(v3(dx0 - 0.05, dy, z), v3(dx0 - 0.05, dy + 0.028, z), 0.0045, 8),
-      stick(v3(dx0 - 0.075, dy + 0.03, z), v3(dx0 - 0.025, dy + 0.03, z), 0.0045, 8),
+      rod(v3(dx0, dy, z), v3(dx1, dy, z), 0.0075, 10),
+      rod(v3(dx1, dy, z), v3(dx1, dy - 0.022, z), 0.0075, 10),
+      rod(v3(dx0 - 0.05, dy, z), v3(dx0 - 0.05, dy + 0.028, z), 0.0045, 8),
+      rod(v3(dx0 - 0.075, dy + 0.03, z), v3(dx0 - 0.025, dy + 0.03, z), 0.0045, 8),
     ]),
     mats.steel,
   );
@@ -139,7 +139,7 @@ export function buildFlue(mats: MachineMaterials): FlueBuild {
   put(
     'indoor',
     joined([
-      lathe(
+      revolve(
         [
           [FLUE.r, teeTop],
           [O, teeTop],
@@ -157,12 +157,12 @@ export function buildFlue(mats: MachineMaterials): FlueBuild {
   // ---- brackets to the gable
   const brackets: THREE.BufferGeometry[] = [];
   for (const y of FLUE.brackets) {
-    const ring = new THREE.TorusGeometry(O + 0.008, 0.008, 8, 28);
+    const ring = torus(O + 0.008, 0.008, 8, 28);
     ring.rotateX(Math.PI / 2);
     ring.translate(x, y, z);
     brackets.push(
       ring,
-      stick(v3(x + O, y, z), v3(ROOM.x1 + 0.01, y, z), 0.012, 8),
+      rod(v3(x + O, y, z), v3(ROOM.x1 + 0.01, y, z), 0.012, 8),
       boxAt(ROOM.x1 - 0.004, y - 0.05, z - 0.05, ROOM.x1 + 0.006, y + 0.05, z + 0.05),
     );
   }
@@ -210,7 +210,7 @@ export function buildFlue(mats: MachineMaterials): FlueBuild {
   const top = FLUE.top;
   const capY = top + 0.12;
   const capParts: THREE.BufferGeometry[] = [
-    lathe(
+    revolve(
       [
         [0, capY + FLUE.capH * 0.5],
         [O + FLUE.capOut, capY],
@@ -220,7 +220,7 @@ export function buildFlue(mats: MachineMaterials): FlueBuild {
       ],
       28,
     ).translate(x, 0, z),
-    lathe(
+    revolve(
       [
         [O + 0.004, top - 0.05],
         [O + 0.008, top - 0.05],
@@ -234,7 +234,7 @@ export function buildFlue(mats: MachineMaterials): FlueBuild {
   for (let i = 0; i < 3; i++) {
     const a = (i / 3) * TAU;
     capParts.push(
-      stick(
+      rod(
         v3(x + Math.cos(a) * (O - 0.015), top, z + Math.sin(a) * (O - 0.015)),
         v3(x + Math.cos(a) * (O + 0.03), capY, z + Math.sin(a) * (O + 0.03)),
         0.005,
@@ -257,7 +257,7 @@ export function buildDial(mats: MachineMaterials, r = 0.042): Dial {
   const group = new THREE.Group();
   group.name = 'dial';
   const body = new THREE.Mesh(
-    joined([stick(v3(0, 0, -0.012), v3(0, 0, 0.012), r, 28), stick(v3(0, 0, -0.03), v3(0, 0, -0.012), 0.012, 10)]),
+    joined([rod(v3(0, 0, -0.012), v3(0, 0, 0.012), r, 28), rod(v3(0, 0, -0.03), v3(0, 0, -0.012), 0.012, 10)]),
     mats.steelDark,
   );
   const faceMat = new THREE.MeshStandardMaterial({ color: 0xece4d0, roughness: 0.7 });

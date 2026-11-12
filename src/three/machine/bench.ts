@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { TAU, joined, lathe, stick, uvMetric, v3 } from '../common';
+import { TAU, joined, lathe, rod, uvMetric, v3 } from '../common';
 import { BENCH, DUCT, ROOM, ductS, drawnDuctLength } from '../dims';
 import type { Rect } from '../section';
 import { fbm } from '../textures';
@@ -142,8 +142,10 @@ function sweep(
   return g;
 }
 
+// The sweep's own UVs run along the front line and round the profile: right on a straight leg, but at the inner corner the wall's side is five times longer than the front's, and the map was squeezed three times there. A map
+// made for metres wants the surface seen as a box is: the top from above, the front from its side.
 export function benchShellGeometry(): THREE.BufferGeometry {
-  return sweep(benchProfile(), ringList(), 0.004, true);
+  return uvMetric(sweep(benchProfile(), ringList(), 0.004, true));
 }
 
 export function backrestGeometry(): THREE.BufferGeometry {
@@ -161,7 +163,7 @@ export function backrestGeometry(): THREE.BufferGeometry {
     const x = ringPlan(t, 0.1);
     return x.x >= BENCH.backrestX0 && x.z <= BENCH.backrestZ1;
   });
-  return sweep(prof, rings, 0.004, false);
+  return uvMetric(sweep(prof, rings, 0.004, false));
 }
 
 // ------------------------------------------------------------------------------------------------ the duct
@@ -250,7 +252,7 @@ export function ductJoints(path: THREE.Vector3[]): THREE.BufferGeometry {
         .sub(path[i - 1]!)
         .normalize()
         .multiplyScalar(DUCT.collarL / 2);
-      parts.push(stick(c.clone().sub(dir), c.clone().add(dir), DUCT.collarR, 24));
+      parts.push(rod(c.clone().sub(dir), c.clone().add(dir), DUCT.collarR, 24));
       next += DUCT.jointEvery;
     }
     len += seg;
@@ -268,11 +270,11 @@ export function cleanoutGeometry(): {
   const y = DUCT.axisCold;
   const z0 = BENCH.ductZ;
   const z1 = ROOM.z0 + D;
-  const branch = stick(v3(x, y, z0), v3(x, y, z1 + 0.004), BENCH.cleanoutR - 0.012, 22);
+  const branch = rod(v3(x, y, z0), v3(x, y, z1 + 0.004), BENCH.cleanoutR - 0.012, 22);
   const cap = joined([
-    stick(v3(x, y, z1), v3(x, y, z1 + 0.012), BENCH.cleanoutR, 28),
-    stick(v3(x, y, z1 + 0.012), v3(x, y, z1 + 0.022), BENCH.cleanoutR - 0.018, 24),
-    stick(v3(x - 0.035, y, z1 + 0.026), v3(x + 0.035, y, z1 + 0.026), 0.006, 8),
+    rod(v3(x, y, z1), v3(x, y, z1 + 0.012), BENCH.cleanoutR, 28),
+    rod(v3(x, y, z1 + 0.012), v3(x, y, z1 + 0.022), BENCH.cleanoutR - 0.018, 24),
+    rod(v3(x - 0.035, y, z1 + 0.026), v3(x + 0.035, y, z1 + 0.026), 0.006, 8),
   ]);
   return { branch, cap, capCentre: v3(x, y, z1 + 0.012) };
 }

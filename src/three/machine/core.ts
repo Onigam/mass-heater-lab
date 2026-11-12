@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { rng } from '@onigam/lab-kit/three';
-import { TAU, boxAt, joined, lathe, plate, roundedRect, stick, uvMetric, v3 } from '../common';
+import { TAU, boxAt, cylinder, joined, lathe, plate, revolve, roundedRect, rod, uvMetric, v3 } from '../common';
 import { BENCH, CORE, DUCT, MANIFOLD } from '../dims';
 import { glowOf } from '../fire/flame';
 import type { Rect } from '../section';
@@ -115,7 +115,7 @@ function ringArcs(rIn: number, rOut: number, y0: number, y1: number, seg = 40): 
   const parts: THREE.BufferGeometry[] = [];
   for (const [start, len] of arcs(rOut)) {
     parts.push(
-      lathe(
+      revolve(
         [
           [rOut, y0],
           [rOut, y1],
@@ -213,9 +213,9 @@ export function buildCore(mats: MachineMaterials): CoreBuild {
   const lidPlate = new THREE.Mesh(
     joined([
       boxAt(-c.lidW / 2, 0, -c.lidD / 2, c.lidW / 2, c.lidT, c.lidD / 2),
-      stick(v3(-0.05, c.lidT, 0), v3(-0.05, c.lidT + 0.03, 0), 0.005, 8),
-      stick(v3(0.05, c.lidT, 0), v3(0.05, c.lidT + 0.03, 0), 0.005, 8),
-      stick(v3(-0.05, c.lidT + 0.03, 0), v3(0.05, c.lidT + 0.03, 0), 0.006, 8),
+      rod(v3(-0.05, c.lidT, 0), v3(-0.05, c.lidT + 0.03, 0), 0.005, 8),
+      rod(v3(0.05, c.lidT, 0), v3(0.05, c.lidT + 0.03, 0), 0.005, 8),
+      rod(v3(-0.05, c.lidT + 0.03, 0), v3(0.05, c.lidT + 0.03, 0), 0.006, 8),
     ]),
     mats.steelDark,
   );
@@ -355,7 +355,7 @@ export function buildCore(mats: MachineMaterials): CoreBuild {
   const sleeveIn = c.sleeveR - c.sleeveWallDrawn;
   put(
     'heat-riser',
-    lathe(
+    revolve(
       [
         [linerR1, c.riserFoot],
         [linerR1, c.riserTop],
@@ -370,35 +370,31 @@ export function buildCore(mats: MachineMaterials): CoreBuild {
   );
   put(
     'riser-insulation',
-    uvMetric(
-      lathe(
-        [
-          [sleeveIn, c.riserFoot],
-          [sleeveIn, c.riserTop - 0.004],
-          [linerR1, c.riserTop - 0.004],
-          [linerR1, c.riserFoot],
-          [sleeveIn, c.riserFoot],
-        ],
-        48,
-      ),
+    revolve(
+      [
+        [sleeveIn, c.riserFoot],
+        [sleeveIn, c.riserTop - 0.004],
+        [linerR1, c.riserTop - 0.004],
+        [linerR1, c.riserFoot],
+        [sleeveIn, c.riserFoot],
+      ],
+      48,
     ),
     mats.insulation,
   );
   put(
     'riser-sleeve',
-    uvMetric(
-      lathe(
-        [
-          [c.sleeveR, c.riserFoot],
-          [c.sleeveR, c.riserTop],
-          [linerR1, c.riserTop],
-          [linerR1, c.riserTop - 0.004],
-          [sleeveIn, c.riserTop - 0.004],
-          [sleeveIn, c.riserFoot],
-          [c.sleeveR, c.riserFoot],
-        ],
-        48,
-      ),
+    revolve(
+      [
+        [c.sleeveR, c.riserFoot],
+        [c.sleeveR, c.riserTop],
+        [linerR1, c.riserTop],
+        [linerR1, c.riserTop - 0.004],
+        [sleeveIn, c.riserTop - 0.004],
+        [sleeveIn, c.riserFoot],
+        [c.sleeveR, c.riserFoot],
+      ],
+      48,
     ),
     mats.sleeve,
   );
@@ -459,9 +455,10 @@ export function buildCore(mats: MachineMaterials): CoreBuild {
   }
   profile.push([R, c.drumTop - 0.018]);
   const drumParts: THREE.BufferGeometry[] = [
-    lathe(profile, 72),
+    // the seam of the paint's map at the back, against the wall, where nobody looks
+    revolve(profile, 72, Math.PI),
     // the lower wall, round the notch
-    lathe(
+    revolve(
       [
         [R, c.drumFoot],
         [R, c.lidTop],
@@ -471,7 +468,7 @@ export function buildCore(mats: MachineMaterials): CoreBuild {
       TAU - 2 * notchPhi(R),
     ),
     // the lid, a little dished, and the clamping ring around its rim
-    lathe(
+    revolve(
       [
         [0, c.drumTop - 0.005],
         [R - 0.03, c.drumTop - 0.005],
@@ -482,17 +479,18 @@ export function buildCore(mats: MachineMaterials): CoreBuild {
         [R, c.drumTop - 0.03],
       ],
       72,
+      Math.PI,
     ),
     // the ring's lever
     boxAt(R + 0.008, c.drumTop - 0.026, -0.03, R + 0.024, c.drumTop - 0.004, 0.03),
-    stick(v3(R + 0.024, c.drumTop - 0.015, -0.022), v3(R + 0.03, c.drumTop - 0.015, 0.09), 0.005, 8),
+    rod(v3(R + 0.024, c.drumTop - 0.015, -0.022), v3(R + 0.03, c.drumTop - 0.015, 0.09), 0.005, 8),
   ];
-  const drumOuter = new THREE.Mesh(heatUvByHeight(uvDrum(joined(drumParts)), c.drumFoot, c.drumTop), mats.drum);
+  const drumOuter = new THREE.Mesh(heatUvByHeight(joined(drumParts), c.drumFoot, c.drumTop), mats.drum);
   drumOuter.name = 'drum';
   drumOuter.castShadow = true;
   drumOuter.receiveShadow = true;
   roots['steel-drum'].add(drumOuter);
-  const inner = lathe(
+  const inner = revolve(
     [
       [R - W, c.lidTop],
       [R - W, c.drumTop - 0.008],
@@ -500,7 +498,7 @@ export function buildCore(mats: MachineMaterials): CoreBuild {
     ],
     60,
   );
-  const innerLow = lathe(
+  const innerLow = revolve(
     [
       [R - W, c.drumFoot],
       [R - W, c.lidTop],
@@ -556,17 +554,13 @@ export function buildCore(mats: MachineMaterials): CoreBuild {
   const hz = (mf.z0 + mf.z1) / 2;
   const hr = mf.hatchR;
   const hatch = [
-    new THREE.CylinderGeometry(hr, hr, c.casingTop + 0.012 - mf.y1, 32).translate(
-      hx,
-      (c.casingTop + 0.012 + mf.y1) / 2,
-      hz,
-    ),
-    new THREE.CylinderGeometry(hr + 0.012, hr + 0.012, 0.012, 36).translate(hx, c.casingTop + 0.012, hz),
+    cylinder(hr, hr, c.casingTop + 0.012 - mf.y1, 32).translate(hx, (c.casingTop + 0.012 + mf.y1) / 2, hz),
+    cylinder(hr + 0.012, hr + 0.012, 0.012, 36).translate(hx, c.casingTop + 0.012, hz),
     boxAt(hx - hr - 0.022, c.casingTop + 0.012, hz - 0.012, hx - hr + 0.02, c.casingTop + 0.026, hz + 0.012),
     boxAt(hx + hr - 0.02, c.casingTop + 0.012, hz - 0.012, hx + hr + 0.022, c.casingTop + 0.026, hz + 0.012),
-    stick(v3(hx - 0.04, c.casingTop + 0.018, hz), v3(hx - 0.04, c.casingTop + 0.042, hz), 0.005, 8),
-    stick(v3(hx + 0.04, c.casingTop + 0.018, hz), v3(hx + 0.04, c.casingTop + 0.042, hz), 0.005, 8),
-    stick(v3(hx - 0.04, c.casingTop + 0.042, hz), v3(hx + 0.04, c.casingTop + 0.042, hz), 0.006, 8),
+    rod(v3(hx - 0.04, c.casingTop + 0.018, hz), v3(hx - 0.04, c.casingTop + 0.042, hz), 0.005, 8),
+    rod(v3(hx + 0.04, c.casingTop + 0.018, hz), v3(hx + 0.04, c.casingTop + 0.042, hz), 0.005, 8),
+    rod(v3(hx - 0.04, c.casingTop + 0.042, hz), v3(hx + 0.04, c.casingTop + 0.042, hz), 0.006, 8),
   ];
   put('manifold-cleanout', joined(hatch), mats.steelDark);
 
@@ -701,17 +695,6 @@ export function buildCore(mats: MachineMaterials): CoreBuild {
     stickFeet,
     lidCover: () => drawnCover,
   };
-}
-
-/** The drum's paint in metres round and up, so its mottling keeps its size. */
-function uvDrum(g: THREE.BufferGeometry): THREE.BufferGeometry {
-  const p = g.attributes.position as THREE.BufferAttribute;
-  const uv = g.attributes.uv as THREE.BufferAttribute;
-  for (let i = 0; i < p.count; i++) {
-    const a = Math.atan2(p.getZ(i), p.getX(i));
-    uv.setXY(i, a * R, p.getY(i));
-  }
-  return g;
 }
 
 /** The sticks burn at their feet: char from the foot up, and an ember's glow where they touch the fire. The strength is a uniform of the world. */

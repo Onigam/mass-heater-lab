@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { rng } from '@onigam/lab-kit/three';
 import type { Hotspot, SceneModule } from '@onigam/lab-kit/three';
 import type { HeaterState } from '../../sim/types';
-import { TAU, boxAt, joined, lathe, plate, polyShape, stick, v3 } from '../common';
+import { TAU, boxAt, disc, joined, plate, polyShape, revolve, rod, uvMetric, v3 } from '../common';
 import { contactShadow, roomOcclusionAll } from '../detail';
 import { BENCH, DUCT, FLUE, ROOM, ductAxis, MACHINE as M } from '../dims';
 import { Followers } from '../followers';
@@ -259,7 +259,7 @@ function stoneBody(outline: [number, number][], x0: number, depth: number, tone:
   g.setIndex(idx);
   g.computeVertexNormals();
   void tone;
-  return g;
+  return uvMetric(g);
 }
 
 export interface SliceBuild {
@@ -518,11 +518,11 @@ export function createBenchSectionScene(opts: HeaterOptions = {}): BenchSectionS
     inside.emissiveIntensity = 0;
     add(ductPart, tubeAlong(path, DUCT.r, 32), inside, false);
     // the bore's far end: dark, the eye reads a long tube
-    const stopper = new THREE.CircleGeometry(DUCT.r, 32);
+    const stopper = disc(DUCT.r, 32);
     stopper.translate(x0 + D / 2, axis, -L + 0.012);
     const stopMat = clone(mats.ductInside);
     add(ductPart, stopper, stopMat, false);
-    const lip = lathe(
+    const lip = revolve(
       [
         [DUCT.r, 0],
         [R, 0],
@@ -534,7 +534,7 @@ export function createBenchSectionScene(opts: HeaterOptions = {}): BenchSectionS
     const lipMat = clone(mats.steel);
     add(ductPart, lip, lipMat, false);
     // the joint, a third of the way along: it shows when the section opens the slice
-    const collar = stick(
+    const collar = rod(
       v3(x0 + D / 2, axis, -L * 0.62 - DUCT.collarL / 2),
       v3(x0 + D / 2, axis, -L * 0.62 + DUCT.collarL / 2),
       DUCT.collarR,
@@ -595,7 +595,7 @@ export function createBenchSectionScene(opts: HeaterOptions = {}): BenchSectionS
   const lanceBottom = hot.axis + 0.02;
   add(
     roots['temperature-lance'],
-    stick(v3(lanceX, lanceBottom, -0.0015), v3(lanceX, H + 0.06, -0.0015), 0.0055, 10),
+    rod(v3(lanceX, lanceBottom, -0.0015), v3(lanceX, H + 0.06, -0.0015), 0.0055, 10),
     mats.steel,
   );
   const dial = buildDial(mats, 0.04);
@@ -630,7 +630,7 @@ export function createBenchSectionScene(opts: HeaterOptions = {}): BenchSectionS
     const pTube = [v3(pebbleX + D / 2, axis, -L), v3(pebbleX + D / 2, axis, 0.002)];
     add(roots['pebble-section'], tubeAlong(pTube, R, 32), mats.duct);
     add(roots['pebble-section'], tubeAlong(pTube, DUCT.r, 32), mats.ductInside, false);
-    const pStop = new THREE.CircleGeometry(DUCT.r, 32);
+    const pStop = disc(DUCT.r, 32);
     pStop.translate(pebbleX + D / 2, axis, -L + 0.012);
     add(roots['pebble-section'], pStop, mats.ductInside, false);
     const wallStub = new THREE.Group();
@@ -731,7 +731,7 @@ export function createBenchSectionScene(opts: HeaterOptions = {}): BenchSectionS
   add(roots['duct-joint'], ductJoints(collarsPath.map((p) => p.clone())), mats.flueBand);
   add(
     roots['duct-joint'],
-    stick(
+    rod(
       v3(C.ductX - rb - DUCT.collarL / 2, axisC, C.ductZ),
       v3(C.ductX - rb + DUCT.collarL / 2, axisC, C.ductZ),
       DUCT.collarR,
@@ -741,7 +741,7 @@ export function createBenchSectionScene(opts: HeaterOptions = {}): BenchSectionS
   );
   add(
     roots['duct-joint'],
-    stick(
+    rod(
       v3(C.ductX, axisC, C.ductZ + rb - DUCT.collarL / 2),
       v3(C.ductX, axisC, C.ductZ + rb + DUCT.collarL / 2),
       DUCT.collarR,
@@ -755,15 +755,15 @@ export function createBenchSectionScene(opts: HeaterOptions = {}): BenchSectionS
   const clZ1 = C.ductZ + D / 2;
   add(
     roots['bench-cleanout'],
-    stick(v3(clX, axisC, C.ductZ), v3(clX, axisC, clZ1 + 0.005), BENCH.cleanoutR - 0.012, 22),
+    rod(v3(clX, axisC, C.ductZ), v3(clX, axisC, clZ1 + 0.005), BENCH.cleanoutR - 0.012, 22),
     mats.duct.clone(),
   );
   add(
     roots['bench-cleanout'],
     joined([
-      stick(v3(clX, axisC, clZ1), v3(clX, axisC, clZ1 + 0.014), BENCH.cleanoutR, 28),
-      stick(v3(clX, axisC, clZ1 + 0.014), v3(clX, axisC, clZ1 + 0.024), BENCH.cleanoutR - 0.018, 24),
-      stick(v3(clX - 0.035, axisC, clZ1 + 0.03), v3(clX + 0.035, axisC, clZ1 + 0.03), 0.006, 8),
+      rod(v3(clX, axisC, clZ1), v3(clX, axisC, clZ1 + 0.014), BENCH.cleanoutR, 28),
+      rod(v3(clX, axisC, clZ1 + 0.014), v3(clX, axisC, clZ1 + 0.024), BENCH.cleanoutR - 0.018, 24),
+      rod(v3(clX - 0.035, axisC, clZ1 + 0.03), v3(clX + 0.035, axisC, clZ1 + 0.03), 0.006, 8),
     ]),
     mats.steel,
   );
@@ -781,7 +781,7 @@ export function createBenchSectionScene(opts: HeaterOptions = {}): BenchSectionS
   const flueCut = new ClipSet([{ normal: [0, -1, 0], at: [0, cutY, 0] }]);
   flueCut.set(true);
   flueCut.clip(flue.roots.indoor);
-  const flueRing = lathe(
+  const flueRing = revolve(
     [
       [FLUE.r, 0],
       [FLUE.outerR, 0],
