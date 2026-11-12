@@ -257,12 +257,21 @@ export function buildTerrain(canopy: (x: number, z: number) => number = () => 0)
           if ( dPath < 0.5 && nearFade > 0.0 ) {
             for ( int k = 0; k < 2; k++ ) {
               float side = k == 0 ? -1.0 : 1.0;
-              float along = ( fract( ( aPath + ( k == 0 ? 0.0 : ${(SNOW_RELIEF.stride / 2).toFixed(3)} ) ) / ${SNOW_RELIEF.stride.toFixed(3)} ) - 0.5 ) * ${SNOW_RELIEF.stride.toFixed(3)};
-              float across = sPath - side * 0.1;
-              vec2 q = vec2( along / 0.15, across / 0.058 );
+              float stp = ( aPath + ( k == 0 ? 0.0 : ${(SNOW_RELIEF.stride / 2).toFixed(3)} ) ) / ${SNOW_RELIEF.stride.toFixed(3)};
+              float along = ( fract( stp ) - 0.5 ) * ${SNOW_RELIEF.stride.toFixed(3)};
+              // no two prints alike: a walker's weight and the way each foot was set down (size, turn, a hand's width of drift), a boot's sole and heel rather than an oval
+              float pid = floor( stp ) + float( k ) * 7.0 + floor( aPath / 40.0 ) * 13.0;
+              vec3 hh = fract( sin( vec3( pid * 12.9898, pid * 78.233 + 1.7, pid * 37.719 + 4.3 ) ) * 43758.5453 );
+              float turn = ( hh.y - 0.5 ) * 0.4;
+              float sz = 0.88 + 0.26 * hh.x;
+              vec2 fp = vec2( along, sPath - side * 0.1 - ( hh.z - 0.5 ) * 0.03 );
+              fp = vec2( cos( turn ) * fp.x - sin( turn ) * fp.y, sin( turn ) * fp.x + cos( turn ) * fp.y );
+              vec2 qs = vec2( ( fp.x - 0.025 ) / ( 0.1 * sz ), fp.y / ( 0.058 * sz ) );
+              vec2 qh = vec2( ( fp.x + 0.105 ) / ( 0.05 * sz ), fp.y / ( 0.046 * sz ) );
+              vec2 q = length( qs ) < length( qh ) ? qs : qh;
               float e = length( q );
               float keep = 1.0 - smoothstep( 0.03, 0.09, length( fwidth( p ) ) );
-              foot = max( foot, ( 1.0 - smoothstep( 0.72, 1.0, e ) ) * keep );
+              foot = max( foot, ( 1.0 - smoothstep( 0.72, 1.0, e ) ) * keep * ( 0.8 + 0.4 * hh.x ) );
               // the rim leans away from the print
               float rim = smoothstep( 0.55, 0.95, e ) * ( 1.0 - smoothstep( 0.95, 1.5, e ) ) * keep;
               vec2 outw = normalize( q + 1e-4 );

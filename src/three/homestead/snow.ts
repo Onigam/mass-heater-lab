@@ -16,6 +16,12 @@ export const SNOW_RELIEF = { driftTile: 13, rippleTile: 2.6, drift: 0.55, ripple
  * What the light does in snow, after the lights are summed (it reads `gSnowAmt` and `gSnowGlint`, and the first directional light, the sun or the moon): the side turned from the light goes to the blue the light keeps
  * after a few centimetres of ice, the side turned to it stays warm white; and a crystal lying right throws the light back, a glint that comes and goes with the eye. No pass, no texture of its own.
  */
+/**
+ * What the snow takes away of a strong sun (estimates): a third of the light it would give back, in proportion as the first directional light's luminance (colour times intensity, linear) goes from `from` to `to`. The sun
+ * of the homestead is 3.9 at its height, the moon about 0.8 and the key of a room about 1.5: only the sun is in the range.
+ */
+export const SNOW_SUN = { dim: 0.34, from: 2.0, to: 3.8 } as const;
+
 export const SNOW_LIGHT_GLSL = /* glsl */ `
   #if NUM_DIR_LIGHTS > 0
   {
@@ -24,6 +30,10 @@ export const SNOW_LIGHT_GLSL = /* glsl */ `
     float snNl = dot( normal, snL );
     vec3 snTint = mix( vec3( 0.74, 0.85, 1.07 ), vec3( 1.03, 1.0, 0.96 ), smoothstep( -0.15, 0.5, snNl ) );
     outgoingLight = mix( outgoingLight, outgoingLight * snTint, gSnowAmt );
+    // snow in full sun is thrown far past what a picture keeps, and the tone curve flattens it: a roof that faces the sun lit its relief by an angle near one, whose cosine hardly moves, and its grain by a value past the curve's
+    // knee. A part of the light is taken away in proportion to the sun's strength, as an eye's exposure would: the moon (about a third of the sun) and a dim winter light are left alone
+    float snSun = smoothstep( ${SNOW_SUN.from.toFixed(2)}, ${SNOW_SUN.to.toFixed(2)}, dot( snC, vec3( 0.2126, 0.7152, 0.0722 ) ) );
+    outgoingLight *= 1.0 - ${SNOW_SUN.dim.toFixed(3)} * snSun * gSnowAmt;
     // snow in full sun is the brightest thing of a landscape and would burn out, its relief with it: a soft shoulder, for the snow only (dim snow keeps its value)
     outgoingLight = mix( outgoingLight, outgoingLight / ( 1.0 + 0.45 * max( dot( outgoingLight, vec3( 0.2126, 0.7152, 0.0722 ) ) - 0.5, 0.0 ) ), gSnowAmt );
     vec3 snV = normalize( vViewPosition );
@@ -125,6 +135,11 @@ export function patchSnow<T extends THREE.Material>(mat: T, o: SnowOptions = {})
             vec2 slB = ( snB.rg - 0.5 ) * 2.0;
             gSnowSlope = ( 0.8 * slA + ${(SNOW_RELIEF.ripple * 1.5).toFixed(3)} * vec2( -slB.y, slB.x ) ) * gSnow;
             snowC *= mix( vec3( 0.9, 0.935, 0.99 ), vec3( 1.0 ), smoothstep( 0.2, 0.62, 0.7 * snA.b + 0.3 * snB.b ) );
+            // a crust is never one tone: patches a hand and a forearm wide, and a finer sand, in metres of the world; each is gone before its cells get under two pixels, as the patchiness above
+            float snKeepA = 1.0 - smoothstep( 0.2, 0.55, length( fwidth( vSnowP.xz * 4.3 ) ) );
+            float snKeepM = 1.0 - smoothstep( 0.2, 0.55, length( fwidth( vSnowP.xz * 9.7 ) ) );
+            float snKeepB = 1.0 - smoothstep( 0.2, 0.55, length( fwidth( vSnowP.xz * 19.0 ) ) );
+            snowC *= 1.0 + 0.2 * ( ( snNoise( vSnowP.xz * 4.3 + 7.1 ) - 0.5 ) * snKeepA + ( snNoise( vSnowP.xz * 9.7 + 1.9 ) - 0.5 ) * snKeepM + 0.8 * ( snNoise( vSnowP.xz * 19.0 + 3.3 ) - 0.5 ) * snKeepB );
             gSnowGlint = max( smoothstep( 0.3, 0.6, snB.a ), 0.7 * smoothstep( 0.3, 0.6, snA.a ) ) * gSnow;
           }`
               : ''

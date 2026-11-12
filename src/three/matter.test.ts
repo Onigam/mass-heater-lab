@@ -6,7 +6,7 @@ import { CORE, HOME, HOUSE, ROOM } from './dims';
 import { createFireCoreScene } from './firecore/scene';
 import { createHomesteadScene } from './homestead/scene';
 import { MOON_DIRECTION } from './homestead/sky';
-import { SNOW_RELIEF, patchSnow } from './homestead/snow';
+import { SNOW_RELIEF, SNOW_SUN, patchSnow } from './homestead/snow';
 import { WINDOW_POOLS, buildTerrain } from './homestead/terrain';
 import { createLivingRoomScene } from './livingroom/scene';
 import { machineMaterials } from './machine/materials';
@@ -315,6 +315,66 @@ describe('the light of the homestead at night', () => {
     for (let i = 0; i < 30; i++) w.update(stateWith({ hour: 23 }), 0.1, view());
     expect(WINDOW_POOLS.glow.value).toBeGreaterThan(0.5);
     expect(w.house.glass.emissiveIntensity).toBeGreaterThan(0.5);
+  });
+});
+
+describe('the snow in a strong sun', () => {
+  const lightOf = (w: ReturnType<typeof createHomesteadScene>): number => {
+    let lum = 0;
+    w.scene.traverse((o) => {
+      const l = o as THREE.DirectionalLight;
+      if (l.isDirectionalLight && l.castShadow)
+        lum = l.intensity * (0.2126 * l.color.r + 0.7152 * l.color.g + 0.0722 * l.color.b);
+    });
+    return lum;
+  };
+
+  it('takes a part of the sun it throws back, and leaves the moon and a room’s key alone', () => {
+    const w = createHomesteadScene();
+    for (let i = 0; i < 40; i++) w.update(stateWith({ hour: 12 }), 0.1, view());
+    // the sun at noon is in the range where the snow is dimmed; the moon is far under it
+    expect(lightOf(w)).toBeGreaterThan(SNOW_SUN.to - 0.6);
+    for (let i = 0; i < 40; i++) w.update(stateWith({ hour: 23 }), 0.1, view());
+    expect(lightOf(w)).toBeLessThan(SNOW_SUN.from - 0.8);
+    // a room's key (its strongest, by day) is under the range too: the snow outside a window is dimmed by its own colour instead (below)
+    const key = 0.95 + 0.85;
+    expect(key * 0.9).toBeLessThan(SNOW_SUN.from);
+    const roof = compiled(patchSnow(new THREE.MeshStandardMaterial(), { relief: true })).fragmentShader;
+    expect(roof).toContain(`smoothstep( ${SNOW_SUN.from.toFixed(2)}, ${SNOW_SUN.to.toFixed(2)}`);
+    expect(roof).toContain(`outgoingLight *= 1.0 - ${SNOW_SUN.dim.toFixed(3)} * snSun * gSnowAmt`);
+  });
+
+  it('gives a crust its grain in metres, gone before its cells get under two pixels', () => {
+    const roof = compiled(patchSnow(new THREE.MeshStandardMaterial(), { relief: true })).fragmentShader;
+    for (const k of ['snKeepA', 'snKeepM', 'snKeepB']) expect(roof).toContain(k);
+    const bough = compiled(patchSnow(new THREE.MeshStandardMaterial())).fragmentShader;
+    expect(bough).not.toContain('snKeepA');
+  });
+
+  it('the snow outside the room is lower by day than it was and the same at night', () => {
+    const room = createLivingRoomScene();
+    let ground: THREE.MeshStandardMaterial | null = null;
+    room.scene.traverse((o) => {
+      const m = o as THREE.Mesh;
+      const mat = m.isMesh && !Array.isArray(m.material) ? (m.material as THREE.MeshStandardMaterial) : null;
+      if (mat && mat.customProgramCacheKey().includes('relief') && mat.customProgramCacheKey().includes('over'))
+        ground = mat;
+    });
+    expect(ground).not.toBeNull();
+    for (let i = 0; i < 40; i++) room.update(stateWith({ hour: 12 }), 0.1, view());
+    // it was 0.88 at noon: lit by the key and the sky, the tone curve left it no relief to show
+    expect(ground!.color.r).toBeLessThan(0.5);
+    expect(ground!.color.r).toBeGreaterThan(0.3);
+    for (let i = 0; i < 40; i++) room.update(stateWith({ hour: 2 }), 0.1, view());
+    expect(ground!.color.r).toBeCloseTo(0.1, 2);
+  });
+
+  it('the paths’ footprints are a sole and a heel, each its own size and turn', () => {
+    const land = buildTerrain().mesh.material as THREE.MeshStandardMaterial;
+    const { fragmentShader } = compiled(land);
+    expect(fragmentShader).toContain('vec2 qh');
+    expect(fragmentShader).toContain('float pid = floor( stp )');
+    expect(fragmentShader).toContain('float turn = ( hh.y - 0.5 )');
   });
 });
 

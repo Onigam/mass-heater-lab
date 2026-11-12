@@ -280,11 +280,12 @@ export const plasterMap = (): THREE.DataTexture =>
     const stroke = tf(u, v, 10, 1, 28) - 0.5;
     const sand = tf(u, v, 64, 2) - 0.5;
     const grain = hash1(i, j) - 0.5;
-    // the per-texel grain is what a wall keeps when the eye is a metre from it (a texel is then several pixels); from across the room it averages away
-    const k = 0.82 + 0.15 * broad + 0.08 * mid + 0.06 * stroke + 0.11 * sand + 0.055 * grain;
+    // the per-texel grain is what a wall keeps when the eye is a metre from it (a texel is then several pixels); from across the room it averages away. The tones that wander over a hand's reach stay faint: stronger,
+    // they read as stains, and the wall as heavy and grey
+    const k = 0.885 + 0.055 * broad + 0.04 * mid + 0.075 * stroke + 0.14 * sand + 0.06 * grain;
     // the thin places let a warmer coat through
-    const warm = 0.012 * (mid + broad);
-    return [k + warm, k * 0.985, k * 0.955 - warm];
+    const warm = 0.014 * (mid + broad);
+    return [k + warm, k * 0.985, k * 0.95 - warm];
   });
 
 /** The relief of the same plaster: the wall is not a plane (a hand's unevenness), the float left arcs, the sand stands proud. A tangent-space normal map. */
@@ -297,7 +298,7 @@ export const plasterNormalMap = (): THREE.DataTexture =>
       const arc = Math.sin((u + 0.1 * Math.sin(v * Math.PI * 6 + hand * 6)) * Math.PI * 2 * 9 + v * 11);
       const stroke = tf(u, v, 10, 2, 28);
       const sand = tf(u, v, 48, 2);
-      return 5.5 * hand + 0.1 * arc + 0.6 * stroke + 0.32 * sand;
+      return 2.8 * hand + 0.1 * arc + 0.6 * stroke + 0.32 * sand;
     },
     1.1,
   );
@@ -429,7 +430,13 @@ export const snowMap = (): THREE.DataTexture => {
       const drift = tf(u, v, 3, 3, 6);
       const lee = smoothstep(0.35, 0.75, tf(u + 0.07, v, 3, 1, 6));
       const bend = tf(u, v, 4, 1) * 2.4;
-      const ripple = 0.5 + 0.5 * Math.sin((v * 22 + bend + 0.6 * Math.sin(u * Math.PI * 2 * 3)) * Math.PI * 2);
+      // ripples are no regular wave: their length wanders with the wind's pulses, each crest is steeper on its lee side than on its stoss side, and the sets cross a little where two winds met
+      const pulse = tf(u + 0.31, v + 0.17, 7, 2) - 0.5;
+      const phase = v * 22 + bend + 0.6 * Math.sin(u * Math.PI * 2 * 3) + 3.2 * pulse;
+      const wave = 0.5 + 0.5 * Math.sin(phase * Math.PI * 2);
+      const lean = 0.5 + 0.5 * Math.sin(phase * Math.PI * 2 - 1.1 * wave);
+      const cross = 0.5 + 0.5 * Math.sin((u * 14 + v * 9 + 2.4 * (tf(u, v + 0.6, 5, 2) - 0.5)) * Math.PI * 2);
+      const ripple = 0.78 * lean + 0.22 * cross * smoothstep(0.4, 0.7, tf(u + 0.2, v + 0.7, 4, 1));
       const crust = tf(u, v, 40, 1);
       // the ripples come in fields, where the wind found loose snow
       const field = smoothstep(0.38, 0.62, tf(u + 0.5, v + 0.25, 5, 1));
