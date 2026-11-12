@@ -281,7 +281,7 @@ export const plasterMap = (): THREE.DataTexture =>
     const sand = tf(u, v, 64, 2) - 0.5;
     const grain = hash1(i, j) - 0.5;
     // the per-texel grain is what a wall keeps when the eye is a metre from it (a texel is then several pixels); from across the room it averages away
-    const k = 0.82 + 0.15 * broad + 0.08 * mid + 0.06 * stroke + 0.11 * sand + 0.05 * grain;
+    const k = 0.82 + 0.15 * broad + 0.08 * mid + 0.06 * stroke + 0.1 * sand + 0.045 * grain;
     // the thin places let a warmer coat through
     const warm = 0.012 * (mid + broad);
     return [k + warm, k * 0.985, k * 0.955 - warm];
@@ -337,7 +337,7 @@ export const steelRoughMap = (): THREE.DataTexture =>
 
 /** Galvanised sheet: the zinc's spangle, crystals of a thumb's width each with its own grey, a bloom of white rust here and there. Colour map, one tile about 0.5 m. */
 export const galvanisedMap = (): THREE.DataTexture =>
-  map('galvanised', 256, (u, v, i, j) => {
+  map('galvanised', 128, (u, v, i, j) => {
     const warp = (tf(u, v, 12, 2) - 0.5) * 0.03;
     const c = voronoi(u + warp, v - warp, 17, 17, 0.95);
     const tone = hash1(c.id, 5);
@@ -348,7 +348,7 @@ export const galvanisedMap = (): THREE.DataTexture =>
 
 /** Soot on steel, seen from inside a drum or a duct: matt black that has run and flaked, grey ash caught in it. One tile about 0.5 m. */
 export const sootMap = (): THREE.DataTexture =>
-  map('soot', 256, (u, v, i, j) => {
+  map('soot', 128, (u, v, i, j) => {
     const run = tf(u, v, 14, 3, 3) - 0.5;
     const cloud = tf(u, v, 5, 3) - 0.5;
     const flake = smoothstep(0.62, 0.7, tf(u + 0.2, v + 0.6, 22, 2));
@@ -358,24 +358,24 @@ export const sootMap = (): THREE.DataTexture =>
 
 /** A cast refractory or a ceramic fibre board, cut: a pale body, open pores, grog of several sizes. To be tinted. One tile about 0.3 m. */
 export const refractoryMap = (): THREE.DataTexture =>
-  map('refractory', 256, (u, v, i, j) => {
+  map('refractory', 128, (u, v, i, j) => {
     const body = tf(u, v, 6, 3) - 0.5;
     const c = voronoi(u, v, 22, 22, 0.95);
     const grog = hash1(c.id, 6) > 0.55 ? smoothstep(0.34, 0.2, c.d1) * (hash1(c.id, 2) - 0.35) * 0.3 : 0;
-    const pore = smoothstep(0.72, 0.8, tf(u + 0.13, v + 0.47, 40, 2)) * 0.16;
+    const pore = smoothstep(0.72, 0.8, tf(u + 0.13, v + 0.47, 40, 1)) * 0.16;
     const k = 0.8 + 0.2 * body + grog - pore + 0.05 * (hash1(i, j) - 0.5);
     return [k, k * 0.98, k * 0.94];
   });
 
 /** Perlite bound with clay, as the riser's insulation shows in section: white grains of every size in a buff slip. To be tinted. One tile about 0.2 m. */
 export const perliteMap = (): THREE.DataTexture =>
-  map('perlite', 256, (u, v, i, j) => {
+  map('perlite', 128, (u, v, i, j) => {
     const a = voronoi(u, v, 26, 26, 0.95);
     // grains of every size: each cell's own radius
     const size = 0.2 + 0.26 * hash1(a.id, 3);
     const grainy = smoothstep(size, size - 0.14, a.d1) * (0.5 + 0.5 * hash1(a.id, 7));
     const slip = 0.66 + 0.16 * (tf(u, v, 7, 2) - 0.5);
-    const k = slip + 0.32 * grainy + 0.04 * (hash1(i, j) - 0.5);
+    const k = slip + 0.22 * grainy + 0.04 * (hash1(i, j) - 0.5);
     return [k, k * 0.985, k * 0.95];
   });
 

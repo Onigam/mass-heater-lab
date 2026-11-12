@@ -10,7 +10,7 @@ export const SNOW = { value: 1 };
  * The snow's relief, estimates all (what a wind leaves on a field): one tile of `snowMap` read at two scales. `driftTile` and `rippleTile`: metres a tile; `drift` and `ripple`: how steep the slopes read; `stride`: metres
  * between two prints of the same foot on a path.
  */
-export const SNOW_RELIEF = { driftTile: 13, rippleTile: 2.6, drift: 0.55, ripple: 0.3, stride: 1.36 } as const;
+export const SNOW_RELIEF = { driftTile: 13, rippleTile: 2.6, drift: 0.55, ripple: 0.24, stride: 1.36 } as const;
 
 /**
  * What the light does in snow, after the lights are summed (it reads `gSnowAmt` and `gSnowGlint`, and the first directional light, the sun or the moon): the side turned from the light goes to the blue the light keeps
@@ -33,7 +33,7 @@ export const SNOW_LIGHT_GLSL = /* glsl */ `
     float snPhase = 0.5 + 0.5 * sin( gSnowGlint * 37.0 + dot( snV, vec3( 23.0, 17.0, 29.0 ) ) );
     // the crystals lie every way: the nearer the surface is to throwing the light at the eye the more of them do, but some always do
     float snSpark = gSnowGlint * smoothstep( 0.55, 0.95, snPhase ) * ( 0.25 + 0.75 * pow( max( dot( normal, snH ), 0.0 ), 2.0 ) );
-    outgoingLight += snC * snSpark * snLit * 0.6;
+    outgoingLight += snC * snSpark * snLit * 0.42;
   }
   #endif
 `;

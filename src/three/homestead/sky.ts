@@ -51,7 +51,7 @@ function injectNight(sky: Sky): void {
         vec3 cell2 = floor(sd2);
         float h2 = fract(sin(dot(cell2, vec3(41.317, 17.713, 63.171))) * 24634.6345);
         float faint = step(0.984 - 0.03 * mw, h2) * smoothstep(0.42, 0.1, length(fract(sd2) - 0.5));
-        faint *= smoothstep(0.03, 0.3, up) * (0.05 + 0.2 * pow(fract(h2 * 57.3), 3.0));
+        faint *= smoothstep(0.03, 0.3, up) * (0.05 + 0.16 * pow(fract(h2 * 57.3), 3.0));
         float cloud = 0.5 + 0.5 * sin(dot(direction, vec3(9.0, 4.0, 7.0)) + 2.0 * sin(dot(direction, vec3(-5.0, 11.0, 3.0))));
         nightCol += vec3(0.011, 0.013, 0.021) * mw * (0.45 + 0.55 * cloud) * smoothstep(0.0, 0.3, up);
         // each star its own white: a few warm, a few blue
