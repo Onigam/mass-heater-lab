@@ -35,6 +35,7 @@ export function houseMaterials(): HouseMaterials {
     roof: patchSnow(new THREE.MeshStandardMaterial({ color: 0x5b4c3e, map: tiled(sh, 1 / 1.2), roughness: 0.88 }), {
       lo: 0.32,
       hi: 0.62,
+      relief: true,
     }),
     frame: new THREE.MeshStandardMaterial({ color: 0xece4d2, roughness: 0.62 }),
     shutter: new THREE.MeshStandardMaterial({ color: 0x4a5f52, map: tiled(b, 1 / 0.8), roughness: 0.8 }),

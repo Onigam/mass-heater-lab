@@ -1,9 +1,40 @@
 import * as THREE from 'three';
+import { snowMap } from '../textures';
 
 // The snow, one small patch on plain MeshStandardMaterials: faces that look up go white. `SNOW.value` comes from the model's mean outside air (in `update`), so a mild preset takes it all off at once. Decoration of a size set by the
 // simulation, listed in docs/scenery.md. From the sand lab.
 
 export const SNOW = { value: 1 };
+
+/**
+ * The snow's relief, estimates all (what a wind leaves on a field): one tile of `snowMap` read at two scales. `driftTile` and `rippleTile`: metres a tile; `drift` and `ripple`: how steep the slopes read; `stride`: metres
+ * between two prints of the same foot on a path.
+ */
+export const SNOW_RELIEF = { driftTile: 13, rippleTile: 2.6, drift: 0.55, ripple: 0.3, stride: 1.36 } as const;
+
+/**
+ * What the light does in snow, after the lights are summed (it reads `gSnowAmt` and `gSnowGlint`, and the first directional light, the sun or the moon): the side turned from the light goes to the blue the light keeps
+ * after a few centimetres of ice, the side turned to it stays warm white; and a crystal lying right throws the light back, a glint that comes and goes with the eye. No pass, no texture of its own.
+ */
+export const SNOW_LIGHT_GLSL = /* glsl */ `
+  #if NUM_DIR_LIGHTS > 0
+  {
+    vec3 snL = directionalLights[ 0 ].direction;
+    vec3 snC = directionalLights[ 0 ].color;
+    float snNl = dot( normal, snL );
+    vec3 snTint = mix( vec3( 0.74, 0.85, 1.07 ), vec3( 1.03, 1.0, 0.96 ), smoothstep( -0.15, 0.5, snNl ) );
+    outgoingLight = mix( outgoingLight, outgoingLight * snTint, gSnowAmt );
+    vec3 snV = normalize( vViewPosition );
+    vec3 snH = normalize( snL + snV );
+    // lit, or in a cast shadow: what the direct light left on this pixel says it
+    float snLit = clamp( dot( reflectedLight.directDiffuse, vec3( 0.6 ) ) / max( dot( snC, vec3( 0.2 ) ), 1e-3 ), 0.0, 1.0 );
+    float snPhase = 0.5 + 0.5 * sin( gSnowGlint * 37.0 + dot( snV, vec3( 23.0, 17.0, 29.0 ) ) );
+    // the crystals lie every way: the nearer the surface is to throwing the light at the eye the more of them do, but some always do
+    float snSpark = gSnowGlint * smoothstep( 0.55, 0.95, snPhase ) * ( 0.25 + 0.75 * pow( max( dot( normal, snH ), 0.0 ), 2.0 ) );
+    outgoingLight += snC * snSpark * snLit * 0.6;
+  }
+  #endif
+`;
 const NOISE = /* glsl */ `
   float snHash( vec2 p ) { p = fract( p * vec2( 123.34, 456.21 ) ); p += dot( p, p + 45.32 ); return fract( p.x * p.y ); }
   float snNoise( vec2 p ) { vec2 i = floor( p ); vec2 f = fract( p ); vec2 u = f * f * ( 3.0 - 2.0 * f ); return mix( mix( snHash( i ), snHash( i + vec2( 1.0, 0.0 ) ), u.x ), mix( snHash( i + vec2( 0.0, 1.0 ) ), snHash( i + vec2( 1.0, 1.0 ) ), u.x ), u.y ); }
@@ -21,6 +52,10 @@ export interface SnowOptions {
    */
   far?: [number, number];
   mean?: [number, number, number];
+  /** A broad surface seen close (a roof, the ground under a window): the snow takes its drifts, its ripples and its glints, in metres of the world. Not for a tree's thousand boughs. */
+  relief?: boolean;
+  /** The material's own colour is the snow's light (a ground that dims with the evening): the snow multiplies it instead of replacing it. */
+  over?: boolean;
 }
 
 /** Faces that look up go white with `SNOW`. Chains with whatever patch the material already has. */
@@ -29,12 +64,14 @@ export function patchSnow<T extends THREE.Material>(mat: T, o: SnowOptions = {})
   const hi = o.hi ?? 0.8;
   const gain = o.gain ?? 1;
   const far = o.far;
+  const relief = !!o.relief;
   const mean = o.mean ?? [0.05, 0.08, 0.055];
   const prev = mat.onBeforeCompile;
   const prevKey = mat.customProgramCacheKey.bind(mat);
   mat.onBeforeCompile = (shader, renderer) => {
     prev.call(mat, shader, renderer);
     shader.uniforms.uSnow = SNOW;
+    if (relief) shader.uniforms.uSnowTex = { value: snowMap() };
     shader.vertexShader = shader.vertexShader
       .replace('#include <common>', '#include <common>\nvarying vec3 vSnowN;\nvarying vec3 vSnowP;')
       .replace(
@@ -62,7 +99,7 @@ export function patchSnow<T extends THREE.Material>(mat: T, o: SnowOptions = {})
     shader.fragmentShader = shader.fragmentShader
       .replace(
         '#include <common>',
-        `#include <common>\nvarying vec3 vSnowN;\nvarying vec3 vSnowP;\nuniform float uSnow;\nfloat gSnow;\nfloat gSnowFar;\n${NOISE}`,
+        `#include <common>\nvarying vec3 vSnowN;\nvarying vec3 vSnowP;\nuniform float uSnow;\n${relief ? 'uniform sampler2D uSnowTex;' : ''}\nfloat gSnow;\nfloat gSnowFar;\nfloat gSnowAmt;\nfloat gSnowGlint;\nvec2 gSnowSlope;\n${NOISE}`,
       )
       .replace(
         '#include <color_fragment>',
@@ -74,7 +111,23 @@ export function patchSnow<T extends THREE.Material>(mat: T, o: SnowOptions = {})
           float n = mix( 0.85, 0.7 + 0.3 * snNoise( vSnowP.xz * 1.7 ), 1.0 - smoothstep( 0.12, 0.4, cells ) );
           gSnow = clamp( uSnow * ${gain.toFixed(3)} * up * n * 1.25, 0.0, 1.0 );
           vec3 snowC = vec3( 0.86, 0.885, 0.91 );
-          diffuseColor.rgb = mix( diffuseColor.rgb, snowC, gSnow );
+          gSnowAmt = gSnow;
+          gSnowSlope = vec2( 0.0 );
+          gSnowGlint = 0.0;
+          ${
+            relief
+              ? `{
+            vec4 snA = texture2D( uSnowTex, vSnowP.xz * ${(1 / 5.2).toFixed(5)} + 0.21 );
+            vec4 snB = texture2D( uSnowTex, vec2( vSnowP.z, -vSnowP.x ) * ${(1 / SNOW_RELIEF.rippleTile).toFixed(5)} + 0.37 );
+            vec2 slA = ( snA.rg - 0.5 ) * 2.0;
+            vec2 slB = ( snB.rg - 0.5 ) * 2.0;
+            gSnowSlope = ( 0.42 * slA + ${SNOW_RELIEF.ripple.toFixed(3)} * vec2( -slB.y, slB.x ) ) * gSnow;
+            snowC *= mix( vec3( 0.9, 0.935, 0.99 ), vec3( 1.0 ), smoothstep( 0.2, 0.62, 0.7 * snA.b + 0.3 * snB.b ) );
+            gSnowGlint = max( smoothstep( 0.3, 0.6, snB.a ), 0.7 * smoothstep( 0.3, 0.6, snA.a ) ) * gSnow;
+          }`
+              : ''
+          }
+          diffuseColor.rgb = mix( diffuseColor.rgb, ${o.over ? 'snowC * diffuseColor.rgb * 1.12' : 'snowC'}, gSnow );
           ${
             far
               ? `gSnowFar = smoothstep( ${far[0].toFixed(1)}, ${far[1].toFixed(1)}, length( cameraPosition - vSnowP ) );
@@ -95,10 +148,13 @@ export function patchSnow<T extends THREE.Material>(mat: T, o: SnowOptions = {})
       .replace(
         '#include <normal_fragment_begin>',
         `#include <normal_fragment_begin>
-        ${far ? 'normal = normalize( mix( normal, normalize( ( viewMatrix * vec4( 0.25, 0.9, 0.3, 0.0 ) ).xyz ), gSnowFar * 0.7 ) );' : ''}`,
-      );
+        ${far ? 'normal = normalize( mix( normal, normalize( ( viewMatrix * vec4( 0.25, 0.9, 0.3, 0.0 ) ).xyz ), gSnowFar * 0.7 ) );' : ''}
+        ${relief ? 'normal = normalize( normal + ( viewMatrix * vec4( gSnowSlope.x, 0.0, gSnowSlope.y, 0.0 ) ).xyz );' : ''}`,
+      )
+      .replace('#include <opaque_fragment>', `${SNOW_LIGHT_GLSL}\n#include <opaque_fragment>`);
   };
-  mat.customProgramCacheKey = () => `${prevKey()}|snow-${lo}-${hi}-${gain}-${far?.join('-') ?? ''}-${mean.join('-')}`;
+  mat.customProgramCacheKey = () =>
+    `${prevKey()}|snow-${lo}-${hi}-${gain}-${far?.join('-') ?? ''}-${mean.join('-')}-${relief ? 'relief' : 'plain'}-${o.over ? 'over' : ''}-2`;
   mat.needsUpdate = true;
   return mat;
 }

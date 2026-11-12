@@ -1,8 +1,9 @@
 import * as THREE from 'three';
 import { smoothstep } from '../common';
-import { HOME, HOUSE } from '../dims';
-import { fbm, grassMap } from '../textures';
-import { SNOW } from './snow';
+import { HOME, HOUSE, ROOM, homeFromRoom } from '../dims';
+import { FRONT_HOLES, GABLE_HOLES } from '../room/shell';
+import { fbm, grassMap, snowMap } from '../textures';
+import { SNOW, SNOW_LIGHT_GLSL, SNOW_RELIEF } from './snow';
 
 // The land of the homestead, generic: a gentle shelf at the wood's edge where the house stands, the foothill rising behind it to dark forest and far snowy ridges, a road below it. One mesh on a graded grid, fine near the plot and coarse to the horizon. Each
 // building stands on a pad of the land, flat to the millimetre. The surfaces are computed per pixel: snow on grass, a ploughed road, trodden paths from the door to the shed and the bucket, rock where the ridge is steep.
@@ -90,6 +91,28 @@ export function terrainHeight(x: number, z: number): number {
   return h;
 }
 
+const midY = (ROOM.windowSill + ROOM.windowHead) / 2;
+/**
+ * What the lit windows throw on the snow at night: a warm pool under each window of the house's front and gable, and under the neighbour's middle windows. Each is the window's own place (from the room's holes), read by
+ * the land's shader as a small lamp that lights the snow only: no light is added to the scene, so no other material pays for it. `glow` follows the windows' own glow.
+ */
+export const WINDOW_POOLS = {
+  glow: { value: 0 },
+  at: [
+    ...FRONT_HOLES.map((h) => new THREE.Vector3(...homeFromRoom((h.u0 + h.u1) / 2, midY, ROOM.z1 + ROOM.outerWall))),
+    ...GABLE_HOLES.map((h) => new THREE.Vector3(...homeFromRoom(ROOM.x1 + ROOM.outerWall, midY, (h.u0 + h.u1) / 2))),
+    // the neighbour's front faces its own +z, turned by its yaw
+    ...[-2.5, 2.5].map(
+      (u) =>
+        new THREE.Vector3(
+          N.x + u * Math.cos(N.yaw) + (N.width / 2) * Math.sin(N.yaw),
+          0.6 + 1.78,
+          N.z - u * Math.sin(N.yaw) + (N.width / 2) * Math.cos(N.yaw),
+        ),
+    ),
+  ],
+};
+
 const GRID_N = 180;
 const R = 4200;
 const A = 0.018;
@@ -140,6 +163,9 @@ export function buildTerrain(canopy: (x: number, z: number) => number = () => 0)
   ];
   mat.onBeforeCompile = (shader) => {
     shader.uniforms.uGrass = { value: grass };
+    shader.uniforms.uSnowTex = { value: snowMap() };
+    shader.uniforms.uPools = { value: WINDOW_POOLS.at };
+    shader.uniforms.uPoolGlow = WINDOW_POOLS.glow;
     shader.uniforms.uSnow = SNOW;
     shader.uniforms.uPaths = { value: paths };
     shader.vertexShader = shader.vertexShader
@@ -157,7 +183,13 @@ export function buildTerrain(canopy: (x: number, z: number) => number = () => 0)
         varying vec3 vLandN;
         varying float vLandF;
         uniform sampler2D uGrass;
+        uniform sampler2D uSnowTex;
+        uniform vec3 uPools[${WINDOW_POOLS.at.length}];
+        uniform float uPoolGlow;
         uniform float uSnow;
+        vec2 gSnowSlope;
+        float gSnowAmt;
+        float gSnowGlint;
         uniform vec4 uPaths[${paths.length}];
         float ldHash( vec2 p ) { p = fract( p * vec2( 123.34, 456.21 ) ); p += dot( p, p + 45.32 ); return fract( p.x * p.y ); }
         float ldNoise( vec2 p ) { vec2 i = floor( p ); vec2 f = fract( p ); vec2 u = f * f * ( 3.0 - 2.0 * f ); return mix( mix( ldHash( i ), ldHash( i + vec2( 1.0, 0.0 ) ), u.x ), mix( ldHash( i + vec2( 0.0, 1.0 ) ), ldHash( i + vec2( 1.0, 1.0 ) ), u.x ), u.y ); }
@@ -184,8 +216,19 @@ export function buildTerrain(canopy: (x: number, z: number) => number = () => 0)
           float roadC = ${HOME.road.z.toFixed(2)} + 3.0 * sin( p.x * 0.012 + 0.4 );
           float dRoad = abs( p.y - roadC );
           float road = 1.0 - smoothstep( ${(HOME.road.width / 2 - 0.2).toFixed(3)}, ${(HOME.road.width / 2 + 0.2).toFixed(3)}, dRoad + 0.2 * ( ldNoise( p * 0.8 ) - 0.5 ) * nearFade );
+          // the nearest path: how far, how far along it, on which side of it, and which way it runs
           float dPath = 1e9;
-          for ( int i = 0; i < ${paths.length}; i++ ) dPath = min( dPath, ldSeg( p, uPaths[ i ] ) );
+          float aPath = 0.0;
+          float sPath = 0.0;
+          vec2 uPath = vec2( 1.0, 0.0 );
+          for ( int i = 0; i < ${paths.length}; i++ ) {
+            vec2 pa = p - uPaths[ i ].xy;
+            vec2 ba = uPaths[ i ].zw - uPaths[ i ].xy;
+            float len = length( ba );
+            float h = clamp( dot( pa, ba ) / ( len * len ), 0.0, 1.0 );
+            float d = length( pa - ba * h );
+            if ( d < dPath ) { dPath = d; aPath = h * len + float( i ) * 0.37; uPath = ba / len; sPath = ( ba.x * pa.y - ba.y * pa.x ) / len; }
+          }
           float path = 1.0 - smoothstep( 0.24, 0.62, dPath + 0.22 * ( ldNoise( p * 2.1 ) - 0.5 ) * nearFade );
           vec3 c = meadow;
           vec3 packed = vec3( 0.26, 0.25, 0.235 ) * ( 0.9 + 0.2 * ldNoise( p * 1.4 ) * nearFade );
@@ -198,13 +241,71 @@ export function buildTerrain(canopy: (x: number, z: number) => number = () => 0)
           float gLand = cover * ( 1.0 - plough ) * ( 1.0 - 0.48 * path );
           vec3 snow = mix( vec3( 0.86, 0.875, 0.905 ), vec3( 0.95, 0.955, 0.965 ), ldFbm( p * 0.1 ) );
           snow *= 0.965 + 0.05 * ldNoise( vec2( p.x * 0.9 + 0.5 * p.y, p.y * 3.1 ) ) * nearFade;
+          // the snow's own relief, one tile read at two scales (its mipmaps take the fine one away with distance, so nothing crawls): drifts a few metres long that the wind laid, ripples and a crust close up
+          vec4 snA = texture2D( uSnowTex, p * ${(1 / SNOW_RELIEF.driftTile).toFixed(5)} );
+          vec4 snB = texture2D( uSnowTex, vec2( p.y, -p.x ) * ${(1 / SNOW_RELIEF.rippleTile).toFixed(5)} + 0.37 );
+          vec2 slA = ( snA.rg - 0.5 ) * 2.0;
+          vec2 slB = ( snB.rg - 0.5 ) * 2.0;
+          vec2 slope = ${SNOW_RELIEF.drift.toFixed(3)} * slA + ${SNOW_RELIEF.ripple.toFixed(3)} * vec2( -slB.y, slB.x );
+          // the hollows keep the sky's blue, the crests are the whitest
+          float hgt = 0.7 * snA.b + 0.3 * snB.b;
+          snow *= mix( vec3( 0.9, 0.935, 0.99 ), vec3( 1.0 ), smoothstep( 0.2, 0.62, hgt ) );
+          // footprints along the paths, left and right, a stride apart: each a dent with a rim
+          float foot = 0.0;
+          vec2 footSlope = vec2( 0.0 );
+          if ( dPath < 0.5 && nearFade > 0.0 ) {
+            for ( int k = 0; k < 2; k++ ) {
+              float side = k == 0 ? -1.0 : 1.0;
+              float along = ( fract( ( aPath + ( k == 0 ? 0.0 : ${(SNOW_RELIEF.stride / 2).toFixed(3)} ) ) / ${SNOW_RELIEF.stride.toFixed(3)} ) - 0.5 ) * ${SNOW_RELIEF.stride.toFixed(3)};
+              float across = sPath - side * 0.1;
+              vec2 q = vec2( along / 0.15, across / 0.058 );
+              float e = length( q );
+              float keep = 1.0 - smoothstep( 0.03, 0.09, length( fwidth( p ) ) );
+              foot = max( foot, ( 1.0 - smoothstep( 0.72, 1.0, e ) ) * keep );
+              // the rim leans away from the print
+              float rim = smoothstep( 0.55, 0.95, e ) * ( 1.0 - smoothstep( 0.95, 1.5, e ) ) * keep;
+              vec2 outw = normalize( q + 1e-4 );
+              footSlope += rim * ( uPath * outw.x + vec2( -uPath.y, uPath.x ) * outw.y );
+            }
+            foot *= nearFade;
+            footSlope *= nearFade;
+          }
           snow = mix( snow, snow * vec3( 0.78, 0.8, 0.85 ), path );
+          snow *= 1.0 - 0.16 * foot;
+          slope = slope * ( 1.0 - 0.6 * path ) - 0.55 * footSlope;
           c = mix( c, snow, gLand );
           diffuseColor.rgb = c;
+          gSnowAmt = gLand;
+          gSnowSlope = slope * gLand;
+          gSnowGlint = max( smoothstep( 0.3, 0.6, snB.a ), 0.7 * smoothstep( 0.3, 0.6, snA.a ) ) * gLand * ( 1.0 - path );
         }`,
+      )
+      .replace(
+        '#include <normal_fragment_begin>',
+        /* glsl */ `#include <normal_fragment_begin>
+        normal = normalize( normal + ( viewMatrix * vec4( gSnowSlope.x, 0.0, gSnowSlope.y, 0.0 ) ).xyz );`,
+      )
+      .replace(
+        '#include <roughnessmap_fragment>',
+        '#include <roughnessmap_fragment>\nroughnessFactor = mix( roughnessFactor, 0.82, gSnowAmt );',
+      )
+      .replace(
+        '#include <opaque_fragment>',
+        /* glsl */ `${SNOW_LIGHT_GLSL}
+        if ( uPoolGlow > 0.0 ) {
+          vec3 pool = vec3( 0.0 );
+          for ( int i = 0; i < ${WINDOW_POOLS.at.length}; i++ ) {
+            vec3 d = uPools[ i ] - vLandP;
+            float r2 = dot( d, d );
+            float nl = max( dot( normal, ( viewMatrix * vec4( d * inversesqrt( r2 ), 0.0 ) ).xyz ), 0.0 );
+            pool += nl / ( 1.0 + 0.3 * r2 );
+          }
+          outgoingLight += diffuseColor.rgb * vec3( 1.0, 0.62, 0.3 ) * pool * uPoolGlow;
+        }
+        #include <opaque_fragment>`,
       );
   };
-  mat.customProgramCacheKey = () => 'heater-land';
+  mat.customProgramCacheKey = () => 'heater-land-2';
   const mesh = new THREE.Mesh(g, mat);
   mesh.name = 'land';
   mesh.receiveShadow = true;

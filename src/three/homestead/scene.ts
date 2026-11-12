@@ -25,7 +25,7 @@ import {
 } from './props';
 import { HELD_HOUR, createSky } from './sky';
 import { SNOW, patchSnow } from './snow';
-import { buildTerrain, roadZ, terrainHeight } from './terrain';
+import { WINDOW_POOLS, buildTerrain, roadZ, terrainHeight } from './terrain';
 import { buildVegetation, forestMask, planVegetation, type Vegetation } from './vegetation';
 
 // The `homestead` world: the setting, and the true saving. A small insulated house at a wood's edge in the foothills, January, snow; the chimney above the ridge, which smokes only as the model says (`smokeAtCap`) or steams (`steamAtCap`); the shed with a whole season's wood to scale, beside one day's basket;
@@ -197,7 +197,9 @@ export function createHomesteadScene(opts: HomesteadOptions = {}): HomesteadScen
   const N = HOME.neighbour;
   const nh = new THREE.Group();
   nh.name = 'neighbour-house';
-  const body = simpleHouse(houseMaterials(), N.length, N.width, N.wallH, N.roofH, 3, false);
+  const nm = houseMaterials();
+  nm.glass.userData.noShare = true;
+  const body = simpleHouse(nm, N.length, N.width, N.wallH, N.roofH, 3, false);
   nh.add(body);
   nh.position.set(N.x, 0.6, N.z);
   nh.rotation.y = N.yaw;
@@ -399,6 +401,9 @@ export function createHomesteadScene(opts: HomesteadOptions = {}): HomesteadScen
       // ---- the windows glow when the light goes
       const nightGlow = clamp(sky.night * 1.4, 0, 1);
       house.glass.emissiveIntensity = nightGlow * 1.5;
+      // next door a lamp is left on low, and what both houses' windows throw on the snow follows them
+      nm.glass.emissiveIntensity = nightGlow * 0.38;
+      WINDOW_POOLS.glow.value = nightGlow * 1.3;
 
       // ---- the snow lies below about 4 °C of mean air
       const mean = opts.params?.().outsideMean ?? 2;

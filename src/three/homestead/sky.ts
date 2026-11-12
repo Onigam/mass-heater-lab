@@ -11,6 +11,8 @@ const LAT = 46.1 * DEG;
 const NOON = 12.6; // local clock time of solar noon, about
 /** The hour the sun holds at a fast clock, a little after noon, for a warm side light. */
 export const HELD_HOUR = 14.2;
+/** Where the moon stands on the night of the films (X east, Y up, Z south), estimate: over the valley, to the south-west. */
+export const MOON_DIRECTION: [number, number, number] = [-0.6, 0.5, 0.62];
 /** The sun never goes under this while it is held. */
 const MIN_HELD_ALT = 12 * DEG;
 
@@ -43,7 +45,18 @@ function injectNight(sky: Sky): void {
         float h = fract(sin(dot(cell, vec3(12.9898, 78.233, 37.719))) * 43758.5453);
         float star = step(0.9965, h) * smoothstep(0.45, 0.05, length(fract(sd) - 0.5));
         star *= smoothstep(0.02, 0.25, up) * (0.5 + 0.5 * fract(h * 91.7));
-        texColor = mix(texColor, nightCol + vec3(star) * 0.9, uNight);
+        // a mountain sky in January holds far more stars than the bright ones: a second, fainter field, denser along the Milky Way, whose glow lies across the sky
+        float mw = exp(-pow(dot(direction, vec3(0.42, 0.36, -0.83)) / 0.26, 2.0));
+        vec3 sd2 = direction * 430.0 + 31.7;
+        vec3 cell2 = floor(sd2);
+        float h2 = fract(sin(dot(cell2, vec3(41.317, 17.713, 63.171))) * 24634.6345);
+        float faint = step(0.984 - 0.03 * mw, h2) * smoothstep(0.42, 0.1, length(fract(sd2) - 0.5));
+        faint *= smoothstep(0.03, 0.3, up) * (0.05 + 0.2 * pow(fract(h2 * 57.3), 3.0));
+        float cloud = 0.5 + 0.5 * sin(dot(direction, vec3(9.0, 4.0, 7.0)) + 2.0 * sin(dot(direction, vec3(-5.0, 11.0, 3.0))));
+        nightCol += vec3(0.011, 0.013, 0.021) * mw * (0.45 + 0.55 * cloud) * smoothstep(0.0, 0.3, up);
+        // each star its own white: a few warm, a few blue
+        vec3 tintS = mix(vec3(1.0, 0.86, 0.72), vec3(0.8, 0.88, 1.0), fract(h * 37.1 + h2 * 13.7));
+        texColor = mix(texColor, nightCol + tintS * (star * 0.9 + faint), uNight);
       }
       ${hook}`,
   );
@@ -135,7 +148,8 @@ export function createSky(scene: THREE.Scene): SkyRig {
   scene.add(hemi);
 
   const sunDir = new THREE.Vector3(0, 1, 0);
-  const moonDir = new THREE.Vector3(-0.35, 0.8, 0.45).normalize();
+  // a moon low enough to rake the snow (about 30° up): a high one lights a field as a ceiling lamp lights a table, and no drift shows
+  const moonDir = new THREE.Vector3(...MOON_DIRECTION).normalize();
   const warm = new THREE.Color(0xffc48a);
   const white = new THREE.Color(0xfff3e2);
   const moonCol = new THREE.Color(0x9fb4d8);
@@ -185,7 +199,8 @@ export function createSky(scene: THREE.Scene): SkyRig {
       u.uNight.value = smoothstep(-2 * DEG, -10 * DEG, alt);
       if (u.time) u.time.value = time;
       const sunI = 3.9 * smoothstep(-1 * DEG, 6 * DEG, alt) * (1 - 0.18 * low);
-      const moonI = 1.1 * (1 - day);
+      // a low moon gives the snow less light than a high one did: its strength makes up for the angle, so that the field keeps its brightness
+      const moonI = 1.5 * (1 - day);
       if (sunI >= moonI) {
         lightDir.copy(sunDir);
         sun.color.copy(white).lerp(warm, low);

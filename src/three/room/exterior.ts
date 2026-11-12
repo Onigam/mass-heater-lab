@@ -17,7 +17,11 @@ export interface Exterior {
 export function buildExterior(): Exterior {
   const group = new THREE.Group();
   group.name = 'exterior';
-  const groundMat = new THREE.MeshStandardMaterial({ color: 0xdfe6ee, roughness: 1 });
+  // the snow the windows look at: the same drifts and ripples as the homestead's, in the same metres
+  const groundMat = patchSnow(new THREE.MeshStandardMaterial({ color: 0xdfe6ee, roughness: 1 }), {
+    relief: true,
+    over: true,
+  });
   groundMat.userData.noShare = true;
   const ground = new THREE.Mesh(new THREE.CircleGeometry(48, 48), groundMat);
   ground.rotation.x = -Math.PI / 2;
