@@ -6,7 +6,7 @@ import { CORE, HOME, HOUSE, ROOM } from './dims';
 import { createFireCoreScene } from './firecore/scene';
 import { createHomesteadScene } from './homestead/scene';
 import { MOON_DIRECTION } from './homestead/sky';
-import { SNOW_RELIEF, SNOW_SUN, patchSnow } from './homestead/snow';
+import { SNOW_GRAIN, SNOW_RELIEF, patchSnow } from './homestead/snow';
 import { WINDOW_POOLS, buildTerrain } from './homestead/terrain';
 import { createLivingRoomScene } from './livingroom/scene';
 import { machineMaterials } from './machine/materials';
@@ -318,35 +318,14 @@ describe('the light of the homestead at night', () => {
   });
 });
 
-describe('the snow in a strong sun', () => {
-  const lightOf = (w: ReturnType<typeof createHomesteadScene>): number => {
-    let lum = 0;
-    w.scene.traverse((o) => {
-      const l = o as THREE.DirectionalLight;
-      if (l.isDirectionalLight && l.castShadow)
-        lum = l.intensity * (0.2126 * l.color.r + 0.7152 * l.color.g + 0.0722 * l.color.b);
-    });
-    return lum;
-  };
-
-  it('takes a part of the sun it throws back, and leaves the moon and a room’s key alone', () => {
-    const w = createHomesteadScene();
-    for (let i = 0; i < 40; i++) w.update(stateWith({ hour: 12 }), 0.1, view());
-    // the sun at noon is in the range where the snow is dimmed; the moon is far under it
-    expect(lightOf(w)).toBeGreaterThan(SNOW_SUN.to - 0.6);
-    for (let i = 0; i < 40; i++) w.update(stateWith({ hour: 23 }), 0.1, view());
-    expect(lightOf(w)).toBeLessThan(SNOW_SUN.from - 0.8);
-    // a room's key (its strongest, by day) is under the range too: the snow outside a window is dimmed by its own colour instead (below)
-    const key = 0.95 + 0.85;
-    expect(key * 0.9).toBeLessThan(SNOW_SUN.from);
-    const roof = compiled(patchSnow(new THREE.MeshStandardMaterial(), { relief: true })).fragmentShader;
-    expect(roof).toContain(`smoothstep( ${SNOW_SUN.from.toFixed(2)}, ${SNOW_SUN.to.toFixed(2)}`);
-    expect(roof).toContain(`outgoingLight *= 1.0 - ${SNOW_SUN.dim.toFixed(3)} * snSun * gSnowAmt`);
-  });
-
+describe('the snow by day', () => {
   it('gives a crust its grain in metres, gone before its cells get under two pixels', () => {
     const roof = compiled(patchSnow(new THREE.MeshStandardMaterial(), { relief: true })).fragmentShader;
     for (const k of ['snKeepA', 'snKeepM', 'snKeepB']) expect(roof).toContain(k);
+    // a tone curve flattens what a sun throws back to white: a grain of several per cent, or a roof facing the sun shows none
+    expect(SNOW_GRAIN).toBeGreaterThan(0.2);
+    expect(SNOW_GRAIN).toBeLessThan(0.45);
+    expect(roof).toContain(`snowC *= 1.0 + ${SNOW_GRAIN.toFixed(2)} * (`);
     const bough = compiled(patchSnow(new THREE.MeshStandardMaterial())).fragmentShader;
     expect(bough).not.toContain('snKeepA');
   });

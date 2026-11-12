@@ -271,7 +271,7 @@ export function buildTerrain(canopy: (x: number, z: number) => number = () => 0)
               vec2 q = length( qs ) < length( qh ) ? qs : qh;
               float e = length( q );
               float keep = 1.0 - smoothstep( 0.03, 0.09, length( fwidth( p ) ) );
-              foot = max( foot, ( 1.0 - smoothstep( 0.72, 1.0, e ) ) * keep * ( 0.8 + 0.4 * hh.x ) );
+              foot = max( foot, ( 1.0 - smoothstep( 0.72, 1.0, e ) ) * keep * ( 0.7 + 0.3 * hh.x ) );
               // the rim leans away from the print
               float rim = smoothstep( 0.55, 0.95, e ) * ( 1.0 - smoothstep( 0.95, 1.5, e ) ) * keep;
               vec2 outw = normalize( q + 1e-4 );

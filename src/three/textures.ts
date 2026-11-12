@@ -282,10 +282,10 @@ export const plasterMap = (): THREE.DataTexture =>
     const grain = hash1(i, j) - 0.5;
     // the per-texel grain is what a wall keeps when the eye is a metre from it (a texel is then several pixels); from across the room it averages away. The tones that wander over a hand's reach stay faint: stronger,
     // they read as stains, and the wall as heavy and grey
-    const k = 0.885 + 0.055 * broad + 0.04 * mid + 0.075 * stroke + 0.14 * sand + 0.06 * grain;
+    const k = 0.835 + 0.045 * broad + 0.03 * mid + 0.06 * stroke + 0.11 * sand + 0.055 * grain;
     // the thin places let a warmer coat through
     const warm = 0.014 * (mid + broad);
-    return [k + warm, k * 0.985, k * 0.95 - warm];
+    return [k + warm, k * 0.975, k * 0.93 - warm];
   });
 
 /** The relief of the same plaster: the wall is not a plane (a hand's unevenness), the float left arcs, the sand stands proud. A tangent-space normal map. */
@@ -436,7 +436,7 @@ export const snowMap = (): THREE.DataTexture => {
       const wave = 0.5 + 0.5 * Math.sin(phase * Math.PI * 2);
       const lean = 0.5 + 0.5 * Math.sin(phase * Math.PI * 2 - 1.1 * wave);
       const cross = 0.5 + 0.5 * Math.sin((u * 14 + v * 9 + 2.4 * (tf(u, v + 0.6, 5, 2) - 0.5)) * Math.PI * 2);
-      const ripple = 0.78 * lean + 0.22 * cross * smoothstep(0.4, 0.7, tf(u + 0.2, v + 0.7, 4, 1));
+      const ripple = 0.86 * lean + 0.14 * cross * smoothstep(0.4, 0.7, tf(u + 0.2, v + 0.7, 4, 1));
       const crust = tf(u, v, 40, 1);
       // the ripples come in fields, where the wind found loose snow
       const field = smoothstep(0.38, 0.62, tf(u + 0.5, v + 0.25, 5, 1));
