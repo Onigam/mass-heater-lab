@@ -12,8 +12,26 @@ export const SNOW = { value: 1 };
  */
 export const SNOW_RELIEF = { driftTile: 13, rippleTile: 2.6, drift: 0.55, ripple: 0.24, stride: 1.36 } as const;
 
-/** How much a crust's grain moves the snow's tone (estimate): a tone curve flattens what a sun throws back, so that a roof that faces it needs a grain of several per cent to show any. */
-export const SNOW_GRAIN = 0.3;
+/**
+ * How much a crust's grain moves the snow's tone, at its three scales (patches of 23 cm and of 10 cm, a sand of 5 cm; estimates). The grain is a gain on the light the snow gives back, and it is stronger where the tone curve
+ * is flat: a roof that faces the sun, or a ground lit by a room's key, is thrown to a value where 5 % of the light is a level or two of the picture, so the gain is multiplied by 1 to `1 + GRAIN_HIGHLIGHT` as the light goes
+ * from dim to bright; the same grain under a low moon, where the curve is steep, was a cloud mottle, foam from close (`night` is the share it keeps when the first directional light is a moon's or a room's night, its
+ * luminance under 0.9, and not a day's, over 1.4). A roof is seen close, so its two coarse scales are light and the sand does the work; the ground outside a room is seen from afar, where the sand is gone, so it wears its two
+ * coarse scales stronger.
+ */
+/** How much more the grain is worth in the brightest light (estimate: the tone curve's slope at 1.3 is half its slope at 0.4). */
+export const GRAIN_HIGHLIGHT = 1.6;
+
+export interface SnowGrain {
+  coarse: number;
+  mid: number;
+  fine: number;
+  night: number;
+}
+export const SNOW_GRAIN: { roof: SnowGrain; ground: SnowGrain } = {
+  roof: { coarse: 0.06, mid: 0.08, fine: 0.12, night: 0.6 },
+  ground: { coarse: 0.16, mid: 0.18, fine: 0.24, night: 0.6 },
+};
 
 /**
  * What the light does in snow, after the lights are summed (it reads `gSnowAmt` and `gSnowGlint`, and the first directional light, the sun or the moon): the side turned from the light goes to the blue the light keeps
@@ -61,6 +79,8 @@ export interface SnowOptions {
   relief?: boolean;
   /** The material's own colour is the snow's light (a ground that dims with the evening): the snow multiplies it instead of replacing it. */
   over?: boolean;
+  /** The crust's grain (`relief` only): a roof's by default. */
+  grain?: SnowGrain;
 }
 
 /** Faces that look up go white with `SNOW`. Chains with whatever patch the material already has. */
@@ -70,6 +90,7 @@ export function patchSnow<T extends THREE.Material>(mat: T, o: SnowOptions = {})
   const gain = o.gain ?? 1;
   const far = o.far;
   const relief = !!o.relief;
+  const grain = o.grain ?? SNOW_GRAIN.roof;
   const mean = o.mean ?? [0.05, 0.08, 0.055];
   const prev = mat.onBeforeCompile;
   const prevKey = mat.customProgramCacheKey.bind(mat);
@@ -104,7 +125,7 @@ export function patchSnow<T extends THREE.Material>(mat: T, o: SnowOptions = {})
     shader.fragmentShader = shader.fragmentShader
       .replace(
         '#include <common>',
-        `#include <common>\nvarying vec3 vSnowN;\nvarying vec3 vSnowP;\nuniform float uSnow;\n${relief ? 'uniform sampler2D uSnowTex;' : ''}\nfloat gSnow;\nfloat gSnowFar;\nfloat gSnowAmt;\nfloat gSnowGlint;\nvec2 gSnowSlope;\n${NOISE}`,
+        `#include <common>\nvarying vec3 vSnowN;\nvarying vec3 vSnowP;\nuniform float uSnow;\n${relief ? 'uniform sampler2D uSnowTex;\nfloat gSnowGrain;' : ''}\nfloat gSnow;\nfloat gSnowFar;\nfloat gSnowAmt;\nfloat gSnowGlint;\nvec2 gSnowSlope;\n${NOISE}`,
       )
       .replace(
         '#include <color_fragment>',
@@ -132,7 +153,12 @@ export function patchSnow<T extends THREE.Material>(mat: T, o: SnowOptions = {})
             float snKeepA = 1.0 - smoothstep( 0.2, 0.55, length( fwidth( vSnowP.xz * 4.3 ) ) );
             float snKeepM = 1.0 - smoothstep( 0.2, 0.55, length( fwidth( vSnowP.xz * 9.7 ) ) );
             float snKeepB = 1.0 - smoothstep( 0.2, 0.55, length( fwidth( vSnowP.xz * 19.0 ) ) );
-            snowC *= 1.0 + ${SNOW_GRAIN.toFixed(2)} * ( ( snNoise( vSnowP.xz * 4.3 + 7.1 ) - 0.5 ) * snKeepA + ( snNoise( vSnowP.xz * 9.7 + 1.9 ) - 0.5 ) * snKeepM + 0.8 * ( snNoise( vSnowP.xz * 19.0 + 3.3 ) - 0.5 ) * snKeepB );
+            float snLum = 1.0;
+            #if NUM_DIR_LIGHTS > 0
+              snLum = dot( directionalLights[ 0 ].color, vec3( 0.2126, 0.7152, 0.0722 ) );
+            #endif
+            float snDay = mix( ${grain.night.toFixed(2)}, 1.0, smoothstep( 0.9, 1.4, snLum ) );
+            gSnowGrain = snDay * ( ${grain.coarse.toFixed(2)} * ( snNoise( vSnowP.xz * 4.3 + 7.1 ) - 0.5 ) * snKeepA + ${grain.mid.toFixed(2)} * ( snNoise( vSnowP.xz * 9.7 + 1.9 ) - 0.5 ) * snKeepM + ${grain.fine.toFixed(2)} * ( snNoise( vSnowP.xz * 19.0 + 3.3 ) - 0.5 ) * snKeepB );
             gSnowGlint = max( smoothstep( 0.3, 0.6, snB.a ), 0.7 * smoothstep( 0.3, 0.6, snA.a ) ) * gSnow;
           }`
               : ''
@@ -161,10 +187,22 @@ export function patchSnow<T extends THREE.Material>(mat: T, o: SnowOptions = {})
         ${far ? 'normal = normalize( mix( normal, normalize( ( viewMatrix * vec4( 0.25, 0.9, 0.3, 0.0 ) ).xyz ), gSnowFar * 0.7 ) );' : ''}
         ${relief ? 'normal = normalize( normal + ( viewMatrix * vec4( gSnowSlope.x, 0.0, gSnowSlope.y, 0.0 ) ).xyz );' : ''}`,
       )
-      .replace('#include <opaque_fragment>', `${SNOW_LIGHT_GLSL}\n#include <opaque_fragment>`);
+      .replace(
+        '#include <opaque_fragment>',
+        `${SNOW_LIGHT_GLSL}
+        ${
+          relief
+            ? `{
+          float snLm = dot( outgoingLight, vec3( 0.2126, 0.7152, 0.0722 ) );
+          outgoingLight *= 1.0 + gSnowGrain * gSnowAmt * ( 1.0 + ${GRAIN_HIGHLIGHT.toFixed(2)} * smoothstep( 0.35, 1.3, snLm ) );
+        }`
+            : ''
+        }
+        #include <opaque_fragment>`,
+      );
   };
   mat.customProgramCacheKey = () =>
-    `${prevKey()}|snow-${lo}-${hi}-${gain}-${far?.join('-') ?? ''}-${mean.join('-')}-${relief ? 'relief' : 'plain'}-${o.over ? 'over' : ''}-2`;
+    `${prevKey()}|snow-${lo}-${hi}-${gain}-${far?.join('-') ?? ''}-${mean.join('-')}-${relief ? 'relief' : 'plain'}-${o.over ? 'over' : ''}-${relief ? [grain.coarse, grain.mid, grain.fine, grain.night].join('-') : ''}-2`;
   mat.needsUpdate = true;
   return mat;
 }

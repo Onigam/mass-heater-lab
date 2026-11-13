@@ -6,7 +6,7 @@ import { CORE, HOME, HOUSE, ROOM } from './dims';
 import { createFireCoreScene } from './firecore/scene';
 import { createHomesteadScene } from './homestead/scene';
 import { MOON_DIRECTION } from './homestead/sky';
-import { SNOW_GRAIN, SNOW_RELIEF, patchSnow } from './homestead/snow';
+import { GRAIN_HIGHLIGHT, SNOW_GRAIN, SNOW_RELIEF, patchSnow } from './homestead/snow';
 import { WINDOW_POOLS, buildTerrain } from './homestead/terrain';
 import { createLivingRoomScene } from './livingroom/scene';
 import { machineMaterials } from './machine/materials';
@@ -319,18 +319,27 @@ describe('the light of the homestead at night', () => {
 });
 
 describe('the snow by day', () => {
-  it('gives a crust its grain in metres, gone before its cells get under two pixels', () => {
+  it('gives a crust its grain in metres, gone before its cells get under two pixels, worth more in a bright light and less under a moon', () => {
     const roof = compiled(patchSnow(new THREE.MeshStandardMaterial(), { relief: true })).fragmentShader;
     for (const k of ['snKeepA', 'snKeepM', 'snKeepB']) expect(roof).toContain(k);
-    // a tone curve flattens what a sun throws back to white: a grain of several per cent, or a roof facing the sun shows none
-    expect(SNOW_GRAIN).toBeGreaterThan(0.2);
-    expect(SNOW_GRAIN).toBeLessThan(0.45);
-    expect(roof).toContain(`snowC *= 1.0 + ${SNOW_GRAIN.toFixed(2)} * (`);
+    const g = SNOW_GRAIN.roof;
+    expect(roof).toContain(`gSnowGrain = snDay * ( ${g.coarse.toFixed(2)} * (`);
+    expect(roof).toContain(`mix( ${g.night.toFixed(2)}, 1.0, smoothstep( 0.9, 1.4, snLum ) )`);
+    expect(roof).toContain(`1.0 + ${GRAIN_HIGHLIGHT.toFixed(2)} * smoothstep(`);
+    // a roof is seen close: its coarse patches are light and the sand does the work (the review saw foam and camouflage in a coarse grain at 0.30);
+    // the ground outside a room is seen from afar, where the sand is gone, so its coarse scales are stronger
+    expect(g.coarse).toBeLessThanOrEqual(0.08);
+    expect(g.mid).toBeLessThanOrEqual(0.1);
+    expect(g.fine).toBeGreaterThan(g.coarse);
+    expect(SNOW_GRAIN.ground.coarse).toBeGreaterThan(g.coarse);
+    expect(g.night).toBeLessThan(1);
+    // a bough takes no grain
     const bough = compiled(patchSnow(new THREE.MeshStandardMaterial())).fragmentShader;
     expect(bough).not.toContain('snKeepA');
+    expect(bough).not.toContain('gSnowGrain');
   });
 
-  it('the snow outside the room is lower by day than it was and the same at night', () => {
+  it('the snow outside the room is as white by day as it was, the same at night, and dimmer at dusk by the clock', () => {
     const room = createLivingRoomScene();
     let ground: THREE.MeshStandardMaterial | null = null;
     room.scene.traverse((o) => {
@@ -341,9 +350,11 @@ describe('the snow by day', () => {
     });
     expect(ground).not.toBeNull();
     for (let i = 0; i < 40; i++) room.update(stateWith({ hour: 12 }), 0.1, view());
-    // it was 0.88 at noon: lit by the key and the sky, the tone curve left it no relief to show
-    expect(ground!.color.r).toBeLessThan(0.5);
+    // a darker ground read as wet grey (the review: 29 levels at 08:00); the grain is what keeps the relief against the tone curve
+    expect(ground!.color.r).toBeCloseTo(0.88, 2);
+    for (let i = 0; i < 40; i++) room.update(stateWith({ hour: 8 }), 0.1, view());
     expect(ground!.color.r).toBeGreaterThan(0.3);
+    expect(ground!.color.r).toBeLessThan(0.45);
     for (let i = 0; i < 40; i++) room.update(stateWith({ hour: 2 }), 0.1, view());
     expect(ground!.color.r).toBeCloseTo(0.1, 2);
   });

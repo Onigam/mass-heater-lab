@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { rng } from '@onigam/lab-kit/three';
 import { ROOM } from '../dims';
 import { spruceGeometry, spruceTrunk } from '../homestead/vegetation';
-import { patchSnow } from '../homestead/snow';
+import { SNOW_GRAIN, patchSnow } from '../homestead/snow';
 import { spruceBarkMap } from '../textures';
 
 // What the windows look at, and what lies around the stage: snow on the ground, dark spruces that fade into the evening. The same trees as `homestead`, a few of them. No part here.
@@ -21,6 +21,7 @@ export function buildExterior(): Exterior {
   const groundMat = patchSnow(new THREE.MeshStandardMaterial({ color: 0xdfe6ee, roughness: 1 }), {
     relief: true,
     over: true,
+    grain: SNOW_GRAIN.ground,
   });
   groundMat.userData.noShare = true;
   const ground = new THREE.Mesh(new THREE.CircleGeometry(48, 48), groundMat);

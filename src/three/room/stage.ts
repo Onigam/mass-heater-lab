@@ -357,8 +357,7 @@ export function createHeaterStage(name: string, registered: ReadonlySet<string>,
         .lerp(skyThermal, th);
       (scene.background as THREE.Color).copy(tmp);
       (scene.fog as THREE.Fog).color.copy(tmp);
-      // by day the snow outside is lit well past what the tone curve keeps (its drifts and its grain flatten to white); the night's value is what it was
-      groundMat.color.setScalar(0.1 + 0.3 * d);
+      groundMat.color.setScalar(0.1 + 0.78 * d);
       scene.environmentIntensity = (0.34 + 0.34 * d) * lit;
 
       // ---- the clock on the wall: it follows the model's hour
