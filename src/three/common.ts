@@ -296,16 +296,24 @@ export function lathe(
 }
 
 /**
+ * Where a whole turn of `n` segments starts so that its seam lies behind (−z), the side nobody looks from: half a turn, rounded to a whole segment so that the ring has the very positions it had (a three cylinder and a
+ * lathe start on +z, facing the visitor, and the map made for metres steps by the circumference's fraction of a tile there: half a tile on the flue's foot, in the lines of its spiral).
+ */
+export const seamBehind = (n: number): number => (Math.round(n / 2) * TAU) / n;
+
+/**
  * A body of revolution like `lathe`, with the same positions, the same normals and the same triangles, and its UVs in metres: a wall is mapped round and along its profile (u = the turn times its radius, v = the length along
  * the profile), a ring or a disc that lies flat from above (x, z). A map drawn for metres then keeps its size on a riser, a drum or a duct, and a lid has no centre its grain runs to (the lathe's own 0..1 UVs stretched a
- * map 4 times on a liner and 12 times at its worst). A corner where a wall meets a ring is two vertices here, one for each, so the map is not dragged round the edge. `phiStart` puts the seam of a whole turn where it is hidden.
+ * map 4 times on a liner and 12 times at its worst). A corner where a wall meets a ring is two vertices here, one for each, so the map is not dragged round the edge. The seam of a whole turn is behind (`seamBehind`), unless `phiStart` says otherwise.
  */
 export function revolve(
   profile: readonly (readonly [number, number])[],
   segments = 48,
-  phiStart = 0,
+  phiStart?: number,
   phiLength = TAU,
 ): THREE.BufferGeometry {
+  // a whole turn has its seam behind; an arc starts where it is asked to
+  phiStart ??= phiLength >= TAU - 1e-9 ? seamBehind(Math.floor(segments)) : 0;
   const src = lathe(profile, segments, phiStart, phiLength);
   const sp = src.attributes.position as THREE.BufferAttribute;
   const sn = src.attributes.normal as THREE.BufferAttribute;
@@ -385,7 +393,8 @@ export function cylinder(
   rows = 1,
   open = false,
 ): THREE.CylinderGeometry {
-  return cylinderMetric(new THREE.CylinderGeometry(rTop, rBottom, height, radial, rows, open));
+  // the seam behind, as `seamBehind` says
+  return cylinderMetric(new THREE.CylinderGeometry(rTop, rBottom, height, radial, rows, open, seamBehind(radial)));
 }
 
 /** A torus with its UVs in metres: u along the ring's own length, v round its tube (a bracket's ring, a hoop that wears a steel map). */
@@ -407,16 +416,22 @@ export function disc(r: number, segments = 24): THREE.CircleGeometry {
   return g;
 }
 
-/** `stick` with its UVs in metres, for a rod a matter map is put on (steel, a flue's cap, a dial's case). */
+/**
+ * `stick` with its UVs in metres, for a rod a matter map is put on (steel, a flue's cap, a dial's case): the same cylinder, its seam turned (by whole segments, so its vertices stand where they stood) to the side
+ * away from the visitor, −z, or below a rod that runs along z.
+ */
 export function rod(a: THREE.Vector3, b: THREE.Vector3, r: number, segments = 10, caps = true): THREE.BufferGeometry {
-  const g = cylinderMetric(new THREE.CylinderGeometry(r, r, a.distanceTo(b), segments, 1, !caps));
-  g.applyMatrix4(
-    new THREE.Matrix4().compose(
-      a.clone().add(b).multiplyScalar(0.5),
-      new THREE.Quaternion().setFromUnitVectors(UP, b.clone().sub(a).normalize()),
-      new THREE.Vector3(1, 1, 1),
-    ),
-  );
+  const dir = b.clone().sub(a).normalize();
+  const q = new THREE.Quaternion().setFromUnitVectors(UP, dir);
+  // the direction the seam should face, across the axis: back, or down for a rod that points at the visitor
+  const across = (v: THREE.Vector3) => v.clone().sub(dir.clone().multiplyScalar(v.dot(dir)));
+  let want = across(new THREE.Vector3(0, 0, -1));
+  if (want.length() < 0.5) want = across(new THREE.Vector3(0, -1, 0));
+  const local = want.normalize().applyQuaternion(q.clone().invert());
+  const step = TAU / segments;
+  const start = Math.round(Math.atan2(local.x, local.z) / step) * step;
+  const g = cylinderMetric(new THREE.CylinderGeometry(r, r, a.distanceTo(b), segments, 1, !caps, start));
+  g.applyMatrix4(new THREE.Matrix4().compose(a.clone().add(b).multiplyScalar(0.5), q, new THREE.Vector3(1, 1, 1)));
   return g;
 }
 

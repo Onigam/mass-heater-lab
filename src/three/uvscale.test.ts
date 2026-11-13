@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { createBenchSectionScene } from './benchsection/scene';
-import { cylinder, disc, revolve, lathe, rod, torus, uvMetric, v3 } from './common';
+import { cylinder, disc, lathe, revolve, rod, stick, torus, uvMetric, v3 } from './common';
+import { tubeAlong } from './machine/bench';
 import { createFireCoreScene } from './firecore/scene';
 import { createHomesteadScene } from './homestead/scene';
 import { createLivingRoomScene } from './livingroom/scene';
@@ -133,5 +134,123 @@ describe('every map made for metres is laid in metres', () => {
       expect(s.mean, name).toBeLessThan(1.3);
       expect(s.p99, name).toBeLessThan(1.8);
     }
+  });
+});
+
+// The seam of a round thing: where its map wraps from one end of the circumference to the other. A three cylinder and a lathe start on +z, facing the visitor, and a map made for metres steps there by the circumference's
+// fraction of a tile (half a tile on the flue's foot, in the lines of its spiral: the review's MR3). Every metric cylinder, lathe and tube starts behind it (−z, or below a rod that points at the visitor), turned by whole
+// segments, so that its vertices stand where they stood.
+
+/** The mean direction, across the axis, of the vertices of the seam (the first column of u) of an open round body: `across` takes a point to its offset from the axis. */
+function seamDirection(g: THREE.BufferGeometry, across: (p: THREE.Vector3, u: number) => THREE.Vector3): THREE.Vector3 {
+  const p = g.attributes.position as THREE.BufferAttribute;
+  const uv = g.attributes.uv as THREE.BufferAttribute;
+  let lo = Infinity;
+  for (let i = 0; i < p.count; i++) lo = Math.min(lo, uv.getX(i));
+  const sum = new THREE.Vector3();
+  const v = new THREE.Vector3();
+  let count = 0;
+  for (let i = 0; i < p.count; i++)
+    if (Math.abs(uv.getX(i) - lo) < 1e-6) {
+      sum.add(across(v.fromBufferAttribute(p, i), uv.getX(i)));
+      count++;
+    }
+  expect(count).toBeGreaterThan(1);
+  return sum.normalize();
+}
+
+const corners = (g: THREE.BufferGeometry): string[] => {
+  const p = g.attributes.position as THREE.BufferAttribute;
+  const n = g.attributes.normal as THREE.BufferAttribute;
+  const idx = g.index;
+  const out: string[] = [];
+  const count = idx ? idx.count : p.count;
+  for (let t = 0; t < count; t++) {
+    const i = idx ? idx.getX(t) : t;
+    out.push(
+      [p.getX(i), p.getY(i), p.getZ(i), n.getX(i), n.getY(i), n.getZ(i)].map((v) => Math.round(v * 1e4)).join(','),
+    );
+  }
+  return out.sort();
+};
+
+describe('the seam of a round thing faces away from the visitor', () => {
+  it('a vertical rod, a cylinder and a whole turn of a lathe start behind (−z)', () => {
+    const vertical = rod(v3(0, 0, 0), v3(0, 1, 0), 0.05, 24, false);
+    expect(seamDirection(vertical, (p) => new THREE.Vector3(p.x, 0, p.z)).z).toBeLessThan(-0.99);
+    const cyl = cylinder(0.05, 0.05, 1, 24, 1, true);
+    expect(seamDirection(cyl, (p) => new THREE.Vector3(p.x, 0, p.z)).z).toBeLessThan(-0.99);
+    const turned = revolve(
+      [
+        [0.1, 0],
+        [0.1, 0.5],
+      ],
+      28,
+    );
+    expect(seamDirection(turned, (p) => new THREE.Vector3(p.x, 0, p.z)).z).toBeLessThan(-0.99);
+    // an arc starts where it is asked to
+    const arc = revolve(
+      [
+        [0.1, 0],
+        [0.1, 0.5],
+      ],
+      28,
+      0.4,
+      2,
+    );
+    const d = seamDirection(arc, (p) => new THREE.Vector3(p.x, 0, p.z));
+    expect(d.x).toBeCloseTo(Math.sin(0.4), 1);
+  });
+
+  it('a rod that lies along x, along z or aslant has its seam behind it, below it, behind it', () => {
+    const across = (a: THREE.Vector3, b: THREE.Vector3) => (p: THREE.Vector3) => {
+      const dir = b.clone().sub(a).normalize();
+      return p
+        .clone()
+        .sub(a)
+        .sub(dir.clone().multiplyScalar(p.clone().sub(a).dot(dir)));
+    };
+    const along = (a: THREE.Vector3, b: THREE.Vector3) => seamDirection(rod(a, b, 0.02, 24, false), across(a, b));
+    expect(along(v3(0, 1, 0), v3(2, 1, 0)).z).toBeLessThan(-0.99);
+    expect(along(v3(0, 1, 2), v3(0, 1, 0)).y).toBeLessThan(-0.99);
+    const a = v3(0, 0, 0);
+    const b = v3(0.6, 0.5, -0.3);
+    const s = along(a, b);
+    const dir = b.clone().sub(a).normalize();
+    const want = new THREE.Vector3(0, 0, -1).sub(dir.clone().multiplyScalar(-dir.z)).normalize();
+    expect(s.dot(want)).toBeGreaterThan(Math.cos(Math.PI / 24) - 0.01);
+  });
+
+  it('a tube along a path has its seam on the side its frame does not point to, never on the visitor’s', () => {
+    // a duct along x has +z on its left: the visitor's side
+    const run = tubeAlong([v3(0, 1, 0), v3(1, 1, 0), v3(2, 1, 0)], 0.1, 24);
+    const d = seamDirection(run, (p) => new THREE.Vector3(0, p.y - 1, p.z));
+    expect(d.z).toBeLessThan(-0.99);
+    // along z it is on the side of x: the gable's
+    const leg = tubeAlong([v3(0, 1, 0), v3(0, 1, 1), v3(0, 1, 2)], 0.1, 24);
+    const e = seamDirection(leg, (p) => new THREE.Vector3(p.x, p.y - 1, 0));
+    expect(Math.abs(e.z)).toBeLessThan(0.05);
+  });
+
+  it('turned by whole segments: the same corners, with the same normals, as the cylinder and the lathe they replace', () => {
+    const a = v3(0.2, 0.1, -0.3);
+    const b = v3(0.5, 0.9, 0.4);
+    expect(corners(rod(a, b, 0.02, 12))).toEqual(corners(stick(a, b, 0.02, 12)));
+    const profile: [number, number][] = [
+      [0.1, 0],
+      [0.1, 0.5],
+      [0.06, 0.5],
+    ];
+    expect(corners(cylinder(0.05, 0.07, 0.4, 16, 1, false))).toEqual(
+      corners(new THREE.CylinderGeometry(0.05, 0.07, 0.4, 16, 1, false)),
+    );
+    // a lathe of 36 segments: the same set of positions and normals, but for the corners a wall and a ring no longer share
+    const whole = revolve(profile, 36);
+    const plain = lathe(profile, 36);
+    const position = (g: THREE.BufferGeometry) => new Set(corners(g).map((c) => c.split(',').slice(0, 3).join(',')));
+    expect([...position(whole)].sort()).toEqual([...position(plain)].sort());
+    // a rod with an odd number of segments is turned to the nearest whole segment, and still has its seam on the far side
+    const odd = rod(v3(0, 0, 0), v3(0, 1, 0), 0.05, 9, false);
+    expect(seamDirection(odd, (p) => new THREE.Vector3(p.x, 0, p.z)).z).toBeLessThan(-0.9);
   });
 });

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { TAU, joined, lathe, rod, uvMetric, v3 } from '../common';
+import { TAU, joined, lathe, rod, seamBehind, uvMetric, v3 } from '../common';
 import { BENCH, DUCT, ROOM, ductS, drawnDuctLength } from '../dims';
 import type { Rect } from '../section';
 import { fbm } from '../textures';
@@ -215,7 +215,8 @@ export function tubeAlong(path: THREE.Vector3[], radius: number, radial = 24): T
     b.crossVectors(n, t).normalize();
     if (i > 0) len += path[i]!.distanceTo(path[i - 1]!);
     for (let j = 0; j <= radial; j++) {
-      const ang = (j / radial) * TAU;
+      // the seam of the map behind the tube, away from the side `n` points to (a duct along x has +z on its left: the visitor's)
+      const ang = seamBehind(radial) + (j / radial) * TAU;
       const nx = n.x * Math.cos(ang) + b.x * Math.sin(ang);
       const ny = n.y * Math.cos(ang) + b.y * Math.sin(ang);
       const nz = n.z * Math.cos(ang) + b.z * Math.sin(ang);
