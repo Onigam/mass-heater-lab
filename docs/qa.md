@@ -277,3 +277,75 @@ Kit flicker before → after (orbit/dolly): homestead 5.49/6.34 → 5.60/6.48; r
 ### Not checked
 
 Real phones and GPU; Safari, Firefox, other GLSL drivers; the voice; 50 of 61 FR and 56 of 61 EN segments; light theme in EN at 768; lessons beyond the list, quiz, guide steps and plans beyond the first, scenarios clicked but not looked at; D1–D3 not re-measured; real texture memory (counted uploads); single machine, single run. Folder of all shots: `~/.cache/lab-review/mass-heater-lab/2026-11-12-f585cf2/`.
+
+## Follow-up pass review
+
+- **Date:** 2026-11-13. **Commit under review:** `964bab0`, local `main`, five commits over `01a948c` (`75519a2`, `5477ecc`, `0a1fd9b`, `6b9751b`, `964bab0`). Not pushed. Screens: `docs/qa/m3-*.jpg` (`8239128`).
+- **Reviewer:** built none of it. Second look at the pass; the first review's section is above.
+- **Served from** `git archive` copies of `01a948c` (before) and `964bab0` (after), `node_modules` linked. Dev servers for the walks, `vite build` + `vite preview` for performance and the production console (`expose: true` patched into the copies only). Chrome for Testing 154 on Metal, every job under `chrome.lock`. Clocks pinned, sim paused at a fixed hour: two runs of the same build gave 0.000 % changed pixels.
+- **Walked:** 132 + 132 shots at 1280 FR (four overviews, every part close and mid, exploded, x-ray, cut, thermal); 33 + 33 views of the claimed fixes at hours 8, 12, 13, 17, 22; 12 + 12 seam and corner views; 5 + 5 replays of the film's shots with the film's own cameras, hours and displays; 3 + 3 first-visit views; 6 shots at 390 and 768 on the new build only. About 390 files. Folder: `~/.cache/lab-review/mass-heater-lab/2026-11-13-964bab0/`.
+- **The pass touches** 22 files; nothing in `src/data`, `i18n`, `panels`, `sim`, `narration`, `public`.
+
+### Verdict
+
+**Push: yes, from this review.** No part, dimension or draw call moved: geometry is identical on all 460 meshes of the four worlds. The five claimed fixes are fixed or better (MP1 fixed, MP4 fixed, MP7 better, MP3 better, MP6 better; MP2 the same to the eye). Blockers 0, majors 0, minors 4 (MR1 to MR4). The visible one is MR1, the snow outside the room by day.
+
+### The claimed fixes
+
+| Id                             | Verdict                              | What the screen shows                                                                                                                                                                           |
+| ------------------------------ | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| MP1 liner (`heat-riser`)       | **fixed**                            | The bark streaks are gone; a cast refractory with pores, darker and browner than before (`m3-01`).                                                                                              |
+| MP4 drum lid                   | **fixed**                            | The 16-wedge starburst is gone; dark steel with rust patches and a worn rim, much darker than the light-grey lid before (`m3-02`).                                                              |
+| MP7 slice caps                 | **better**                           | Short-fibre board with shives instead of crossed-stroke sacking, in `bench-section` and the `living-room` floor edge (`m3-03`).                                                                 |
+| MP3 day roofs and snow outside | **better, with a side effect (MR1)** | Crust grain on roofs and ground; roofs less flat but still near-white; ground outside the room darker and greyer (`m3-04`, `m3-05`, `m3-14`).                                                   |
+| MP2 plaster                    | **same to the eye**                  | 0.00 % of pixels changed by more than 12 levels at the CO alarm; calmer by about 10 %, warmer by about 1 %, not lighter (`m3-07`). The wish for a lighter plaster is not answered by this pass. |
+| MP6 ripples and footprints     | **better**                           | Boot-shaped prints, each its own size and turn; ripples a little more varied (`m3-06`).                                                                                                         |
+
+### Regression hunt
+
+**Geometry: no change.** Four worlds run in Node in both builds, every mesh compared in world space: 460 meshes, same count and order; differing triangles 0, differing corner-and-normal entries 0, largest bounding-box shift 0 m, largest area or volume difference 0. Normals intact. Vertex counts grew where a vertex was copied for a second UV side (+0.37 / +2.04 / +3.03 / +0.60 % in homestead / room / core / bench) with identical triangles. The only material change is the colour of the `snow` plane in `living-room` and `fire-core` (0xefefef → 0xa8a8a8 at the hour sampled), the pass's own `groundMat` change.
+
+**Every part, close and mid, four worlds, by eye and by pixel difference:** homestead 11 parts (0.00 to 5.9 % changed, roof snow), living-room 18 (up to 67 %, almost all the ground outside and the lid), fire-core 14 (up to 24 %), bench-section 13 (up to 6 %). Not one map missing, rotated wrongly, hole in a cap, z-fighting or inverted light. Changes on purpose: flue and duct spiral bands, riser sleeve and insulation, wicker basket, `stone-filler` (no UVs before, now a concrete texture), bench shell grain.
+
+**Display modes:** thermal 0.00 to 1.22 % (same ramp), x-ray, cut and exploded differ only where the maps or the ground changed.
+
+**Film shots replayed:** O6 night snow 0.00 % (same); A2 room, bench 2.45 % (same); B3 liner 1.27 % (better); C4 caps 1.74 % (better); D2 lid corner 1.16 % (lid dark and correct, barely visible at that angle) (`m3-11`, `m3-12`).
+
+**UV-scale test** (`uvscale.test.ts`, 9 tests): mutation-tested, putting a plain `lathe` back on the liner fails it (`mean 3.06, worst 1 % 16.7`). It does not cover the furniture's own-UV maps (`OWN_UV`), still stretched 2 to 15× on curtains, rug, wicker bark and the kindling block.
+
+### Budget (production build, CPU ×4, 390×844 @ pixel ratio 3, 3 runs alternated, medians)
+
+|                           | Before `01a948c`             | After `964bab0`              | First review's "after" |
+| ------------------------- | ---------------------------- | ---------------------------- | ---------------------- |
+| First frame               | 2,573 ms                     | 2,664 ms                     | 2,782                  |
+| Entering the room         | 1,217                        | 1,231                        | 1,450                  |
+| Core / bench              | 654 / 466                    | 634 / 467                    | 750 / 567              |
+| Programs                  | 345 to 346                   | 345 to 346                   | 346                    |
+| Wire bytes                | 551,901                      | 553,657                      | 551.9 kB               |
+| Frame time (four worlds)  | 16.8 / 16.6 / 16.7 / 16.6 ms | 16.5 / 16.6 / 16.7 / 16.6 ms | 16.7                   |
+| Frames over 33 ms per 200 | 0                            | 0                            | 0                      |
+
+Worse than the first review: wire bytes +1.8 kB (deterministic: JS +4.8 kB raw, `index-D6jF-3GR.js` 1,520.27 kB, gzip 472.17); first frame +91 ms median, positive in 3 of 3 pairs but inside a run-to-run spread of about 250 ms. A real phone's GPU is not measured.
+
+**Flicker** (orbit / dolly): homestead 5.601 / 6.484 → 5.601 / 6.485; living-room 1.650 / 6.439 → 1.611 / 6.232; fire-core 0.712 / 2.167 → 0.712 / 2.158 (spike 5.40 → 5.41, old D21); bench 0.442 / 2.107 → 0.437 / 2.033. Still camera: 0 % in living-room and bench-section, 0.001 to 0.006 % in homestead, 0.46 to 0.50 % in fire-core (the flame, same in both).
+
+### Gates
+
+typecheck pass · format:check pass · `npm test` 609 tests, 22 files, pass · build pass (`index-CeHvS1vG.js` 1,520.27 kB, gzip 472.17) · dev console: only the 4 kit font 403s · production console: 0 messages · 25 to 26 sliders to both ends and 16 chips per world: 0 errors or warnings.
+
+### Defects
+
+**Blockers:** none. **Major:** none.
+
+**Minor**
+
+- **MR1. The snow outside the room is grey and blotchy by day.** `living-room`, `fire-core`, `bench-section`, the ground plane outside the walls. `groundMat` went from `0.1 + 0.78·d` to `0.1 + 0.3·d` (`room/stage.ts:360`). At noon the ground is 8 to 12 levels darker (221 → 209, 211 → 203); at 08:00, 29 to 32 levels darker (208 → 179 in the room, 125 → 93 in the core): it reads as wet grey ground or concrete. The homestead's snow (a different shader) stays white, so the two yards no longer match. `m3-05`, `m3-10`, `m3-04`.
+- **MR2. The roof's crust grain is a strong cloud mottle from close** (`homestead`, `sweep-access` and `chimney-cap` close): patches of 23 cm and 10 cm at high contrast, foam or camouflage rather than drifted snow (`m3-14`; `homestead/snow.ts`, `SNOW_GRAIN = 0.30`).
+- **MR3. The wrapped seam of every metric-UV cylinder and lathe has a visible step in the map, at the front.** `flue-tee`, `flue-foot-cap` and the flue's spiral bands: the `rod`, `cylinder` and `torus` pieces wrap at +z, toward the camera, and the bands' lines no longer line up across a vertical line facing the visitor. The seam was already there before (0.5 of a tile in both builds) and the old finer hairlines hid it. `m3-08`, `compare/zoom-flue-seam.jpg`; likely `common.ts`, `cylinderMetric` and `rod` (`u` runs 0 to 2π·r with no tile-aligned seam). The liner (cut at +z) and the drum (`phiStart = π`) carry theirs at the back.
+- **MR4. Open as to the owner's wishes:** the roofs are less flat, the plaster is not lighter, and wide-sky frames of the `l7` type stay over 15 % flat because the sky is one colour (kit request 30). Not a regression.
+
+**Still open, not touched by the pass:** MP5 (neighbour's windows plain orange squares), MP8 (entering `living-room` about 1.2 to 1.4 s at CPU ×4, kit request 29), MP9 (labels over the insulation at 390, the fire-core pop 5.4, x-ray dropping the brick, the invitation over the title).
+
+### Not checked
+
+Real phones and GPUs, Safari, Firefox; guide audio, lessons, quiz, plans, i18n text (untouched by the pass); 768 and 390 only as 6 new-only spot checks (`m3-13`); English; light theme; the setting framing and isolate; the 24 sliders driven in the dev build only; texture memory beyond counts; one machine, one session (first-frame figures carry about ±125 ms).
